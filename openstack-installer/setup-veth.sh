@@ -54,9 +54,9 @@ ip link set "$BRIDGE" up
 # 4️⃣ Crear br-ex con Open vSwitch y conectarlo a veth1
 # ============================================================
 echo "🔗 Creando bridge externo br-ex (OVS) y conectando veth1..."
-sudo ovs-vsctl add-br "$BR_EX"
-sudo ip link set "$BR_EX" up
-sudo ovs-vsctl add-port "$BR_EX" "$VETH1"
+# sudo ovs-vsctl add-br "$BR_EX"
+# sudo ip link set "$BR_EX" up
+# sudo ovs-vsctl add-port "$BR_EX" "$VETH1"
 
 
 
@@ -71,15 +71,5 @@ iptables -D FORWARD -s "$SUBNET" -j ACCEPT 2>/dev/null || true
 iptables -t nat -A POSTROUTING -o "$EXT_IF" -s "$SUBNET" -j MASQUERADE
 iptables -A FORWARD -s "$SUBNET" -j ACCEPT
 
-# ============================================================
-# ✅ Resumen
-# ============================================================
-echo "✅ Red virtual configurada correctamente:"
-echo "   Linux Bridge: $BRIDGE ($GATEWAY)"
-echo "   OVS Bridge:   $BR_EX con puerto $VETH1"
-echo "   Veths:        $VETH0 <-> $VETH1"
-echo "   NAT:          $EXT_IF ↔ $SUBNET"
 
-# Mostrar verificación
-sudo ovs-vsctl show
 
