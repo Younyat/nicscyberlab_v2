@@ -188,7 +188,7 @@ function addNode(x, y) {
     network: 'red_privada',
     subnetwork: 'red_privada_subnet',
     flavor: 'medium',
-    image: 'Ubuntu22.04',
+    image: 'ubuntu-22.04',
     securityGroup: 'sg_wazuh_suricata',
     sshKey: 'nueva_clave_wazuh'
   };
@@ -254,7 +254,7 @@ function loadNodeProperties(node) {
   document.getElementById('nodeNetwork').value = node.data('network') || 'red_privada';
   document.getElementById('nodeSubNetwork').value = node.data('subnetwork') || 'red_privada_subnet';
   document.getElementById('nodeFlavor').value = node.data('flavor') || 'medium';
-  document.getElementById('nodeImage').value = node.data('image') || 'Ubuntu22.04';
+  document.getElementById('nodeImage').value = node.data('image') || 'ubuntu-22.04';
   document.getElementById('nodeSecurityGroup').value = node.data('securityGroup') || 'sg_wazuh_suricata';
   document.getElementById('nodeSSHKey').value = node.data('sshKey') || 'nueva_clave_wazuh';
 }
@@ -263,7 +263,7 @@ function clearNodeProperties() {
   document.getElementById('nodeNetwork').value = 'red_privada';
   document.getElementById('nodeSubNetwork').value = 'red_privada_subnet';
   document.getElementById('nodeFlavor').value = 'medium';
-  document.getElementById('nodeImage').value = 'Ubuntu22.04';
+  document.getElementById('nodeImage').value = 'ubuntu-22.04';
   document.getElementById('nodeSecurityGroup').value = 'sg_wazuh_suricata';
   document.getElementById('nodeSSHKey').value = 'nueva_clave_wazuh';
 }

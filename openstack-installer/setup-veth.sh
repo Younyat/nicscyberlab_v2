@@ -1,44 +1,77 @@
 #!/bin/bash
 set -euo pipefail
 
+# ============================================================
+# 🌐 Configuración de red virtual para OpenStack (con OVS)
+# ============================================================
+
 BRIDGE="uplinkbridge"
 VETH0="veth0"
 VETH1="veth1"
 SUBNET="10.0.2.0/24"
 GATEWAY="10.0.2.1"
 EXT_IF="ens33"
-
-
-
-sudo apt update -y
-sudo apt install -y iproute2 net-tools bridge-utils
+BR_EX="br-ex"
 
 echo "🔧 Configurando red virtual para OpenStack..."
 
-# Eliminar configuración previa si existe
-if ip link show "$BRIDGE" &>/dev/null; then
-  echo "⚠️  Eliminando bridge existente $BRIDGE..."
-  ip link set "$BRIDGE" down || true
-  brctl delbr "$BRIDGE" || true
-fi
+# ============================================================
+# 1️⃣ Instalar dependencias necesarias
+# ============================================================
+sudo apt update -y
+sudo apt install -y iproute2 net-tools bridge-utils openvswitch-switch
+
+# Asegurar que OVS está activo
+sudo systemctl enable --now openvswitch-switch
+
+# ============================================================
+# 2️⃣ Eliminar configuración previa
+# ============================================================
+for iface in "$BRIDGE" "$BR_EX"; do
+  if ip link show "$iface" &>/dev/null; then
+    echo "⚠️  Eliminando bridge existente $iface..."
+    ip link set "$iface" down || true
+    brctl delbr "$iface" 2>/dev/null || sudo ovs-vsctl del-br "$iface" || true
+  fi
+done
 ip link del "$VETH0" type veth &>/dev/null || true
 ip link del "$VETH1" type veth &>/dev/null || true
 
-# Crear par veth
+# ============================================================
+# 3️⃣ Crear par veth y bridge clásico (uplinkbridge)
+# ============================================================
 ip link add "$VETH0" type veth peer name "$VETH1"
 ip link set "$VETH0" up
 ip link set "$VETH1" up
 
-# Crear bridge y añadir interfaz
 brctl addbr "$BRIDGE"
 brctl addif "$BRIDGE" "$VETH0"
 ip addr add "$GATEWAY/24" dev "$BRIDGE"
 ip link set "$BRIDGE" up
 
-# Configurar NAT
+# ============================================================
+# 4️⃣ Crear br-ex con Open vSwitch y conectarlo a veth1
+# ============================================================
+echo "🔗 Creando bridge externo br-ex (OVS) y conectando veth1..."
+sudo ovs-vsctl add-br "$BR_EX"
+sudo ip link set "$BR_EX" up
+sudo ovs-vsctl add-port "$BR_EX" "$VETH1"
+
+# ============================================================
+# 5️⃣ Configurar NAT y forwarding
+# ============================================================
 iptables -t nat -A POSTROUTING -o "$EXT_IF" -s "$SUBNET" -j MASQUERADE
 iptables -A FORWARD -s "$SUBNET" -j ACCEPT
 
-echo "✅ Red virtual configurada:"
-echo "   Bridge: $BRIDGE ($GATEWAY)"
-echo "   Veths:  $VETH0 <-> $VETH1"
+# ============================================================
+# ✅ Resumen
+# ============================================================
+echo "✅ Red virtual configurada correctamente:"
+echo "   Linux Bridge: $BRIDGE ($GATEWAY)"
+echo "   OVS Bridge:   $BR_EX con puerto $VETH1"
+echo "   Veths:        $VETH0 <-> $VETH1"
+echo "   NAT:          $EXT_IF ↔ $SUBNET"
+
+# Mostrar verificación
+sudo ovs-vsctl show
+

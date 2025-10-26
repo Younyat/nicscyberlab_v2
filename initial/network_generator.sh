@@ -5,7 +5,7 @@
 #   - red_externa (10.0.2.0/24)
 #   - red_privada (192.168.100.0/24)
 #   - router_privado (con gateway externo e interfaz interna)
-#   - security_group_basico (SSH, ICMP, HTTP, HTTPS)
+#   - sg_wazuh_suricata (SSH, ICMP, HTTP, HTTPS)
 # Autor: Younes Assouyat
 # ======================================================
 
@@ -41,7 +41,7 @@ cat > "$TF_FILE" <<'EOF'
 # 🚀 Infraestructura de Redes, Router y Seguridad en OpenStack
 # Redes: red_privada y red_externa
 # Router: router_privado
-# Security Group: security_group_basico
+# Security Group: sg_wazuh_suricata
 # Autor: Younes Assouyat
 ##############################################
 
@@ -101,8 +101,8 @@ resource "openstack_networking_router_interface_v2" "router_privado_interface" {
 # -----------------------------
 # 🧱 Grupo de Seguridad Básico
 # -----------------------------
-resource "openstack_networking_secgroup_v2" "security_group_basico" {
-  name        = "security_group_basico"
+resource "openstack_networking_secgroup_v2" "sg_wazuh_suricata" {
+  name        = "sg_wazuh_suricata"
   description = "Reglas básicas: SSH, ICMP, HTTP, HTTPS"
 }
 
@@ -114,7 +114,7 @@ resource "openstack_networking_secgroup_rule_v2" "ssh_in" {
   port_range_min    = 22
   port_range_max    = 22
   remote_ip_prefix  = "0.0.0.0/0"
-  security_group_id = openstack_networking_secgroup_v2.security_group_basico.id
+  security_group_id = openstack_networking_secgroup_v2.sg_wazuh_suricata.id
 }
 
 # ✅ ICMP (Ping)
@@ -123,7 +123,7 @@ resource "openstack_networking_secgroup_rule_v2" "icmp_in" {
   ethertype         = "IPv4"
   protocol          = "icmp"
   remote_ip_prefix  = "0.0.0.0/0"
-  security_group_id = openstack_networking_secgroup_v2.security_group_basico.id
+  security_group_id = openstack_networking_secgroup_v2.sg_wazuh_suricata.id
 }
 
 # ✅ HTTP (Puerto 80)
@@ -134,7 +134,7 @@ resource "openstack_networking_secgroup_rule_v2" "http_in" {
   port_range_min    = 80
   port_range_max    = 80
   remote_ip_prefix  = "0.0.0.0/0"
-  security_group_id = openstack_networking_secgroup_v2.security_group_basico.id
+  security_group_id = openstack_networking_secgroup_v2.sg_wazuh_suricata.id
 }
 
 # ✅ HTTPS (Puerto 443)
@@ -145,7 +145,7 @@ resource "openstack_networking_secgroup_rule_v2" "https_in" {
   port_range_min    = 443
   port_range_max    = 443
   remote_ip_prefix  = "0.0.0.0/0"
-  security_group_id = openstack_networking_secgroup_v2.security_group_basico.id
+  security_group_id = openstack_networking_secgroup_v2.sg_wazuh_suricata.id
 }
 
 # -----------------------------
@@ -160,9 +160,9 @@ output "router_privado_info" {
   }
 }
 
-output "security_group_basico_info" {
+output "sg_wazuh_suricata_info" {
   description = "Grupo de seguridad básico creado"
-  value = openstack_networking_secgroup_v2.security_group_basico.name
+  value = openstack_networking_secgroup_v2.sg_wazuh_suricata.name
 }
 EOF
 
