@@ -22,9 +22,7 @@ neutron_enable_ovn_agent: "no"
 
 neutron_keystone_user: "neutron"
 
-# Valid options are [ openvswitch, ovn, linuxbridge ]
-# Do note linuxbridge is *EXPERIMENTAL* in Neutron since Zed and it requires extra tweaks to config to be usable.
-# For details, see: https://docs.openstack.org/neutron/latest/admin/config-experimental-framework.html
+# Valid options are [ openvswitch, ovn ]
 neutron_plugin_agent: "openvswitch"
 
 # Valid options are [ internal, infoblox ]
@@ -50,9 +48,6 @@ computes_need_external_bridge: "{{ (enable_neutron_dvr | bool and neutron_comput
 
 # Default DNS resolvers for virtual networks
 neutron_dnsmasq_dns_servers: "1.1.1.1,8.8.8.8,8.8.4.4"
-
-# Set legacy iptables to allow kernels not supporting iptables-nft
-neutron_legacy_iptables: "no"
 
 # Enable distributed floating ip for OVN deployments
 neutron_ovn_distributed_fip: "no"

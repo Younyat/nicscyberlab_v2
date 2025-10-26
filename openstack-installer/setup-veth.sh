@@ -22,7 +22,8 @@ sudo apt update -y
 sudo apt install -y iproute2 net-tools bridge-utils openvswitch-switch
 
 # Asegurar que OVS está activo
-sudo systemctl enable --now openvswitch-switch
+sudo systemctl start openvswitch-switch || sudo systemctl restart openvswitch-switch
+
 
 # ============================================================
 # 2️⃣ Eliminar configuración previa
@@ -56,6 +57,13 @@ echo "🔗 Creando bridge externo br-ex (OVS) y conectando veth1..."
 sudo ovs-vsctl add-br "$BR_EX"
 sudo ip link set "$BR_EX" up
 sudo ovs-vsctl add-port "$BR_EX" "$VETH1"
+
+
+
+# Limpiar reglas NAT duplicadas o anteriores
+iptables -t nat -D POSTROUTING -o "$EXT_IF" -s "$SUBNET" -j MASQUERADE 2>/dev/null || true
+iptables -D FORWARD -s "$SUBNET" -j ACCEPT 2>/dev/null || true
+
 
 # ============================================================
 # 5️⃣ Configurar NAT y forwarding

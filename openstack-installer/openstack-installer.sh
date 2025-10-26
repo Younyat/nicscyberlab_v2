@@ -305,15 +305,4 @@ echo "🎉 OpenStack desplegado correctamente con Kolla-Ansible."
 
 
 
-# ============================================================
-# 🔧 CONFIGURAR Y LANZAR TOPOLOGÍA DE RED VIRTUAL (setup-veth.sh)
-# ============================================================
-if [ -f "./setup-veth.sh" ]; then
-  echo "🔹 Aplicando permisos y ejecutando topología de red virtual..."
-  chmod +x ./setup-veth.sh
-  sudo apt install -y bridge-utils iproute2 net-tools
-  sudo bash ./setup-veth.sh
-  echo "✅ Red virtual configurada correctamente (veth/br-ex)."
-else
-  echo "⚠️  Advertencia: No se encontró setup-veth.sh, se continuará sin topología virtual."
-fi
+
