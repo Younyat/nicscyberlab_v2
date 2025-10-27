@@ -1,4 +1,3 @@
-
 #    Copyright 2012 OpenStack Foundation
 #    Copyright 2012-2013 Hewlett-Packard Development Company, L.P.
 #
@@ -18,20 +17,14 @@
 Utilities for consuming the version from importlib-metadata.
 """
 
+from __future__ import absolute_import
+from __future__ import print_function
+
 import itertools
 import operator
 import sys
 
-# TODO(stephenfin): Remove this once we drop support for Python < 3.8
-if sys.version_info >= (3, 8):
-    from importlib import metadata as importlib_metadata
-    use_importlib = True
-else:
-    try:
-        import importlib_metadata
-        use_importlib = True
-    except ImportError:
-        use_importlib = False
+import pbr._compat.metadata
 
 
 def _is_int(string):
@@ -49,8 +42,14 @@ class SemanticVersion(object):
     """
 
     def __init__(
-            self, major, minor=0, patch=0, prerelease_type=None,
-            prerelease=None, dev_count=None):
+        self,
+        major,
+        minor=0,
+        patch=0,
+        prerelease_type=None,
+        prerelease=None,
+        dev_count=None,
+    ):
         """Create a SemanticVersion.
 
         :param major: Major component of the version.
@@ -97,10 +96,14 @@ class SemanticVersion(object):
         else:
             uq_dev = 1
         return (
-            self._major, self._minor, self._patch,
+            self._major,
+            self._minor,
+            self._patch,
             uq_dev,
-            rc_lookup[self._prerelease_type], self._prerelease,
-            self._dev_count or sys.maxsize)
+            rc_lookup[self._prerelease_type],
+            self._prerelease,
+            self._dev_count or sys.maxsize,
+        )
 
     def __lt__(self, other):
         """Compare self and other, another Semantic Version."""
@@ -170,15 +173,20 @@ class SemanticVersion(object):
         if digit_len == 0:
             raise ValueError("Invalid version %r" % version_string)
         elif digit_len < 3:
-            if (digit_len < len(input_components) and
-                    input_components[digit_len][0].isdigit()):
+            if (
+                digit_len < len(input_components)
+                and input_components[digit_len][0].isdigit()
+            ):
                 # Handle X.YaZ - Y is a digit not a leadin to pre-release.
                 mixed_component = input_components[digit_len]
-                last_component = ''.join(itertools.takewhile(
-                    lambda x: x.isdigit(), mixed_component))
+                last_component = ''.join(
+                    itertools.takewhile(lambda x: x.isdigit(), mixed_component)
+                )
                 components.append(last_component)
-                input_components[digit_len:digit_len + 1] = [
-                    last_component, mixed_component[len(last_component):]]
+                input_components[digit_len : digit_len + 1] = [
+                    last_component,
+                    mixed_component[len(last_component) :],
+                ]
                 digit_len += 1
             components.extend([0] * (3 - digit_len))
         components.extend(input_components[digit_len:])
@@ -195,8 +203,9 @@ class SemanticVersion(object):
             segment = ''.join(itertools.dropwhile(isdigit, segment))
             isalpha = operator.methodcaller('isalpha')
             prerelease_type = ''.join(itertools.takewhile(isalpha, segment))
-            prerelease = segment[len(prerelease_type)::]
+            prerelease = segment[len(prerelease_type) : :]
             return prerelease_type, int(prerelease)
+
         if _is_int(components[2]):
             patch = int(components[2])
         else:
@@ -215,8 +224,9 @@ class SemanticVersion(object):
             # old dev format - 0.1.2.3.g1234
             dev_count = int(remainder[0])
         else:
-            if remainder and (remainder[0][0] == '0' or
-                              remainder[0][0] in ('a', 'b', 'r')):
+            if remainder and (
+                remainder[0][0] == '0' or remainder[0][0] in ('a', 'b', 'r')
+            ):
                 # Current RC/beta layout
                 prerelease_type, prerelease = _parse_type(remainder[0])
                 remainder = remainder[1:]
@@ -230,16 +240,23 @@ class SemanticVersion(object):
                 else:
                     raise ValueError(
                         'Unknown remainder %r in %r'
-                        % (remainder, version_string))
+                        % (remainder, version_string)
+                    )
                 remainder = remainder[1:]
         result = SemanticVersion(
-            major, minor, patch, prerelease_type=prerelease_type,
-            prerelease=prerelease, dev_count=dev_count)
+            major,
+            minor,
+            patch,
+            prerelease_type=prerelease_type,
+            prerelease=prerelease,
+            dev_count=dev_count,
+        )
         if post_count:
             if dev_count:
                 raise ValueError(
                     'Cannot combine postN and devN - no mapping in %r'
-                    % (version_string,))
+                    % (version_string,)
+                )
             result = result.increment().to_dev(post_count)
         return result
 
@@ -281,8 +298,7 @@ class SemanticVersion(object):
                     new_major = self._major - 1
                 else:
                     new_major = 0
-        return SemanticVersion(
-            new_major, new_minor, new_patch)
+        return SemanticVersion(new_major, new_minor, new_patch)
 
     def increment(self, minor=False, major=False):
         """Return an incremented SemanticVersion.
@@ -323,8 +339,12 @@ class SemanticVersion(object):
         else:
             new_major = self._major
         return SemanticVersion(
-            new_major, new_minor, new_patch,
-            new_prerelease_type, new_prerelease)
+            new_major,
+            new_minor,
+            new_patch,
+            new_prerelease_type,
+            new_prerelease,
+        )
 
     def _long_version(self, pre_separator, rc_marker=""):
         """Construct a long string version of this semver.
@@ -334,16 +354,23 @@ class SemanticVersion(object):
             version number of the component to preserve sorting. (Used for
             rpm support)
         """
-        if ((self._prerelease_type or self._dev_count) and
-                pre_separator is None):
+        if (
+            self._prerelease_type or self._dev_count
+        ) and pre_separator is None:
             segments = [self.decrement().brief_string()]
             pre_separator = "."
         else:
             segments = [self.brief_string()]
         if self._prerelease_type:
             segments.append(
-                "%s%s%s%s" % (pre_separator, rc_marker, self._prerelease_type,
-                              self._prerelease))
+                "%s%s%s%s"
+                % (
+                    pre_separator,
+                    rc_marker,
+                    self._prerelease_type,
+                    self._prerelease,
+                )
+            )
         if self._dev_count:
             if not self._prerelease_type:
                 segments.append(pre_separator)
@@ -376,8 +403,13 @@ class SemanticVersion(object):
         :param dev_count: The number of commits since the last release.
         """
         return SemanticVersion(
-            self._major, self._minor, self._patch, self._prerelease_type,
-            self._prerelease, dev_count=dev_count)
+            self._major,
+            self._minor,
+            self._patch,
+            self._prerelease_type,
+            self._prerelease,
+            dev_count=dev_count,
+        )
 
     def version_tuple(self):
         """Present the version as a version_info tuple.
@@ -397,15 +429,17 @@ class SemanticVersion(object):
         """
         segments = [self._major, self._minor, self._patch]
         if self._prerelease_type:
-            type_map = {('a', False): 'alpha',
-                        ('b', False): 'beta',
-                        ('rc', False): 'candidate',
-                        ('a', True): 'alphadev',
-                        ('b', True): 'betadev',
-                        ('rc', True): 'candidatedev',
-                        }
+            type_map = {
+                ('a', False): 'alpha',
+                ('b', False): 'beta',
+                ('rc', False): 'candidate',
+                ('a', True): 'alphadev',
+                ('b', True): 'betadev',
+                ('rc', True): 'candidatedev',
+            }
             segments.append(
-                type_map[(self._prerelease_type, bool(self._dev_count))])
+                type_map[(self._prerelease_type, bool(self._dev_count))]
+            )
             segments.append(self._dev_count or self._prerelease)
         elif self._dev_count:
             segments.append('dev')
@@ -436,51 +470,9 @@ class VersionInfo(object):
     def __repr__(self):
         """Include the name."""
         return "pbr.version.VersionInfo(%s:%s)" % (
-            self.package, self.version_string())
-
-    def _get_version_from_pkg_resources(self):
-        """Obtain a version from pkg_resources or setup-time logic if missing.
-
-        This will try to get the version of the package from the pkg_resources
-        This will try to get the version of the package from the
-        record associated with the package, and if there is no such record
-        importlib_metadata record associated with the package, and if there
-        falls back to the logic sdist would use.
-
-        is no such record falls back to the logic sdist would use.
-        """
-        import pkg_resources
-
-        try:
-            requirement = pkg_resources.Requirement.parse(self.package)
-            provider = pkg_resources.get_provider(requirement)
-            result_string = provider.version
-        except pkg_resources.DistributionNotFound:
-            # The most likely cause for this is running tests in a tree
-            # produced from a tarball where the package itself has not been
-            # installed into anything. Revert to setup-time logic.
-            from pbr import packaging
-            result_string = packaging.get_version(self.package)
-
-        return SemanticVersion.from_pip_string(result_string)
-
-    def _get_version_from_importlib_metadata(self):
-        """Obtain a version from importlib or setup-time logic if missing.
-
-        This will try to get the version of the package from the
-        importlib_metadata record associated with the package, and if there
-        is no such record falls back to the logic sdist would use.
-        """
-        try:
-            distribution = importlib_metadata.distribution(self.package)
-            result_string = distribution.version
-        except importlib_metadata.PackageNotFoundError:
-            # The most likely cause for this is running tests in a tree
-            # produced from a tarball where the package itself has not been
-            # installed into anything. Revert to setup-time logic.
-            from pbr import packaging
-            result_string = packaging.get_version(self.package)
-        return SemanticVersion.from_pip_string(result_string)
+            self.package,
+            self.version_string(),
+        )
 
     def release_string(self):
         """Return the full version of the package.
@@ -491,13 +483,21 @@ class VersionInfo(object):
 
     def semantic_version(self):
         """Return the SemanticVersion object for this version."""
-        if self._semantic is None:
-            # TODO(damami): simplify this once Python 3.8 is the oldest
-            # we support
-            if use_importlib:
-                self._semantic = self._get_version_from_importlib_metadata()
-            else:
-                self._semantic = self._get_version_from_pkg_resources()
+        if self._semantic is not None:
+            return self._semantic
+
+        try:
+            result_string = pbr._compat.metadata.get_version(self.package)
+        except pbr._compat.metadata.PackageNotFound:
+            # The most likely cause for this is running tests in a tree
+            # produced from a tarball where the package itself has not been
+            # installed into anything. Revert to setup-time logic.
+            from pbr import packaging
+
+            result_string = packaging.get_version(self.package)
+
+        self._semantic = SemanticVersion.from_pip_string(result_string)
+
         return self._semantic
 
     def version_string(self):
@@ -516,6 +516,5 @@ class VersionInfo(object):
         prefix and then cached and returned.
         """
         if not self._cached_version:
-            self._cached_version = "%s%s" % (prefix,
-                                             self.version_string())
+            self._cached_version = "%s%s" % (prefix, self.version_string())
         return self._cached_version

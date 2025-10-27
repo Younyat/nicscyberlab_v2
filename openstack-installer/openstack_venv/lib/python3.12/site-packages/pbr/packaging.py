@@ -18,19 +18,9 @@
 Utilities with minimum-depends for use in setup.py
 """
 
+from __future__ import absolute_import
+from __future__ import print_function
 from __future__ import unicode_literals
-
-from distutils.command import install as du_install
-from distutils import log
-
-# (hberaud) do not use six here to import urlparse
-# to keep this module free from external dependencies
-# to avoid cross dependencies errors on minimal system
-# free from dependencies.
-try:
-    from urllib.parse import urlparse
-except ImportError:
-    from urlparse import urlparse
 
 import email
 import email.errors
@@ -39,25 +29,19 @@ import re
 import sys
 import warnings
 
-import pkg_resources
-import setuptools
-from setuptools.command import develop
-from setuptools.command import easy_install
-from setuptools.command import egg_info
-from setuptools.command import install
-from setuptools.command import install_scripts
-from setuptools.command import sdist
+from distutils import log
 
-from pbr import extra_files
+from pbr._compat.five import urlparse
+import pbr._compat.packaging
 from pbr import git
-from pbr import options
 import pbr.pbr_json
-from pbr import testr_command
 from pbr import version
 
 REQUIREMENTS_FILES = ('requirements.txt', 'tools/pip-requires')
-PY_REQUIREMENTS_FILES = [x % sys.version_info[0] for x in (
-    'requirements-py%d.txt', 'tools/pip-requires-py%d')]
+PY_REQUIREMENTS_FILES = [
+    x % sys.version_info[0]
+    for x in ('requirements-py%d.txt', 'tools/pip-requires-py%d')
+]
 TEST_REQUIREMENTS_FILES = ('test-requirements.txt', 'tools/test-requires')
 
 
@@ -94,11 +78,13 @@ def get_reqs_from_files(requirements_files):
     # TODO(stephenfin): Remove this in pbr 6.0+
     deprecated = [f for f in existing if f in PY_REQUIREMENTS_FILES]
     if deprecated:
-        warnings.warn('Support for \'-pyN\'-suffixed requirements files is '
-                      'removed in pbr 5.0 and these files are now ignored. '
-                      'Use environment markers instead. Conflicting files: '
-                      '%r' % deprecated,
-                      DeprecationWarning)
+        warnings.warn(
+            'Support for \'-pyN\'-suffixed requirements files is '
+            'removed in pbr 5.0 and these files are now ignored. '
+            'Use environment markers instead. Conflicting files: '
+            '%r' % deprecated,
+            DeprecationWarning,
+        )
 
     existing = [f for f in existing if f not in PY_REQUIREMENTS_FILES]
     for requirements_file in existing:
@@ -109,27 +95,28 @@ def get_reqs_from_files(requirements_files):
 
 
 def egg_fragment(match):
-    return re.sub(r'(?P<PackageName>[\w.-]+)-'
-                  r'(?P<GlobalVersion>'
-                  r'(?P<VersionTripple>'
-                  r'(?P<Major>0|[1-9][0-9]*)\.'
-                  r'(?P<Minor>0|[1-9][0-9]*)\.'
-                  r'(?P<Patch>0|[1-9][0-9]*)){1}'
-                  r'(?P<Tags>(?:\-'
-                  r'(?P<Prerelease>(?:(?=[0]{1}[0-9A-Za-z-]{0})(?:[0]{1})|'
-                  r'(?=[1-9]{1}[0-9]*[A-Za-z]{0})(?:[0-9]+)|'
-                  r'(?=[0-9]*[A-Za-z-]+[0-9A-Za-z-]*)(?:[0-9A-Za-z-]+)){1}'
-                  r'(?:\.(?=[0]{1}[0-9A-Za-z-]{0})(?:[0]{1})|'
-                  r'\.(?=[1-9]{1}[0-9]*[A-Za-z]{0})(?:[0-9]+)|'
-                  r'\.(?=[0-9]*[A-Za-z-]+[0-9A-Za-z-]*)'
-                  r'(?:[0-9A-Za-z-]+))*){1}){0,1}(?:\+'
-                  r'(?P<Meta>(?:[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))){0,1}))',
-                  r'\g<PackageName>>=\g<GlobalVersion>',
-                  match.groups()[-1])
+    return re.sub(
+        r'(?P<PackageName>[\w.-]+)-'
+        r'(?P<GlobalVersion>'
+        r'(?P<VersionTripple>'
+        r'(?P<Major>0|[1-9][0-9]*)\.'
+        r'(?P<Minor>0|[1-9][0-9]*)\.'
+        r'(?P<Patch>0|[1-9][0-9]*)){1}'
+        r'(?P<Tags>(?:\-'
+        r'(?P<Prerelease>(?:(?=[0]{1}[0-9A-Za-z-]{0})(?:[0]{1})|'
+        r'(?=[1-9]{1}[0-9]*[A-Za-z]{0})(?:[0-9]+)|'
+        r'(?=[0-9]*[A-Za-z-]+[0-9A-Za-z-]*)(?:[0-9A-Za-z-]+)){1}'
+        r'(?:\.(?=[0]{1}[0-9A-Za-z-]{0})(?:[0]{1})|'
+        r'\.(?=[1-9]{1}[0-9]*[A-Za-z]{0})(?:[0-9]+)|'
+        r'\.(?=[0-9]*[A-Za-z-]+[0-9A-Za-z-]*)'
+        r'(?:[0-9A-Za-z-]+))*){1}){0,1}(?:\+'
+        r'(?P<Meta>(?:[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))){0,1}))',
+        r'\g<PackageName>>=\g<GlobalVersion>',
+        match.groups()[-1],
+    )
 
 
 def parse_requirements(requirements_files=None, strip_markers=False):
-
     if requirements_files is None:
         requirements_files = get_requirements_files()
 
@@ -140,8 +127,9 @@ def parse_requirements(requirements_files=None, strip_markers=False):
             continue
 
         # Ignore index URL lines
-        if re.match(r'^\s*(-i|--index-url|--extra-index-url|--find-links).*',
-                    line):
+        if re.match(
+            r'^\s*(-i|--index-url|--extra-index-url|--find-links).*', line
+        ):
             continue
 
         # Handle nested requirements files such as:
@@ -149,13 +137,11 @@ def parse_requirements(requirements_files=None, strip_markers=False):
         if line.startswith('-r'):
             req_file = line.partition(' ')[2]
             requirements += parse_requirements(
-                [req_file], strip_markers=strip_markers)
+                [req_file], strip_markers=strip_markers
+            )
             continue
 
-        try:
-            project_name = pkg_resources.Requirement.parse(line).project_name
-        except ValueError:
-            project_name = None
+        project_name = pbr._compat.packaging.extract_project_name(line)
 
         # For the requirements list, we need to inject only the portion
         # after egg= so that distutils knows the package it's looking for
@@ -189,8 +175,7 @@ def parse_requirements(requirements_files=None, strip_markers=False):
                 line = line[:semi_pos]
             requirements.append(line)
         else:
-            log.info(
-                '[pbr] Excluding %s: %s' % (project_name, reason))
+            log.info('[pbr] Excluding %s: %s' % (project_name, reason))
 
     return requirements
 
@@ -198,6 +183,7 @@ def parse_requirements(requirements_files=None, strip_markers=False):
 def parse_dependency_links(requirements_files=None):
     if requirements_files is None:
         requirements_files = get_requirements_files()
+
     dependency_links = []
     # dependency_links inject alternate locations to find packages listed
     # in requirements
@@ -214,458 +200,6 @@ def parse_dependency_links(requirements_files=None):
     return dependency_links
 
 
-class InstallWithGit(install.install):
-    """Extracts ChangeLog and AUTHORS from git then installs.
-
-    This is useful for e.g. readthedocs where the package is
-    installed and then docs built.
-    """
-
-    command_name = 'install'
-
-    def run(self):
-        _from_git(self.distribution)
-        return install.install.run(self)
-
-
-class LocalInstall(install.install):
-    """Runs python setup.py install in a sensible manner.
-
-    Force a non-egg installed in the manner of
-    single-version-externally-managed, which allows us to install manpages
-    and config files.
-    """
-
-    command_name = 'install'
-
-    def run(self):
-        _from_git(self.distribution)
-        return du_install.install.run(self)
-
-
-class TestrTest(testr_command.Testr):
-    """Make setup.py test do the right thing."""
-
-    command_name = 'test'
-    description = 'DEPRECATED: Run unit tests using testr'
-
-    def run(self):
-        warnings.warn('testr integration is deprecated in pbr 4.2 and will '
-                      'be removed in a future release. Please call your test '
-                      'runner directly',
-                      DeprecationWarning)
-
-        # Can't use super - base class old-style class
-        testr_command.Testr.run(self)
-
-
-class LocalRPMVersion(setuptools.Command):
-    __doc__ = """Output the rpm *compatible* version string of this package"""
-    description = __doc__
-
-    user_options = []
-    command_name = "rpm_version"
-
-    def run(self):
-        log.info("[pbr] Extracting rpm version")
-        name = self.distribution.get_name()
-        print(version.VersionInfo(name).semantic_version().rpm_string())
-
-    def initialize_options(self):
-        pass
-
-    def finalize_options(self):
-        pass
-
-
-class LocalDebVersion(setuptools.Command):
-    __doc__ = """Output the deb *compatible* version string of this package"""
-    description = __doc__
-
-    user_options = []
-    command_name = "deb_version"
-
-    def run(self):
-        log.info("[pbr] Extracting deb version")
-        name = self.distribution.get_name()
-        print(version.VersionInfo(name).semantic_version().debian_string())
-
-    def initialize_options(self):
-        pass
-
-    def finalize_options(self):
-        pass
-
-
-def have_testr():
-    return testr_command.have_testr
-
-
-try:
-    from nose import commands
-
-    class NoseTest(commands.nosetests):
-        """Fallback test runner if testr is a no-go."""
-
-        command_name = 'test'
-        description = 'DEPRECATED: Run unit tests using nose'
-
-        def run(self):
-            warnings.warn('nose integration in pbr is deprecated. Please use '
-                          'the native nose setuptools configuration or call '
-                          'nose directly',
-                          DeprecationWarning)
-
-            # Can't use super - base class old-style class
-            commands.nosetests.run(self)
-
-    _have_nose = True
-
-except ImportError:
-    _have_nose = False
-
-
-def have_nose():
-    return _have_nose
-
-
-_wsgi_text = """#PBR Generated from %(group)r
-
-import threading
-
-from %(module_name)s import %(import_target)s
-
-if __name__ == "__main__":
-    import argparse
-    import socket
-    import sys
-    import wsgiref.simple_server as wss
-
-    parser = argparse.ArgumentParser(
-        description=%(import_target)s.__doc__,
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
-        usage='%%(prog)s [-h] [--port PORT] [--host IP] -- [passed options]')
-    parser.add_argument('--port', '-p', type=int, default=8000,
-                        help='TCP port to listen on')
-    parser.add_argument('--host', '-b', default='',
-                        help='IP to bind the server to')
-    parser.add_argument('args',
-                        nargs=argparse.REMAINDER,
-                        metavar='-- [passed options]',
-                        help="'--' is the separator of the arguments used "
-                        "to start the WSGI server and the arguments passed "
-                        "to the WSGI application.")
-    args = parser.parse_args()
-    if args.args:
-        if args.args[0] == '--':
-            args.args.pop(0)
-        else:
-            parser.error("unrecognized arguments: %%s" %% ' '.join(args.args))
-    sys.argv[1:] = args.args
-    server = wss.make_server(args.host, args.port, %(invoke_target)s())
-
-    print("*" * 80)
-    print("STARTING test server %(module_name)s.%(invoke_target)s")
-    url = "http://%%s:%%d/" %% (server.server_name, server.server_port)
-    print("Available at %%s" %% url)
-    print("DANGER! For testing only, do not use in production")
-    print("*" * 80)
-    sys.stdout.flush()
-
-    server.serve_forever()
-else:
-    application = None
-    app_lock = threading.Lock()
-
-    with app_lock:
-        if application is None:
-            application = %(invoke_target)s()
-
-"""
-
-_script_text = """# PBR Generated from %(group)r
-
-import sys
-
-from %(module_name)s import %(import_target)s
-
-
-if __name__ == "__main__":
-    sys.exit(%(invoke_target)s())
-"""
-
-
-# the following allows us to specify different templates per entry
-# point group when generating pbr scripts.
-ENTRY_POINTS_MAP = {
-    'console_scripts': _script_text,
-    'gui_scripts': _script_text,
-    'wsgi_scripts': _wsgi_text
-}
-
-
-def generate_script(group, entry_point, header, template):
-    """Generate the script based on the template.
-
-    :param str group:
-        The entry-point group name, e.g., "console_scripts".
-    :param str header:
-        The first line of the script, e.g., "!#/usr/bin/env python".
-    :param str template:
-        The script template.
-    :returns:
-        The templated script content
-    :rtype:
-        str
-    """
-    if not entry_point.attrs or len(entry_point.attrs) > 2:
-        raise ValueError("Script targets must be of the form "
-                         "'func' or 'Class.class_method'.")
-    script_text = template % dict(
-        group=group,
-        module_name=entry_point.module_name,
-        import_target=entry_point.attrs[0],
-        invoke_target='.'.join(entry_point.attrs),
-    )
-    return header + script_text
-
-
-def override_get_script_args(
-        dist, executable=os.path.normpath(sys.executable)):
-    """Override entrypoints console_script."""
-    # get_script_header() is deprecated since Setuptools 12.0
-    try:
-        header = easy_install.ScriptWriter.get_header("", executable)
-    except AttributeError:
-        header = easy_install.get_script_header("", executable)
-    for group, template in ENTRY_POINTS_MAP.items():
-        for name, ep in dist.get_entry_map(group).items():
-            yield (name, generate_script(group, ep, header, template))
-
-
-class LocalDevelop(develop.develop):
-
-    command_name = 'develop'
-
-    def install_wrapper_scripts(self, dist):
-        if sys.platform == 'win32':
-            return develop.develop.install_wrapper_scripts(self, dist)
-        if not self.exclude_scripts:
-            for args in override_get_script_args(dist):
-                self.write_script(*args)
-
-
-class LocalInstallScripts(install_scripts.install_scripts):
-    """Intercepts console scripts entry_points."""
-    command_name = 'install_scripts'
-
-    def _make_wsgi_scripts_only(self, dist, executable):
-        # get_script_header() is deprecated since Setuptools 12.0
-        try:
-            header = easy_install.ScriptWriter.get_header("", executable)
-        except AttributeError:
-            header = easy_install.get_script_header("", executable)
-        wsgi_script_template = ENTRY_POINTS_MAP['wsgi_scripts']
-        for name, ep in dist.get_entry_map('wsgi_scripts').items():
-            content = generate_script(
-                'wsgi_scripts', ep, header, wsgi_script_template)
-            self.write_script(name, content)
-
-    def run(self):
-        import distutils.command.install_scripts
-
-        self.run_command("egg_info")
-        if self.distribution.scripts:
-            # run first to set up self.outfiles
-            distutils.command.install_scripts.install_scripts.run(self)
-        else:
-            self.outfiles = []
-
-        ei_cmd = self.get_finalized_command("egg_info")
-        dist = pkg_resources.Distribution(
-            ei_cmd.egg_base,
-            pkg_resources.PathMetadata(ei_cmd.egg_base, ei_cmd.egg_info),
-            ei_cmd.egg_name, ei_cmd.egg_version,
-        )
-        bs_cmd = self.get_finalized_command('build_scripts')
-        executable = getattr(
-            bs_cmd, 'executable', easy_install.sys_executable)
-        if 'bdist_wheel' in self.distribution.have_run:
-            # We're building a wheel which has no way of generating mod_wsgi
-            # scripts for us. Let's build them.
-            # NOTE(sigmavirus24): This needs to happen here because, as the
-            # comment below indicates, no_ep is True when building a wheel.
-            self._make_wsgi_scripts_only(dist, executable)
-
-        if self.no_ep:
-            # no_ep is True if we're installing into an .egg file or building
-            # a .whl file, in those cases, we do not want to build all of the
-            # entry-points listed for this package.
-            return
-
-        if os.name != 'nt':
-            get_script_args = override_get_script_args
-        else:
-            get_script_args = easy_install.get_script_args
-            executable = '"%s"' % executable
-
-        for args in get_script_args(dist, executable):
-            self.write_script(*args)
-
-
-class LocalManifestMaker(egg_info.manifest_maker):
-    """Add any files that are in git and some standard sensible files."""
-
-    def _add_pbr_defaults(self):
-        for template_line in [
-            'include AUTHORS',
-            'include ChangeLog',
-            'exclude .gitignore',
-            'exclude .gitreview',
-            'global-exclude *.pyc'
-        ]:
-            self.filelist.process_template_line(template_line)
-
-    def add_defaults(self):
-        """Add all the default files to self.filelist:
-
-        Extends the functionality provided by distutils to also included
-        additional sane defaults, such as the ``AUTHORS`` and ``ChangeLog``
-        files generated by *pbr*.
-
-        Warns if (``README`` or ``README.txt``) or ``setup.py`` are missing;
-        everything else is optional.
-        """
-        option_dict = self.distribution.get_option_dict('pbr')
-
-        sdist.sdist.add_defaults(self)
-        self.filelist.append(self.template)
-        self.filelist.append(self.manifest)
-        self.filelist.extend(extra_files.get_extra_files())
-        should_skip = options.get_boolean_option(option_dict, 'skip_git_sdist',
-                                                 'SKIP_GIT_SDIST')
-        if not should_skip:
-            rcfiles = git._find_git_files()
-            if rcfiles:
-                self.filelist.extend(rcfiles)
-        elif os.path.exists(self.manifest):
-            self.read_manifest()
-        ei_cmd = self.get_finalized_command('egg_info')
-        self._add_pbr_defaults()
-        self.filelist.include_pattern("*", prefix=ei_cmd.egg_info)
-
-
-class LocalEggInfo(egg_info.egg_info):
-    """Override the egg_info command to regenerate SOURCES.txt sensibly."""
-
-    command_name = 'egg_info'
-
-    def find_sources(self):
-        """Generate SOURCES.txt only if there isn't one already.
-
-        If we are in an sdist command, then we always want to update
-        SOURCES.txt. If we are not in an sdist command, then it doesn't
-        matter one flip, and is actually destructive.
-        However, if we're in a git context, it's always the right thing to do
-        to recreate SOURCES.txt
-        """
-        manifest_filename = os.path.join(self.egg_info, "SOURCES.txt")
-        if (not os.path.exists(manifest_filename) or
-                os.path.exists('.git') or
-                'sdist' in sys.argv):
-            log.info("[pbr] Processing SOURCES.txt")
-            mm = LocalManifestMaker(self.distribution)
-            mm.manifest = manifest_filename
-            mm.run()
-            self.filelist = mm.filelist
-        else:
-            log.info("[pbr] Reusing existing SOURCES.txt")
-            self.filelist = egg_info.FileList()
-            with open(manifest_filename, 'r') as fil:
-                for entry in fil.read().split('\n'):
-                    self.filelist.append(entry)
-
-
-def _from_git(distribution):
-    option_dict = distribution.get_option_dict('pbr')
-    changelog = git._iter_log_oneline()
-    if changelog:
-        changelog = git._iter_changelog(changelog)
-    git.write_git_changelog(option_dict=option_dict, changelog=changelog)
-    git.generate_authors(option_dict=option_dict)
-
-
-class LocalSDist(sdist.sdist):
-    """Builds the ChangeLog and Authors files from VC first."""
-
-    command_name = 'sdist'
-
-    def checking_reno(self):
-        """Ensure reno is installed and configured.
-
-        We can't run reno-based commands if reno isn't installed/available, and
-        don't want to if the user isn't using it.
-        """
-        if hasattr(self, '_has_reno'):
-            return self._has_reno
-
-        option_dict = self.distribution.get_option_dict('pbr')
-        should_skip = options.get_boolean_option(option_dict, 'skip_reno',
-                                                 'SKIP_GENERATE_RENO')
-        if should_skip:
-            self._has_reno = False
-            return False
-
-        try:
-            # versions of reno witout this module will not have the required
-            # feature, hence the import
-            from reno import setup_command  # noqa
-        except ImportError:
-            log.info('[pbr] reno was not found or is too old. Skipping '
-                     'release notes')
-            self._has_reno = False
-            return False
-
-        conf, output_file, cache_file = setup_command.load_config(
-            self.distribution)
-
-        if not os.path.exists(os.path.join(conf.reporoot, conf.notespath)):
-            log.info('[pbr] reno does not appear to be configured. Skipping '
-                     'release notes')
-            self._has_reno = False
-            return False
-
-        self._files = [output_file, cache_file]
-
-        log.info('[pbr] Generating release notes')
-        self._has_reno = True
-
-        return True
-
-    sub_commands = [('build_reno', checking_reno)] + sdist.sdist.sub_commands
-
-    def run(self):
-        _from_git(self.distribution)
-        # sdist.sdist is an old style class, can't use super()
-        sdist.sdist.run(self)
-
-    def make_distribution(self):
-        # This is included in make_distribution because setuptools doesn't use
-        # 'get_file_list'. As such, this is the only hook point that runs after
-        # the commands in 'sub_commands'
-        if self.checking_reno():
-            self.filelist.extend(self._files)
-            self.filelist.sort()
-        sdist.sdist.make_distribution(self)
-
-
-LocalBuildDoc = None
-
-
-def have_sphinx():
-    return False
-
-
 def _get_increment_kwargs(git_dir, tag):
     """Calculate the sort of semver increment needed from git history.
 
@@ -679,24 +213,27 @@ def _get_increment_kwargs(git_dir, tag):
         version_spec = tag + "..HEAD"
     else:
         version_spec = "HEAD"
+
     # Get the raw body of the commit messages so that we don't have to
     # parse out any formatting whitespace and to avoid user settings on
     # git log output affecting out ability to have working sem ver headers.
-    changelog = git._run_git_command(['log', '--pretty=%B', version_spec],
-                                     git_dir)
+    changelog = git._run_git_command(
+        ['log', '--pretty=%B', version_spec], git_dir
+    )
     symbols = set()
     header = 'sem-ver:'
     for line in changelog.split("\n"):
         line = line.lower().strip()
         if not line.lower().strip().startswith(header):
             continue
-        new_symbols = line[len(header):].strip().split(",")
+        new_symbols = line[len(header) :].strip().split(",")
         symbols.update([symbol.strip() for symbol in new_symbols])
 
     def _handle_symbol(symbol, symbols, impact):
         if symbol in symbols:
             result[impact] = True
             symbols.discard(symbol)
+
     _handle_symbol('bugfix', symbols, 'patch')
     _handle_symbol('feature', symbols, 'minor')
     _handle_symbol('deprecation', symbols, 'minor')
@@ -720,7 +257,7 @@ def _get_revno_and_last_tag(git_dir):
     row_count = 0
     for row_count, (ignored, tag_set, ignored) in enumerate(changelog):
         version_tags = set()
-        semver_to_tag = dict()
+        semver_to_tag = {}
         for tag in list(tag_set):
             try:
                 semver = version.SemanticVersion.from_pip_string(tag)
@@ -728,8 +265,10 @@ def _get_revno_and_last_tag(git_dir):
                 version_tags.add(semver)
             except Exception:
                 pass
+
         if version_tags:
             return semver_to_tag[max(version_tags)], row_count
+
     return "", row_count
 
 
@@ -754,12 +293,14 @@ def _get_version_from_git_target(git_dir, target_version):
         new_version = last_semver
     else:
         new_version = last_semver.increment(
-            **_get_increment_kwargs(git_dir, tag))
+            **_get_increment_kwargs(git_dir, tag)
+        )
     if target_version is not None and new_version > target_version:
         raise ValueError(
             "git history requires a target version of %(new)s, but target "
-            "version is %(target)s" %
-            dict(new=new_version, target=target_version))
+            "version is %(target)s"
+            % {'new': new_version, 'target': target_version}
+        )
     if distance == 0:
         return last_semver
     new_dev = new_version.to_dev(distance)
@@ -786,14 +327,15 @@ def _get_version_from_git(pre_version=None):
     if git_dir:
         try:
             tagged = git._run_git_command(
-                ['describe', '--exact-match'], git_dir,
-                throw_on_error=True).replace('-', '.')
+                ['describe', '--exact-match'], git_dir, throw_on_error=True
+            ).replace('-', '.')
             target_version = version.SemanticVersion.from_pip_string(tagged)
         except Exception:
             if pre_version:
                 # not released yet - use pre_version as the target
                 target_version = version.SemanticVersion.from_pip_string(
-                    pre_version)
+                    pre_version
+                )
             else:
                 # not released yet - just calculate from git history
                 target_version = None
@@ -847,8 +389,8 @@ def get_version(package_name, pre_version=None):
         version will be the next release.
     """
     version = os.environ.get(
-        "PBR_VERSION",
-        os.environ.get("OSLO_PACKAGE_VERSION", None))
+        "PBR_VERSION", os.environ.get("OSLO_PACKAGE_VERSION", None)
+    )
     if version:
         return version
     version = _get_version_from_pkg_metadata(package_name)
@@ -863,13 +405,14 @@ def get_version(package_name, pre_version=None):
         version = version.encode('utf-8')
     if version:
         return version
-    raise Exception("Versioning for this project requires either an sdist"
-                    " tarball, or access to an upstream git repository."
-                    " It's also possible that there is a mismatch between"
-                    " the package name in setup.cfg and the argument given"
-                    " to pbr.version.VersionInfo. Project name {name} was"
-                    " given, but was not able to be found.".format(
-                        name=package_name))
+    raise Exception(
+        "Versioning for this project requires either an sdist "
+        "tarball, or access to an upstream git repository. "
+        "It's also possible that there is a mismatch between "
+        "the package name in setup.cfg and the argument given "
+        "to pbr.version.VersionInfo. Project name {name} was "
+        "given, but was not able to be found.".format(name=package_name)
+    )
 
 
 # This is added because pbr uses pbr to install itself. That means that

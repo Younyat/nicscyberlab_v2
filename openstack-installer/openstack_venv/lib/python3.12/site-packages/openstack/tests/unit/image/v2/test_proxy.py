@@ -21,6 +21,7 @@ from openstack import exceptions
 from openstack.image.v2 import _proxy
 from openstack.image.v2 import cache as _cache
 from openstack.image.v2 import image as _image
+from openstack.image.v2 import image_tasks as _image_tasks
 from openstack.image.v2 import member as _member
 from openstack.image.v2 import metadef_namespace as _metadef_namespace
 from openstack.image.v2 import metadef_object as _metadef_object
@@ -145,6 +146,11 @@ class TestImage(TestImageProxy):
                     'validate_checksum': False,
                     'use_import': False,
                     'stores': None,
+                    'import_method': None,
+                    'uri': None,
+                    'remote_region': None,
+                    'remote_image_id': None,
+                    'remote_service_interface': None,
                     'all_stores': None,
                     'all_stores_must_succeed': None,
                     'disk_format': 'qcow2',
@@ -255,6 +261,11 @@ class TestImage(TestImageProxy):
             timeout=3600,
             validate_checksum=True,
             use_import=False,
+            import_method=None,
+            uri=None,
+            remote_region=None,
+            remote_image_id=None,
+            remote_service_interface=None,
             stores=None,
             all_stores=None,
             all_stores_must_succeed=None,
@@ -303,6 +314,11 @@ class TestImage(TestImageProxy):
             timeout=3600,
             validate_checksum=False,
             use_import=False,
+            import_method=None,
+            uri=None,
+            remote_region=None,
+            remote_image_id=None,
+            remote_service_interface=None,
             stores=None,
             all_stores=None,
             all_stores_must_succeed=None,
@@ -365,6 +381,11 @@ class TestImage(TestImageProxy):
             timeout=3600,
             validate_checksum=False,
             use_import=True,
+            import_method=None,
+            uri=None,
+            remote_region=None,
+            remote_image_id=None,
+            remote_service_interface=None,
             stores=['cinder', 'swift'],
             all_stores=None,
             all_stores_must_succeed=None,
@@ -402,6 +423,11 @@ class TestImage(TestImageProxy):
             timeout=3600,
             validate_checksum=False,
             use_import=True,
+            import_method=None,
+            uri=None,
+            remote_region=None,
+            remote_image_id=None,
+            remote_service_interface=None,
             stores=None,
             all_stores=True,
             all_stores_must_succeed=True,
@@ -578,6 +604,14 @@ class TestImage(TestImageProxy):
             self.proxy.reactivate_image,
             method_args=["image"],
             expected_args=[self.proxy],
+        )
+
+    def test_image_tasks(self):
+        self.verify_list(
+            self.proxy.image_tasks,
+            _image_tasks.ImageTasks,
+            method_kwargs={'image': 'image_1'},
+            expected_kwargs={'image_id': 'image_1'},
         )
 
 

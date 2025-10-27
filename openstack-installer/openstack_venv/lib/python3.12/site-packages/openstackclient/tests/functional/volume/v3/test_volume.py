@@ -124,7 +124,7 @@ class VolumeTests(common.BaseVolumeTests):
             cmd_output["properties"],
         )
         self.assertEqual(
-            'false',
+            False,
             cmd_output["bootable"],
         )
         self.wait_for_status("volume", name, "available")
@@ -172,7 +172,7 @@ class VolumeTests(common.BaseVolumeTests):
             cmd_output["volume_image_metadata"],
         )
         self.assertEqual(
-            'true',
+            True,
             cmd_output["bootable"],
         )
 

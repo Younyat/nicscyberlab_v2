@@ -13,8 +13,11 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+from __future__ import absolute_import
+from __future__ import print_function
+
+from pbr._compat import command_hooks as commands
 from pbr.hooks import backwards
-from pbr.hooks import commands
 from pbr.hooks import files
 from pbr.hooks import metadata
 

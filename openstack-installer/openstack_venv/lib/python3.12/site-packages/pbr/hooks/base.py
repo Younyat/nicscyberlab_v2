@@ -13,6 +13,9 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+from __future__ import absolute_import
+from __future__ import print_function
+
 
 class BaseConfig(object):
 
@@ -20,8 +23,8 @@ class BaseConfig(object):
 
     def __init__(self, config):
         self._global_config = config
-        self.config = self._global_config.get(self.section, dict())
-        self.pbr_config = config.get('pbr', dict())
+        self.config = self._global_config.get(self.section, {})
+        self.pbr_config = config.get('pbr', {})
 
     def run(self):
         self.hook()

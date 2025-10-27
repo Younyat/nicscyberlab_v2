@@ -13,6 +13,9 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+from __future__ import absolute_import
+from __future__ import print_function
+
 from pbr.hooks import base
 from pbr import packaging
 
@@ -23,10 +26,11 @@ class MetadataConfig(base.BaseConfig):
 
     def hook(self):
         self.config['version'] = packaging.get_version(
-            self.config['name'], self.config.get('version', None))
+            self.config['name'], self.config.get('version', None)
+        )
         packaging.append_text_list(
-            self.config, 'requires_dist',
-            packaging.parse_requirements())
+            self.config, 'requires_dist', packaging.parse_requirements()
+        )
 
     def get_name(self):
         return self.config['name']

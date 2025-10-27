@@ -13,6 +13,9 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+from __future__ import absolute_import
+from __future__ import print_function
+
 from pbr.hooks import base
 from pbr import packaging
 
@@ -24,10 +27,12 @@ class BackwardsCompatConfig(base.BaseConfig):
     def hook(self):
         self.config['include_package_data'] = 'True'
         packaging.append_text_list(
-            self.config, 'dependency_links',
-            packaging.parse_dependency_links())
+            self.config, 'dependency_links', packaging.parse_dependency_links()
+        )
         packaging.append_text_list(
-            self.config, 'tests_require',
+            self.config,
+            'tests_require',
             packaging.parse_requirements(
-                packaging.TEST_REQUIREMENTS_FILES,
-                strip_markers=True))
+                packaging.TEST_REQUIREMENTS_FILES, strip_markers=True
+            ),
+        )

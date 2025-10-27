@@ -66,15 +66,15 @@ class Opt:
     def __init__(
         self,
         name: str,
-        type: ty.Type[ty.Any] = str,
-        help: ty.Optional[str] = None,
+        type: type[ty.Any] = str,
+        help: str | None = None,
         secret: bool = False,
-        dest: ty.Optional[str] = None,
-        deprecated: ty.Optional[list['Opt']] = None,
+        dest: str | None = None,
+        deprecated: list['Opt'] | None = None,
         default: ty.Any = None,
-        metavar: ty.Optional[str] = None,
+        metavar: str | None = None,
         required: bool = False,
-        prompt: ty.Optional[str] = None,
+        prompt: str | None = None,
     ):
         if not callable(type):
             raise TypeError('type must be callable')
@@ -141,7 +141,7 @@ class Opt:
         return [f'--os-{o.name}' for o in self._all_opts]
 
     @property
-    def argparse_envvars(self) -> ty.List[str]:
+    def argparse_envvars(self) -> list[str]:
         return [
             'OS_{}'.format(o.name.replace('-', '_').upper())
             for o in self._all_opts

@@ -454,7 +454,7 @@ class BlockStorageCloudMixin(openstackcloud._OpenStackCloudMixin):
         timeout=None,
         **kwargs,
     ):
-        """Create a volume.
+        """Create a snapshot.
 
         :param volume_id: the ID of the volume to snapshot.
         :param force: If set to True the snapshot will be created even if the
@@ -581,6 +581,21 @@ class BlockStorageCloudMixin(openstackcloud._OpenStackCloudMixin):
             backup = self.block_storage.wait_for_status(backup, wait=timeout)
 
         return backup
+
+    def export_volume_backup(self, backup_id):
+        """Export a volume backup.
+
+        :param backup_id: the ID of the backup.
+
+        :returns: The backup export record fields
+        :raises: :class:`~openstack.exceptions.ResourceTimeout` if wait time
+            exceeded.
+        :raises: :class:`~openstack.exceptions.SDKException` on operation
+            error.
+        """
+        payload = {'backup': backup_id}
+
+        return self.block_storage.export_record(**payload)
 
     # TODO(stephenfin): Remove 'filters' in a future major version
     def get_volume_backup(self, name_or_id, filters=None):

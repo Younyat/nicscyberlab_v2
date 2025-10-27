@@ -41,6 +41,7 @@ def _format_user(user):
         'name',
         'description',
         'password_expires_at',
+        'options',
     )
     column_headers = (
         'default_project_id',
@@ -51,6 +52,7 @@ def _format_user(user):
         'name',
         'description',
         'password_expires_at',
+        'options',
     )
     return (
         column_headers,
@@ -289,7 +291,7 @@ class CreateUser(command.ShowOne):
         elif parsed_args.password_prompt:
             password = utils.get_password(self.app.stdin)
 
-        if not parsed_args.password:
+        if not password:
             LOG.warning(
                 _(
                     "No password was supplied, authentication will fail "
@@ -412,6 +414,24 @@ class ListUser(command.Lister):
             default=False,
             help=_('List additional fields in output'),
         )
+        parser.add_argument(
+            '--enabled',
+            action='store_true',
+            dest='is_enabled',
+            default=None,
+            help=_(
+                'List only enabled users, does nothing with --project and --group'
+            ),
+        )
+        parser.add_argument(
+            '--disabled',
+            action='store_false',
+            dest='is_enabled',
+            default=None,
+            help=_(
+                'List only disabled users, does nothing with --project and --group'
+            ),
+        )
         return parser
 
     def take_action(self, parsed_args):
@@ -430,6 +450,9 @@ class ListUser(command.Lister):
                 domain_id=parsed_args.domain,
                 ignore_missing=False,
             ).id
+
+        if parsed_args.is_enabled is not None:
+            enabled = parsed_args.is_enabled
 
         if parsed_args.project:
             if domain is not None:
@@ -469,9 +492,15 @@ class ListUser(command.Lister):
                 group=group,
             )
         else:
-            data = identity_client.users(
-                domain_id=domain,
-            )
+            if parsed_args.is_enabled is not None:
+                data = identity_client.users(
+                    domain_id=domain,
+                    is_enabled=enabled,
+                )
+            else:
+                data = identity_client.users(
+                    domain_id=domain,
+                )
 
         # Column handling
         if parsed_args.long:
@@ -659,6 +688,8 @@ class SetPasswordUser(command.Command):
 
     def take_action(self, parsed_args):
         identity_client = self.app.client_manager.sdk_connection.identity
+        conn = self.app.client_manager.sdk_connection
+        user_id = conn.config.get_auth().get_user_id(conn.identity)
 
         # FIXME(gyee): there are two scenarios:
         #
@@ -701,7 +732,9 @@ class SetPasswordUser(command.Command):
             )
 
         identity_client.update_user(
-            current_password=current_password, password=password
+            user=user_id,
+            current_password=current_password,
+            password=password,
         )
 
 

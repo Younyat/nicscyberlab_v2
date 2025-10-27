@@ -13,7 +13,6 @@
 #   under the License.
 #
 
-import copy
 import random
 import re
 from unittest import mock
@@ -32,66 +31,11 @@ from openstack.compute.v2 import server_interface as _server_interface
 from openstack.compute.v2 import server_migration as _server_migration
 from openstack.compute.v2 import volume_attachment as _volume_attachment
 
-from openstackclient.tests.unit import fakes
-from openstackclient.tests.unit.identity.v2_0 import fakes as identity_fakes
+from openstackclient.tests.unit.identity.v3 import fakes as identity_fakes
 from openstackclient.tests.unit.image.v2 import fakes as image_fakes
 from openstackclient.tests.unit.network.v2 import fakes as network_fakes
 from openstackclient.tests.unit import utils
 from openstackclient.tests.unit.volume.v3 import fakes as volume_fakes
-
-
-class FakeComputev2Client:
-    def __init__(self, **kwargs):
-        self.agents = mock.Mock()
-        self.agents.resource_class = fakes.FakeResource(None, {})
-
-        self.images = mock.Mock()
-        self.images.resource_class = fakes.FakeResource(None, {})
-
-        self.servers = mock.Mock()
-        self.servers.resource_class = fakes.FakeResource(None, {})
-
-        self.services = mock.Mock()
-        self.services.resource_class = fakes.FakeResource(None, {})
-
-        self.extensions = mock.Mock()
-        self.extensions.resource_class = fakes.FakeResource(None, {})
-
-        self.flavors = mock.Mock()
-
-        self.flavor_access = mock.Mock()
-        self.flavor_access.resource_class = fakes.FakeResource(None, {})
-
-        self.usage = mock.Mock()
-        self.usage.resource_class = fakes.FakeResource(None, {})
-
-        self.volumes = mock.Mock()
-        self.volumes.resource_class = fakes.FakeResource(None, {})
-
-        self.hypervisors = mock.Mock()
-        self.hypervisors.resource_class = fakes.FakeResource(None, {})
-
-        self.hypervisors_stats = mock.Mock()
-        self.hypervisors_stats.resource_class = fakes.FakeResource(None, {})
-
-        self.keypairs = mock.Mock()
-        self.keypairs.resource_class = fakes.FakeResource(None, {})
-
-        self.server_groups = mock.Mock()
-        self.server_groups.resource_class = fakes.FakeResource(None, {})
-
-        self.server_migrations = mock.Mock()
-        self.server_migrations.resource_class = fakes.FakeResource(None, {})
-
-        self.instance_action = mock.Mock()
-        self.instance_action.resource_class = fakes.FakeResource(None, {})
-
-        self.migrations = mock.Mock()
-        self.migrations.resource_class = fakes.FakeResource(None, {})
-
-        self.auth_token = kwargs['token']
-
-        self.management_url = kwargs['endpoint']
 
 
 class FakeClientMixin:
@@ -121,10 +65,10 @@ class FakeClientMixin:
 
 
 class TestComputev2(
+    identity_fakes.FakeClientMixin,
     network_fakes.FakeClientMixin,
     image_fakes.FakeClientMixin,
     volume_fakes.FakeClientMixin,
-    identity_fakes.FakeClientMixin,
     FakeClientMixin,
     utils.TestCommand,
 ): ...
@@ -133,16 +77,14 @@ class TestComputev2(
 def create_one_agent(attrs=None):
     """Create a fake agent.
 
-    :param dict attrs:
-        A dictionary with all attributes
-    :return:
-        A FakeResource object, with agent_id, os, and so on
+    :param dict attrs: A dictionary with all attributes
+    :return: A dicionarty faking the agent
     """
 
     attrs = attrs or {}
 
     # set default attributes.
-    agent_info = {
+    agent_attrs = {
         'agent_id': 'agent-id-' + uuid.uuid4().hex,
         'os': 'agent-os-' + uuid.uuid4().hex,
         'architecture': 'agent-architecture',
@@ -152,22 +94,20 @@ def create_one_agent(attrs=None):
         'hypervisor': 'hypervisor',
     }
 
-    # Overwrite default attributes.
-    agent_info.update(attrs)
+    assert not set(attrs) - set(agent_attrs), 'unknown keys'
 
-    agent = fakes.FakeResource(info=copy.deepcopy(agent_info), loaded=True)
-    return agent
+    # Overwrite default attributes.
+    agent_attrs.update(attrs)
+
+    return agent_attrs
 
 
 def create_agents(attrs=None, count=2):
     """Create multiple fake agents.
 
-    :param dict attrs:
-        A dictionary with all attributes
-    :param int count:
-        The number of agents to fake
-    :return:
-        A list of FakeResource objects faking the agents
+    :param dict attrs: A dictionary with all attributes
+    :param int count: The number of agents to fake
+    :return: A list of dictionaries faking the agents
     """
     agents = []
     for i in range(0, count):
@@ -180,7 +120,7 @@ def create_one_extension(attrs=None):
     """Create a fake extension.
 
     :param dict attrs: A dictionary with all attributes
-    :return: A fake openstack.compute.v2.extension.Extension object
+    :return: A fake :class:`~openstack.compute.v2.extension.Extension` object
     """
     attrs = attrs or {}
 
@@ -212,10 +152,8 @@ def create_one_extension(attrs=None):
 def create_one_security_group(attrs=None):
     """Create a fake security group.
 
-    :param dict attrs:
-        A dictionary with all attributes
-    :return:
-        A FakeResource object, with id, name, etc.
+    :param dict attrs: A dictionary with all attributes
+    :return: A dictionary faking the security group
     """
     attrs = attrs or {}
 
@@ -228,6 +166,8 @@ def create_one_security_group(attrs=None):
         'rules': [],
     }
 
+    assert not set(attrs) - set(security_group_attrs), 'unknown keys'
+
     # Overwrite default attributes.
     security_group_attrs.update(attrs)
     return security_group_attrs
@@ -236,12 +176,9 @@ def create_one_security_group(attrs=None):
 def create_security_groups(attrs=None, count=2):
     """Create multiple fake security groups.
 
-    :param dict attrs:
-        A dictionary with all attributes
-    :param int count:
-        The number of security groups to fake
-    :return:
-        A list of FakeResource objects faking the security groups
+    :param dict attrs: A dictionary with all attributes
+    :param int count: The number of security groups to fake
+    :return: A list of dictionaries faking the security groups
     """
     security_groups = []
     for i in range(0, count):
@@ -250,32 +187,11 @@ def create_security_groups(attrs=None, count=2):
     return security_groups
 
 
-def get_security_groups(security_groups=None, count=2):
-    """Get an iterable MagicMock with a list of faked security groups.
-
-    If security groups list is provided, then initialize the Mock object
-    with the list. Otherwise create one.
-
-    :param List security_groups:
-        A list of FakeResource objects faking security groups
-    :param int count:
-        The number of security groups to fake
-    :return:
-        An iterable Mock object with side_effect set to a list of faked
-        security groups
-    """
-    if security_groups is None:
-        security_groups = create_security_groups(count)
-    return mock.Mock(side_effect=security_groups)
-
-
 def create_one_security_group_rule(attrs=None):
     """Create a fake security group rule.
 
-    :param dict attrs:
-        A dictionary with all attributes
-    :return:
-        A FakeResource object, with id, etc.
+    :param dict attrs: A dictionary with all attributes
+    :return: A dictionary faking the security group rule
     """
     attrs = attrs or {}
 
@@ -290,6 +206,8 @@ def create_one_security_group_rule(attrs=None):
         'to_port': 0,
     }
 
+    assert not set(attrs) - set(security_group_rule_attrs), 'unknown keys'
+
     # Overwrite default attributes.
     security_group_rule_attrs.update(attrs)
 
@@ -299,12 +217,9 @@ def create_one_security_group_rule(attrs=None):
 def create_security_group_rules(attrs=None, count=2):
     """Create multiple fake security group rules.
 
-    :param dict attrs:
-        A dictionary with all attributes
-    :param int count:
-        The number of security group rules to fake
-    :return:
-        A list of FakeResource objects faking the security group rules
+    :param dict attrs: A dictionary with all attributes
+    :param int count: The number of security group rules to fake
+    :return: A list of dictionaries faking the security group rules
     """
     security_group_rules = []
     for i in range(0, count):
@@ -313,66 +228,11 @@ def create_security_group_rules(attrs=None, count=2):
     return security_group_rules
 
 
-def create_one_server(attrs=None, methods=None):
-    """Create a fake server.
-
-    :param dict attrs:
-        A dictionary with all attributes
-    :param dict methods:
-        A dictionary with all methods
-    :return:
-        A FakeResource object, with id, name, metadata, and so on
-    """
-    attrs = attrs or {}
-    methods = methods or {}
-
-    # Set default attributes.
-    server_info = {
-        'id': 'server-id-' + uuid.uuid4().hex,
-        'name': 'server-name-' + uuid.uuid4().hex,
-        'metadata': {},
-        'image': {
-            'id': 'image-id-' + uuid.uuid4().hex,
-        },
-        'flavor': {
-            'id': 'flavor-id-' + uuid.uuid4().hex,
-        },
-        'OS-EXT-STS:power_state': 1,
-    }
-
-    # Overwrite default attributes.
-    server_info.update(attrs)
-
-    server = fakes.FakeResource(
-        info=copy.deepcopy(server_info), methods=methods, loaded=True
-    )
-    return server
-
-
-def create_servers(attrs=None, methods=None, count=2):
-    """Create multiple fake servers.
-
-    :param dict attrs:
-        A dictionary with all attributes
-    :param dict methods:
-        A dictionary with all methods
-    :param int count:
-        The number of servers to fake
-    :return:
-        A list of FakeResource objects faking the servers
-    """
-    servers = []
-    for i in range(0, count):
-        servers.append(create_one_server(attrs, methods))
-
-    return servers
-
-
-def create_one_sdk_server(attrs=None):
-    """Create a fake server for testing migration to sdk
+def create_one_server(attrs=None):
+    """Create a fake server
 
     :param dict attrs: A dictionary with all attributes
-    :return: A fake openstack.compute.v2.server.Server object,
+    :return: A fake :class:`~openstack.compute.v2.server.Server` object,
     """
     attrs = attrs or {}
 
@@ -400,43 +260,26 @@ def create_one_sdk_server(attrs=None):
     return server
 
 
-def create_sdk_servers(attrs=None, count=2):
-    """Create multiple fake servers for testing migration to sdk
+def create_servers(attrs=None, count=2):
+    """Create multiple fake servers
 
     :param dict attrs: A dictionary with all attributes
     :param int count: The number of servers to fake
-    :return: A list of fake openstack.compute.v2.server.Server objects
+    :return: A list of fake :class:`openstack.compute.v2.server.Server` objects
     """
     servers = []
     for i in range(0, count):
-        servers.append(create_one_sdk_server(attrs))
+        servers.append(create_one_server(attrs))
 
     return servers
-
-
-def get_servers(servers=None, count=2):
-    """Get an iterable MagicMock object with a list of faked servers.
-
-    If servers list is provided, then initialize the Mock object with the
-    list. Otherwise create one.
-
-    :param list servers: A list of fake openstack.compute.v2.server.Server
-        objects
-    :param int count:
-        The number of servers to fake
-    :return: An iterable Mock object with side_effect set to a list of faked
-        servers
-    """
-    if servers is None:
-        servers = create_servers(count)
-    return mock.Mock(side_effect=servers)
 
 
 def create_one_server_action(attrs=None):
     """Create a fake server action.
 
     :param attrs: A dictionary with all attributes
-    :return: A fake openstack.compute.v2.server_action.ServerAction object
+    :return: A fake :class:`~openstack.compute.v2.server_action.ServerAction`
+        object
     """
     attrs = attrs or {}
 
@@ -479,7 +322,7 @@ def create_one_flavor(attrs=None):
     """Create a fake flavor.
 
     :param dict attrs: A dictionary with all attributes
-    :return: A fake openstack.compute.v2.flavor.Flavor object
+    :return: A fake :class:`~openstack.compute.v2.flavor.Flavor` object
     """
     attrs = attrs or {}
 
@@ -512,7 +355,7 @@ def create_flavors(attrs=None, count=2):
 
     :param dict attrs: A dictionary with all attributes
     :param int count: The number of flavors to fake
-    :return: A list of fake openstack.compute.v2.flavor.Flavor objects
+    :return: A list of fake :class:`openstack.compute.v2.flavor.Flavor` objects
     """
     flavors = []
     for i in range(0, count):
@@ -521,30 +364,11 @@ def create_flavors(attrs=None, count=2):
     return flavors
 
 
-def get_flavors(flavors=None, count=2):
-    """Get an iterable MagicMock object with a list of faked flavors.
-
-    If flavors list is provided, then initialize the Mock object with the
-    list. Otherwise create one.
-
-    :param list flavors: A list of fake openstack.compute.v2.flavor.Flavor
-        objects
-    :param int count: The number of flavors to fake
-    :return: An iterable Mock object with side_effect set to a list of faked
-        flavors
-    """
-    if flavors is None:
-        flavors = create_flavors(count)
-    return mock.Mock(side_effect=flavors)
-
-
 def create_one_flavor_access(attrs=None):
     """Create a fake flavor access.
 
-    :param dict attrs:
-        A dictionary with all attributes
-    :return:
-        A FakeResource object, with flavor_id, tenat_id
+    :param dict attrs: A dictionary with all attributes
+    :return: A dictionary faking the flavor access
     """
     attrs = attrs or {}
 
@@ -554,22 +378,20 @@ def create_one_flavor_access(attrs=None):
         'tenant_id': 'tenant-id-' + uuid.uuid4().hex,
     }
 
+    assert not set(attrs) - set(flavor_access_info), 'unknown keys'
+
     # Overwrite default attributes.
     flavor_access_info.update(attrs)
 
-    flavor_access = fakes.FakeResource(
-        info=copy.deepcopy(flavor_access_info), loaded=True
-    )
-
-    return flavor_access
+    return flavor_access_info
 
 
 def create_one_availability_zone(attrs=None):
     """Create a fake AZ.
 
     :param dict attrs: A dictionary with all attributes
-    :return: A fake openstack.compute.v2.availability_zone.AvailabilityZone
-        object
+    :return: A fake
+        :class:`~openstack.compute.v2.availability_zone.AvailabilityZone` object
     """
     attrs = attrs or {}
 
@@ -616,12 +438,10 @@ def create_availability_zones(attrs=None, count=2):
 
 
 def create_one_floating_ip(attrs=None):
-    """Create a fake floating ip.
+    """Create a fake floating IP.
 
-    :param dict attrs:
-        A dictionary with all attributes
-    :return:
-        A FakeResource object, with id, ip, and so on
+    :param dict attrs: A dictionary with all attributes
+    :return: A dictionary faking the floating IP
     """
     attrs = attrs or {}
 
@@ -634,6 +454,8 @@ def create_one_floating_ip(attrs=None):
         'pool': 'public',
     }
 
+    assert not set(attrs) - set(floating_ip_attrs), 'unknown keys'
+
     # Overwrite default attributes.
     floating_ip_attrs.update(attrs)
 
@@ -641,14 +463,11 @@ def create_one_floating_ip(attrs=None):
 
 
 def create_floating_ips(attrs=None, count=2):
-    """Create multiple fake floating ips.
+    """Create multiple fake floating IPs.
 
-    :param dict attrs:
-        A dictionary with all attributes
-    :param int count:
-        The number of floating ips to fake
-    :return:
-        A list of FakeResource objects faking the floating ips
+    :param dict attrs: A dictionary with all attributes
+    :param int count: The number of floating IPs to fake
+    :return: A list of dictionaries faking the floating IPs
     """
     floating_ips = []
     for i in range(0, count):
@@ -656,32 +475,11 @@ def create_floating_ips(attrs=None, count=2):
     return floating_ips
 
 
-def get_floating_ips(floating_ips=None, count=2):
-    """Get an iterable MagicMock object with a list of faked floating ips.
-
-    If floating_ips list is provided, then initialize the Mock object
-    with the list. Otherwise create one.
-
-    :param List floating_ips:
-        A list of FakeResource objects faking floating ips
-    :param int count:
-        The number of floating ips to fake
-    :return:
-        An iterable Mock object with side_effect set to a list of faked
-        floating ips
-    """
-    if floating_ips is None:
-        floating_ips = create_floating_ips(count)
-    return mock.Mock(side_effect=floating_ips)
-
-
 def create_one_floating_ip_pool(attrs=None):
-    """Create a fake floating ip pool.
+    """Create a fake floating IP pool.
 
-    :param dict attrs:
-        A dictionary with all attributes
-    :return:
-        A FakeResource object, with name, etc
+    :param dict attrs: A dictionary with all attributes
+    :return: A dictionary faking the floating IP pool
     """
     if attrs is None:
         attrs = {}
@@ -691,6 +489,8 @@ def create_one_floating_ip_pool(attrs=None):
         'name': 'floating-ip-pool-name-' + uuid.uuid4().hex,
     }
 
+    assert not set(attrs) - set(floating_ip_pool_attrs), 'unknown keys'
+
     # Overwrite default attributes.
     floating_ip_pool_attrs.update(attrs)
 
@@ -698,14 +498,11 @@ def create_one_floating_ip_pool(attrs=None):
 
 
 def create_floating_ip_pools(attrs=None, count=2):
-    """Create multiple fake floating ip pools.
+    """Create multiple fake floating IP pools.
 
-    :param dict attrs:
-        A dictionary with all attributes
-    :param int count:
-        The number of floating ip pools to fake
-    :return:
-        A list of FakeResource objects faking the floating ip pools
+    :param dict attrs: A dictionary with all attributes
+    :param int count: The number of floating IP pools to fake
+    :return: A list of dictionaries faking the floating IP pools
     """
     floating_ip_pools = []
     for i in range(0, count):
@@ -716,10 +513,8 @@ def create_floating_ip_pools(attrs=None, count=2):
 def create_one_network(attrs=None):
     """Create a fake network.
 
-    :param dict attrs:
-        A dictionary with all attributes
-    :return:
-        A FakeResource object, with id, label, cidr and so on
+    :param dict attrs: A dictionary with all attributes
+    :return: A dictionary faking the network
     """
     attrs = attrs or {}
 
@@ -759,6 +554,8 @@ def create_one_network(attrs=None):
         'vpn_public_port': None,
     }
 
+    assert not set(attrs) - set(network_attrs), 'unknown keys'
+
     # Overwrite default attributes.
     network_attrs.update(attrs)
 
@@ -768,37 +565,15 @@ def create_one_network(attrs=None):
 def create_networks(attrs=None, count=2):
     """Create multiple fake networks.
 
-    :param dict attrs:
-        A dictionary with all attributes
-    :param int count:
-        The number of networks to fake
-    :return:
-        A list of FakeResource objects faking the networks
+    :param dict attrs: A dictionary with all attributes
+    :param int count: The number of networks to fake
+    :return: A list of dictionaries faking the networks
     """
     networks = []
     for i in range(0, count):
         networks.append(create_one_network(attrs))
 
     return networks
-
-
-def get_networks(networks=None, count=2):
-    """Get an iterable MagicMock object with a list of faked networks.
-
-    If networks list is provided, then initialize the Mock object with the
-    list. Otherwise create one.
-
-    :param List networks:
-        A list of FakeResource objects faking networks
-    :param int count:
-        The number of networks to fake
-    :return:
-        An iterable Mock object with side_effect set to a list of faked
-        networks
-    """
-    if networks is None:
-        networks = create_networks(count=count)
-    return mock.Mock(side_effect=networks)
 
 
 def create_limits(attrs=None):
@@ -866,7 +641,7 @@ def create_one_migration(attrs=None):
     """Create a fake migration.
 
     :param dict attrs: A dictionary with all attributes
-    :return: A fake openstack.compute.v2.migration.Migration object
+    :return: A fake :class:`~openstack.compute.v2.migration.Migration` object
     """
     attrs = attrs or {}
 
@@ -902,7 +677,7 @@ def create_migrations(attrs=None, count=2):
 
     :param dict attrs: A dictionary with all attributes
     :param int count: The number of migrations to fake
-    :return: A list of fake openstack.compute.v2.migration.Migration objects
+    :return: A list of fake :class:`openstack.compute.v2.migration.Migration` objects
     """
     migrations = []
     for i in range(0, count):
@@ -915,7 +690,8 @@ def create_one_server_migration(attrs=None):
     """Create a fake server migration.
 
     :param dict attrs: A dictionary with all attributes
-    :return A fake openstack.compute.v2.server_migration.ServerMigration object
+    :return: A fake
+        :class:`~openstack.compute.v2.server_migration.ServerMigration` object
     """
     attrs = attrs or {}
 
@@ -971,8 +747,8 @@ def create_one_volume_attachment(attrs=None):
     """Create a fake volume attachment.
 
     :param dict attrs: A dictionary with all attributes
-    :return: A fake openstack.compute.v2.volume_attachment.VolumeAttachment
-        object
+    :return: A fake
+        :class:`~openstack.compute.v2.volume_attachment.VolumeAttachment` object
     """
     attrs = attrs or {}
 
@@ -1013,12 +789,12 @@ def create_volume_attachments(attrs=None, count=2):
 
 
 def create_one_server_interface(attrs=None):
-    """Create a fake SDK ServerInterface.
+    """Create a fake ServerInterface.
 
     :param dict attrs: A dictionary with all attributes
     :param dict methods: A dictionary with all methods
-    :return: A fake openstack.compute.v2.server_interface.ServerInterface
-        object
+    :return: A fake
+        :class:`~openstack.compute.v2.server_interface.ServerInterface` object
     """
     attrs = attrs or {}
 

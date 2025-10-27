@@ -13,6 +13,9 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+from __future__ import absolute_import
+from __future__ import print_function
+
 import os
 import shlex
 import sys
@@ -75,16 +78,18 @@ class FilesConfig(base.BaseConfig):
                     target += os.path.sep
                 unquoted_prefix = unquote_path(source_prefix)
                 unquoted_target = unquote_path(target)
-                for (dirpath, dirnames, fnames) in os.walk(unquoted_prefix):
+                for dirpath, dirnames, fnames in os.walk(unquoted_prefix):
                     # As source_prefix is always matched, using replace with a
                     # a limit of one is always going to replace the path prefix
                     # and not accidentally replace some text in the middle of
                     # the path
-                    new_prefix = dirpath.replace(unquoted_prefix,
-                                                 unquoted_target, 1)
+                    new_prefix = dirpath.replace(
+                        unquoted_prefix, unquoted_target, 1
+                    )
                     finished.append("'%s' = " % new_prefix)
                     finished.extend(
-                        [" '%s'" % os.path.join(dirpath, f) for f in fnames])
+                        [" '%s'" % os.path.join(dirpath, f) for f in fnames]
+                    )
             else:
                 finished.append(line)
 
@@ -97,7 +102,7 @@ class FilesConfig(base.BaseConfig):
         self.data_files = "%s\n  '%s'" % (self.data_files, man_page)
 
     def get_man_sections(self):
-        man_sections = dict()
+        man_sections = {}
         manpages = self.pbr_config['manpages']
         for manpage in manpages.split():
             section_number = manpage.strip()[-1]
@@ -119,7 +124,7 @@ class FilesConfig(base.BaseConfig):
 
         if 'manpages' in self.pbr_config:
             man_sections = self.get_man_sections()
-            for (section, pages) in man_sections.items():
+            for section, pages in man_sections.items():
                 manpath = get_man_section(section)
                 self.add_man_path(manpath)
                 for page in pages:

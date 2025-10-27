@@ -1,75 +1,33 @@
 #!/bin/bash
-set -euo pipefail
 
-# ============================================================
-# 🌐 Configuración de red virtual para OpenStack (con OVS)
-# ============================================================
+# Crear un par de interfaces veth
+ip link add veth0 type veth peer name veth1
 
-BRIDGE="uplinkbridge"
-VETH0="veth0"
-VETH1="veth1"
-SUBNET="10.0.2.0/24"
-GATEWAY="10.0.2.1"
-EXT_IF="ens33"
-BR_EX="br-ex"
+# Activar las interfaces veth
+ip link set dev veth0 up
+ip link set dev veth1 up
 
-echo "🔧 Configurando red virtual para OpenStack..."
+# Crear un puente de red
+brctl addbr uplinkbridge
 
-# ============================================================
-# 1️⃣ Instalar dependencias necesarias
-# ============================================================
-sudo apt update -y
-sudo apt install -y iproute2 net-tools bridge-utils openvswitch-switch
+# Añadir la interfaz veth0 al puente
+brctl addif uplinkbridge veth0
 
-# Asegurar que OVS está activo
-sudo systemctl start openvswitch-switch || sudo systemctl restart openvswitch-switch
+# Activar el puente
+ip link set dev uplinkbridge up
 
+# Asignar dirección IP al puente
+ip address add 10.0.2.1/24 dev uplinkbridge
 
-# ============================================================
-# 2️⃣ Eliminar configuración previa
-# ============================================================
-for iface in "$BRIDGE" "$BR_EX"; do
-  if ip link show "$iface" &>/dev/null; then
-    echo "⚠️  Eliminando bridge existente $iface..."
-    ip link set "$iface" down || true
-    brctl delbr "$iface" 2>/dev/null || sudo ovs-vsctl del-br "$iface" || true
-  fi
-done
-ip link del "$VETH0" type veth &>/dev/null || true
-ip link del "$VETH1" type veth &>/dev/null || true
+# Configurar NAT con iptables para permitir el enmascarado
+#iptables -t nat -I POSTROUTING -o ens33 -s 10.0.2.0/24 -j MASQUERADE
 
-# ============================================================
-# 3️⃣ Crear par veth y bridge clásico (uplinkbridge)
-# ============================================================
-ip link add "$VETH0" type veth peer name "$VETH1"
-ip link set "$VETH0" up
-ip link set "$VETH1" up
-
-brctl addbr "$BRIDGE"
-brctl addif "$BRIDGE" "$VETH0"
-ip addr add "$GATEWAY/24" dev "$BRIDGE"
-ip link set "$BRIDGE" up
-
-# ============================================================
-# 4️⃣ Crear br-ex con Open vSwitch y conectarlo a veth1
-# ============================================================
-echo "🔗 Creando bridge externo br-ex (OVS) y conectando veth1..."
-# sudo ovs-vsctl add-br "$BR_EX"
-# sudo ip link set "$BR_EX" up
-# sudo ovs-vsctl add-port "$BR_EX" "$VETH1"
+# Permitir el reenvío de tráfico desde la subred 10.0.2.0/24
+#iptables -I FORWARD -s 10.0.2.0/24 -j ACCEPT
 
 
+iptables -t nat -C POSTROUTING -o ens33 -s 10.0.2.0/24 -j MASQUERADE 2>/dev/null || \
+iptables -t nat -I POSTROUTING -o ens33 -s 10.0.2.0/24 -j MASQUERADE
 
-# Limpiar reglas NAT duplicadas o anteriores
-iptables -t nat -D POSTROUTING -o "$EXT_IF" -s "$SUBNET" -j MASQUERADE 2>/dev/null || true
-iptables -D FORWARD -s "$SUBNET" -j ACCEPT 2>/dev/null || true
-
-
-# ============================================================
-# 5️⃣ Configurar NAT y forwarding
-# ============================================================
-iptables -t nat -A POSTROUTING -o "$EXT_IF" -s "$SUBNET" -j MASQUERADE
-iptables -A FORWARD -s "$SUBNET" -j ACCEPT
-
-
-
+iptables -C FORWARD -s 10.0.2.0/24 -j ACCEPT 2>/dev/null || \
+iptables -I FORWARD -s 10.0.2.0/24 -j ACCEPT

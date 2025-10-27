@@ -13,18 +13,14 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-# (hberaud) do not use six here to import configparser
-# to keep this module free from external dependencies
-# to avoid cross dependencies errors on minimal system
-# free from dependencies.
-try:
-    import configparser
-except ImportError:
-    import ConfigParser as configparser
+from __future__ import absolute_import
+from __future__ import print_function
+
 import os.path
 
 from sphinx.util import logging
 
+from pbr._compat.five import configparser
 import pbr.version
 
 _project = None
@@ -41,8 +37,9 @@ def _find_setup_cfg(srcdir):
     # an sdist or wheel? Perhaps we should check for 'PKG-INFO' or
     # 'METADATA' files, a la 'pbr.packaging._get_version_from_pkg_metadata'
     for path in [
-            os.path.join(srcdir, os.pardir, 'setup.cfg'),
-            os.path.join(srcdir, os.pardir, os.pardir, 'setup.cfg')]:
+        os.path.join(srcdir, os.pardir, 'setup.cfg'),
+        os.path.join(srcdir, os.pardir, os.pardir, 'setup.cfg'),
+    ]:
         if os.path.exists(path):
             return path
 
@@ -63,8 +60,9 @@ def _get_project_name(srcdir):
 
         path = _find_setup_cfg(srcdir)
         if not path or not parser.read(path):
-            logger.info('Could not find a setup.cfg to extract project name '
-                        'from')
+            logger.info(
+                'Could not find a setup.cfg to extract project name from'
+            )
             return None
 
         try:

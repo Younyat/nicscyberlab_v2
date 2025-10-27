@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
 # a copy of the License at
@@ -21,16 +19,16 @@ Tests for `ServiceTypes` class builtin data.
 oslotest sets up a TempHomeDir for us, so there should be no ~/.cache files
 available in these tests.
 """
+
 from testscenarios import load_tests_apply_scenarios as load_tests  # noqa
 
 import os_service_types
 from os_service_types.tests import base
 
 
-class TestBuiltin(base.TestCase, base.ServiceDataMixin):
-
+class TestBuiltin(base._BaseServiceDataTest):
     def setUp(self):
-        super(TestBuiltin, self).setUp()
+        super().setUp()
         # Make an object with no network access
         self.service_types = os_service_types.ServiceTypes()
 

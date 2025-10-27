@@ -10,13 +10,18 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-try:
-    from unittest import mock
-except ImportError:
-    import mock
+from __future__ import absolute_import
+from __future__ import print_function
+
+import sys
 
 from pbr import pbr_json
 from pbr.tests import base
+
+if sys.version_info >= (3, 3):
+    from unittest import mock
+else:
+    import mock  # noqa
 
 
 class TestJsonContent(base.BaseTestCase):
@@ -27,7 +32,5 @@ class TestJsonContent(base.BaseTestCase):
         cmd = mock.Mock()
         pbr_json.write_pbr_json(cmd, "basename", "pbr.json")
         cmd.write_file.assert_called_once_with(
-            'pbr',
-            'pbr.json',
-            '{"git_version": "123456", "is_release": true}'
+            'pbr', 'pbr.json', '{"git_version": "123456", "is_release": true}'
         )

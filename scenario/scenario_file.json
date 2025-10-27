@@ -1,0 +1,79 @@
+{
+    "scenario_name": "file",
+    "nodes": [
+        {
+            "id": "node1",
+            "name": "monitor 1",
+            "type": "monitor",
+            "position": {
+                "x": 663,
+                "y": 226
+            },
+            "properties": {
+                "os": "ubuntu-22.04",
+                "ip": "192.168.1.101",
+                "network": "red_privada",
+                "subnetwork": "red_privada_subnet",
+                "flavor": "large",
+                "image": "ubuntu-22.04",
+                "securityGroup": "sg_wazuh_suricata",
+                "sshKey": "nueva_clave_wazuh"
+            }
+        },
+        {
+            "id": "node2",
+            "name": "attack 2",
+            "type": "attack",
+            "position": {
+                "x": 989,
+                "y": 352
+            },
+            "properties": {
+                "os": "debian-12",
+                "ip": "192.168.1.102",
+                "network": "red_privada",
+                "subnetwork": "red_privada_subnet",
+                "flavor": "medium",
+                "image": "debian-12",
+                "securityGroup": "sg_wazuh_suricata",
+                "sshKey": "nueva_clave_wazuh"
+            }
+        },
+        {
+            "id": "node3",
+            "name": "victim 3",
+            "type": "victim",
+            "position": {
+                "x": 949,
+                "y": 188
+            },
+            "properties": {
+                "os": "debian-12",
+                "ip": "192.168.1.103",
+                "network": "red_privada",
+                "subnetwork": "red_privada_subnet",
+                "flavor": "medium",
+                "image": "debian-12",
+                "securityGroup": "sg_wazuh_suricata",
+                "sshKey": "nueva_clave_wazuh"
+            }
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge_node1_node3",
+            "source": "node1",
+            "target": "node3"
+        },
+        {
+            "id": "edge_node3_node1",
+            "source": "node3",
+            "target": "node1"
+        },
+        {
+            "id": "edge_node2_node3",
+            "source": "node2",
+            "target": "node3"
+        }
+    ]
+}

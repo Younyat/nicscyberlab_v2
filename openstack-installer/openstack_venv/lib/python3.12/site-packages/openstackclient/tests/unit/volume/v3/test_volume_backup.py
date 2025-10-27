@@ -11,91 +11,83 @@
 #   License for the specific language governing permissions and limitations
 #   under the License.
 
-from unittest.mock import call
+from unittest import mock
 
+from openstack.block_storage.v3 import backup as _backup
+from openstack.block_storage.v3 import snapshot as _snapshot
+from openstack.block_storage.v3 import volume as _volume
+from openstack import exceptions as sdk_exceptions
+from openstack.test import fakes as sdk_fakes
 from osc_lib import exceptions
 
 from openstackclient.tests.unit.volume.v3 import fakes as volume_fakes
 from openstackclient.volume.v3 import volume_backup
 
 
-class TestBackupLegacy(volume_fakes.TestVolume):
-    def setUp(self):
-        super().setUp()
-
-        self.backups_mock = self.volume_client.backups
-        self.backups_mock.reset_mock()
-        self.volumes_mock = self.volume_client.volumes
-        self.volumes_mock.reset_mock()
-        self.snapshots_mock = self.volume_client.volume_snapshots
-        self.snapshots_mock.reset_mock()
-        self.restores_mock = self.volume_client.restores
-        self.restores_mock.reset_mock()
-
-
 class TestBackupCreate(volume_fakes.TestVolume):
-    volume = volume_fakes.create_one_volume()
-    snapshot = volume_fakes.create_one_snapshot()
-    new_backup = volume_fakes.create_one_backup(
-        attrs={'volume_id': volume.id, 'snapshot_id': snapshot.id}
-    )
-
     columns = (
         'id',
         'name',
         'volume_id',
     )
-    data = (
-        new_backup.id,
-        new_backup.name,
-        new_backup.volume_id,
-    )
 
     def setUp(self):
         super().setUp()
 
+        self.volume = sdk_fakes.generate_fake_resource(_volume.Volume)
         self.volume_sdk_client.find_volume.return_value = self.volume
+        self.snapshot = sdk_fakes.generate_fake_resource(_snapshot.Snapshot)
         self.volume_sdk_client.find_snapshot.return_value = self.snapshot
-        self.volume_sdk_client.create_backup.return_value = self.new_backup
+        self.backup = sdk_fakes.generate_fake_resource(
+            _backup.Backup,
+            volume_id=self.volume.id,
+            snapshot_id=self.snapshot.id,
+        )
+        self.volume_sdk_client.create_backup.return_value = self.backup
 
-        # Get the command object to test
+        self.data = (
+            self.backup.id,
+            self.backup.name,
+            self.backup.volume_id,
+        )
+
         self.cmd = volume_backup.CreateVolumeBackup(self.app, None)
 
     def test_backup_create(self):
         arglist = [
             "--name",
-            self.new_backup.name,
+            self.backup.name,
             "--description",
-            self.new_backup.description,
+            self.backup.description,
             "--container",
-            self.new_backup.container,
+            self.backup.container,
             "--force",
             "--incremental",
             "--snapshot",
-            self.new_backup.snapshot_id,
-            self.new_backup.volume_id,
+            self.backup.snapshot_id,
+            self.backup.volume_id,
         ]
         verifylist = [
-            ("name", self.new_backup.name),
-            ("description", self.new_backup.description),
-            ("container", self.new_backup.container),
+            ("name", self.backup.name),
+            ("description", self.backup.description),
+            ("container", self.backup.container),
             ("force", True),
             ("incremental", True),
-            ("snapshot", self.new_backup.snapshot_id),
-            ("volume", self.new_backup.volume_id),
+            ("snapshot", self.backup.snapshot_id),
+            ("volume", self.backup.volume_id),
         ]
         parsed_args = self.check_parser(self.cmd, arglist, verifylist)
 
         columns, data = self.cmd.take_action(parsed_args)
 
         self.volume_sdk_client.create_backup.assert_called_with(
-            volume_id=self.new_backup.volume_id,
-            container=self.new_backup.container,
-            name=self.new_backup.name,
-            description=self.new_backup.description,
+            volume_id=self.backup.volume_id,
+            container=self.backup.container,
+            name=self.backup.name,
+            description=self.backup.description,
             force=True,
             is_incremental=True,
-            snapshot_id=self.new_backup.snapshot_id,
+            snapshot_id=self.backup.snapshot_id,
         )
         self.assertEqual(self.columns, columns)
         self.assertEqual(self.data, data)
@@ -108,18 +100,18 @@ class TestBackupCreate(volume_fakes.TestVolume):
             "foo=bar",
             "--property",
             "wow=much-cool",
-            self.new_backup.volume_id,
+            self.backup.volume_id,
         ]
         verifylist = [
             ("properties", {"foo": "bar", "wow": "much-cool"}),
-            ("volume", self.new_backup.volume_id),
+            ("volume", self.backup.volume_id),
         ]
         parsed_args = self.check_parser(self.cmd, arglist, verifylist)
 
         columns, data = self.cmd.take_action(parsed_args)
 
         self.volume_sdk_client.create_backup.assert_called_with(
-            volume_id=self.new_backup.volume_id,
+            volume_id=self.backup.volume_id,
             container=None,
             name=None,
             description=None,
@@ -138,11 +130,11 @@ class TestBackupCreate(volume_fakes.TestVolume):
             "foo=bar",
             "--property",
             "wow=much-cool",
-            self.new_backup.volume_id,
+            self.backup.volume_id,
         ]
         verifylist = [
             ("properties", {"foo": "bar", "wow": "much-cool"}),
-            ("volume", self.new_backup.volume_id),
+            ("volume", self.backup.volume_id),
         ]
         parsed_args = self.check_parser(self.cmd, arglist, verifylist)
 
@@ -157,18 +149,18 @@ class TestBackupCreate(volume_fakes.TestVolume):
         arglist = [
             "--availability-zone",
             "my-az",
-            self.new_backup.volume_id,
+            self.backup.volume_id,
         ]
         verifylist = [
             ("availability_zone", "my-az"),
-            ("volume", self.new_backup.volume_id),
+            ("volume", self.backup.volume_id),
         ]
         parsed_args = self.check_parser(self.cmd, arglist, verifylist)
 
         columns, data = self.cmd.take_action(parsed_args)
 
         self.volume_sdk_client.create_backup.assert_called_with(
-            volume_id=self.new_backup.volume_id,
+            volume_id=self.backup.volume_id,
             container=None,
             name=None,
             description=None,
@@ -185,11 +177,11 @@ class TestBackupCreate(volume_fakes.TestVolume):
         arglist = [
             "--availability-zone",
             "my-az",
-            self.new_backup.volume_id,
+            self.backup.volume_id,
         ]
         verifylist = [
             ("availability_zone", "my-az"),
-            ("volume", self.new_backup.volume_id),
+            ("volume", self.backup.volume_id),
         ]
         parsed_args = self.check_parser(self.cmd, arglist, verifylist)
 
@@ -201,25 +193,25 @@ class TestBackupCreate(volume_fakes.TestVolume):
     def test_backup_create_without_name(self):
         arglist = [
             "--description",
-            self.new_backup.description,
+            self.backup.description,
             "--container",
-            self.new_backup.container,
-            self.new_backup.volume_id,
+            self.backup.container,
+            self.backup.volume_id,
         ]
         verifylist = [
-            ("description", self.new_backup.description),
-            ("container", self.new_backup.container),
-            ("volume", self.new_backup.volume_id),
+            ("description", self.backup.description),
+            ("container", self.backup.container),
+            ("volume", self.backup.volume_id),
         ]
         parsed_args = self.check_parser(self.cmd, arglist, verifylist)
 
         columns, data = self.cmd.take_action(parsed_args)
 
         self.volume_sdk_client.create_backup.assert_called_with(
-            volume_id=self.new_backup.volume_id,
-            container=self.new_backup.container,
+            volume_id=self.backup.volume_id,
+            container=self.backup.container,
             name=None,
-            description=self.new_backup.description,
+            description=self.backup.description,
             force=False,
             is_incremental=False,
         )
@@ -228,17 +220,13 @@ class TestBackupCreate(volume_fakes.TestVolume):
 
 
 class TestBackupDelete(volume_fakes.TestVolume):
-    backups = volume_fakes.create_backups(count=2)
-
     def setUp(self):
         super().setUp()
 
-        self.volume_sdk_client.find_backup = volume_fakes.get_backups(
-            self.backups
-        )
+        self.backups = list(sdk_fakes.generate_fake_resources(_backup.Backup))
+        self.volume_sdk_client.find_backup.side_effect = self.backups
         self.volume_sdk_client.delete_backup.return_value = None
 
-        # Get the command object to mock
         self.cmd = volume_backup.DeleteVolumeBackup(self.app, None)
 
     def test_backup_delete(self):
@@ -281,7 +269,7 @@ class TestBackupDelete(volume_fakes.TestVolume):
 
         calls = []
         for b in self.backups:
-            calls.append(call(b.id, ignore_missing=False, force=False))
+            calls.append(mock.call(b.id, ignore_missing=False, force=False))
         self.volume_sdk_client.delete_backup.assert_has_calls(calls)
         self.assertIsNone(result)
 
@@ -321,11 +309,6 @@ class TestBackupDelete(volume_fakes.TestVolume):
 
 
 class TestBackupList(volume_fakes.TestVolume):
-    volume = volume_fakes.create_one_volume()
-    backups = volume_fakes.create_backups(
-        attrs={'volume_id': volume.name}, count=3
-    )
-
     columns = (
         'ID',
         'Name',
@@ -341,45 +324,51 @@ class TestBackupList(volume_fakes.TestVolume):
         'Container',
     )
 
-    data = []
-    for b in backups:
-        data.append(
-            (
-                b.id,
-                b.name,
-                b.description,
-                b.status,
-                b.size,
-                b.is_incremental,
-                b.created_at,
-            )
-        )
-    data_long = []
-    for b in backups:
-        data_long.append(
-            (
-                b.id,
-                b.name,
-                b.description,
-                b.status,
-                b.size,
-                b.is_incremental,
-                b.created_at,
-                b.availability_zone,
-                volume_backup.VolumeIdColumn(b.volume_id),
-                b.container,
-            )
-        )
-
     def setUp(self):
         super().setUp()
 
-        self.volume_sdk_client.volumes.return_value = [self.volume]
-        self.volume_sdk_client.backups.return_value = self.backups
+        self.volume = sdk_fakes.generate_fake_resource(_volume.Volume)
         self.volume_sdk_client.find_volume.return_value = self.volume
+        self.volume_sdk_client.volumes.return_value = [self.volume]
+        self.backups = list(
+            sdk_fakes.generate_fake_resources(
+                _backup.Backup,
+                attrs={'volume_id': self.volume.id},
+            )
+        )
+        self.volume_sdk_client.backups.return_value = self.backups
         self.volume_sdk_client.find_backup.return_value = self.backups[0]
 
-        # Get the command to test
+        self.data = []
+        for b in self.backups:
+            self.data.append(
+                (
+                    b.id,
+                    b.name,
+                    b.description,
+                    b.status,
+                    b.size,
+                    b.is_incremental,
+                    b.created_at,
+                )
+            )
+        self.data_long = []
+        for b in self.backups:
+            self.data_long.append(
+                (
+                    b.id,
+                    b.name,
+                    b.description,
+                    b.status,
+                    b.size,
+                    b.is_incremental,
+                    b.created_at,
+                    b.availability_zone,
+                    volume_backup.VolumeIdColumn(b.volume_id),
+                    b.container,
+                )
+            )
+
         self.cmd = volume_backup.ListVolumeBackup(self.app, None)
 
     def test_backup_list_without_options(self):
@@ -457,35 +446,34 @@ class TestBackupList(volume_fakes.TestVolume):
 
 
 class TestBackupRestore(volume_fakes.TestVolume):
-    volume = volume_fakes.create_one_volume()
-    backup = volume_fakes.create_one_backup(
-        attrs={'volume_id': volume.id},
-    )
-
     columns = (
         "id",
         "volume_id",
         "volume_name",
     )
 
-    data = (
-        backup.id,
-        volume.id,
-        volume.name,
-    )
-
     def setUp(self):
         super().setUp()
 
-        self.volume_sdk_client.find_backup.return_value = self.backup
+        self.volume = sdk_fakes.generate_fake_resource(_volume.Volume)
         self.volume_sdk_client.find_volume.return_value = self.volume
+        self.backup = sdk_fakes.generate_fake_resource(
+            _backup.Backup, volume_id=self.volume.id
+        )
+        self.volume_sdk_client.find_backup.return_value = self.backup
+        self.volume_sdk_client.create_backup.return_value = self.backup
         self.volume_sdk_client.restore_backup.return_value = {
             'id': self.backup['id'],
             'volume_id': self.volume['id'],
             'volume_name': self.volume['name'],
         }
 
-        # Get the command object to mock
+        self.data = (
+            self.backup.id,
+            self.volume.id,
+            self.volume.name,
+        )
+
         self.cmd = volume_backup.RestoreVolumeBackup(self.app, None)
 
     def test_backup_restore(self):
@@ -574,17 +562,15 @@ class TestBackupRestore(volume_fakes.TestVolume):
         )
 
 
-class TestBackupSet(TestBackupLegacy):
-    backup = volume_fakes.create_one_backup(
-        attrs={'metadata': {'wow': 'cool'}},
-    )
-
+class TestBackupSet(volume_fakes.TestVolume):
     def setUp(self):
         super().setUp()
 
-        self.backups_mock.get.return_value = self.backup
+        self.backup = sdk_fakes.generate_fake_resource(
+            _backup.Backup, metadata={'wow': 'cool'}
+        )
+        self.volume_sdk_client.find_backup.return_value = self.backup
 
-        # Get the command object to test
         self.cmd = volume_backup.SetVolumeBackup(self.app, None)
 
     def test_backup_set_name(self):
@@ -601,13 +587,15 @@ class TestBackupSet(TestBackupLegacy):
         ]
         parsed_args = self.check_parser(self.cmd, arglist, verifylist)
 
-        # In base command class ShowOne in cliff, abstract method take_action()
-        # returns nothing
         result = self.cmd.take_action(parsed_args)
-        self.backups_mock.update.assert_called_once_with(
-            self.backup.id, **{'name': 'new_name'}
-        )
         self.assertIsNone(result)
+
+        self.volume_sdk_client.find_backup.assert_called_with(
+            self.backup.id, ignore_missing=False
+        )
+        self.volume_sdk_client.update_backup.assert_called_once_with(
+            self.backup, name='new_name'
+        )
 
     def test_backup_set_name_pre_v39(self):
         self.set_volume_api_version('3.8')
@@ -644,13 +632,14 @@ class TestBackupSet(TestBackupLegacy):
         parsed_args = self.check_parser(self.cmd, arglist, verifylist)
 
         result = self.cmd.take_action(parsed_args)
-
-        # Set expected values
-        kwargs = {'description': 'new_description'}
-        self.backups_mock.update.assert_called_once_with(
-            self.backup.id, **kwargs
-        )
         self.assertIsNone(result)
+
+        self.volume_sdk_client.find_backup.assert_called_with(
+            self.backup.id, ignore_missing=False
+        )
+        self.volume_sdk_client.update_backup.assert_called_once_with(
+            self.backup, description='new_description'
+        )
 
     def test_backup_set_description_pre_v39(self):
         self.set_volume_api_version('3.8')
@@ -679,26 +668,34 @@ class TestBackupSet(TestBackupLegacy):
         parsed_args = self.check_parser(self.cmd, arglist, verifylist)
 
         result = self.cmd.take_action(parsed_args)
-        self.backups_mock.reset_state.assert_called_once_with(
-            self.backup.id, 'error'
-        )
         self.assertIsNone(result)
 
+        self.volume_sdk_client.find_backup.assert_called_with(
+            self.backup.id, ignore_missing=False
+        )
+        self.volume_sdk_client.reset_backup_status.assert_called_with(
+            self.backup, status='error'
+        )
+
     def test_backup_set_state_failed(self):
-        self.backups_mock.reset_state.side_effect = exceptions.CommandError()
+        self.volume_sdk_client.reset_backup_status.side_effect = (
+            sdk_exceptions.NotFoundException('foo')
+        )
+
         arglist = ['--state', 'error', self.backup.id]
         verifylist = [('state', 'error'), ('backup', self.backup.id)]
 
         parsed_args = self.check_parser(self.cmd, arglist, verifylist)
-        try:
-            self.cmd.take_action(parsed_args)
-            self.fail('CommandError should be raised.')
-        except exceptions.CommandError as e:
-            self.assertEqual(
-                'One or more of the set operations failed', str(e)
-            )
-        self.backups_mock.reset_state.assert_called_with(
-            self.backup.id, 'error'
+        exc = self.assertRaises(
+            exceptions.CommandError, self.cmd.take_action, parsed_args
+        )
+        self.assertEqual('One or more of the set operations failed', str(exc))
+
+        self.volume_sdk_client.find_backup.assert_called_with(
+            self.backup.id, ignore_missing=False
+        )
+        self.volume_sdk_client.reset_backup_status.assert_called_with(
+            self.backup, status='error'
         )
 
     def test_backup_set_no_property(self):
@@ -715,15 +712,14 @@ class TestBackupSet(TestBackupLegacy):
         parsed_args = self.check_parser(self.cmd, arglist, verifylist)
 
         result = self.cmd.take_action(parsed_args)
-
-        # Set expected values
-        kwargs = {
-            'metadata': {},
-        }
-        self.backups_mock.update.assert_called_once_with(
-            self.backup.id, **kwargs
-        )
         self.assertIsNone(result)
+
+        self.volume_sdk_client.find_backup.assert_called_with(
+            self.backup.id, ignore_missing=False
+        )
+        self.volume_sdk_client.update_backup.assert_called_once_with(
+            self.backup, metadata={}
+        )
 
     def test_backup_set_no_property_pre_v343(self):
         self.set_volume_api_version('3.42')
@@ -758,15 +754,14 @@ class TestBackupSet(TestBackupLegacy):
         parsed_args = self.check_parser(self.cmd, arglist, verifylist)
 
         result = self.cmd.take_action(parsed_args)
-
-        # Set expected values
-        kwargs = {
-            'metadata': {'wow': 'cool', 'foo': 'bar'},
-        }
-        self.backups_mock.update.assert_called_once_with(
-            self.backup.id, **kwargs
-        )
         self.assertIsNone(result)
+
+        self.volume_sdk_client.find_backup.assert_called_with(
+            self.backup.id, ignore_missing=False
+        )
+        self.volume_sdk_client.update_backup.assert_called_once_with(
+            self.backup, metadata={'wow': 'cool', 'foo': 'bar'}
+        )
 
     def test_backup_set_property_pre_v343(self):
         self.set_volume_api_version('3.42')
@@ -788,17 +783,16 @@ class TestBackupSet(TestBackupLegacy):
         self.assertIn("--os-volume-api-version 3.43 or greater", str(exc))
 
 
-class TestBackupUnset(TestBackupLegacy):
-    backup = volume_fakes.create_one_backup(
-        attrs={'metadata': {'foo': 'bar'}},
-    )
-
+class TestBackupUnset(volume_fakes.TestVolume):
     def setUp(self):
         super().setUp()
 
-        self.backups_mock.get.return_value = self.backup
+        self.backup = sdk_fakes.generate_fake_resource(
+            _backup.Backup, metadata={'foo': 'bar', 'wow': 'cool'}
+        )
+        self.volume_sdk_client.find_backup.return_value = self.backup
+        self.volume_sdk_client.delete_backup_metadata.return_value = None
 
-        # Get the command object to test
         self.cmd = volume_backup.UnsetVolumeBackup(self.app, None)
 
     def test_backup_unset_property(self):
@@ -816,15 +810,14 @@ class TestBackupUnset(TestBackupLegacy):
         parsed_args = self.check_parser(self.cmd, arglist, verifylist)
 
         result = self.cmd.take_action(parsed_args)
-
-        # Set expected values
-        kwargs = {
-            'metadata': {},
-        }
-        self.backups_mock.update.assert_called_once_with(
-            self.backup.id, **kwargs
-        )
         self.assertIsNone(result)
+
+        self.volume_sdk_client.find_backup.assert_called_with(
+            self.backup.id, ignore_missing=False
+        )
+        self.volume_sdk_client.delete_backup_metadata.assert_called_once_with(
+            self.backup, keys=['wow']
+        )
 
     def test_backup_unset_property_pre_v343(self):
         self.set_volume_api_version('3.42')
@@ -847,8 +840,6 @@ class TestBackupUnset(TestBackupLegacy):
 
 
 class TestBackupShow(volume_fakes.TestVolume):
-    backup = volume_fakes.create_one_backup()
-
     columns = (
         "availability_zone",
         "container",
@@ -871,34 +862,36 @@ class TestBackupShow(volume_fakes.TestVolume):
         "user_id",
         "volume_id",
     )
-    data = (
-        backup.availability_zone,
-        backup.container,
-        backup.created_at,
-        backup.data_timestamp,
-        backup.description,
-        backup.encryption_key_id,
-        backup.fail_reason,
-        backup.has_dependent_backups,
-        backup.id,
-        backup.is_incremental,
-        backup.metadata,
-        backup.name,
-        backup.object_count,
-        backup.project_id,
-        backup.size,
-        backup.snapshot_id,
-        backup.status,
-        backup.updated_at,
-        backup.user_id,
-        backup.volume_id,
-    )
 
     def setUp(self):
         super().setUp()
 
+        self.backup = sdk_fakes.generate_fake_resource(_backup.Backup)
         self.volume_sdk_client.find_backup.return_value = self.backup
-        # Get the command object to test
+
+        self.data = (
+            self.backup.availability_zone,
+            self.backup.container,
+            self.backup.created_at,
+            self.backup.data_timestamp,
+            self.backup.description,
+            self.backup.encryption_key_id,
+            self.backup.fail_reason,
+            self.backup.has_dependent_backups,
+            self.backup.id,
+            self.backup.is_incremental,
+            self.backup.metadata,
+            self.backup.name,
+            self.backup.object_count,
+            self.backup.project_id,
+            self.backup.size,
+            self.backup.snapshot_id,
+            self.backup.status,
+            self.backup.updated_at,
+            self.backup.user_id,
+            self.backup.volume_id,
+        )
+
         self.cmd = volume_backup.ShowVolumeBackup(self.app, None)
 
     def test_backup_show(self):
@@ -907,7 +900,9 @@ class TestBackupShow(volume_fakes.TestVolume):
         parsed_args = self.check_parser(self.cmd, arglist, verifylist)
 
         columns, data = self.cmd.take_action(parsed_args)
-        self.volume_sdk_client.find_backup.assert_called_with(self.backup.id)
+        self.volume_sdk_client.find_backup.assert_called_with(
+            self.backup.id, ignore_missing=False
+        )
 
         self.assertEqual(self.columns, columns)
         self.assertEqual(self.data, data)

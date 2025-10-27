@@ -44,6 +44,7 @@ from openstack.identity.v3 import project
 from openstack import proxy as proxy_base
 from openstack.tests.unit import base
 from openstack.tests.unit import test_proxy_base
+from openstack import types
 from openstack import warnings as os_warnings
 
 
@@ -1372,6 +1373,7 @@ class TestCompute(TestComputeProxy):
             expected_args=[self.proxy],
             expected_kwargs={
                 "host": None,
+                "availability_zone": types.UNSET,
             },
         )
 
@@ -1380,11 +1382,9 @@ class TestCompute(TestComputeProxy):
             "openstack.compute.v2.server.Server.unshelve",
             self.proxy.unshelve_server,
             method_args=["value"],
-            method_kwargs={"host": "HOST2"},
+            method_kwargs={"host": "HOST2", "availability_zone": "AZ2"},
             expected_args=[self.proxy],
-            expected_kwargs={
-                "host": "HOST2",
-            },
+            expected_kwargs={"host": "HOST2", "availability_zone": "AZ2"},
         )
 
     def test_server_trigger_dump(self):
@@ -1638,7 +1638,7 @@ class TestCompute(TestComputeProxy):
         self.verify_list(self.proxy.usages, usage.Usage)
 
     def test_usages__with_kwargs(self):
-        now = datetime.datetime.utcnow()
+        now = datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None)
         start = now - datetime.timedelta(weeks=4)
         end = end = now + datetime.timedelta(days=1)
         self.verify_list(
@@ -1662,7 +1662,7 @@ class TestCompute(TestComputeProxy):
         )
 
     def test_get_usage__with_kwargs(self):
-        now = datetime.datetime.utcnow()
+        now = datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None)
         start = now - datetime.timedelta(weeks=4)
         end = end = now + datetime.timedelta(days=1)
         self._verify(

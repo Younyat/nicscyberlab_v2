@@ -14,6 +14,9 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+from __future__ import absolute_import
+from __future__ import print_function
+
 import json
 
 from pbr import git
@@ -25,7 +28,7 @@ def write_pbr_json(cmd, basename, filename):
     git_dir = git._run_git_functions()
     if not git_dir:
         return
-    values = dict()
+    values = {}
     git_version = git.get_git_short_sha(git_dir)
     is_release = git.get_is_release(git_dir)
     if git_version is not None:

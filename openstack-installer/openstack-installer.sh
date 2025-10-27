@@ -172,18 +172,6 @@ echo "✅ Dependencias Python instaladas correctamente."
 
 
 
-# ============================================================
-# 🔧 CONFIGURAR Y LANZAR TOPOLOGÍA DE RED VIRTUAL (setup-veth.sh)
-# ============================================================
-if [ -f "./setup-veth.sh" ]; then
-  echo "🔹 Aplicando permisos y ejecutando topología de red virtual..."
-  chmod +x ./setup-veth.sh
-  sudo apt install -y bridge-utils iproute2 net-tools
-  sudo bash ./setup-veth.sh
-  echo "✅ Red virtual configurada correctamente (veth/br-ex)."
-else
-  echo "⚠️  Advertencia: No se encontró setup-veth.sh, se continuará sin topología virtual."
-fi
 
 
 
@@ -285,6 +273,27 @@ kolla-ansible bootstrap-servers -i /etc/kolla/ansible/inventory/all-in-one
 kolla-ansible prechecks -i /etc/kolla/ansible/inventory/all-in-one
 kolla-ansible deploy -i /etc/kolla/ansible/inventory/all-in-one
 kolla-ansible post-deploy
+
+
+
+
+
+# ============================================================
+# 🔧 CONFIGURAR TOPOLOGÍA DE RED (DESPUÉS DEL DEPLOY)
+# ============================================================
+if [ -f "./setup-veth.sh" ]; then
+  echo "🔹 Configurando red virtual post-deploy..."
+  chmod +x ./setup-veth.sh
+  sudo bash ./setup-veth.sh
+  echo "✅ Red virtual configurada correctamente."
+else
+  echo "⚠️  No se encontró setup-veth.sh, continuando..."
+fi
+
+
+
+
+
 
 # ============================================================
 # 9️⃣ CLIENTE OPENSTACK Y PERMISOS

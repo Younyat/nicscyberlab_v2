@@ -14,11 +14,12 @@
 
 """Volume v2 snapshot action implementations"""
 
-import copy
 import functools
 import logging
+import typing as ty
 
 from cliff import columns as cliff_columns
+from openstack.block_storage.v2 import snapshot as _snapshot
 from osc_lib.cli import format_columns
 from osc_lib.cli import parseractions
 from osc_lib.command import command
@@ -60,6 +61,42 @@ class VolumeIdColumn(cliff_columns.FormattableColumn):
         return volume
 
 
+def _format_snapshot(snapshot: _snapshot.Snapshot) -> dict[str, ty.Any]:
+    # Some columns returned by openstacksdk should not be shown because they're
+    # either irrelevant or duplicates
+    ignored_columns = {
+        # computed columns
+        'location',
+        # create-only columns
+        'consumes_quota',
+        'force',
+        'group_snapshot_id',
+        # ignored columns
+        'os-extended-snapshot-attributes:progress',
+        'os-extended-snapshot-attributes:project_id',
+        'updated_at',
+        'user_id',
+        # unnecessary columns
+        'links',
+    }
+
+    info = snapshot.to_dict(original_names=True)
+    data = {}
+    for key, value in info.items():
+        if key in ignored_columns:
+            continue
+
+        data[key] = value
+
+    data.update(
+        {
+            'properties': format_columns.DictColumn(data.pop('metadata')),
+        }
+    )
+
+    return data
+
+
 class CreateVolumeSnapshot(command.ShowOne):
     _description = _("Create new volume snapshot")
 
@@ -94,6 +131,7 @@ class CreateVolumeSnapshot(command.ShowOne):
             "--property",
             metavar="<key=value>",
             action=parseractions.KeyValueAction,
+            dest="properties",
             help=_(
                 "Set a property to this snapshot "
                 "(repeat option to set multiple properties)"
@@ -113,11 +151,13 @@ class CreateVolumeSnapshot(command.ShowOne):
         return parser
 
     def take_action(self, parsed_args):
-        volume_client = self.app.client_manager.volume
+        volume_client = self.app.client_manager.sdk_connection.volume
+
         volume = parsed_args.volume
         if not parsed_args.volume:
             volume = parsed_args.snapshot_name
-        volume_id = utils.find_resource(volume_client.volumes, volume).id
+        volume_id = volume_client.find_volume(volume, ignore_missing=False).id
+
         if parsed_args.remote_source:
             # Create a new snapshot from an existing remote snapshot source
             if parsed_args.force:
@@ -127,30 +167,26 @@ class CreateVolumeSnapshot(command.ShowOne):
                     "volume snapshot"
                 )
                 LOG.warning(msg)
-            snapshot = volume_client.volume_snapshots.manage(
+
+            snapshot = volume_client.manage_snapshot(
                 volume_id=volume_id,
                 ref=parsed_args.remote_source,
                 name=parsed_args.snapshot_name,
                 description=parsed_args.description,
-                metadata=parsed_args.property,
+                metadata=parsed_args.properties,
             )
         else:
             # create a new snapshot from scratch
-            snapshot = volume_client.volume_snapshots.create(
-                volume_id,
+            snapshot = volume_client.create_snapshot(
+                volume_id=volume_id,
                 force=parsed_args.force,
                 name=parsed_args.snapshot_name,
                 description=parsed_args.description,
-                metadata=parsed_args.property,
+                metadata=parsed_args.properties,
             )
-        snapshot._info.update(
-            {
-                'properties': format_columns.DictColumn(
-                    snapshot._info.pop('metadata')
-                )
-            }
-        )
-        return zip(*sorted(snapshot._info.items()))
+
+        data = _format_snapshot(snapshot)
+        return zip(*sorted(data.items()))
 
 
 class DeleteVolumeSnapshot(command.Command):
@@ -175,16 +211,16 @@ class DeleteVolumeSnapshot(command.Command):
         return parser
 
     def take_action(self, parsed_args):
-        volume_client = self.app.client_manager.volume
+        volume_client = self.app.client_manager.sdk_connection.volume
         result = 0
 
-        for i in parsed_args.snapshots:
+        for snapshot in parsed_args.snapshots:
             try:
-                snapshot_id = utils.find_resource(
-                    volume_client.volume_snapshots, i
+                snapshot_id = volume_client.find_snapshot(
+                    snapshot, ignore_missing=False
                 ).id
-                volume_client.volume_snapshots.delete(
-                    snapshot_id, parsed_args.force
+                volume_client.delete_snapshot(
+                    snapshot_id, force=parsed_args.force
                 )
             except Exception as e:
                 result += 1
@@ -193,7 +229,7 @@ class DeleteVolumeSnapshot(command.Command):
                         "Failed to delete snapshot with "
                         "name or ID '%(snapshot)s': %(e)s"
                     )
-                    % {'snapshot': i, 'e': e}
+                    % {'snapshot': snapshot, 'e': e}
                 )
 
         if result > 0:
@@ -260,31 +296,39 @@ class ListVolumeSnapshot(command.Lister):
         return parser
 
     def take_action(self, parsed_args):
-        volume_client = self.app.client_manager.volume
+        volume_client = self.app.client_manager.sdk_connection.volume
         identity_client = self.app.client_manager.identity
 
+        columns: tuple[str, ...] = (
+            'id',
+            'name',
+            'description',
+            'status',
+            'size',
+        )
+        column_headers: tuple[str, ...] = (
+            'ID',
+            'Name',
+            'Description',
+            'Status',
+            'Size',
+        )
         if parsed_args.long:
-            columns = [
-                'ID',
-                'Name',
-                'Description',
-                'Status',
-                'Size',
+            columns += (
+                'created_at',
+                'volume_id',
+                'metadata',
+            )
+            column_headers += (
                 'Created At',
-                'Volume ID',
-                'Metadata',
-            ]
-            column_headers = copy.deepcopy(columns)
-            column_headers[6] = 'Volume'
-            column_headers[7] = 'Properties'
-        else:
-            columns = ['ID', 'Name', 'Description', 'Status', 'Size']
-            column_headers = copy.deepcopy(columns)
+                'Volume',
+                'Properties',
+            )
 
         # Cache the volume list
         volume_cache = {}
         try:
-            for s in volume_client.volumes.list():
+            for s in volume_client.volumes():
                 volume_cache[s.id] = s
         except Exception:  # noqa: S110
             # Just forget it if there's any trouble
@@ -295,8 +339,8 @@ class ListVolumeSnapshot(command.Lister):
 
         volume_id = None
         if parsed_args.volume:
-            volume_id = utils.find_resource(
-                volume_client.volumes, parsed_args.volume
+            volume_id = volume_client.find_volume(
+                parsed_args.volume, ignore_missing=False
             ).id
 
         project_id = None
@@ -312,18 +356,14 @@ class ListVolumeSnapshot(command.Lister):
             True if parsed_args.project else parsed_args.all_projects
         )
 
-        search_opts = {
-            'all_tenants': all_projects,
-            'project_id': project_id,
-            'name': parsed_args.name,
-            'status': parsed_args.status,
-            'volume_id': volume_id,
-        }
-
-        data = volume_client.volume_snapshots.list(
-            search_opts=search_opts,
+        data = volume_client.snapshots(
             marker=parsed_args.marker,
             limit=parsed_args.limit,
+            all_projects=all_projects,
+            project_id=project_id,
+            name=parsed_args.name,
+            status=parsed_args.status,
+            volume_id=volume_id,
         )
         return (
             column_headers,
@@ -332,8 +372,8 @@ class ListVolumeSnapshot(command.Lister):
                     s,
                     columns,
                     formatters={
-                        'Metadata': format_columns.DictColumn,
-                        'Volume ID': _VolumeIdColumn,
+                        'metadata': format_columns.DictColumn,
+                        'volume_id': _VolumeIdColumn,
                     },
                 )
                 for s in data
@@ -374,6 +414,7 @@ class SetVolumeSnapshot(command.Command):
             '--property',
             metavar='<key=value>',
             action=parseractions.KeyValueAction,
+            dest='properties',
             help=_(
                 'Property to add/change for this snapshot '
                 '(repeat option to set multiple properties)'
@@ -400,27 +441,26 @@ class SetVolumeSnapshot(command.Command):
         return parser
 
     def take_action(self, parsed_args):
-        volume_client = self.app.client_manager.volume
-        snapshot = utils.find_resource(
-            volume_client.volume_snapshots, parsed_args.snapshot
+        volume_client = self.app.client_manager.sdk_connection.volume
+
+        snapshot = volume_client.find_snapshot(
+            parsed_args.snapshot, ignore_missing=False
         )
 
         result = 0
         if parsed_args.no_property:
             try:
-                key_list = snapshot.metadata.keys()
-                volume_client.volume_snapshots.delete_metadata(
-                    snapshot.id,
-                    list(key_list),
+                volume_client.delete_snapshot_metadata(
+                    snapshot.id, keys=list(snapshot.metadata)
                 )
             except Exception as e:
                 LOG.error(_("Failed to clean snapshot properties: %s"), e)
                 result += 1
 
-        if parsed_args.property:
+        if parsed_args.properties:
             try:
-                volume_client.volume_snapshots.set_metadata(
-                    snapshot.id, parsed_args.property
+                volume_client.set_snapshot_metadata(
+                    snapshot.id, **parsed_args.properties
                 )
             except Exception as e:
                 LOG.error(_("Failed to set snapshot property: %s"), e)
@@ -428,7 +468,7 @@ class SetVolumeSnapshot(command.Command):
 
         if parsed_args.state:
             try:
-                volume_client.volume_snapshots.reset_state(
+                volume_client.reset_snapshot_status(
                     snapshot.id, parsed_args.state
                 )
             except Exception as e:
@@ -442,7 +482,7 @@ class SetVolumeSnapshot(command.Command):
             kwargs['description'] = parsed_args.description
         if kwargs:
             try:
-                volume_client.volume_snapshots.update(snapshot.id, **kwargs)
+                volume_client.update_snapshot(snapshot.id, **kwargs)
             except Exception as e:
                 LOG.error(
                     _("Failed to update snapshot name or description: %s"),
@@ -469,18 +509,14 @@ class ShowVolumeSnapshot(command.ShowOne):
         return parser
 
     def take_action(self, parsed_args):
-        volume_client = self.app.client_manager.volume
-        snapshot = utils.find_resource(
-            volume_client.volume_snapshots, parsed_args.snapshot
+        volume_client = self.app.client_manager.sdk_connection.volume
+
+        snapshot = volume_client.find_snapshot(
+            parsed_args.snapshot, ignore_missing=False
         )
-        snapshot._info.update(
-            {
-                'properties': format_columns.DictColumn(
-                    snapshot._info.pop('metadata')
-                )
-            }
-        )
-        return zip(*sorted(snapshot._info.items()))
+
+        data = _format_snapshot(snapshot)
+        return zip(*sorted(data.items()))
 
 
 class UnsetVolumeSnapshot(command.Command):
@@ -498,6 +534,7 @@ class UnsetVolumeSnapshot(command.Command):
             metavar='<key>',
             action='append',
             default=[],
+            dest='properties',
             help=_(
                 'Property to remove from snapshot '
                 '(repeat option to remove multiple properties)'
@@ -506,13 +543,13 @@ class UnsetVolumeSnapshot(command.Command):
         return parser
 
     def take_action(self, parsed_args):
-        volume_client = self.app.client_manager.volume
-        snapshot = utils.find_resource(
-            volume_client.volume_snapshots, parsed_args.snapshot
+        volume_client = self.app.client_manager.sdk_connection.volume
+
+        snapshot = volume_client.find_snapshot(
+            parsed_args.snapshot, ignore_missing=False
         )
 
-        if parsed_args.property:
-            volume_client.volume_snapshots.delete_metadata(
-                snapshot.id,
-                parsed_args.property,
+        if parsed_args.properties:
+            volume_client.delete_snapshot_metadata(
+                snapshot.id, keys=parsed_args.properties
             )

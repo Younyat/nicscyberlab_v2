@@ -234,10 +234,8 @@ class TestCreateFloatingIPNetwork(TestFloatingIPNetwork):
         self.assertEqual(self.data, data)
 
     def test_create_floating_ip_with_qos(self):
-        qos_policy = network_fakes.FakeNetworkQosPolicy.create_one_qos_policy()
-        self.network_client.find_qos_policy = mock.Mock(
-            return_value=qos_policy
-        )
+        qos_policy = network_fakes.create_one_qos_policy()
+        self.network_client.find_qos_policy.return_value = qos_policy
         arglist = [
             '--qos-policy',
             qos_policy.id,
@@ -416,7 +414,7 @@ class TestListFloatingIPNetwork(TestFloatingIPNetwork):
             'id': 'fake_port_id',
         }
     )
-    fake_router = network_fakes.FakeRouter.create_one_router(
+    fake_router = network_fakes.create_one_router(
         {
             'id': 'fake_router_id',
         }
@@ -501,7 +499,7 @@ class TestListFloatingIPNetwork(TestFloatingIPNetwork):
             'fake_network_id',
         ]
         verifylist = [
-            ('network', 'fake_network_id'),
+            ('networks', ['fake_network_id']),
         ]
         parsed_args = self.check_parser(self.cmd, arglist, verifylist)
 
@@ -509,7 +507,7 @@ class TestListFloatingIPNetwork(TestFloatingIPNetwork):
 
         self.network_client.ips.assert_called_once_with(
             **{
-                'floating_network_id': 'fake_network_id',
+                'floating_network_id': ['fake_network_id'],
             }
         )
         self.assertEqual(self.columns, columns)
@@ -521,7 +519,7 @@ class TestListFloatingIPNetwork(TestFloatingIPNetwork):
             'fake_port_id',
         ]
         verifylist = [
-            ('port', 'fake_port_id'),
+            ('ports', ['fake_port_id']),
         ]
         parsed_args = self.check_parser(self.cmd, arglist, verifylist)
 
@@ -529,7 +527,7 @@ class TestListFloatingIPNetwork(TestFloatingIPNetwork):
 
         self.network_client.ips.assert_called_once_with(
             **{
-                'port_id': 'fake_port_id',
+                'port_id': ['fake_port_id'],
             }
         )
         self.assertEqual(self.columns, columns)
@@ -662,7 +660,7 @@ class TestListFloatingIPNetwork(TestFloatingIPNetwork):
             '--long',
         ]
         verifylist = [
-            ('router', 'fake_router_id'),
+            ('routers', ['fake_router_id']),
         ]
         parsed_args = self.check_parser(self.cmd, arglist, verifylist)
 
@@ -670,7 +668,7 @@ class TestListFloatingIPNetwork(TestFloatingIPNetwork):
 
         self.network_client.ips.assert_called_once_with(
             **{
-                'router_id': 'fake_router_id',
+                'router_id': ['fake_router_id'],
             }
         )
         self.assertEqual(self.columns_long, columns)
@@ -893,10 +891,8 @@ class TestSetFloatingIP(TestFloatingIPNetwork):
         )
 
     def test_qos_policy_option(self):
-        qos_policy = network_fakes.FakeNetworkQosPolicy.create_one_qos_policy()
-        self.network_client.find_qos_policy = mock.Mock(
-            return_value=qos_policy
-        )
+        qos_policy = network_fakes.create_one_qos_policy()
+        self.network_client.find_qos_policy.return_value = qos_policy
         arglist = [
             "--qos-policy",
             qos_policy.id,
@@ -922,10 +918,8 @@ class TestSetFloatingIP(TestFloatingIPNetwork):
         )
 
     def test_port_and_qos_policy_option(self):
-        qos_policy = network_fakes.FakeNetworkQosPolicy.create_one_qos_policy()
-        self.network_client.find_qos_policy = mock.Mock(
-            return_value=qos_policy
-        )
+        qos_policy = network_fakes.create_one_qos_policy()
+        self.network_client.find_qos_policy.return_value = qos_policy
         arglist = [
             "--qos-policy",
             qos_policy.id,

@@ -11,36 +11,31 @@
 =============================================
 🧩 Verificando instalación de Gunicorn...
 =============================================
-⚠️ Gunicorn no está instalado. Instalando...
-📦 Instalando Gunicorn en el entorno virtual actual...
-Collecting gunicorn
-  Downloading gunicorn-23.0.0-py3-none-any.whl.metadata (4.4 kB)
-Requirement already satisfied: packaging in ./openstack-installer/openstack_venv/lib/python3.12/site-packages (from gunicorn) (25.0)
-Downloading gunicorn-23.0.0-py3-none-any.whl (85 kB)
-Installing collected packages: gunicorn
-Successfully installed gunicorn-23.0.0
+✅ Gunicorn ya está instalado.
 
 =============================================
 🚀 Iniciando servidor Gunicorn (app:app)...
 =============================================
-[2025-10-24 11:50:16 +0200] [2816597] [INFO] Starting gunicorn 23.0.0
-[2025-10-24 11:50:16 +0200] [2816597] [INFO] Listening at: http://127.0.0.1:5001 (2816597)
-[2025-10-24 11:50:16 +0200] [2816597] [INFO] Using worker: sync
-[2025-10-24 11:50:16 +0200] [2816607] [INFO] Booting worker with pid: 2816607
-[2025-10-24 11:50:16 +0200] [2816608] [INFO] Booting worker with pid: 2816608
-[2025-10-24 11:50:16 +0200] [2816609] [INFO] Booting worker with pid: 2816609
-[2025-10-24 11:50:16 +0200] [2816610] [INFO] Booting worker with pid: 2816610
-2025-10-24 11:50:16,505 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyberrange/generate_app_cred_openrc_from_clouds.sh
+[2025-10-27 13:20:59 +0100] [97187] [INFO] Starting gunicorn 23.0.0
+[2025-10-27 13:20:59 +0100] [97187] [INFO] Listening at: http://127.0.0.1:5001 (97187)
+[2025-10-27 13:20:59 +0100] [97187] [INFO] Using worker: sync
+[2025-10-27 13:20:59 +0100] [97200] [INFO] Booting worker with pid: 97200
+[2025-10-27 13:20:59 +0100] [97201] [INFO] Booting worker with pid: 97201
+[2025-10-27 13:20:59 +0100] [97202] [INFO] Booting worker with pid: 97202
+[2025-10-27 13:20:59 +0100] [97203] [INFO] Booting worker with pid: 97203
+2025-10-27 13:20:59,802 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyberrange/generate_app_cred_openrc_from_clouds.sh
 INFO:app_logger:⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyberrange/generate_app_cred_openrc_from_clouds.sh
-2025-10-24 11:50:16,505 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyberrange/generate_app_cred_openrc_from_clouds.sh
+2025-10-27 13:20:59,802 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyberrange/generate_app_cred_openrc_from_clouds.sh
+2025-10-27 13:20:59,820 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyberrange/generate_app_cred_openrc_from_clouds.sh
 INFO:app_logger:⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyberrange/generate_app_cred_openrc_from_clouds.sh
-2025-10-24 11:50:16,505 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyberrange/generate_app_cred_openrc_from_clouds.sh
 INFO:app_logger:⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyberrange/generate_app_cred_openrc_from_clouds.sh
-2025-10-24 11:50:16,505 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyberrange/generate_app_cred_openrc_from_clouds.sh
+2025-10-27 13:20:59,802 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyberrange/generate_app_cred_openrc_from_clouds.sh
 INFO:app_logger:⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyberrange/generate_app_cred_openrc_from_clouds.sh
-2025-10-24 11:50:16,829 - INFO - 📤 Salida del script:
+2025-10-27 13:21:00,169 - INFO - 📤 Salida del script:
 INFO:app_logger:📤 Salida del script:
-2025-10-24 11:50:16,829 - INFO - ===============================================
+2025-10-27 13:21:00,169 - INFO - 📤 Salida del script:
+INFO:app_logger:📤 Salida del script:
+2025-10-27 13:21:00,169 - INFO - ===============================================
 🔐 Generador de admin-openrc.sh para OpenStack
 ===============================================
 🔧 Verificando permisos de archivos críticos...
@@ -84,7 +79,231 @@ export OS_PROJECT_NAME=admin
 export OS_PROJECT_DOMAIN_NAME=Default
 export OS_USERNAME=admin
 export OS_USER_DOMAIN_NAME=Default
-export OS_PASSWORD=HJimXzVjgcZCxu1va3nbZgcU3LT3eKcAYUcJb2M2
+export OS_PASSWORD=qg0nu3M5DOmTi9ys3McNJ0i78SueDMjEUhQInxwR
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-10-27 13:21:00,169 - INFO - 📤 Salida del script:
+INFO:app_logger:===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.11:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=qg0nu3M5DOmTi9ys3McNJ0i78SueDMjEUhQInxwR
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+INFO:app_logger:📤 Salida del script:
+2025-10-27 13:21:00,169 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.11:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=qg0nu3M5DOmTi9ys3McNJ0i78SueDMjEUhQInxwR
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-10-27 13:21:00,170 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyberrange/admin-openrc.sh
+INFO:app_logger:✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyberrange/admin-openrc.sh
+INFO:app_logger:===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.11:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=qg0nu3M5DOmTi9ys3McNJ0i78SueDMjEUhQInxwR
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-10-27 13:21:00,170 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.11:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=qg0nu3M5DOmTi9ys3McNJ0i78SueDMjEUhQInxwR
 export OS_INTERFACE=public
 export OS_IDENTITY_API_VERSION=3
 export OS_REGION_NAME=RegionOne
@@ -139,7 +358,7 @@ export OS_PROJECT_NAME=admin
 export OS_PROJECT_DOMAIN_NAME=Default
 export OS_USERNAME=admin
 export OS_USER_DOMAIN_NAME=Default
-export OS_PASSWORD=HJimXzVjgcZCxu1va3nbZgcU3LT3eKcAYUcJb2M2
+export OS_PASSWORD=qg0nu3M5DOmTi9ys3McNJ0i78SueDMjEUhQInxwR
 export OS_INTERFACE=public
 export OS_IDENTITY_API_VERSION=3
 export OS_REGION_NAME=RegionOne
@@ -150,245 +369,19 @@ echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
 🔧 Puedes usarlo con:
    source admin-openrc.sh
 
-2025-10-24 11:50:16,829 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyberrange/admin-openrc.sh
+2025-10-27 13:21:00,170 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyberrange/admin-openrc.sh
 INFO:app_logger:✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyberrange/admin-openrc.sh
-2025-10-24 11:50:16,830 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyberrange/admin-openrc.sh
+2025-10-27 13:21:00,170 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyberrange/admin-openrc.sh
+INFO:app_logger:✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyberrange/admin-openrc.sh
+2025-10-27 13:21:00,170 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyberrange/admin-openrc.sh
 INFO:app_logger:✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyberrange/admin-openrc.sh
-2025-10-24 11:50:16,831 - INFO - 📤 Salida del script:
-INFO:app_logger:📤 Salida del script:
-2025-10-24 11:50:16,831 - INFO - ===============================================
-🔐 Generador de admin-openrc.sh para OpenStack
-===============================================
-🔧 Verificando permisos de archivos críticos...
-✅ Permisos corregidos para /etc/kolla/clouds.yaml
-✅ Archivo temporal preparado: /tmp/clouds.json
-
-✅ yq ya está instalado.
-✅ jq ya está instalado.
-✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
-✅ Credenciales OpenStack cargadas para admin (admin)
-✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
-📂 Contenido:
------------------------------------------------
-#!/bin/bash
-# ======================================================
-# 🧩 Archivo de credenciales para OpenStack
-# Generado automáticamente desde /etc/kolla/clouds.yaml
-# Cloud seleccionado: kolla-admin
-# ======================================================
-
-# ------------------------------------------------------
-# 🧹 Limpiar variables previas del entorno
-# ------------------------------------------------------
-unset OS_AUTH_TYPE
-unset OS_AUTH_URL
-unset OS_USERNAME
-unset OS_PASSWORD
-unset OS_USER_DOMAIN_NAME
-unset OS_PROJECT_NAME
-unset OS_PROJECT_DOMAIN_NAME
-unset OS_REGION_NAME
-unset OS_APPLICATION_CREDENTIAL_ID
-unset OS_APPLICATION_CREDENTIAL_SECRET
-unset OS_APPLICATION_CREDENTIAL_NAME
-
-# ------------------------------------------------------
-# 🔐 Configuración de credenciales
-# ------------------------------------------------------
-export OS_AUTH_URL=http://192.168.0.11:5000
-export OS_PROJECT_NAME=admin
-export OS_PROJECT_DOMAIN_NAME=Default
-export OS_USERNAME=admin
-export OS_USER_DOMAIN_NAME=Default
-export OS_PASSWORD=HJimXzVjgcZCxu1va3nbZgcU3LT3eKcAYUcJb2M2
-export OS_INTERFACE=public
-export OS_IDENTITY_API_VERSION=3
-export OS_REGION_NAME=RegionOne
-
-echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
------------------------------------------------
-
-🔧 Puedes usarlo con:
-   source admin-openrc.sh
-
-INFO:app_logger:===============================================
-🔐 Generador de admin-openrc.sh para OpenStack
-===============================================
-🔧 Verificando permisos de archivos críticos...
-✅ Permisos corregidos para /etc/kolla/clouds.yaml
-✅ Archivo temporal preparado: /tmp/clouds.json
-
-✅ yq ya está instalado.
-✅ jq ya está instalado.
-✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
-✅ Credenciales OpenStack cargadas para admin (admin)
-✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
-📂 Contenido:
------------------------------------------------
-#!/bin/bash
-# ======================================================
-# 🧩 Archivo de credenciales para OpenStack
-# Generado automáticamente desde /etc/kolla/clouds.yaml
-# Cloud seleccionado: kolla-admin
-# ======================================================
-
-# ------------------------------------------------------
-# 🧹 Limpiar variables previas del entorno
-# ------------------------------------------------------
-unset OS_AUTH_TYPE
-unset OS_AUTH_URL
-unset OS_USERNAME
-unset OS_PASSWORD
-unset OS_USER_DOMAIN_NAME
-unset OS_PROJECT_NAME
-unset OS_PROJECT_DOMAIN_NAME
-unset OS_REGION_NAME
-unset OS_APPLICATION_CREDENTIAL_ID
-unset OS_APPLICATION_CREDENTIAL_SECRET
-unset OS_APPLICATION_CREDENTIAL_NAME
-
-# ------------------------------------------------------
-# 🔐 Configuración de credenciales
-# ------------------------------------------------------
-export OS_AUTH_URL=http://192.168.0.11:5000
-export OS_PROJECT_NAME=admin
-export OS_PROJECT_DOMAIN_NAME=Default
-export OS_USERNAME=admin
-export OS_USER_DOMAIN_NAME=Default
-export OS_PASSWORD=HJimXzVjgcZCxu1va3nbZgcU3LT3eKcAYUcJb2M2
-export OS_INTERFACE=public
-export OS_IDENTITY_API_VERSION=3
-export OS_REGION_NAME=RegionOne
-
-echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
------------------------------------------------
-
-🔧 Puedes usarlo con:
-   source admin-openrc.sh
-
-2025-10-24 11:50:16,832 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyberrange/admin-openrc.sh
-INFO:app_logger:✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyberrange/admin-openrc.sh
-2025-10-24 11:50:16,832 - INFO - 📤 Salida del script:
-INFO:app_logger:📤 Salida del script:
-2025-10-24 11:50:16,832 - INFO - ===============================================
-🔐 Generador de admin-openrc.sh para OpenStack
-===============================================
-🔧 Verificando permisos de archivos críticos...
-✅ Permisos corregidos para /etc/kolla/clouds.yaml
-✅ Archivo temporal preparado: /tmp/clouds.json
-
-✅ yq ya está instalado.
-✅ jq ya está instalado.
-✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
-✅ Credenciales OpenStack cargadas para admin (admin)
-✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
-📂 Contenido:
------------------------------------------------
-#!/bin/bash
-# ======================================================
-# 🧩 Archivo de credenciales para OpenStack
-# Generado automáticamente desde /etc/kolla/clouds.yaml
-# Cloud seleccionado: kolla-admin
-# ======================================================
-
-# ------------------------------------------------------
-# 🧹 Limpiar variables previas del entorno
-# ------------------------------------------------------
-unset OS_AUTH_TYPE
-unset OS_AUTH_URL
-unset OS_USERNAME
-unset OS_PASSWORD
-unset OS_USER_DOMAIN_NAME
-unset OS_PROJECT_NAME
-unset OS_PROJECT_DOMAIN_NAME
-unset OS_REGION_NAME
-unset OS_APPLICATION_CREDENTIAL_ID
-unset OS_APPLICATION_CREDENTIAL_SECRET
-unset OS_APPLICATION_CREDENTIAL_NAME
-
-# ------------------------------------------------------
-# 🔐 Configuración de credenciales
-# ------------------------------------------------------
-export OS_AUTH_URL=http://192.168.0.11:5000
-export OS_PROJECT_NAME=admin
-export OS_PROJECT_DOMAIN_NAME=Default
-export OS_USERNAME=admin
-export OS_USER_DOMAIN_NAME=Default
-export OS_PASSWORD=HJimXzVjgcZCxu1va3nbZgcU3LT3eKcAYUcJb2M2
-export OS_INTERFACE=public
-export OS_IDENTITY_API_VERSION=3
-export OS_REGION_NAME=RegionOne
-
-echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
------------------------------------------------
-
-🔧 Puedes usarlo con:
-   source admin-openrc.sh
-
-INFO:app_logger:===============================================
-🔐 Generador de admin-openrc.sh para OpenStack
-===============================================
-🔧 Verificando permisos de archivos críticos...
-✅ Permisos corregidos para /etc/kolla/clouds.yaml
-✅ Archivo temporal preparado: /tmp/clouds.json
-
-✅ yq ya está instalado.
-✅ jq ya está instalado.
-✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
-✅ Credenciales OpenStack cargadas para admin (admin)
-✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
-📂 Contenido:
------------------------------------------------
-#!/bin/bash
-# ======================================================
-# 🧩 Archivo de credenciales para OpenStack
-# Generado automáticamente desde /etc/kolla/clouds.yaml
-# Cloud seleccionado: kolla-admin
-# ======================================================
-
-# ------------------------------------------------------
-# 🧹 Limpiar variables previas del entorno
-# ------------------------------------------------------
-unset OS_AUTH_TYPE
-unset OS_AUTH_URL
-unset OS_USERNAME
-unset OS_PASSWORD
-unset OS_USER_DOMAIN_NAME
-unset OS_PROJECT_NAME
-unset OS_PROJECT_DOMAIN_NAME
-unset OS_REGION_NAME
-unset OS_APPLICATION_CREDENTIAL_ID
-unset OS_APPLICATION_CREDENTIAL_SECRET
-unset OS_APPLICATION_CREDENTIAL_NAME
-
-# ------------------------------------------------------
-# 🔐 Configuración de credenciales
-# ------------------------------------------------------
-export OS_AUTH_URL=http://192.168.0.11:5000
-export OS_PROJECT_NAME=admin
-export OS_PROJECT_DOMAIN_NAME=Default
-export OS_USERNAME=admin
-export OS_USER_DOMAIN_NAME=Default
-export OS_PASSWORD=HJimXzVjgcZCxu1va3nbZgcU3LT3eKcAYUcJb2M2
-export OS_INTERFACE=public
-export OS_IDENTITY_API_VERSION=3
-export OS_REGION_NAME=RegionOne
-
-echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
------------------------------------------------
-
-🔧 Puedes usarlo con:
-   source admin-openrc.sh
-
-2025-10-24 11:50:16,832 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyberrange/admin-openrc.sh
-INFO:app_logger:✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyberrange/admin-openrc.sh
-2025-10-24 11:50:16,832 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyberrange/admin-openrc.sh
+2025-10-27 13:21:00,170 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyberrange/admin-openrc.sh
 INFO:app_logger:✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyberrange/admin-openrc.sh
-2025-10-24 11:50:16,833 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyberrange/admin-openrc.sh
+2025-10-27 13:21:00,170 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyberrange/admin-openrc.sh
 INFO:app_logger:✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyberrange/admin-openrc.sh
-2025-10-24 11:50:16,833 - INFO - 📤 Salida del script:
+2025-10-27 13:21:00,170 - INFO - 📤 Salida del script:
 INFO:app_logger:📤 Salida del script:
-2025-10-24 11:50:16,833 - INFO - ===============================================
+2025-10-27 13:21:00,170 - INFO - ===============================================
 🔐 Generador de admin-openrc.sh para OpenStack
 ===============================================
 🔧 Verificando permisos de archivos críticos...
@@ -432,7 +425,7 @@ export OS_PROJECT_NAME=admin
 export OS_PROJECT_DOMAIN_NAME=Default
 export OS_USERNAME=admin
 export OS_USER_DOMAIN_NAME=Default
-export OS_PASSWORD=HJimXzVjgcZCxu1va3nbZgcU3LT3eKcAYUcJb2M2
+export OS_PASSWORD=qg0nu3M5DOmTi9ys3McNJ0i78SueDMjEUhQInxwR
 export OS_INTERFACE=public
 export OS_IDENTITY_API_VERSION=3
 export OS_REGION_NAME=RegionOne
@@ -487,7 +480,7 @@ export OS_PROJECT_NAME=admin
 export OS_PROJECT_DOMAIN_NAME=Default
 export OS_USERNAME=admin
 export OS_USER_DOMAIN_NAME=Default
-export OS_PASSWORD=HJimXzVjgcZCxu1va3nbZgcU3LT3eKcAYUcJb2M2
+export OS_PASSWORD=qg0nu3M5DOmTi9ys3McNJ0i78SueDMjEUhQInxwR
 export OS_INTERFACE=public
 export OS_IDENTITY_API_VERSION=3
 export OS_REGION_NAME=RegionOne
@@ -498,105 +491,40 @@ echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
 🔧 Puedes usarlo con:
    source admin-openrc.sh
 
-2025-10-24 11:50:16,834 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyberrange/admin-openrc.sh
+2025-10-27 13:21:00,171 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyberrange/admin-openrc.sh
 INFO:app_logger:✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyberrange/admin-openrc.sh
-2025-10-24 11:50:16,835 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyberrange/admin-openrc.sh
+2025-10-27 13:21:00,171 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyberrange/admin-openrc.sh
 INFO:app_logger:✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyberrange/admin-openrc.sh
 INFO:root:🧭 Ruta base: /home/younes/Desktop/cyberrange
 INFO:root:📁 Escenario: /home/younes/Desktop/cyberrange/scenario/scenario_file.json
 INFO:root:⚙️  Script: /home/younes/Desktop/cyberrange/scenario/generate_terraform.sh
 INFO:root:📄 Escenario guardado en /home/younes/Desktop/cyberrange/scenario/scenario_file.json
-INFO:root:🚀 Despliegue iniciado (PID=2823834) para file
+INFO:root:🚀 Despliegue iniciado (PID=104437) para file
 ERROR:root:❌ Error en el despliegue de 'file': [31m╷[0m[0m
-[31m│[0m [0m[1m[31mError: [0m[0m[1mNo Security Group found with name: sg_wazuh_suricata[0m
+[31m│[0m [0m[1m[31mError: [0m[0m[1mremote-exec provisioner error[0m
 [31m│[0m [0m
-[31m│[0m [0m[0m  with data.openstack_networking_secgroup_v2.node1__secgroup,
-[31m│[0m [0m  on node_node1_.tf line 11, in data "openstack_networking_secgroup_v2" "node1__secgroup":
-[31m│[0m [0m  11: data "openstack_networking_secgroup_v2" "node1__secgroup" [4m{[0m[0m
+[31m│[0m [0m[0m  with openstack_compute_instance_v2.node1__instance,
+[31m│[0m [0m  on node_node1_.tf line 64, in resource "openstack_compute_instance_v2" "node1__instance":
+[31m│[0m [0m  64:   provisioner "remote-exec" [4m{[0m[0m
 [31m│[0m [0m
+[31m│[0m [0mtimeout - last error: dial tcp 10.0.2.133:22: connect: no route to host
 [31m╵[0m[0m
 [31m╷[0m[0m
-[31m│[0m [0m[1m[31mError: [0m[0m[1mYour query returned no results. Please change your search criteria and try again.[0m
+[31m│[0m [0m[1m[31mError: [0m[0m[1mremote-exec provisioner error[0m
 [31m│[0m [0m
-[31m│[0m [0m[0m  with data.openstack_images_image_v2.node1__image,
-[31m│[0m [0m  on node_node1_.tf line 15, in data "openstack_images_image_v2" "node1__image":
-[31m│[0m [0m  15: data "openstack_images_image_v2" "node1__image" [4m{[0m[0m
+[31m│[0m [0m[0m  with openstack_compute_instance_v2.node2__instance,
+[31m│[0m [0m  on node_node2_.tf line 64, in resource "openstack_compute_instance_v2" "node2__instance":
+[31m│[0m [0m  64:   provisioner "remote-exec" [4m{[0m[0m
 [31m│[0m [0m
+[31m│[0m [0mtimeout - last error: dial tcp 10.0.2.59:22: connect: no route to host
 [31m╵[0m[0m
 [31m╷[0m[0m
-[31m│[0m [0m[1m[31mError: [0m[0m[1mNo Security Group found with name: sg_wazuh_suricata[0m
+[31m│[0m [0m[1m[31mError: [0m[0m[1mremote-exec provisioner error[0m
 [31m│[0m [0m
-[31m│[0m [0m[0m  with data.openstack_networking_secgroup_v2.node2__secgroup,
-[31m│[0m [0m  on node_node2_.tf line 11, in data "openstack_networking_secgroup_v2" "node2__secgroup":
-[31m│[0m [0m  11: data "openstack_networking_secgroup_v2" "node2__secgroup" [4m{[0m[0m
+[31m│[0m [0m[0m  with openstack_compute_instance_v2.node3__instance,
+[31m│[0m [0m  on node_node3_.tf line 64, in resource "openstack_compute_instance_v2" "node3__instance":
+[31m│[0m [0m  64:   provisioner "remote-exec" [4m{[0m[0m
 [31m│[0m [0m
-[31m╵[0m[0m
-[31m╷[0m[0m
-[31m│[0m [0m[1m[31mError: [0m[0m[1mNo Security Group found with name: sg_wazuh_suricata[0m
-[31m│[0m [0m
-[31m│[0m [0m[0m  with data.openstack_networking_secgroup_v2.node3__secgroup,
-[31m│[0m [0m  on node_node3_.tf line 11, in data "openstack_networking_secgroup_v2" "node3__secgroup":
-[31m│[0m [0m  11: data "openstack_networking_secgroup_v2" "node3__secgroup" [4m{[0m[0m
-[31m│[0m [0m
-[31m╵[0m[0m
-[31m╷[0m[0m
-[31m│[0m [0m[1m[31mError: [0m[0m[1mYour query returned no results. Please change your search criteria and try again.[0m
-[31m│[0m [0m
-[31m│[0m [0m[0m  with data.openstack_images_image_v2.node3__image,
-[31m│[0m [0m  on node_node3_.tf line 15, in data "openstack_images_image_v2" "node3__image":
-[31m│[0m [0m  15: data "openstack_images_image_v2" "node3__image" [4m{[0m[0m
-[31m│[0m [0m
+[31m│[0m [0mtimeout - last error: dial tcp 10.0.2.239:22: connect: no route to host
 [31m╵[0m[0m
 
-2025-10-24 11:54:08,109 - INFO - ✅ Permisos de ejecución corregidos para /home/younes/Desktop/cyberrange/scenario/destroy_scenario.sh
-INFO:app_logger:✅ Permisos de ejecución corregidos para /home/younes/Desktop/cyberrange/scenario/destroy_scenario.sh
-2025-10-24 11:54:08,110 - INFO - 🧨 Ejecutando script de destrucción: /home/younes/Desktop/cyberrange/scenario/destroy_scenario.sh
-INFO:app_logger:🧨 Ejecutando script de destrucción: /home/younes/Desktop/cyberrange/scenario/destroy_scenario.sh
-2025-10-24 11:54:09,231 - INFO - 📤 STDOUT:
-===============================================
-🧨 Iniciando destrucción del escenario Terraform
-📁 Directorio esperado: /home/younes/Desktop/cyberrange/scenario/../tf_out
-===============================================
-🚀 Ejecutando 'terraform destroy'...
-
-[0m[1m[32mNo changes.[0m[1m No objects need to be destroyed.[0m
-
-[0mEither you have not created any objects yet or the existing objects were
-already deleted outside of Terraform.
-[0m[1m[32m
-Destroy complete! Resources: 0 destroyed.
-[0m✅ Recursos Terraform destruidos correctamente.
-🧹 Eliminando archivos temporales...
-🗑️  Eliminando carpeta tf_out completa...
-✨ Carpeta tf_out eliminada con éxito. Entorno restaurado.
------------------------------------------------
-🧾 Verificando archivo de escenario...
-🗑️  Eliminando archivo de escenario: /home/younes/Desktop/cyberrange/scenario/scenario_file.json
-✅ Archivo scenario_file.json eliminado correctamente.
-===============================================
-✅ Proceso de destrucción completado.
-===============================================
-INFO:app_logger:📤 STDOUT:
-===============================================
-🧨 Iniciando destrucción del escenario Terraform
-📁 Directorio esperado: /home/younes/Desktop/cyberrange/scenario/../tf_out
-===============================================
-🚀 Ejecutando 'terraform destroy'...
-
-[0m[1m[32mNo changes.[0m[1m No objects need to be destroyed.[0m
-
-[0mEither you have not created any objects yet or the existing objects were
-already deleted outside of Terraform.
-[0m[1m[32m
-Destroy complete! Resources: 0 destroyed.
-[0m✅ Recursos Terraform destruidos correctamente.
-🧹 Eliminando archivos temporales...
-🗑️  Eliminando carpeta tf_out completa...
-✨ Carpeta tf_out eliminada con éxito. Entorno restaurado.
------------------------------------------------
-🧾 Verificando archivo de escenario...
-🗑️  Eliminando archivo de escenario: /home/younes/Desktop/cyberrange/scenario/scenario_file.json
-✅ Archivo scenario_file.json eliminado correctamente.
-===============================================
-✅ Proceso de destrucción completado.
-===============================================

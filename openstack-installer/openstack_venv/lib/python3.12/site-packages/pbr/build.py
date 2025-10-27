@@ -23,6 +23,9 @@ Add::
 to ``pyproject.toml`` to use this.
 """
 
+from __future__ import absolute_import
+from __future__ import print_function
+
 from setuptools import build_meta
 
 __all__ = [
@@ -38,6 +41,7 @@ __all__ = [
 
 
 # PEP-517
+
 
 def get_requires_for_build_wheel(config_settings=None):
     return build_meta.get_requires_for_build_wheel(
@@ -78,6 +82,7 @@ def build_sdist(sdist_directory, config_settings=None):
 
 
 # PEP-660
+
 
 def build_editable(
     wheel_directory,

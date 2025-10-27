@@ -12,108 +12,83 @@
 #   under the License.
 #
 
-from cinderclient import api_versions
+from unittest import mock
+
+from openstack.block_storage.v3 import service as _service
+from openstack.test import fakes as sdk_fakes
+from osc_lib import exceptions
 
 from openstackclient.tests.unit.volume.v3 import fakes as volume_fakes
 from openstackclient.volume.v3 import service
 
 
-class TestService(volume_fakes.TestVolume):
+class TestServiceList(volume_fakes.TestVolume):
     def setUp(self):
         super().setUp()
 
-        # Get a shortcut to the ServiceManager Mock
-        self.service_mock = self.volume_client.services
-        self.service_mock.reset_mock()
+        self.service = sdk_fakes.generate_fake_resource(_service.Service)
+        self.volume_sdk_client.services.return_value = [self.service]
 
-
-class TestServiceList(TestService):
-    # The service to be listed
-    services = volume_fakes.create_one_service()
-
-    def setUp(self):
-        super().setUp()
-
-        self.service_mock.list.return_value = [self.services]
-
-        # Get the command object to test
         self.cmd = service.ListService(self.app, None)
 
     def test_service_list(self):
         arglist = [
             '--host',
-            self.services.host,
+            self.service.host,
             '--service',
-            self.services.binary,
+            self.service.binary,
         ]
         verifylist = [
-            ('host', self.services.host),
-            ('service', self.services.binary),
+            ('host', self.service.host),
+            ('service', self.service.binary),
         ]
         parsed_args = self.check_parser(self.cmd, arglist, verifylist)
 
-        # In base command class Lister in cliff, abstract method take_action()
-        # returns a tuple containing the column names and an iterable
-        # containing the data to be listed.
         columns, data = self.cmd.take_action(parsed_args)
 
-        expected_columns = [
+        expected_columns = (
             'Binary',
             'Host',
             'Zone',
             'Status',
             'State',
             'Updated At',
-        ]
-
-        # confirming if all expected columns are present in the result.
-        self.assertEqual(expected_columns, columns)
-
+        )
         datalist = (
             (
-                self.services.binary,
-                self.services.host,
-                self.services.zone,
-                self.services.status,
-                self.services.state,
-                self.services.updated_at,
+                self.service.binary,
+                self.service.host,
+                self.service.availability_zone,
+                self.service.status,
+                self.service.state,
+                self.service.updated_at,
             ),
         )
-
-        # confirming if all expected values are present in the result.
+        self.assertEqual(expected_columns, columns)
         self.assertEqual(datalist, tuple(data))
-
-        # checking if proper call was made to list services
-        self.service_mock.list.assert_called_with(
-            self.services.host,
-            self.services.binary,
+        self.volume_sdk_client.services.assert_called_with(
+            host=self.service.host,
+            binary=self.service.binary,
         )
-
-        # checking if prohibited columns are present in output
-        self.assertNotIn("Disabled Reason", columns)
-        self.assertNotIn(self.services.disabled_reason, tuple(data))
 
     def test_service_list_with_long_option(self):
         arglist = [
             '--host',
-            self.services.host,
+            self.service.host,
             '--service',
-            self.services.binary,
+            self.service.binary,
             '--long',
         ]
         verifylist = [
-            ('host', self.services.host),
-            ('service', self.services.binary),
+            ('host', self.service.host),
+            ('service', self.service.binary),
             ('long', True),
         ]
         parsed_args = self.check_parser(self.cmd, arglist, verifylist)
 
-        # In base command class Lister in cliff, abstract method take_action()
-        # returns a tuple containing the column names and an iterable
-        # containing the data to be listed.
         columns, data = self.cmd.take_action(parsed_args)
 
-        expected_columns = [
+        expected_columns = (
             'Binary',
             'Host',
             'Zone',
@@ -121,55 +96,43 @@ class TestServiceList(TestService):
             'State',
             'Updated At',
             'Disabled Reason',
-        ]
-
-        # confirming if all expected columns are present in the result.
-        self.assertEqual(expected_columns, columns)
-
+        )
         datalist = (
             (
-                self.services.binary,
-                self.services.host,
-                self.services.zone,
-                self.services.status,
-                self.services.state,
-                self.services.updated_at,
-                self.services.disabled_reason,
+                self.service.binary,
+                self.service.host,
+                self.service.availability_zone,
+                self.service.status,
+                self.service.state,
+                self.service.updated_at,
+                self.service.disabled_reason,
             ),
         )
-
-        # confirming if all expected values are present in the result.
+        self.assertEqual(expected_columns, columns)
         self.assertEqual(datalist, tuple(data))
-
-        self.service_mock.list.assert_called_with(
-            self.services.host,
-            self.services.binary,
+        self.volume_sdk_client.services.assert_called_with(
+            host=self.service.host,
+            binary=self.service.binary,
         )
 
     def test_service_list_with_cluster(self):
-        self.volume_client.api_version = api_versions.APIVersion('3.7')
-        cluster = {'cluster': 'fake-cluster'}
-        cluster_service = volume_fakes.create_one_service(attrs=cluster)
-        self.service_mock.list.return_value = [cluster_service]
+        self.set_volume_api_version('3.7')
 
         arglist = [
             '--host',
-            cluster_service.host,
+            self.service.host,
             '--service',
-            cluster_service.binary,
+            self.service.binary,
         ]
         verifylist = [
-            ('host', cluster_service.host),
-            ('service', cluster_service.binary),
+            ('host', self.service.host),
+            ('service', self.service.binary),
         ]
         parsed_args = self.check_parser(self.cmd, arglist, verifylist)
 
-        # In base command class Lister in cliff, abstract method take_action()
-        # returns a tuple containing the column names and an iterable
-        # containing the data to be listed.
         columns, data = self.cmd.take_action(parsed_args)
 
-        expected_columns = [
+        expected_columns = (
             'Binary',
             'Host',
             'Zone',
@@ -177,60 +140,43 @@ class TestServiceList(TestService):
             'State',
             'Updated At',
             'Cluster',
-        ]
-
-        # confirming if all expected columns are present in the result.
-        self.assertEqual(expected_columns, columns)
-
+        )
         datalist = (
             (
-                cluster_service.binary,
-                cluster_service.host,
-                cluster_service.zone,
-                cluster_service.status,
-                cluster_service.state,
-                cluster_service.updated_at,
-                cluster_service.cluster,
+                self.service.binary,
+                self.service.host,
+                self.service.availability_zone,
+                self.service.status,
+                self.service.state,
+                self.service.updated_at,
+                self.service.cluster,
             ),
         )
-
-        # confirming if all expected values are present in the result.
+        self.assertEqual(expected_columns, columns)
         self.assertEqual(datalist, tuple(data))
-
-        # checking if proper call was made to list services
-        self.service_mock.list.assert_called_with(
-            cluster_service.host,
-            cluster_service.binary,
+        self.volume_sdk_client.services.assert_called_with(
+            host=self.service.host,
+            binary=self.service.binary,
         )
 
-        # checking if prohibited columns are present in output
-        self.assertNotIn("Disabled Reason", columns)
-        self.assertNotIn(cluster_service.disabled_reason, tuple(data))
-
     def test_service_list_with_backend_state(self):
-        self.volume_client.api_version = api_versions.APIVersion('3.49')
-        backend_state = {'cluster': 'fake-cluster', 'backend_state': 'up'}
-        backend_service = volume_fakes.create_one_service(attrs=backend_state)
-        self.service_mock.list.return_value = [backend_service]
+        self.set_volume_api_version('3.49')
 
         arglist = [
             '--host',
-            backend_service.host,
+            self.service.host,
             '--service',
-            backend_service.binary,
+            self.service.binary,
         ]
         verifylist = [
-            ('host', backend_service.host),
-            ('service', backend_service.binary),
+            ('host', self.service.host),
+            ('service', self.service.binary),
         ]
         parsed_args = self.check_parser(self.cmd, arglist, verifylist)
 
-        # In base command class Lister in cliff, abstract method take_action()
-        # returns a tuple containing the column names and an iterable
-        # containing the data to be listed.
         columns, data = self.cmd.take_action(parsed_args)
 
-        expected_columns = [
+        expected_columns = (
             'Binary',
             'Host',
             'Zone',
@@ -239,33 +185,167 @@ class TestServiceList(TestService):
             'Updated At',
             'Cluster',
             'Backend State',
-        ]
-
-        # confirming if all expected columns are present in the result.
-        self.assertEqual(expected_columns, columns)
-
+        )
         datalist = (
             (
-                backend_service.binary,
-                backend_service.host,
-                backend_service.zone,
-                backend_service.status,
-                backend_service.state,
-                backend_service.updated_at,
-                backend_service.cluster,
-                backend_service.backend_state,
+                self.service.binary,
+                self.service.host,
+                self.service.availability_zone,
+                self.service.status,
+                self.service.state,
+                self.service.updated_at,
+                self.service.cluster,
+                self.service.backend_state,
             ),
         )
-
-        # confirming if all expected values are present in the result.
+        self.assertEqual(expected_columns, columns)
         self.assertEqual(datalist, tuple(data))
-
-        # checking if proper call was made to list services
-        self.service_mock.list.assert_called_with(
-            backend_service.host,
-            backend_service.binary,
+        self.volume_sdk_client.services.assert_called_with(
+            host=self.service.host,
+            binary=self.service.binary,
         )
 
-        # checking if prohibited columns are present in output
-        self.assertNotIn("Disabled Reason", columns)
-        self.assertNotIn(backend_service.disabled_reason, tuple(data))
+
+class TestServiceSet(volume_fakes.TestVolume):
+    def setUp(self):
+        super().setUp()
+
+        self.service = sdk_fakes.generate_fake_resource(_service.Service)
+        self.service.enable = mock.Mock(autospec=True)
+        self.service.disable = mock.Mock(autospec=True)
+        self.volume_sdk_client.find_service.return_value = self.service
+
+        self.cmd = service.SetService(self.app, None)
+
+    def test_service_set_nothing(self):
+        arglist = [
+            self.service.host,
+            self.service.binary,
+        ]
+        verifylist = [
+            ('host', self.service.host),
+            ('service', self.service.binary),
+        ]
+        parsed_args = self.check_parser(self.cmd, arglist, verifylist)
+        result = self.cmd.take_action(parsed_args)
+
+        self.service.enable.assert_not_called()
+        self.service.disable.assert_not_called()
+        self.assertIsNone(result)
+
+    def test_service_set_enable(self):
+        arglist = [
+            '--enable',
+            self.service.host,
+            self.service.binary,
+        ]
+        verifylist = [
+            ('enable', True),
+            ('host', self.service.host),
+            ('service', self.service.binary),
+        ]
+        parsed_args = self.check_parser(self.cmd, arglist, verifylist)
+
+        result = self.cmd.take_action(parsed_args)
+
+        self.service.enable.assert_called_with(self.volume_sdk_client)
+        self.service.disable.assert_not_called()
+        self.assertIsNone(result)
+
+    def test_service_set_disable(self):
+        arglist = [
+            '--disable',
+            self.service.host,
+            self.service.binary,
+        ]
+        verifylist = [
+            ('disable', True),
+            ('host', self.service.host),
+            ('service', self.service.binary),
+        ]
+        parsed_args = self.check_parser(self.cmd, arglist, verifylist)
+
+        result = self.cmd.take_action(parsed_args)
+
+        self.service.enable.assert_not_called()
+        self.service.disable.assert_called_with(
+            self.volume_sdk_client, reason=None
+        )
+        self.assertIsNone(result)
+
+    def test_service_set_disable_with_reason(self):
+        reason = 'earthquake'
+        arglist = [
+            '--disable',
+            '--disable-reason',
+            reason,
+            self.service.host,
+            self.service.binary,
+        ]
+        verifylist = [
+            ('disable', True),
+            ('disable_reason', reason),
+            ('host', self.service.host),
+            ('service', self.service.binary),
+        ]
+        parsed_args = self.check_parser(self.cmd, arglist, verifylist)
+
+        result = self.cmd.take_action(parsed_args)
+
+        self.service.enable.assert_not_called()
+        self.service.disable.assert_called_with(
+            self.volume_sdk_client, reason=reason
+        )
+        self.assertIsNone(result)
+
+    def test_service_set_only_with_disable_reason(self):
+        reason = 'earthquake'
+        arglist = [
+            '--disable-reason',
+            reason,
+            self.service.host,
+            self.service.binary,
+        ]
+        verifylist = [
+            ('disable_reason', reason),
+            ('host', self.service.host),
+            ('service', self.service.binary),
+        ]
+        parsed_args = self.check_parser(self.cmd, arglist, verifylist)
+
+        try:
+            self.cmd.take_action(parsed_args)
+            self.fail("CommandError should be raised.")
+        except exceptions.CommandError as e:
+            self.assertEqual(
+                "Cannot specify option --disable-reason without "
+                "--disable specified.",
+                str(e),
+            )
+
+    def test_service_set_enable_with_disable_reason(self):
+        reason = 'earthquake'
+        arglist = [
+            '--enable',
+            '--disable-reason',
+            reason,
+            self.service.host,
+            self.service.binary,
+        ]
+        verifylist = [
+            ('enable', True),
+            ('disable_reason', reason),
+            ('host', self.service.host),
+            ('service', self.service.binary),
+        ]
+        parsed_args = self.check_parser(self.cmd, arglist, verifylist)
+
+        try:
+            self.cmd.take_action(parsed_args)
+            self.fail("CommandError should be raised.")
+        except exceptions.CommandError as e:
+            self.assertEqual(
+                "Cannot specify option --disable-reason without "
+                "--disable specified.",
+                str(e),
+            )

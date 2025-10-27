@@ -43,6 +43,7 @@ from openstack.identity.v3 import user as _user
 from openstack.network.v2 import security_group as _sg
 from openstack import proxy
 from openstack import resource
+from openstack import types
 from openstack import utils
 from openstack import warnings as os_warnings
 
@@ -1196,7 +1197,9 @@ class Proxy(proxy.Proxy):
         server = self._get_resource(_server.Server, server)
         server.shelve_offload(self)
 
-    def unshelve_server(self, server, *, host=None):
+    def unshelve_server(
+        self, server, *, host=None, availability_zone=types.UNSET
+    ):
         """Unshelves or restores a shelved server.
 
         Policy defaults enable only users with administrative role or the
@@ -1210,7 +1213,7 @@ class Proxy(proxy.Proxy):
         :returns: None
         """
         server = self._get_resource(_server.Server, server)
-        server.unshelve(self, host=host)
+        server.unshelve(self, host=host, availability_zone=availability_zone)
 
     def trigger_server_crash_dump(self, server):
         """Trigger a crash dump in a server.
@@ -2648,10 +2651,10 @@ class Proxy(proxy.Proxy):
         self,
         server: _server.Server,
         status: str = 'ACTIVE',
-        failures: ty.Optional[list[str]] = None,
-        interval: ty.Union[int, float, None] = 2,
-        wait: ty.Optional[int] = 120,
-        callback: ty.Optional[ty.Callable[[int], None]] = None,
+        failures: list[str] | None = None,
+        interval: int | float | None = 2,
+        wait: int | None = 120,
+        callback: ty.Callable[[int], None] | None = None,
     ) -> _server.Server:
         """Wait for a server to be in a particular status.
 
@@ -2694,11 +2697,11 @@ class Proxy(proxy.Proxy):
         self,
         res: resource.ResourceT,
         status: str,
-        failures: ty.Optional[list[str]] = None,
-        interval: ty.Union[int, float, None] = 2,
-        wait: ty.Optional[int] = None,
+        failures: list[str] | None = None,
+        interval: int | float | None = 2,
+        wait: int | None = None,
         attribute: str = 'status',
-        callback: ty.Optional[ty.Callable[[int], None]] = None,
+        callback: ty.Callable[[int], None] | None = None,
     ) -> resource.ResourceT:
         """Wait for the resource to be in a particular status.
 
@@ -2734,7 +2737,7 @@ class Proxy(proxy.Proxy):
         res: resource.ResourceT,
         interval: int = 2,
         wait: int = 120,
-        callback: ty.Optional[ty.Callable[[int], None]] = None,
+        callback: ty.Callable[[int], None] | None = None,
     ) -> resource.ResourceT:
         """Wait for a resource to be deleted.
 
