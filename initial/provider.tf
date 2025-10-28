@@ -15,10 +15,10 @@ terraform {
 }
 
 provider "openstack" {
-  auth_url    = "http://192.168.0.11:5000"
+  auth_url    = "http://192.168.0.250:5000"
   tenant_name = "admin"
   user_name   = "admin"
-  password    = "qg0nu3M5DOmTi9ys3McNJ0i78SueDMjEUhQInxwR"
+  password    = "6hwT3YVrv5NbZsj3NCevuLZOtF2VVGo2vB4iZzgD"
   domain_name = "Default"
   region      = "RegionOne"
 }

@@ -168,7 +168,43 @@ echo "✅ Dependencias Python instaladas correctamente."
 
 
 
+# ============================================================
+# 7️⃣.1 HABILITAR REENVÍO DE PAQUETES IPv4 (REQUISITO DE RED)
+# ============================================================
+echo "🔹 Verificando el reenvío de paquetes IPv4..."
 
+# Habilitar temporalmente el reenvío de paquetes
+sudo sysctl -w net.ipv4.conf.all.forwarding=1
+
+# Comprobar si ya está en /etc/sysctl.conf; si no, añadirlo
+if ! grep -q "^net.ipv4.conf.all.forwarding=1" /etc/sysctl.conf; then
+  echo "net.ipv4.conf.all.forwarding=1" | sudo tee -a /etc/sysctl.conf > /dev/null
+  echo "✅ Configuración añadida a /etc/sysctl.conf"
+else
+  echo "ℹ️  La configuración de reenvío ya estaba habilitada en /etc/sysctl.conf"
+fi
+
+# Aplicar los cambios del archivo sysctl.conf
+sudo sysctl -p
+
+echo "✅ Reenvío de paquetes IPv4 habilitado correctamente."
+
+
+
+
+
+
+# ============================================================
+# 🔧 CONFIGURAR TOPOLOGÍA DE RED (DESPUÉS DEL DEPLOY)
+# ============================================================
+if [ -f "./setup-veth.sh" ]; then
+  echo "🔹 Configurando red virtual post-deploy..."
+  chmod +x ./setup-veth.sh
+  sudo bash ./setup-veth.sh
+  echo "✅ Red virtual configurada correctamente."
+else
+  echo "⚠️  No se encontró setup-veth.sh, continuando..."
+fi
 
 
 
@@ -187,11 +223,20 @@ KOLLA_EXAMPLES="$VENV_PATH/share/kolla-ansible/etc_examples/kolla"
 KOLLA_INVENTORY="$VENV_PATH/share/kolla-ansible/ansible/inventory"
 
 sudo mkdir -p /etc/kolla/ansible/inventory
-sudo cp "$KOLLA_EXAMPLES/globals.yml" "$KOLLA_EXAMPLES/passwords.yml" /etc/kolla
+
+# Copiar TODO el contenido del directorio de ejemplos
+sudo cp -r "$KOLLA_EXAMPLES"/* /etc/kolla/
+
+# Copiar inventario de ejemplo (all-in-one)
 sudo cp "$KOLLA_INVENTORY/all-in-one" /etc/kolla/ansible/inventory/
+
+# Cambiar propietario
 sudo chown -R "$USER:$USER" /etc/kolla
 
-echo "✅ Archivos de configuración de Kolla copiados."
+echo "✅ Archivos de configuración de Kolla copiados completamente."
+
+
+
 
 # ============================================================
 # 6️⃣ GENERAR PASSWORDS Y CONFIGURAR GLOBALS
@@ -222,7 +267,7 @@ sudo tee /etc/kolla/globals.yml > /dev/null <<EOF
 kolla_base_distro: "ubuntu"
 network_interface: "$DEFAULT_IFACE"
 neutron_external_interface: "veth1"
-kolla_internal_vip_address: "$VIP"
+kolla_internal_vip_address: "192.168.0.250"
 EOF
 
 sudo chown "$USER:$USER" /etc/kolla/globals.yml
@@ -278,17 +323,6 @@ kolla-ansible post-deploy
 
 
 
-# ============================================================
-# 🔧 CONFIGURAR TOPOLOGÍA DE RED (DESPUÉS DEL DEPLOY)
-# ============================================================
-if [ -f "./setup-veth.sh" ]; then
-  echo "🔹 Configurando red virtual post-deploy..."
-  chmod +x ./setup-veth.sh
-  sudo bash ./setup-veth.sh
-  echo "✅ Red virtual configurada correctamente."
-else
-  echo "⚠️  No se encontró setup-veth.sh, continuando..."
-fi
 
 
 
