@@ -6,15 +6,15 @@
             "name": "monitor 1",
             "type": "monitor",
             "position": {
-                "x": 663,
-                "y": 226
+                "x": -419.09753945273803,
+                "y": -89.77675603106533
             },
             "properties": {
                 "os": "ubuntu-22.04",
                 "ip": "192.168.1.101",
                 "network": "red_privada",
                 "subnetwork": "red_privada_subnet",
-                "flavor": "large",
+                "flavor": "medium",
                 "image": "ubuntu-22.04",
                 "securityGroup": "sg_wazuh_suricata",
                 "sshKey": "nueva_clave_wazuh"
@@ -25,8 +25,8 @@
             "name": "attack 2",
             "type": "attack",
             "position": {
-                "x": 989,
-                "y": 352
+                "x": 67.64718165535973,
+                "y": 3.520713974782849
             },
             "properties": {
                 "os": "debian-12",
@@ -44,8 +44,8 @@
             "name": "victim 3",
             "type": "victim",
             "position": {
-                "x": 949,
-                "y": 188
+                "x": -90.56144747939284,
+                "y": -108.15596541445424
             },
             "properties": {
                 "os": "debian-12",

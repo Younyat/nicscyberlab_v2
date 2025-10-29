@@ -191,7 +191,10 @@ echo "✅ Reenvío de paquetes IPv4 habilitado correctamente."
 
 
 
-
+   
+   
+   
+   
 
 
 # ============================================================

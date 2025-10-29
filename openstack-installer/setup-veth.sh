@@ -34,3 +34,5 @@ sysctl -w net.ipv4.ip_forward=1 >/dev/null
 echo "✅ uplinkbridge configurado correctamente con IP 10.0.2.1"
 echo "✅ NAT activo y tráfico 10.0.2.0/24 permitido hacia ens33"
 
+
+
