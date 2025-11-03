@@ -200,11 +200,6 @@ resource "openstack_networking_port_v2" "${safe_id}_port" {
   }
 }
 
-resource "openstack_networking_floatingip_associate_v2" "${safe_id}_fip_associate" {
-  floating_ip = openstack_networking_floatingip_v2.${safe_id}_fip.address
-  port_id     = openstack_networking_port_v2.${safe_id}_port.id
-}
-
 resource "openstack_compute_instance_v2" "${safe_id}_instance" {
   name      = "${name}"
   image_id  = data.openstack_images_image_v2.${safe_id}_image.id
@@ -214,21 +209,20 @@ resource "openstack_compute_instance_v2" "${safe_id}_instance" {
   network {
     port = openstack_networking_port_v2.${safe_id}_port.id
   }
- user_data = <<CLOUDCONF
+
+  user_data = <<CLOUDCONF
 ${CLOUD_INIT}
 CLOUDCONF
+}
 
-  provisioner "remote-exec" {
-    connection {
-      type        = "ssh"
-      user        = "${ssh_user}"
-      host        = openstack_networking_floatingip_v2.${safe_id}_fip.address
-      private_key = file("\${path.module}/${sshkey}")
-    }
-    inline = [
-      "echo 'cloud-init finished for ${name} (${safe_id}) - OS: ${os}'"
-    ]
-  }
+# ✅ Asociar Floating IP después de que la instancia esté lista
+resource "openstack_networking_floatingip_associate_v2" "${safe_id}_fip_associate" {
+  floating_ip = openstack_networking_floatingip_v2.${safe_id}_fip.address
+  port_id     = openstack_networking_port_v2.${safe_id}_port.id
+
+  depends_on = [
+    openstack_compute_instance_v2.${safe_id}_instance
+  ]
 }
 
 output "${safe_id}_floating_ip" {

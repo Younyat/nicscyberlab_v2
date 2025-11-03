@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV /home/younes/Desktop/cyberrange/openstack-installer/openstack_venv
+set -gx VIRTUAL_ENV /home/nics/Escritorio/cyberrange/openstack-installer/openstack_venv
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH

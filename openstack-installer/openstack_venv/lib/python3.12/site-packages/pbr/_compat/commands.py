@@ -23,128 +23,17 @@ import sys
 
 import setuptools
 from setuptools.command import develop
-from setuptools.command import easy_install
 from setuptools.command import egg_info
 from setuptools.command import install
 from setuptools.command import install_scripts
 from setuptools.command import sdist
 
+import pbr._compat.easy_install
+import pbr._compat.metadata
 from pbr import extra_files
 from pbr import git
 from pbr import options
 from pbr import version
-
-_wsgi_text = """#PBR Generated from %(group)r
-
-import threading
-
-from %(module_name)s import %(import_target)s
-
-if __name__ == "__main__":
-    import argparse
-    import socket
-    import sys
-    import wsgiref.simple_server as wss
-
-    parser = argparse.ArgumentParser(
-        description=%(import_target)s.__doc__,
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
-        usage='%%(prog)s [-h] [--port PORT] [--host IP] -- [passed options]')
-    parser.add_argument('--port', '-p', type=int, default=8000,
-                        help='TCP port to listen on')
-    parser.add_argument('--host', '-b', default='',
-                        help='IP to bind the server to')
-    parser.add_argument('args',
-                        nargs=argparse.REMAINDER,
-                        metavar='-- [passed options]',
-                        help="'--' is the separator of the arguments used "
-                        "to start the WSGI server and the arguments passed "
-                        "to the WSGI application.")
-    args = parser.parse_args()
-    if args.args:
-        if args.args[0] == '--':
-            args.args.pop(0)
-        else:
-            parser.error("unrecognized arguments: %%s" %% ' '.join(args.args))
-    sys.argv[1:] = args.args
-    server = wss.make_server(args.host, args.port, %(invoke_target)s())
-
-    print("*" * 80)
-    print("STARTING test server %(module_name)s.%(invoke_target)s")
-    url = "http://%%s:%%d/" %% (server.server_name, server.server_port)
-    print("Available at %%s" %% url)
-    print("DANGER! For testing only, do not use in production")
-    print("*" * 80)
-    sys.stdout.flush()
-
-    server.serve_forever()
-else:
-    application = None
-    app_lock = threading.Lock()
-
-    with app_lock:
-        if application is None:
-            application = %(invoke_target)s()
-
-"""
-
-_script_text = """# PBR Generated from %(group)r
-
-import sys
-
-from %(module_name)s import %(import_target)s
-
-
-if __name__ == "__main__":
-    sys.exit(%(invoke_target)s())
-"""
-
-# the following allows us to specify different templates per entry
-# point group when generating pbr scripts.
-ENTRY_POINTS_MAP = {
-    'console_scripts': _script_text,
-    'gui_scripts': _script_text,
-    'wsgi_scripts': _wsgi_text,
-}
-
-
-def generate_script(group, entry_point, header, template):
-    """Generate the script based on the template.
-
-    :param str group: The entry-point group name, e.g., "console_scripts".
-    :param str header: The first line of the script, e.g.,
-        "!#/usr/bin/env python".
-    :param str template: The script template.
-    :returns: The templated script content
-    :rtype: str
-    """
-    if not entry_point.attrs or len(entry_point.attrs) > 2:
-        raise ValueError(
-            "Script targets must be of the form "
-            "'func' or 'Class.class_method'."
-        )
-
-    script_text = template % {
-        'group': group,
-        'module_name': entry_point.module_name,
-        'import_target': entry_point.attrs[0],
-        'invoke_target': '.'.join(entry_point.attrs),
-    }
-    return header + script_text
-
-
-def override_get_script_args(
-    dist, executable=os.path.normpath(sys.executable)
-):
-    """Override entrypoints console_script."""
-    # get_script_header() is deprecated since Setuptools 12.0
-    try:
-        header = easy_install.ScriptWriter.get_header("", executable)
-    except AttributeError:
-        header = easy_install.get_script_header("", executable)
-    for group, template in ENTRY_POINTS_MAP.items():
-        for name, ep in dist.get_entry_map(group).items():
-            yield (name, generate_script(group, ep, header, template))
 
 
 class LocalDevelop(develop.develop):
@@ -155,7 +44,9 @@ class LocalDevelop(develop.develop):
         if sys.platform == 'win32':
             return develop.develop.install_wrapper_scripts(self, dist)
         if not self.exclude_scripts:
-            for args in override_get_script_args(dist):
+            for args in pbr._compat.easy_install.ScriptWriter.get_script_args(
+                dist
+            ):
                 self.write_script(*args)
 
 
@@ -164,22 +55,8 @@ class LocalInstallScripts(install_scripts.install_scripts):
 
     command_name = 'install_scripts'
 
-    def _make_wsgi_scripts_only(self, dist, executable):
-        # get_script_header() is deprecated since Setuptools 12.0
-        try:
-            header = easy_install.ScriptWriter.get_header("", executable)
-        except AttributeError:
-            header = easy_install.get_script_header("", executable)
-        wsgi_script_template = ENTRY_POINTS_MAP['wsgi_scripts']
-        for name, ep in dist.get_entry_map('wsgi_scripts').items():
-            content = generate_script(
-                'wsgi_scripts', ep, header, wsgi_script_template
-            )
-            self.write_script(name, content)
-
     def run(self):
         import distutils.command.install_scripts
-        import pkg_resources
 
         self.run_command("egg_info")
         if self.distribution.scripts:
@@ -189,20 +66,37 @@ class LocalInstallScripts(install_scripts.install_scripts):
             self.outfiles = []
 
         ei_cmd = self.get_finalized_command("egg_info")
-        dist = pkg_resources.Distribution(
+        dist = pbr._compat.metadata.dist(
             ei_cmd.egg_base,
-            pkg_resources.PathMetadata(ei_cmd.egg_base, ei_cmd.egg_info),
+            ei_cmd.egg_info,
             ei_cmd.egg_name,
             ei_cmd.egg_version,
         )
         bs_cmd = self.get_finalized_command('build_scripts')
-        executable = getattr(bs_cmd, 'executable', easy_install.sys_executable)
+        executable = getattr(
+            bs_cmd, 'executable', pbr._compat.easy_install.sys_executable
+        )
         if 'bdist_wheel' in self.distribution.have_run:
             # We're building a wheel which has no way of generating mod_wsgi
             # scripts for us. Let's build them.
             # NOTE(sigmavirus24): This needs to happen here because, as the
             # comment below indicates, no_ep is True when building a wheel.
-            self._make_wsgi_scripts_only(dist, executable)
+
+            header = pbr._compat.easy_install.ScriptWriter.get_header(
+                "", executable
+            )
+
+            wsgi_script_template = pbr._compat.easy_install.ENTRY_POINTS_MAP[
+                'wsgi_scripts'
+            ]
+            wsgi_scripts = pbr._compat.metadata.get_entry_points(
+                dist, 'wsgi_scripts'
+            )
+            for name, ep in wsgi_scripts:
+                content = pbr._compat.easy_install.generate_script(
+                    'wsgi_scripts', ep, header, wsgi_script_template
+                )
+                self.write_script(name, content)
 
         if self.no_ep:
             # no_ep is True if we're installing into an .egg file or building
@@ -210,13 +104,12 @@ class LocalInstallScripts(install_scripts.install_scripts):
             # entry-points listed for this package.
             return
 
-        if os.name != 'nt':
-            get_script_args = override_get_script_args
-        else:
-            get_script_args = easy_install.get_script_args
+        if os.name == 'nt':
             executable = '"%s"' % executable
 
-        for args in get_script_args(dist, executable):
+        for args in pbr._compat.easy_install.ScriptWriter.get_script_args(
+            dist, executable
+        ):
             self.write_script(*args)
 
 

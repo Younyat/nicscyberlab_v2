@@ -18,9 +18,9 @@ VENV_PATH="$SCRIPT_DIR/openstack_venv"
 
 echo "🔹 Creando entorno virtual en $VENV_PATH..."
 sudo apt update -y
-sudo apt install -y python3-venv python3-dev libffi-dev gcc libssl-dev
+sudo apt install -y python3.12 python3.12-venv python3.12-dev libffi-dev gcc libssl-dev
 
-python3 -m venv "$VENV_PATH"
+python3.12 -m venv "$VENV_PATH"
 
 # Activar el entorno y exportar PATH
 source "$VENV_PATH/bin/activate"
@@ -30,8 +30,10 @@ echo "✅ Entorno virtual activado: $(which python)"
 echo "📦 Entorno creado en: $VENV_PATH"
 
 
-
-pip install --upgrade pip setuptools wheel
+python -m ensurepip --upgrade
+python -m pip install --upgrade pip setuptools wheel
+#which pip
+#pip --version
 # ============================================================
 # 2️⃣ INSTALAR DEPENDENCIAS DEL SISTEMA
 # ============================================================
@@ -40,8 +42,8 @@ sudo apt install -y git iptables bridge-utils wget curl dbus pkg-config \
 cmake build-essential libdbus-1-dev libglib2.0-dev sudo gnupg \
 apt-transport-https ca-certificates software-properties-common
 
-# ✅ Ahora ya se puede instalar dbus-python 
-pip install dbus-python docker
+# ✅ Ahora ya se puede instalar dbus-python
+python -m pip install dbus-python docker
 
 # ============================================================
 # 2️⃣ INSTALAR DEPENDENCIAS DEL SISTEMA
@@ -79,7 +81,7 @@ sudo usermod -aG docker "$USER"
 # 4️⃣ INSTALAR DEPENDENCIAS PYTHON Y KOLLA-ANSIBLE
 # ============================================================
 echo "🔹 Instalando dependencias Python y Kolla-Ansible..."
-REQ_FILE="$HOME/requirements.txt"
+REQ_FILE="requirements.txt"
 cat << 'EOF' > "$REQ_FILE"
 ansible==11.5.0
 ansible-core==2.18.5
@@ -166,8 +168,6 @@ echo "✅ Dependencias Python instaladas correctamente."
 
 
 
-
-
 # ============================================================
 # 7️⃣.1 HABILITAR REENVÍO DE PAQUETES IPv4 (REQUISITO DE RED)
 # ============================================================
@@ -191,12 +191,6 @@ echo "✅ Reenvío de paquetes IPv4 habilitado correctamente."
 
 
 
-   
-   
-   
-   
-
-
 # ============================================================
 # 🔧 CONFIGURAR TOPOLOGÍA DE RED (DESPUÉS DEL DEPLOY)
 # ============================================================
@@ -208,14 +202,6 @@ if [ -f "./setup-veth.sh" ]; then
 else
   echo "⚠️  No se encontró setup-veth.sh, continuando..."
 fi
-
-
-
-
-
-
-
-
 
 
 
@@ -240,7 +226,6 @@ echo "✅ Archivos de configuración de Kolla copiados completamente."
 
 
 
-
 # ============================================================
 # 6️⃣ GENERAR PASSWORDS Y CONFIGURAR GLOBALS
 # ============================================================
@@ -250,7 +235,11 @@ echo "✅ Archivos de configuración de Kolla copiados completamente."
 sudo chown "$USER:$USER" /etc/kolla/passwords.yml
 kolla-genpwd || true
 
-SUBNET="192.168.0"
+
+# -----*****************************Cambiar(automatizar)*******************************
+SUBNET="192.168.5"
+# -----************************************************************
+
 START=10
 END=50
 VIP=""
@@ -270,10 +259,13 @@ sudo tee /etc/kolla/globals.yml > /dev/null <<EOF
 kolla_base_distro: "ubuntu"
 network_interface: "$DEFAULT_IFACE"
 neutron_external_interface: "veth1"
-kolla_internal_vip_address: "192.168.0.250"
+kolla_internal_vip_address: "$VIP"
 EOF
 
 sudo chown "$USER:$USER" /etc/kolla/globals.yml
+
+
+export PATH="$VENV_PATH/bin:$PATH"
 
 # ============================================================
 # 7️⃣ INSTALAR COLECCIONES DE ANSIBLE GALAXY Y FIX MODPROBE
@@ -323,14 +315,8 @@ kolla-ansible deploy -i /etc/kolla/ansible/inventory/all-in-one
 kolla-ansible post-deploy
 
 
-
-
-
-
-
-
-
-
+# CAMBIAR DE PERMISOS EL ENTORNO AL USUARIO LOCAL
+sudo chown -R nics:nics "$VENV_PATH"
 
 # ============================================================
 # 9️⃣ CLIENTE OPENSTACK Y PERMISOS
@@ -346,9 +332,3 @@ echo "✅ Instalación completada. Ejecuta:"
 echo "   source /etc/kolla/admin-openrc.sh"
 echo "   openstack project list"
 echo "🎉 OpenStack desplegado correctamente con Kolla-Ansible."
-
-
-
-
-
-

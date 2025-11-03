@@ -39,10 +39,10 @@ deactivate nondestructive
 if [ "${OSTYPE:-}" = "cygwin" ] || [ "${OSTYPE:-}" = "msys" ] ; then
     # transform D:\path\to\venv to /d/path/to/venv on MSYS
     # and to /cygdrive/d/path/to/venv on Cygwin
-    export VIRTUAL_ENV=$(cygpath /home/younes/Desktop/cyberrange/openstack-installer/openstack_venv)
+    export VIRTUAL_ENV=$(cygpath /home/nics/Escritorio/cyberrange/openstack-installer/openstack_venv)
 else
     # use the path as-is
-    export VIRTUAL_ENV=/home/younes/Desktop/cyberrange/openstack-installer/openstack_venv
+    export VIRTUAL_ENV=/home/nics/Escritorio/cyberrange/openstack-installer/openstack_venv
 fi
 
 _OLD_VIRTUAL_PATH="$PATH"

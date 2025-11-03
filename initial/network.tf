@@ -19,10 +19,10 @@ resource "openstack_networking_network_v2" "red_externa" {
 resource "openstack_networking_subnet_v2" "red_externa_subnet" {
   name            = "red_externa_subnet"
   network_id      = openstack_networking_network_v2.red_externa.id
-  cidr            = "192.168.0.0/24"      # ✅ Red física real (ens33/uplinkbridge)
+  cidr            = "10.0.2.0/24"        # ✅ Red física real (uplinkbridge)
   ip_version      = 4
   enable_dhcp     = false                 # ⚠️ NO usar DHCP en red externa
-  gateway_ip      = "192.168.0.1"         # Gateway del uplinkbridge
+  gateway_ip      = "10.0.2.1"            # Gateway del uplinkbridge
   dns_nameservers = ["8.8.8.8", "1.1.1.1"]
 }
 

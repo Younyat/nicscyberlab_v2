@@ -1,4 +1,4 @@
-#!/home/younes/Desktop/cyberrange/openstack-installer/openstack_venv/bin/python3
+#!/home/nics/Escritorio/cyberrange/openstack-installer/openstack_venv/bin/python
 import sys
 from pygments.cmdline import main
 if __name__ == '__main__':

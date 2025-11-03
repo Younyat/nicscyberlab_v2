@@ -173,6 +173,9 @@ workaround_ansible_issue_8743: yes
 # Neutron rolling upgrade were enable by default
 #neutron_enable_rolling_upgrade: "yes"
 
+# Enable wrapper containers to keep Neutron agent restarts isolated from the main service containers
+#neutron_agents_wrappers: "yes"
+
 # Configure neutron logging framework to log ingress/egress connections to instances
 # for security groups rules. More information can be found here:
 # https://docs.openstack.org/neutron/latest/admin/config-logging.html
@@ -376,13 +379,13 @@ workaround_ansible_issue_8743: yes
 #enable_horizon_octavia: "{{ enable_octavia | bool }}"
 #enable_horizon_tacker: "{{ enable_tacker | bool }}"
 #enable_horizon_trove: "{{ enable_trove | bool }}"
-#enable_horizon_venus: "{{ enable_venus | bool }}"
 #enable_horizon_watcher: "{{ enable_watcher | bool }}"
 #enable_horizon_zun: "{{ enable_zun | bool }}"
 #enable_influxdb: "{{ enable_cloudkitty | bool and cloudkitty_storage_backend == 'influxdb' }}"
 #enable_ironic: "no"
 #enable_ironic_neutron_agent: "no"
 #enable_ironic_prometheus_exporter: "{{ enable_ironic | bool and enable_prometheus | bool }}"
+#enable_ironic_pxe_filter: "no"
 #enable_iscsid: "{{ enable_cinder | bool and enable_cinder_backend_iscsi | bool }}"
 #enable_kuryr: "no"
 #enable_magnum: "no"
@@ -432,7 +435,6 @@ workaround_ansible_issue_8743: yes
 #enable_telegraf: "no"
 #enable_trove: "no"
 #enable_trove_singletenant: "no"
-#enable_venus: "no"
 #enable_watcher: "no"
 #enable_zun: "no"
 
