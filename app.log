@@ -11780,3 +11780,329 @@ echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
 
 2025-11-03 16:32:36,678 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyberrange/admin-openrc.sh
 2025-11-03 16:32:36,678 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyberrange/admin-openrc.sh
+2025-11-04 12:18:31,968 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyberrange/generate_app_cred_openrc_from_clouds.sh
+2025-11-04 12:18:31,968 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyberrange/generate_app_cred_openrc_from_clouds.sh
+2025-11-04 12:18:31,968 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyberrange/generate_app_cred_openrc_from_clouds.sh
+2025-11-04 12:18:31,968 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyberrange/generate_app_cred_openrc_from_clouds.sh
+2025-11-04 12:18:35,484 - INFO - 📤 Salida del script:
+2025-11-04 12:18:35,485 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+📦 Instalando yq (Python version)...
+Leyendo lista de paquetes...
+
+2025-11-04 12:18:35,485 - WARNING - 📥 Errores durante la ejecución del script:
+2025-11-04 12:18:35,485 - WARNING - 
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+E: No se pudo obtener un bloqueo /var/lib/apt/lists/lock. Lo mantiene el proceso 46611 (apt)
+E: No se pudo bloquear el directorio /var/lib/apt/lists/
+
+2025-11-04 12:18:35,485 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyberrange/admin-openrc.sh. Código de salida: 100
+2025-11-04 12:18:35,486 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyberrange/admin-openrc.sh
+2025-11-04 12:18:35,589 - INFO - 📤 Salida del script:
+2025-11-04 12:18:35,589 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+📦 Instalando yq (Python version)...
+Leyendo lista de paquetes...
+
+2025-11-04 12:18:35,589 - WARNING - 📥 Errores durante la ejecución del script:
+2025-11-04 12:18:35,589 - WARNING - 
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+E: No se pudo obtener un bloqueo /var/lib/apt/lists/lock. Lo mantiene el proceso 46611 (apt)
+E: No se pudo bloquear el directorio /var/lib/apt/lists/
+
+2025-11-04 12:18:35,589 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyberrange/admin-openrc.sh. Código de salida: 100
+2025-11-04 12:18:35,590 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyberrange/admin-openrc.sh
+2025-11-04 12:18:35,668 - INFO - 📤 Salida del script:
+2025-11-04 12:18:35,669 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+📦 Instalando yq (Python version)...
+Leyendo lista de paquetes...
+
+2025-11-04 12:18:35,669 - WARNING - 📥 Errores durante la ejecución del script:
+2025-11-04 12:18:35,669 - WARNING - 
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+E: No se pudo obtener un bloqueo /var/lib/apt/lists/lock. Lo mantiene el proceso 46611 (apt)
+E: No se pudo bloquear el directorio /var/lib/apt/lists/
+
+2025-11-04 12:18:35,669 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyberrange/admin-openrc.sh. Código de salida: 100
+2025-11-04 12:18:35,669 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyberrange/admin-openrc.sh
+2025-11-04 12:19:01,986 - INFO - 📤 Salida del script:
+2025-11-04 12:19:01,986 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+📦 Instalando yq (Python version)...
+Des:1 https://download.docker.com/linux/ubuntu noble InRelease [48,5 kB]
+Obj:2 http://archive.ubuntu.com/ubuntu noble InRelease
+Des:3 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+Des:4 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+Des:5 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+Des:6 https://download.docker.com/linux/ubuntu noble/stable amd64 Packages [34,2 kB]
+Des:7 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1.581 kB]
+Des:8 http://archive.ubuntu.com/ubuntu noble-updates/main Translation-en [298 kB]
+Des:9 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [175 kB]
+Des:10 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 c-n-f Metadata [15,4 kB]
+Des:11 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [2.240 kB]
+Des:12 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1.298 kB]
+Des:13 http://archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [508 kB]
+Des:14 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Components [212 B]
+Des:15 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [378 kB]
+Des:16 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
+Des:17 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [7.156 B]
+Des:18 http://archive.ubuntu.com/ubuntu noble-backports/restricted amd64 Components [212 B]
+Des:19 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [10,9 kB]
+Des:20 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Components [212 B]
+Des:21 http://security.ubuntu.com/ubuntu noble-security/main Translation-en [213 kB]
+Des:22 http://security.ubuntu.com/ubuntu noble-security/main amd64 Components [21,6 kB]
+Des:23 http://security.ubuntu.com/ubuntu noble-security/main amd64 c-n-f Metadata [9.012 B]
+Des:24 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [2.131 kB]
+Des:25 http://security.ubuntu.com/ubuntu noble-security/restricted Translation-en [483 kB]
+Des:26 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Components [212 B]
+Des:27 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [906 kB]
+Des:28 http://security.ubuntu.com/ubuntu noble-security/universe Translation-en [203 kB]
+Des:29 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Components [52,3 kB]
+Des:30 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Components [208 B]
+Descargados 11,0 MB en 3s (3.828 kB/s)
+Leyendo lista de paquetes...
+Creando árbol de dependencias...
+Leyendo la información de estado...
+Se pueden actualizar 3 paquetes. Ejecute «apt list --upgradable» para verlos.
+Leyendo lista de paquetes...
+Creando árbol de dependencias...
+Leyendo la información de estado...
+Se instalarán los siguientes paquetes adicionales:
+  python3-argcomplete python3-toml python3-xmltodict
+Se instalarán los siguientes paquetes NUEVOS:
+  python3-argcomplete python3-toml python3-xmltodict yq
+0 actualizados, 4 nuevos se instalarán, 0 para eliminar y 3 no actualizados.
+Se necesita descargar 81,5 kB de archivos.
+Se utilizarán 353 kB de espacio de disco adicional después de esta operación.
+Des:1 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 python3-argcomplete all 3.1.4-1ubuntu0.1 [33,8 kB]
+Des:2 http://archive.ubuntu.com/ubuntu noble/universe amd64 python3-toml all 0.10.2-1 [16,5 kB]
+Des:3 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 python3-xmltodict all 0.13.0-1ubuntu0.24.04.1 [14,3 kB]
+Des:4 http://archive.ubuntu.com/ubuntu noble/universe amd64 yq all 3.1.0-3 [16,9 kB]
+Descargados 81,5 kB en 1s (137 kB/s)
+Seleccionando el paquete python3-argcomplete previamente no seleccionado.
+(Leyendo la base de datos ... 
+(Leyendo la base de datos ... 5%
+(Leyendo la base de datos ... 10%
+(Leyendo la base de datos ... 15%
+(Leyendo la base de datos ... 20%
+(Leyendo la base de datos ... 25%
+(Leyendo la base de datos ... 30%
+(Leyendo la base de datos ... 35%
+(Leyendo la base de datos ... 40%
+(Leyendo la base de datos ... 45%
+(Leyendo la base de datos ... 50%
+(Leyendo la base de datos ... 55%
+(Leyendo la base de datos ... 60%
+(Leyendo la base de datos ... 65%
+(Leyendo la base de datos ... 70%
+(Leyendo la base de datos ... 75%
+(Leyendo la base de datos ... 80%
+(Leyendo la base de datos ... 85%
+(Leyendo la base de datos ... 90%
+(Leyendo la base de datos ... 95%
+(Leyendo la base de datos ... 100%
+(Leyendo la base de datos ... 202500 ficheros o directorios instalados actualmente.)
+Preparando para desempaquetar .../python3-argcomplete_3.1.4-1ubuntu0.1_all.deb ...
+Desempaquetando python3-argcomplete (3.1.4-1ubuntu0.1) ...
+Seleccionando el paquete python3-toml previamente no seleccionado.
+Preparando para desempaquetar .../python3-toml_0.10.2-1_all.deb ...
+Desempaquetando python3-toml (0.10.2-1) ...
+Seleccionando el paquete python3-xmltodict previamente no seleccionado.
+Preparando para desempaquetar .../python3-xmltodict_0.13.0-1ubuntu0.24.04.1_all.deb ...
+Desempaquetando python3-xmltodict (0.13.0-1ubuntu0.24.04.1) ...
+Seleccionando el paquete yq previamente no seleccionado.
+Preparando para desempaquetar .../archives/yq_3.1.0-3_all.deb ...
+Desempaquetando yq (3.1.0-3) ...
+Configurando python3-xmltodict (0.13.0-1ubuntu0.24.04.1) ...
+Configurando python3-toml (0.10.2-1) ...
+Configurando python3-argcomplete (3.1.4-1ubuntu0.1) ...
+Configurando yq (3.1.0-3) ...
+Procesando disparadores para man-db (2.12.0-4build2) ...
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=Bi36tQolQDNlbKCARZmO9z31SUOduiBfCIaJTolj
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-04 12:19:01,988 - WARNING - 📥 Errores durante la ejecución del script:
+2025-11-04 12:19:01,988 - WARNING - 
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+
+2025-11-04 12:19:01,988 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyberrange/admin-openrc.sh
+2025-11-04 12:19:01,988 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyberrange/admin-openrc.sh
+2025-11-04 12:26:08,626 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyberrange/generate_app_cred_openrc_from_clouds.sh
+2025-11-04 12:26:08,691 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyberrange/generate_app_cred_openrc_from_clouds.sh
+2025-11-04 12:26:08,762 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyberrange/generate_app_cred_openrc_from_clouds.sh
+2025-11-04 12:26:08,807 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyberrange/generate_app_cred_openrc_from_clouds.sh
+2025-11-04 12:26:08,920 - INFO - 📤 Salida del script:
+2025-11-04 12:26:08,920 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-04 12:26:08,921 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyberrange/admin-openrc.sh. Código de salida: 1
+2025-11-04 12:26:08,921 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyberrange/admin-openrc.sh
+2025-11-04 12:26:08,962 - INFO - 📤 Salida del script:
+2025-11-04 12:26:08,963 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-04 12:26:08,963 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyberrange/admin-openrc.sh. Código de salida: 1
+2025-11-04 12:26:08,963 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyberrange/admin-openrc.sh
+2025-11-04 12:26:09,036 - INFO - 📤 Salida del script:
+2025-11-04 12:26:09,037 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-04 12:26:09,037 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyberrange/admin-openrc.sh. Código de salida: 1
+2025-11-04 12:26:09,037 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyberrange/admin-openrc.sh
+2025-11-04 12:26:09,077 - INFO - 📤 Salida del script:
+2025-11-04 12:26:09,077 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=Bi36tQolQDNlbKCARZmO9z31SUOduiBfCIaJTolj
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-04 12:26:09,077 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyberrange/admin-openrc.sh
+2025-11-04 12:26:09,077 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyberrange/admin-openrc.sh
