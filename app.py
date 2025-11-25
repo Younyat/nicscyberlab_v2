@@ -23,6 +23,9 @@ console_handler = logging.StreamHandler()
 console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 
+
+
+
 class StreamToLogger(object):
     def __init__(self, logger, level):
         self.logger = logger
@@ -488,7 +491,7 @@ def run_initial_environment_setup():
         with open(json_path, "w") as f:
             json.dump(data, f, indent=4)
 
-        script_path = os.path.join(INITIAL_DIR, "generar_desde_json.sh")
+        script_path = os.path.join(INITIAL_DIR, "run_scenario_from_json.sh")
 
         if not os.path.exists(script_path):
             return jsonify({
@@ -537,6 +540,16 @@ def run_initial_environment_setup():
         }), 500
 
 
+from flask import Response
+
+@app.route('/api/run_initial_generator_stream')
+def stream_logs():
+    def generate():
+        yield "data: iniciando...\n\n"
+        with open("app.log", "r") as f:
+            for line in f:
+                yield f"data: {line}\n\n"
+    return Response(generate(), mimetype='text/event-stream')
 
 @app.route('/')
 def index():
@@ -548,4 +561,5 @@ def static_files(path):
 
     
 if __name__ == "__main__":
-    app.run(host="localhost", port=5001, debug=True)
+   app.run(host="localhost", port=5001, debug=True)
+

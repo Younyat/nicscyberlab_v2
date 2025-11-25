@@ -255,7 +255,7 @@ if ((r.status !== 200 && r.status !== 202) || (resp.status !== "success" && resp
 
 
 /* ======================
-   SSE
+   SSErun-initial-generator-stream
    ====================== */
 function iniciarStream() {
   const s = new EventSource(`${API}/api/run-initial-generator-stream`);

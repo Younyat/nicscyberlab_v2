@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 # =============================================
 # 🚀 Iniciar Gunicorn limpiando el puerto antes
-#bash start_dashboard.sh 2>&1 | tee nombre_del_log.log
+# bash start_dashboard.sh 2>&1 | tee nombre_del_log.log
 # =============================================
 
 PORT=5001
-APP_PATH="$(dirname "$(realpath "$0")")"  # Ruta del script actual
+TIMEOUT=300  # ⏱️ Timeout de Gunicorn
+APP_PATH="$(dirname "$(realpath "$0")")"
 
 echo "============================================="
 echo "🔧 Preparando entorno y scripts..."
@@ -34,13 +35,11 @@ echo "============================================="
 
 if ! command -v gunicorn >/dev/null 2>&1; then
   echo "⚠️ Gunicorn no está instalado. Instalando..."
-  
-  # Si estás en un entorno virtual (venv)
+
   if [ -n "$VIRTUAL_ENV" ]; then
     echo "📦 Instalando Gunicorn en el entorno virtual actual..."
     pip install gunicorn
   else
-    # Instalación global con sudo si no hay venv
     echo "📦 Instalando Gunicorn globalmente (requiere sudo)..."
     sudo pip install gunicorn
   fi
@@ -54,4 +53,5 @@ echo "============================================="
 echo "🚀 Iniciando servidor Gunicorn (app:app)..."
 echo "============================================="
 cd "$APP_PATH" || exit 1
-gunicorn -w 4 -b localhost:$PORT app:app
+
+gunicorn -w 4 -b "localhost:$PORT" --timeout "$TIMEOUT" app:app
