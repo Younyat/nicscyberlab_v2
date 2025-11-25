@@ -1,0 +1,17 @@
+---
+- import_tasks: register.yml
+  when: ironic_enable_keystone_integration | bool
+
+- import_tasks: config-host.yml
+
+- import_tasks: config.yml
+
+- import_tasks: check-containers.yml
+
+- include_tasks: clone.yml
+  when: ironic_dev_mode | bool
+
+- import_tasks: bootstrap.yml
+
+- name: Flush handlers
+  meta: flush_handlers

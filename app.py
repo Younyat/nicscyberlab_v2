@@ -399,6 +399,144 @@ def deployment_status():
             "message": f"⚠️ Error interno: {str(e)}"
         }), 500
 
+@app.route('/api/destroy_initial_environment_setup', methods=['POST'])
+def destroy_initial_environment_setup():
+    try:
+        logger.info("===============================================")
+        logger.info("🟦 API CALL: /api/run_initial_environment_setup")
+        logger.info("===============================================")
+
+        BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+        INITIAL_DIR = os.path.join(BASE_DIR, "initial")
+       
+
+
+
+
+        script_path = os.path.join(INITIAL_DIR, "limpiar_inicial.sh")
+
+        if not os.path.exists(script_path):
+            return jsonify({
+                "status": "error",
+                "message": f"❌ Script no encontrado: {script_path}"
+            }), 404
+
+        if not os.access(script_path, os.X_OK):
+            os.chmod(script_path, 0o755)
+
+        logger.info("🚀 Ejecutando script (modo BLOQUEANTE)...")
+
+        result = subprocess.run(
+            ["bash", script_path],
+            cwd=INITIAL_DIR,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True
+        )
+
+        logger.info("📤 STDOUT:")
+        logger.info(result.stdout)
+        logger.info("📥 STDERR:")
+        logger.info(result.stderr)
+
+        if result.returncode == 0:
+            return jsonify({
+                "status": "success",
+                "message": "✅ Entorno inicial desplegado correctamente.",
+                "stdout": result.stdout,
+                "stderr": result.stderr
+            }), 200
+        else:
+            return jsonify({
+                "status": "error",
+                "message": "❌ Error durante el despliegue inicial.",
+                "stdout": result.stdout,
+                "stderr": result.stderr
+            }), 500
+
+    except Exception as e:
+        logger.exception("❌ Error inesperado")
+        return jsonify({
+            "status": "error",
+            "message": str(e)
+        }), 500
+
+
+
+@app.route('/api/run_initial_environment_setup', methods=['POST'])
+def run_initial_environment_setup():
+    try:
+        logger.info("===============================================")
+        logger.info("🟦 API CALL: /api/run_initial_environment_setup")
+        logger.info("===============================================")
+
+        BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+        INITIAL_DIR = os.path.join(BASE_DIR, "initial")
+        CONFIG_DIR = os.path.join(INITIAL_DIR, "configs")
+
+        os.makedirs(CONFIG_DIR, exist_ok=True)
+
+        json_path = os.path.join(CONFIG_DIR, "scenario_config.json")
+
+        data = request.get_json()
+        if not data:
+            return jsonify({
+                "status": "error",
+                "message": "❌ No se recibió JSON válido"
+            }), 400
+
+        with open(json_path, "w") as f:
+            json.dump(data, f, indent=4)
+
+        script_path = os.path.join(INITIAL_DIR, "generar_desde_json.sh")
+
+        if not os.path.exists(script_path):
+            return jsonify({
+                "status": "error",
+                "message": f"❌ Script no encontrado: {script_path}"
+            }), 404
+
+        if not os.access(script_path, os.X_OK):
+            os.chmod(script_path, 0o755)
+
+        logger.info("🚀 Ejecutando script (modo BLOQUEANTE)...")
+
+        result = subprocess.run(
+            ["bash", script_path, json_path],
+            cwd=INITIAL_DIR,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True
+        )
+
+        logger.info("📤 STDOUT:")
+        logger.info(result.stdout)
+        logger.info("📥 STDERR:")
+        logger.info(result.stderr)
+
+        if result.returncode == 0:
+            return jsonify({
+                "status": "success",
+                "message": "✅ Entorno inicial desplegado correctamente.",
+                "stdout": result.stdout,
+                "stderr": result.stderr
+            }), 200
+        else:
+            return jsonify({
+                "status": "error",
+                "message": "❌ Error durante el despliegue inicial.",
+                "stdout": result.stdout,
+                "stderr": result.stderr
+            }), 500
+
+    except Exception as e:
+        logger.exception("❌ Error inesperado")
+        return jsonify({
+            "status": "error",
+            "message": str(e)
+        }), 500
+
+
 
 @app.route('/')
 def index():
@@ -408,9 +546,6 @@ def index():
 def static_files(path):
     return send_from_directory('static', path)
 
-
-
-
-
+    
 if __name__ == "__main__":
     app.run(host="localhost", port=5001, debug=True)

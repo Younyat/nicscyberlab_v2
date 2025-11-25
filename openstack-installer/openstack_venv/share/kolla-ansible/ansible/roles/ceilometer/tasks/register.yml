@@ -1,0 +1,6 @@
+---
+- import_role:
+    name: service-ks-register
+  vars:
+    service_ks_register_auth: "{{ openstack_ceilometer_auth }}"
+    service_ks_register_users: "{{ ceilometer_ks_users }}"
