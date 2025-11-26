@@ -185,12 +185,12 @@ function addNode(x, y) {
     type: nodeType,
     os: 'Debian-12',
     ip: `192.168.1.${100 + nodeCounter}`,
-    network: 'red_privada',
-    subnetwork: 'red_privada_subnet',
+    network: 'private-net',
+    subnetwork: 'private-subnet',
     flavor: 'medium',
     image: 'ubuntu-22.04',
-    securityGroup: 'sg_wazuh_suricata',
-    sshKey: 'nueva_clave_wazuh'
+    securityGroup: 'allow-ssh-icmp',
+    sshKey: 'cyberlab-key'
   };
   cy.add({ group: 'nodes', data: nodeData, position: { x, y } });
   currentMode = 'select';
@@ -251,21 +251,21 @@ function clearAll() {
 // PROPIEDADES DE NODOS
 // =======================
 function loadNodeProperties(node) {
-  document.getElementById('nodeNetwork').value = node.data('network') || 'red_privada';
-  document.getElementById('nodeSubNetwork').value = node.data('subnetwork') || 'red_privada_subnet';
+  document.getElementById('nodeNetwork').value = node.data('network') || 'private-net';
+  document.getElementById('nodeSubNetwork').value = node.data('subnetwork') || 'private-subnet';
   document.getElementById('nodeFlavor').value = node.data('flavor') || 'medium';
   document.getElementById('nodeImage').value = node.data('image') || 'ubuntu-22.04';
-  document.getElementById('nodeSecurityGroup').value = node.data('securityGroup') || 'sg_wazuh_suricata';
-  document.getElementById('nodeSSHKey').value = node.data('sshKey') || 'nueva_clave_wazuh';
+  document.getElementById('nodeSecurityGroup').value = node.data('securityGroup') || 'allow-ssh-icmp';
+  document.getElementById('nodeSSHKey').value = node.data('sshKey') || 'cyberlab-key';
 }
 
 function clearNodeProperties() {
-  document.getElementById('nodeNetwork').value = 'red_privada';
-  document.getElementById('nodeSubNetwork').value = 'red_privada_subnet';
+  document.getElementById('nodeNetwork').value = 'private-net';
+  document.getElementById('nodeSubNetwork').value = 'private-subnet';
   document.getElementById('nodeFlavor').value = 'medium';
   document.getElementById('nodeImage').value = 'ubuntu-22.04';
-  document.getElementById('nodeSecurityGroup').value = 'sg_wazuh_suricata';
-  document.getElementById('nodeSSHKey').value = 'nueva_clave_wazuh';
+  document.getElementById('nodeSecurityGroup').value = 'allow-ssh-icmp';
+  document.getElementById('nodeSSHKey').value = 'cyberlab-key';
 }
 
 function updateNodeProperties(showToastMsg = true) {
@@ -500,12 +500,11 @@ function appendToTerminal(message, className = 'text-white') {
 }
 
 // =======================
-// 🔥 DESTRUIR ESCENARIO
+// 🔥 DESTRUIR ESCENARIO (NUEVA VERSION)
 // =======================
 async function destruirScenario() {
-  const boton = document.querySelector('button[onclick="destruirScenario()"]');
-  
-  // 🔒 Bloquear botones y mostrar overlay
+  const boton = document.querySelector('button[onclick="destruirScenarioConfirmation()"]');
+
   const buttons = document.querySelectorAll("button");
   buttons.forEach(btn => {
     btn.disabled = true;
@@ -513,55 +512,40 @@ async function destruirScenario() {
   });
   showOverlay(true);
 
-  // Mensaje inicial
-  showToast('⏳ Destruyendo escenario... esto puede tardar unos segundos.');
   appendToTerminal('$ ⏳ Iniciando destrucción del escenario...', 'text-yellow-400');
 
   try {
     const response = await fetch("http://localhost:5001/api/destroy_scenario", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" }
+      method: "POST"
     });
 
-    const data = await response.json();
-    console.log("Respuesta del backend:", data);
+    let data = {};
+    try { data = await response.json(); } catch {}
 
-    // =======================
-    // ✅ Caso de éxito
-    // =======================
     if (response.ok && data.status === "success") {
-     //  appendToTerminal('$ ✅ Escenario destruido correctamente.', 'text-green-400');
+      appendToTerminal("✔ Escenario destruido correctamente.", "text-green-400");
       if (data.stdout) appendToTerminal(data.stdout, 'text-gray-300');
-      // showToast('✅ Escenario destruido correctamente.');
-    } 
-    // =======================
-    // ⚠️ Caso de error controlado
-    // =======================
-    else {
+    } else {
       appendToTerminal('$ ⚠️ Error al destruir el escenario.', 'text-orange-400');
       if (data.stderr) appendToTerminal(data.stderr, 'text-red-300');
-      showToast('⚠️ No se pudo destruir completamente el escenario.');
+      if (data.message) appendToTerminal(data.message, 'text-red-300');
     }
 
   } catch (err) {
-    // =======================
-    // ❌ Error de red / backend
-    // =======================
-    console.error("Error al destruir el escenario:", err);
     appendToTerminal(`$ ❌ Error al conectar con el backend: ${err}`, 'text-red-400');
-    showToast('❌ Error de conexión con el backend.');
-
   } finally {
-    // 🔓 Restaurar estado UI
     buttons.forEach(btn => {
       btn.disabled = false;
       btn.classList.remove("opacity-50", "cursor-not-allowed");
     });
+
     showOverlay(false);
 
-    boton.innerText = "Destruir Escenario";
+    if (boton) boton.innerText = "Destruir Escenario";
   }
 }
+
+
 
 
 async function loadScenario() {

@@ -45,11 +45,11 @@ SECGRP_NAME="allow-ssh-icmp"
 # =================== CARGAR ENTORNO OPENSTACK ===================
 
 # activar entorno virtual con OpenStack CLI
-if [ -f "$HOME/Escritorio/cyber-range-v1/openstack_venv/bin/activate" ]; then
-    source "$HOME/Escritorio/cyber-range-v1/openstack_venv/bin/activate"
+if [ -f "$HOME/Escritorio/cyber-range-v1/openstack-installer/openstack_venv/bin/activate" ]; then
+    source "$HOME/Escritorio/cyber-range-v1/openstack-installer/openstack_venv/bin/activate"
     echo "[DEBUG] Entorno virtual OpenStack activado."
 else
-    echo "[ERROR] No se encontró el entorno virtual: $HOME/Escritorio/cyber-range-v1/openstack_venv/bin/activate"
+    echo "[ERROR] No se encontró el entorno virtual: $HOME/Escritorio/cyber-range-v1/openstack-installer/openstack_venv/bin/activate"
 fi
 
 # cargar credenciales OpenStack desde admin-openrc.sh

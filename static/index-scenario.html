@@ -87,15 +87,15 @@
                 <div>
                     <label for="nodeNetwork" class="block text-sm font-medium text-gray-400 mb-1">Red Principal</label>
                     <select id="nodeNetwork" onchange="updateNodeProperties(false)" class="w-full p-2 rounded-lg bg-gray-900 border border-gray-700 text-white focus:ring-primary-color focus:border-primary-color">
-                        <option value="red_privada">red_privada</option>
-                        <option value="red_externa">red_externa</option>
+                        <option value="private-net">private-net</option>
+                        <option value="red_externa">external-net</option>
                     </select>
                 </div>
                 <div>
                     <label for="nodeSubNetwork" class="block text-sm font-medium text-gray-400 mb-1">Sub Red Principal</label>
                     <select id="nodeSubNetwork" onchange="updateNodeProperties(false)" class="w-full p-2 rounded-lg bg-gray-900 border border-gray-700 text-white focus:ring-primary-color focus:border-primary-color">
-                        <option value="red_privada_subnet">red_privada_subnet</option>
-                        <option value="red_externa_subnet">red_externa_subnet</option>
+                        <option value="private-subnet">private-subnet</option>
+                        <option value="red_externa_subnet">external-subnet </option>
                     </select>
                 </div>
                    <div>
@@ -120,13 +120,13 @@
                 <div>
                     <label for="nodeSecurityGroup" class="block text-sm font-medium text-gray-400 mb-1">Grupo de Seguridad</label>
                     <select id="nodeSecurityGroup" onchange="updateNodeProperties(false)" class="w-full p-2 rounded-lg bg-gray-900 border border-gray-700 text-white focus:ring-primary-color focus:border-primary-color">
-                        <option value="sg_wazuh_suricata">sg_wazuh_suricata (SSH + ICMP)</option>
+                        <option value="allow-ssh-icmp">allow-ssh-icmp(SSH + ICMP)</option>
                     </select>
                 </div>
                 <div>
                     <label for="nodeSSHKey" class="block text-sm font-medium text-gray-400 mb-1">Clave SSH</label>
                     <select id="nodeSSHKey" onchange="updateNodeProperties(false)" class="w-full p-2 rounded-lg bg-gray-900 border border-gray-700 text-white focus:ring-primary-color focus:border-primary-color">
-                        <option value="nueva_clave_wazuh">nueva_clave_wazuh (ssh)</option>
+                        <option value="cyberlab-key">cyberlab-key(ssh)</option>
                     </select>
                 </div>
             </div>

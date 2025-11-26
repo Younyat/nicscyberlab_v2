@@ -1,0 +1,79 @@
+{
+    "scenario_name": "file",
+    "nodes": [
+        {
+            "id": "node1",
+            "name": "monitor 1",
+            "type": "monitor",
+            "position": {
+                "x": 492,
+                "y": 158
+            },
+            "properties": {
+                "os": "ubuntu-22.04",
+                "ip": "192.168.1.101",
+                "network": "private-net",
+                "subnetwork": "private-subnet",
+                "flavor": "medium",
+                "image": "ubuntu-22.04",
+                "securityGroup": "allow-ssh-icmp",
+                "sshKey": "cyberlab-key"
+            }
+        },
+        {
+            "id": "node2",
+            "name": "attack 2",
+            "type": "attack",
+            "position": {
+                "x": 675,
+                "y": 291
+            },
+            "properties": {
+                "os": "debian-12",
+                "ip": "192.168.1.102",
+                "network": "private-net",
+                "subnetwork": "private-subnet",
+                "flavor": "medium",
+                "image": "debian-12",
+                "securityGroup": "allow-ssh-icmp",
+                "sshKey": "cyberlab-key"
+            }
+        },
+        {
+            "id": "node3",
+            "name": "victim 3",
+            "type": "victim",
+            "position": {
+                "x": 682,
+                "y": 162
+            },
+            "properties": {
+                "os": "debian-12",
+                "ip": "192.168.1.103",
+                "network": "private-net",
+                "subnetwork": "private-subnet",
+                "flavor": "medium",
+                "image": "debian-12",
+                "securityGroup": "allow-ssh-icmp",
+                "sshKey": "cyberlab-key"
+            }
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge_node1_node3",
+            "source": "node1",
+            "target": "node3"
+        },
+        {
+            "id": "edge_node3_node1",
+            "source": "node3",
+            "target": "node1"
+        },
+        {
+            "id": "edge_node2_node3",
+            "source": "node2",
+            "target": "node3"
+        }
+    ]
+}

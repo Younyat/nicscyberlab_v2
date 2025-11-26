@@ -224,61 +224,35 @@ def get_scenario(scenarioName):
 def destroy_scenario():
     try:
         base_dir = os.path.abspath(os.path.dirname(__file__))
-        script_path = os.path.join(base_dir, "scenario", "destroy_scenario.sh")
 
-        # 🔍 Verificar existencia del script
+        script_path = os.path.join(base_dir, "scenario", "destroy_scenario_openstack_mejorado.sh")
+        output_dir  = os.path.join(base_dir, "tf_out")
+        admin_openrc = os.path.join(base_dir, "admin-openrc.sh")
+
+        # Verificar script
         if not os.path.exists(script_path):
-            logger.error(f"❌ Script no encontrado: {script_path}")
-            return jsonify({
-                "status": "error",
-                "message": f"❌ Script no encontrado: {script_path}"
-            }), 404
+            return jsonify({"status": "error", "message": "Script no encontrado"}), 404
 
-        # 🧩 Asegurar permisos de ejecución
-        if not os.access(script_path, os.X_OK):
-            os.chmod(script_path, 0o755)
-            logger.info(f"✅ Permisos de ejecución corregidos para {script_path}")
+        # Comando EXACTO que tu script necesita ahora
+        command = f"source {admin_openrc} && bash {script_path} {output_dir}"
 
-        # 🚀 Ejecutar el script
-        logger.info(f"🧨 Ejecutando script de destrucción: {script_path}")
         process = subprocess.run(
-            ["bash", script_path],
+            ["bash", "-c", command],
             cwd=base_dir,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
-            text=True,
-            check=False
+            text=True
         )
 
-        stdout = process.stdout.strip()
-        stderr = process.stderr.strip()
-
-        # 📋 Log de salida
-        logger.info(f"📤 STDOUT:\n{stdout}")
-        if stderr:
-            logger.warning(f"📥 STDERR:\n{stderr}")
-
-        if process.returncode == 0:
-            return jsonify({
-                "status": "success",
-                "message": "✅ Escenario destruido correctamente.",
-                "stdout": stdout,
-                "stderr": stderr
-            }), 200
-        else:
-            return jsonify({
-                "status": "error",
-                "message": "⚠️ Error al ejecutar terraform destroy.",
-                "stdout": stdout,
-                "stderr": stderr
-            }), 500
+        return jsonify({
+            "status": "success" if process.returncode == 0 else "error",
+            "stdout": process.stdout,
+            "stderr": process.stderr
+        })
 
     except Exception as e:
-        logger.exception(f"❌ Error inesperado al ejecutar destroy_scenario.sh: {e}")
-        return jsonify({
-            "status": "error",
-            "message": f"❌ Error interno: {str(e)}"
-        }), 500
+        return jsonify({"status": "error", "message": str(e)}), 500
+
 
 
 
@@ -301,7 +275,7 @@ def create_scenario():
         os.makedirs(TF_OUT_DIR, exist_ok=True)
 
         file_path = os.path.join(SCENARIO_DIR, f"scenario_{safe_name}.json")
-        script_path = os.path.join(SCENARIO_DIR, "generate_terraform.sh")
+        script_path = os.path.join(SCENARIO_DIR, "main_generator_inicial_openstack.sh")
 
         logging.info(f"🧭 Ruta base: {BASE_DIR}")
         logging.info(f"📁 Escenario: {file_path}")
