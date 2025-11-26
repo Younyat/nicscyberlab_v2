@@ -43,6 +43,8 @@ sys.stderr = StreamToLogger(logger, logging.ERROR)
 app = Flask(__name__)
 CORS(app)
 
+
+
 # === Generar y cargar credenciales OpenStack ===
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 GEN_SCRIPT = os.path.join(BASE_DIR, "generate_app_cred_openrc_from_clouds.sh")
@@ -193,7 +195,7 @@ def get_console_url():
 
 
 @app.route('/api/get_scenario/<scenarioName>', methods=['GET'])
-def get_scenario(scenarioName):
+def get_scenario_by_name(scenarioName):
     try:
         scenario_dir = os.path.join(os.path.dirname(__file__), "scenario")
         file_path = os.path.join(scenario_dir, f"scenario_{scenarioName}.json")
@@ -545,6 +547,64 @@ def stream_logs():
             for line in f:
                 yield f"data: {line}\n\n"
     return Response(generate(), mimetype='text/event-stream')
+
+
+
+
+
+
+
+
+
+
+
+
+
+import openstack
+
+def get_openstack_connection():
+    """Devuelve una conexión OpenStack usando las variables cargadas desde admin-openrc.sh"""
+    return openstack.connection.Connection(
+        auth_url=os.environ.get("OS_AUTH_URL"),
+        project_name=os.environ.get("OS_PROJECT_NAME"),
+        username=os.environ.get("OS_USERNAME"),
+        password=os.environ.get("OS_PASSWORD"),
+        region_name=os.environ.get("OS_REGION_NAME"),
+        user_domain_name=os.environ.get("OS_USER_DOMAIN_NAME", "Default"),
+        project_domain_name=os.environ.get("OS_PROJECT_DOMAIN_NAME", "Default"),
+        compute_api_version="2",
+        identity_interface="public"
+    )
+
+@app.route("/api/openstack/instances", methods=["GET"])
+def api_get_openstack_instances():
+    try:
+        conn = get_openstack_connection()
+
+        instances = []
+
+        for server in conn.compute.servers():
+            ip = "N/A"
+            for net_name, addresses in server.addresses.items():
+                if addresses:
+                    ip = addresses[0].get("addr")
+                    break
+
+            instances.append({
+                "id": server.id,
+                "name": server.name,
+                "status": server.status,
+                "ip": ip,
+                "image": server.image["id"] if server.image else None,
+                "flavor": server.flavor["id"] if server.flavor else None
+            })
+
+        return jsonify({"instances": instances}), 200
+
+    except Exception as e:
+        logger.error(f"❌ Error al consultar instancias OpenStack: {e}", exc_info=True)
+        return jsonify({"error": str(e)}), 500
+
 
 @app.route('/')
 def index():
