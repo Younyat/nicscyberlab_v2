@@ -6,8 +6,8 @@
             "name": "monitor 1",
             "type": "monitor",
             "position": {
-                "x": 492,
-                "y": 158
+                "x": 810.0832983359662,
+                "y": 204.02097884016928
             },
             "properties": {
                 "os": "ubuntu-22.04",
@@ -21,31 +21,12 @@
             }
         },
         {
-            "id": "node2",
-            "name": "attack 2",
-            "type": "attack",
-            "position": {
-                "x": 675,
-                "y": 291
-            },
-            "properties": {
-                "os": "debian-12",
-                "ip": "192.168.1.102",
-                "network": "private-net",
-                "subnetwork": "private-subnet",
-                "flavor": "medium",
-                "image": "debian-12",
-                "securityGroup": "allow-ssh-icmp",
-                "sshKey": "cyberlab-key"
-            }
-        },
-        {
             "id": "node3",
             "name": "victim 3",
             "type": "victim",
             "position": {
-                "x": 682,
-                "y": 162
+                "x": 1051.1080821618525,
+                "y": 181.01861357877763
             },
             "properties": {
                 "os": "debian-12",
@@ -57,22 +38,41 @@
                 "securityGroup": "allow-ssh-icmp",
                 "sshKey": "cyberlab-key"
             }
+        },
+        {
+            "id": "node4",
+            "name": "attack 4",
+            "type": "attack",
+            "position": {
+                "x": 1004.1032488016174,
+                "y": 382.0392839065915
+            },
+            "properties": {
+                "os": "debian-12",
+                "ip": "192.168.1.104",
+                "network": "private-net",
+                "subnetwork": "private-subnet",
+                "flavor": "medium",
+                "image": "debian-12",
+                "securityGroup": "allow-ssh-icmp",
+                "sshKey": "cyberlab-key"
+            }
         }
     ],
     "edges": [
-        {
-            "id": "edge_node1_node3",
-            "source": "node1",
-            "target": "node3"
-        },
         {
             "id": "edge_node3_node1",
             "source": "node3",
             "target": "node1"
         },
         {
-            "id": "edge_node2_node3",
-            "source": "node2",
+            "id": "edge_node1_node3",
+            "source": "node1",
+            "target": "node3"
+        },
+        {
+            "id": "edge_node4_node3",
+            "source": "node4",
             "target": "node3"
         }
     ]

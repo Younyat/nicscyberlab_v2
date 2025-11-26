@@ -220,40 +220,61 @@ def get_scenario(scenarioName):
             "message": f"⚠️ Error inesperado al leer el escenario: {str(e)}"
         }), 500
 
+
 @app.route('/api/destroy_scenario', methods=['POST'])
 def destroy_scenario():
     try:
-        base_dir = os.path.abspath(os.path.dirname(__file__))
+        BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+        SCENARIO_DIR = os.path.join(BASE_DIR, "scenario")
+        script_path = os.path.join(SCENARIO_DIR, "destroy_scenario_openstack_mejorado.sh")
 
-        script_path = os.path.join(base_dir, "scenario", "destroy_scenario_openstack_mejorado.sh")
-        output_dir  = os.path.join(base_dir, "tf_out")
-        admin_openrc = os.path.join(base_dir, "admin-openrc.sh")
-
-        # Verificar script
         if not os.path.exists(script_path):
             return jsonify({"status": "error", "message": "Script no encontrado"}), 404
 
-        # Comando EXACTO que tu script necesita ahora
-        command = f"source {admin_openrc} && bash {script_path} {output_dir}"
-
-        process = subprocess.run(
-            ["bash", "-c", command],
-            cwd=base_dir,
+        # Ejecutar destruir en background
+        process = subprocess.Popen(
+            ["bash", script_path, "tf_out"],
+            cwd=BASE_DIR,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True
         )
 
+        # Guardar estado inicial
+        status_file = os.path.join(SCENARIO_DIR, "destroy_status.json")
+        with open(status_file, "w") as sf:
+            json.dump({"status": "running"}, sf)
+
+        # Monitorizar en segundo hilo
+        def monitor():
+            stdout, stderr = process.communicate()
+            with open(status_file, "w") as sf:
+                json.dump({
+                    "status": "success" if process.returncode == 0 else "error",
+                    "stdout": stdout,
+                    "stderr": stderr
+                }, sf)
+
+        threading.Thread(target=monitor, daemon=True).start()
+
         return jsonify({
-            "status": "success" if process.returncode == 0 else "error",
-            "stdout": process.stdout,
-            "stderr": process.stderr
-        })
+            "status": "running",
+            "message": "🧨 Destrucción iniciada.",
+            "pid": process.pid
+        }), 202
 
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
+@app.route('/api/destroy_status')
+def destroy_status():
+    status_file = "scenario/destroy_status.json"
 
+    if not os.path.exists(status_file):
+        return jsonify({"status": "unknown"}), 404
+
+    with open(status_file) as f:
+        return jsonify(json.load(f)), 200
 
 
 @app.route('/api/create_scenario', methods=['POST'])

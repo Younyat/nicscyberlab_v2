@@ -151,4 +151,4 @@ echo "🧽 OUTDIR limpiado"
 echo "🔑 Keypair & claves eliminadas"
 echo "=================================================================="
 
-
+exit 0

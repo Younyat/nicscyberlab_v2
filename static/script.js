@@ -502,10 +502,10 @@ function appendToTerminal(message, className = 'text-white') {
 // =======================
 // 🔥 DESTRUIR ESCENARIO (NUEVA VERSION)
 // =======================
-async function destruirScenario() {
-  const boton = document.querySelector('button[onclick="destruirScenarioConfirmation()"]');
-
+async function destruirScenario___() {
   const buttons = document.querySelectorAll("button");
+  
+  // Bloquear UI
   buttons.forEach(btn => {
     btn.disabled = true;
     btn.classList.add("opacity-50", "cursor-not-allowed");
@@ -523,29 +523,77 @@ async function destruirScenario() {
     try { data = await response.json(); } catch {}
 
     if (response.ok && data.status === "success") {
-      appendToTerminal("✔ Escenario destruido correctamente.", "text-green-400");
-      if (data.stdout) appendToTerminal(data.stdout, 'text-gray-300');
+      appendToTerminal("✔ Destrucción iniciada en segundo plano.", "text-green-400");
+      appendToTerminal(data.message || "", "text-gray-300");
     } else {
-      appendToTerminal('$ ⚠️ Error al destruir el escenario.', 'text-orange-400');
-      if (data.stderr) appendToTerminal(data.stderr, 'text-red-300');
+      appendToTerminal('$ ⚠️ Error al iniciar la destrucción.', 'text-orange-400');
       if (data.message) appendToTerminal(data.message, 'text-red-300');
     }
 
   } catch (err) {
     appendToTerminal(`$ ❌ Error al conectar con el backend: ${err}`, 'text-red-400');
+
   } finally {
+    // Desbloquear UI
     buttons.forEach(btn => {
       btn.disabled = false;
       btn.classList.remove("opacity-50", "cursor-not-allowed");
     });
 
     showOverlay(false);
-
-    if (boton) boton.innerText = "Destruir Escenario";
   }
 }
 
+async function destruirScenario() {
+    appendToTerminal('$ ⏳ Iniciando destrucción...', 'text-yellow-400');
+    showOverlay(true);
 
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach(b => {
+        b.disabled = true;
+        b.classList.add("opacity-50", "cursor-not-allowed");
+    });
+
+    try {
+        const res = await fetch("http://localhost:5001/api/destroy_scenario", {
+            method: "POST"
+        });
+
+        const info = await res.json();
+        appendToTerminal(info.message, "text-gray-300");
+
+        if (info.status === "running") {
+            monitorDestroyProgress();
+        }
+
+    } catch (err) {
+        appendToTerminal(`❌ Error de conexión: ${err}`, "text-red-400");
+    }
+}
+
+
+async function monitorDestroyProgress() {
+    const check = async () => {
+        const res = await fetch("http://localhost:5001/api/destroy_status");
+        const status = await res.json();
+
+        if (status.status === "running") {
+            appendToTerminal('⏳ Destrucción en curso...', 'text-yellow-400');
+            setTimeout(check, 5000);
+        } else {
+            appendToTerminal('✔ Escenario destruido.', 'text-green-400');
+            showToast("✔ Escenario eliminado");
+            showOverlay(false);
+
+            document.querySelectorAll("button").forEach(b => {
+                b.disabled = false;
+                b.classList.remove("opacity-50", "cursor-not-allowed");
+            });
+        }
+    };
+
+    setTimeout(check, 3000);
+}
 
 
 async function loadScenario() {
