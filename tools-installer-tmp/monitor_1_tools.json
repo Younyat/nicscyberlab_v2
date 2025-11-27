@@ -8,6 +8,6 @@
     "ip": "10.0.2.17",
     "status": "ACTIVE",
     "tools": [
-        "zeek"
+        "snort"
     ]
 }

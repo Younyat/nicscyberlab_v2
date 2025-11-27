@@ -33245,3 +33245,1603 @@ echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
 2025-11-27 16:40:04,498 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
 2025-11-27 16:40:04,501 - INFO - 🔎 Buscando JSON para instancia: monitor 1
 2025-11-27 16:40:04,502 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-11-27 16:58:11,414 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 16:58:11,517 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 16:58:11,553 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 16:58:11,605 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 16:58:11,659 - INFO - 📤 Salida del script:
+2025-11-27 16:58:11,660 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 16:58:11,661 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 16:58:11,662 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 16:58:11,778 - INFO - 📤 Salida del script:
+2025-11-27 16:58:11,778 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 16:58:11,779 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 16:58:11,779 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 16:58:11,802 - INFO - 📤 Salida del script:
+2025-11-27 16:58:11,803 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 16:58:11,803 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 16:58:11,803 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 16:58:11,860 - INFO - 📤 Salida del script:
+2025-11-27 16:58:11,861 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 16:58:11,861 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 16:58:11,861 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 16:58:20,589 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 16:58:20,589 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 16:58:22,342 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 16:58:22,342 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-11-27 16:58:23,582 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 16:58:23,583 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-11-27 16:58:25,862 - INFO - ➡ Método HTTP:
+2025-11-27 16:58:25,862 - INFO - POST
+2025-11-27 16:58:25,862 - INFO - ➡ Headers:
+2025-11-27 16:58:25,863 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '184', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 16:58:25,863 - INFO - ➡ request.data crudo:
+2025-11-27 16:58:25,863 - INFO - b'{"id":"5d727d19-3c14-40d9-a801-e917cc9f80ca","name":"monitor 1","type":"monitor","ip_private":"192.168.100.108","ip_floating":"10.0.2.17","ip":"10.0.2.17","status":"ACTIVE","tools":[]}'
+2025-11-27 16:58:25,864 - INFO - 📂 Guardado en:
+2025-11-27 16:58:25,864 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-11-27 16:58:25,870 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 16:58:25,871 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 16:58:38,358 - INFO - ➡ Método HTTP:
+2025-11-27 16:58:38,359 - INFO - POST
+2025-11-27 16:58:38,359 - INFO - ➡ Headers:
+2025-11-27 16:58:38,359 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '191', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 16:58:38,359 - INFO - ➡ request.data crudo:
+2025-11-27 16:58:38,359 - INFO - b'{"id":"5d727d19-3c14-40d9-a801-e917cc9f80ca","name":"monitor 1","type":"monitor","ip_private":"192.168.100.108","ip_floating":"10.0.2.17","ip":"10.0.2.17","status":"ACTIVE","tools":["snort"]}'
+2025-11-27 16:58:38,360 - INFO - 📂 Guardado en:
+2025-11-27 16:58:38,360 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-11-27 16:58:38,369 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 16:58:38,371 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 16:58:41,838 - INFO - ➡ Método HTTP:
+2025-11-27 16:58:41,839 - INFO - POST
+2025-11-27 16:58:41,839 - INFO - ➡ Headers:
+2025-11-27 16:58:41,839 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '191', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 16:58:41,839 - INFO - ➡ request.data crudo:
+2025-11-27 16:58:41,840 - INFO - b'{"id":"5d727d19-3c14-40d9-a801-e917cc9f80ca","name":"monitor 1","type":"monitor","ip_private":"192.168.100.108","ip_floating":"10.0.2.17","ip":"10.0.2.17","status":"ACTIVE","tools":["snort"]}'
+2025-11-27 16:58:41,840 - INFO - 📂 Guardado en:
+2025-11-27 16:58:41,840 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-11-27 16:58:41,845 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 16:58:41,846 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 16:58:43,621 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 16:58:43,621 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 16:58:44,341 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 16:58:44,341 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-11-27 16:58:45,292 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 16:58:45,292 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 16:58:47,763 - INFO - ➡ Método HTTP:
+2025-11-27 16:58:47,763 - INFO - POST
+2025-11-27 16:58:47,763 - INFO - ➡ Headers:
+2025-11-27 16:58:47,764 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '214', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 16:58:47,764 - INFO - ➡ request.data crudo:
+2025-11-27 16:58:47,764 - INFO - b'{"instance":"monitor 1","id":"5d727d19-3c14-40d9-a801-e917cc9f80ca","name":"monitor 1","type":"monitor","ip_private":"192.168.100.108","ip_floating":"10.0.2.17","ip":"10.0.2.17","status":"ACTIVE","tools":["snort"]}'
+2025-11-27 16:58:47,766 - INFO - 📂 Guardado en:
+2025-11-27 16:58:47,767 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-11-27 16:58:47,771 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 16:58:47,771 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-11-27 16:58:58,622 - INFO - 🚀 Iniciando instalación de tools...
+2025-11-27 17:03:14,984 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:03:15,046 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:03:15,151 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:03:15,233 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:03:15,260 - INFO - 📤 Salida del script:
+2025-11-27 17:03:15,262 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:03:15,262 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:03:15,262 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:03:15,386 - INFO - 📤 Salida del script:
+2025-11-27 17:03:15,386 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:03:15,386 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:03:15,386 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:03:15,407 - INFO - 📤 Salida del script:
+2025-11-27 17:03:15,408 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:03:15,408 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:03:15,408 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:03:15,521 - INFO - 📤 Salida del script:
+2025-11-27 17:03:15,522 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 17:03:15,522 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:03:15,522 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:03:21,008 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 17:03:21,009 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 17:03:21,951 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 17:03:21,952 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-11-27 17:03:22,864 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 17:03:22,864 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-11-27 17:03:25,233 - INFO - 🚀 Iniciando instalación de tools...
+2025-11-27 17:08:00,607 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:08:00,651 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:08:00,699 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:08:00,766 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:08:00,900 - INFO - 📤 Salida del script:
+2025-11-27 17:08:00,900 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:08:00,901 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:08:00,901 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:08:00,932 - INFO - 📤 Salida del script:
+2025-11-27 17:08:00,932 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:08:00,933 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:08:00,933 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:08:00,987 - INFO - 📤 Salida del script:
+2025-11-27 17:08:00,988 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:08:00,989 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:08:00,989 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:08:01,061 - INFO - 📤 Salida del script:
+2025-11-27 17:08:01,063 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 17:08:01,063 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:08:01,063 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:08:06,651 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 17:08:06,652 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 17:08:10,891 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 17:08:10,891 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-11-27 17:08:11,659 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 17:08:11,659 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-11-27 17:08:12,202 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 17:08:12,202 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 17:08:13,884 - INFO - 🚀 Iniciando instalación de tools...
+2025-11-27 17:10:50,207 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:10:50,253 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:10:50,324 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:10:50,377 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:10:50,461 - INFO - 📤 Salida del script:
+2025-11-27 17:10:50,461 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:10:50,463 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:10:50,463 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:10:50,498 - INFO - 📤 Salida del script:
+2025-11-27 17:10:50,498 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:10:50,498 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:10:50,502 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:10:50,591 - INFO - 📤 Salida del script:
+2025-11-27 17:10:50,591 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:10:50,591 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:10:50,592 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:10:50,650 - INFO - 📤 Salida del script:
+2025-11-27 17:10:50,650 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 17:10:50,651 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:10:50,651 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:10:59,413 - INFO - 🚀 Iniciando instalación de tools...
+2025-11-27 17:14:10,721 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:14:10,797 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:14:10,852 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:14:10,913 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:14:11,021 - INFO - 📤 Salida del script:
+2025-11-27 17:14:11,022 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:14:11,022 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:14:11,023 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:14:11,048 - INFO - 📤 Salida del script:
+2025-11-27 17:14:11,050 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:14:11,050 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:14:11,050 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:14:11,139 - INFO - 📤 Salida del script:
+2025-11-27 17:14:11,140 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:14:11,140 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:14:11,141 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:14:11,190 - INFO - 📤 Salida del script:
+2025-11-27 17:14:11,190 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 17:14:11,191 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:14:11,191 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:14:19,216 - INFO - 🚀 Iniciando instalación de tools...
+2025-11-27 17:16:12,072 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:16:12,079 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:16:12,159 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:16:12,227 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:16:12,330 - INFO - 📤 Salida del script:
+2025-11-27 17:16:12,330 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:16:12,330 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:16:12,330 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:16:12,340 - INFO - 📤 Salida del script:
+2025-11-27 17:16:12,340 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:16:12,341 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:16:12,341 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:16:12,418 - INFO - 📤 Salida del script:
+2025-11-27 17:16:12,418 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:16:12,419 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:16:12,420 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:16:12,489 - INFO - 📤 Salida del script:
+2025-11-27 17:16:12,493 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 17:16:12,493 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:16:12,494 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:16:18,026 - INFO - 🚀 Iniciando instalación de tools...
+2025-11-27 17:19:07,381 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:19:07,422 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:19:07,498 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:19:07,592 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:19:07,651 - INFO - 📤 Salida del script:
+2025-11-27 17:19:07,651 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:19:07,651 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:19:07,651 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:19:07,681 - INFO - 📤 Salida del script:
+2025-11-27 17:19:07,682 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:19:07,683 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:19:07,683 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:19:07,775 - INFO - 📤 Salida del script:
+2025-11-27 17:19:07,776 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:19:07,776 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:19:07,776 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:19:07,848 - INFO - 📤 Salida del script:
+2025-11-27 17:19:07,849 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 17:19:07,849 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:19:07,849 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:19:13,459 - INFO - 🚀 Iniciando instalación de tools...
+2025-11-27 17:19:15,348 - INFO - 🚀 Iniciando instalación de tools...
+2025-11-27 17:30:00,566 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:30:00,639 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:30:00,679 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:30:00,777 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:30:00,807 - INFO - 📤 Salida del script:
+2025-11-27 17:30:00,807 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:30:00,808 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:30:00,808 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:30:00,898 - INFO - 📤 Salida del script:
+2025-11-27 17:30:00,899 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:30:00,899 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:30:00,900 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:30:00,921 - INFO - 📤 Salida del script:
+2025-11-27 17:30:00,921 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:30:00,921 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:30:00,922 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:30:01,031 - INFO - 📤 Salida del script:
+2025-11-27 17:30:01,031 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 17:30:01,032 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:30:01,033 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:30:05,374 - INFO - 🚀 Iniciando instalación de tools...
+2025-11-27 17:32:52,564 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:32:52,607 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:32:52,667 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:32:52,729 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:32:52,846 - INFO - 📤 Salida del script:
+2025-11-27 17:32:52,847 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:32:52,847 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:32:52,848 - INFO - 📤 Salida del script:
+2025-11-27 17:32:52,848 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:32:52,849 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:32:52,849 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:32:52,849 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:32:52,943 - INFO - 📤 Salida del script:
+2025-11-27 17:32:52,944 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:32:52,944 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:32:52,945 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:32:53,004 - INFO - 📤 Salida del script:
+2025-11-27 17:32:53,004 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 17:32:53,006 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:32:53,006 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:32:57,580 - INFO - 🚀 Iniciando instalación de tools...
+2025-11-27 17:36:14,220 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:36:14,259 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:36:14,357 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:36:14,357 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:36:14,511 - INFO - 📤 Salida del script:
+2025-11-27 17:36:14,512 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:36:14,512 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:36:14,513 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:36:14,552 - INFO - 📤 Salida del script:
+2025-11-27 17:36:14,553 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:36:14,554 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:36:14,554 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:36:14,631 - INFO - 📤 Salida del script:
+2025-11-27 17:36:14,633 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 17:36:14,633 - INFO - 📤 Salida del script:
+2025-11-27 17:36:14,633 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:36:14,633 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 17:36:14,633 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:36:14,633 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:36:14,633 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:36:20,791 - INFO - 🚀 Iniciando instalación de tools...
+2025-11-27 17:37:55,454 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:37:55,498 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:37:55,531 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:37:55,612 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:37:55,722 - INFO - 📤 Salida del script:
+2025-11-27 17:37:55,722 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:37:55,723 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:37:55,723 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:37:55,762 - INFO - 📤 Salida del script:
+2025-11-27 17:37:55,762 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:37:55,763 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:37:55,763 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:37:55,794 - INFO - 📤 Salida del script:
+2025-11-27 17:37:55,794 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:37:55,794 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:37:55,795 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:37:55,863 - INFO - 📤 Salida del script:
+2025-11-27 17:37:55,868 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 17:37:55,869 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:37:55,869 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:38:00,717 - INFO - 🚀 Iniciando instalación de tools...
+2025-11-27 17:41:46,035 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:41:46,085 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:41:46,088 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:41:46,160 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:41:46,308 - INFO - 📤 Salida del script:
+2025-11-27 17:41:46,309 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:41:46,311 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:41:46,311 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:41:46,355 - INFO - 📤 Salida del script:
+2025-11-27 17:41:46,356 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:41:46,356 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:41:46,356 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:41:46,360 - INFO - 📤 Salida del script:
+2025-11-27 17:41:46,360 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:41:46,360 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:41:46,361 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:41:46,434 - INFO - 📤 Salida del script:
+2025-11-27 17:41:46,435 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 17:41:46,437 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:41:46,437 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:41:51,548 - INFO - 🚀 Iniciando instalación de tools...
+2025-11-27 17:46:04,484 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:46:04,501 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:46:04,544 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:46:04,561 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 17:46:04,757 - INFO - 📤 Salida del script:
+2025-11-27 17:46:04,758 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 17:46:04,759 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 17:46:04,759 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:46:04,814 - INFO - 📤 Salida del script:
+2025-11-27 17:46:04,814 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 17:46:04,814 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:46:04,816 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:46:04,832 - INFO - 📤 Salida del script:
+2025-11-27 17:46:04,832 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 17:46:04,833 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:46:04,833 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:46:04,871 - INFO - 📤 Salida del script:
+2025-11-27 17:46:04,872 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 17:46:04,872 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:46:04,873 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 17:46:09,220 - INFO - 🚀 Iniciando instalación de tools...
