@@ -576,9 +576,6 @@ def get_openstack_connection():
         identity_interface="public"
     )
 
-
-
-
 @app.route("/api/openstack/instances", methods=["GET"])
 def api_get_openstack_instances():
     try:
@@ -587,17 +584,29 @@ def api_get_openstack_instances():
         instances = []
 
         for server in conn.compute.servers():
-            ip = "N/A"
+
+            ip_private = None
+            ip_floating = None
+
+            # Leer direcciones correctamente
             for net_name, addresses in server.addresses.items():
-                if addresses:
-                    ip = addresses[0].get("addr")
-                    break
+                for addr in addresses:
+                    ip = addr.get("addr")
+                    if addr.get("OS-EXT-IPS:type") == "floating":
+                        ip_floating = ip
+                    else:
+                        ip_private = ip
 
             instances.append({
                 "id": server.id,
                 "name": server.name,
                 "status": server.status,
-                "ip": ip,
+
+                # 🔥 Nuevos campos
+                "ip_private": ip_private,
+                "ip_floating": ip_floating,
+                "ip": ip_floating or ip_private or "N/A",
+
                 "image": server.image["id"] if server.image else None,
                 "flavor": server.flavor["id"] if server.flavor else None
             })
@@ -607,7 +616,6 @@ def api_get_openstack_instances():
     except Exception as e:
         logger.error(f"❌ Error al consultar instancias OpenStack: {e}", exc_info=True)
         return jsonify({"error": str(e)}), 500
-
 
 
 @app.route('/api/add_tool_to_instance', methods=['POST'])

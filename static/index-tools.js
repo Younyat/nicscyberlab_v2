@@ -90,17 +90,27 @@ async function loadExistingScenario() {
             return;
         }
 
-        const scenario = {
-            nodes: data.instances.map((vm, i) => ({
-                id: vm.id,
-                name: vm.name,
-                type: detectType(vm.name),
-                ip: vm.ip,
-                tools: [],
-                position: { x: 200 + i * 200, y: 150 }
-            })),
-            edges: []
-        };
+const scenario = {
+    nodes: data.instances.map((vm, i) => ({
+        id: vm.id,
+        name: vm.name,
+        type: detectType(vm.name),
+
+        // 🔥 Nueva información
+        ip: vm.ip_floating || vm.ip_private || "N/A",
+        ip_private: vm.ip_private,
+        ip_floating: vm.ip_floating,
+        image: vm.image_name,
+        flavor: vm.flavor_name,
+        status: vm.status,
+
+        tools: [],
+
+        position: { x: 200 + i * 200, y: 150 }
+    })),
+    edges: []
+};
+
 
         loadScenarioGraph(scenario);
         loadScenarioTools(scenario);
@@ -153,12 +163,18 @@ function loadScenarioGraph(scenario) {
     scenario.nodes.forEach(n => {
         elements.push({
             data: {
-                id: n.id,
-                label: n.name,
-                type: n.type,
-                ip: n.ip,
-                tools: n.tools || []
-            },
+                    id: n.id,
+                    label: n.name,
+                    type: n.type,
+                    ip_private: n.ip_private,
+                    ip_floating: n.ip_floating,
+                    ip: n.ip_floating || n.ip_private || "N/A",
+
+                    status: n.status,
+                    image: n.image,
+                    flavor: n.flavor,
+                    tools: n.tools || []
+                },
             position: n.position
         });
     });
@@ -176,6 +192,10 @@ function loadScenarioGraph(scenario) {
         const node = evt.target.data();
         selectInstanceFromScenario(node);
     });
+    /* ============================================================
+   🎨 Aplicar colores según el estado de OpenStack
+   ============================================================ */
+   
 }
 
 /* ============================================================
@@ -209,7 +229,7 @@ async function selectInstanceFromScenario(node) {
 
     document.getElementById("selected-instance-info").classList.remove("hidden");
     document.getElementById("instance-name").innerText = instanceName;
-    document.getElementById("instance-ip").innerText = node.ip;
+    document.getElementById("instance-ip").innerText = `Privada: ${node.ip_private || "N/A"} | Flotante: ${node.ip_floating || "N/A"}`;
 
     // === 🔥 Cargar tools desde backend ===
     let tools = [];
