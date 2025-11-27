@@ -620,32 +620,29 @@ def api_get_openstack_instances():
 
 @app.route('/api/add_tool_to_instance', methods=['POST'])
 def add_tool_to_instance():
-    
-
-    # DEBUG PROFUNDO
     print("➡ Método HTTP:", request.method)
     print("➡ Headers:", dict(request.headers))
     print("➡ request.data crudo:", request.data)
-    print("➡ request.form:", request.form)
-    print("➡ request.args:", request.args)
 
     try:
         data = request.get_json(force=True)
-      
 
         if not data:
-            print("❌ JSON es None o vacío")
             return jsonify({"status": "error", "msg": "JSON vacío"}), 400
 
-        # Procesado normal
-        instance = data.get("instance", "unknown")
+        # 🔥 Tomamos "instance" correctamente
+        instance = data.get("instance") or data.get("name")
+
+        if not instance:
+            return jsonify({"status": "error", "msg": "Falta el nombre de instancia"}), 400
+
         tools = data.get("tools", [])
 
         BASE = os.path.abspath(os.path.dirname(__file__))
         DIR = os.path.join(BASE, "tools-installer-tmp")
         os.makedirs(DIR, exist_ok=True)
 
-        safe = re.sub(r'[^a-zA-Z0-9_-]', '_', instance)
+        safe = re.sub(r'[^a-zA-Z0-9_-]', '_', instance.lower())
         path = os.path.join(DIR, f"{safe}_tools.json")
 
         with open(path, "w") as f:
@@ -659,6 +656,12 @@ def add_tool_to_instance():
         print("❌ ERROR:", e)
         return jsonify({"status": "error", "msg": str(e)}), 500
 
+
+
+
+
+
+        
 
 @app.route('/api/read_tools_configs', methods=['GET'])
 def read_tools_configs():

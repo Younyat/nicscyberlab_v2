@@ -32645,3 +32645,603 @@ echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
 2025-11-27 16:15:30,182 - INFO - 📄 JSON encontrado: victim_3_tools.json
 2025-11-27 16:15:30,769 - INFO - 🔎 Buscando JSON para instancia: attack 4
 2025-11-27 16:15:30,770 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 16:17:46,699 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 16:17:46,792 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 16:17:46,822 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 16:17:46,943 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 16:17:46,996 - INFO - 📤 Salida del script:
+2025-11-27 16:17:46,996 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+
+2025-11-27 16:17:46,997 - WARNING - 📥 Errores durante la ejecución del script:
+2025-11-27 16:17:46,997 - WARNING - jq: error: Could not open file /tmp/clouds.json: No existe el archivo o el directorio
+
+2025-11-27 16:17:46,998 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 2
+2025-11-27 16:17:46,998 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 16:17:47,114 - INFO - 📤 Salida del script:
+2025-11-27 16:17:47,115 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 16:17:47,115 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 16:17:47,116 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 16:17:47,164 - INFO - 📤 Salida del script:
+2025-11-27 16:17:47,164 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 16:17:47,165 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 16:17:47,165 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 16:17:47,266 - INFO - 📤 Salida del script:
+2025-11-27 16:17:47,267 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 16:17:47,267 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 16:17:47,268 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 16:23:57,440 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 16:23:57,442 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 16:24:02,269 - INFO - ➡ Método HTTP:
+2025-11-27 16:24:02,269 - INFO - POST
+2025-11-27 16:24:02,269 - INFO - ➡ Headers:
+2025-11-27 16:24:02,269 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '192', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 16:24:02,270 - INFO - ➡ request.data crudo:
+2025-11-27 16:24:02,270 - INFO - b'{"id":"793b14d0-7d16-4a98-8fa0-dd0052f97aad","name":"attack 4","type":"attack","ip_private":"192.168.100.142","ip_floating":"10.0.2.30","ip":"10.0.2.30","status":"ACTIVE","tools":["suricata"]}'
+2025-11-27 16:24:02,270 - INFO - ➡ request.form:
+2025-11-27 16:24:02,270 - INFO - ImmutableMultiDict([])
+2025-11-27 16:24:02,270 - INFO - ➡ request.args:
+2025-11-27 16:24:02,270 - INFO - ImmutableMultiDict([])
+2025-11-27 16:24:02,271 - INFO - 📂 Guardado en:
+2025-11-27 16:24:02,271 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/unknown_tools.json
+2025-11-27 16:24:02,275 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 16:24:02,276 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 16:24:05,421 - INFO - ➡ Método HTTP:
+2025-11-27 16:24:05,421 - INFO - POST
+2025-11-27 16:24:05,421 - INFO - ➡ Headers:
+2025-11-27 16:24:05,421 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '192', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 16:24:05,422 - INFO - ➡ request.data crudo:
+2025-11-27 16:24:05,422 - INFO - b'{"id":"793b14d0-7d16-4a98-8fa0-dd0052f97aad","name":"attack 4","type":"attack","ip_private":"192.168.100.142","ip_floating":"10.0.2.30","ip":"10.0.2.30","status":"ACTIVE","tools":["suricata"]}'
+2025-11-27 16:24:05,422 - INFO - ➡ request.form:
+2025-11-27 16:24:05,422 - INFO - ImmutableMultiDict([])
+2025-11-27 16:24:05,422 - INFO - ➡ request.args:
+2025-11-27 16:24:05,422 - INFO - ImmutableMultiDict([])
+2025-11-27 16:24:05,423 - INFO - 📂 Guardado en:
+2025-11-27 16:24:05,423 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/unknown_tools.json
+2025-11-27 16:24:05,428 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 16:24:05,428 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 16:24:06,500 - INFO - ➡ Método HTTP:
+2025-11-27 16:24:06,500 - INFO - POST
+2025-11-27 16:24:06,500 - INFO - ➡ Headers:
+2025-11-27 16:24:06,500 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '192', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 16:24:06,501 - INFO - ➡ request.data crudo:
+2025-11-27 16:24:06,501 - INFO - b'{"id":"793b14d0-7d16-4a98-8fa0-dd0052f97aad","name":"attack 4","type":"attack","ip_private":"192.168.100.142","ip_floating":"10.0.2.30","ip":"10.0.2.30","status":"ACTIVE","tools":["suricata"]}'
+2025-11-27 16:24:06,501 - INFO - ➡ request.form:
+2025-11-27 16:24:06,501 - INFO - ImmutableMultiDict([])
+2025-11-27 16:24:06,501 - INFO - ➡ request.args:
+2025-11-27 16:24:06,501 - INFO - ImmutableMultiDict([])
+2025-11-27 16:24:06,502 - INFO - 📂 Guardado en:
+2025-11-27 16:24:06,502 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/unknown_tools.json
+2025-11-27 16:24:06,505 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 16:24:06,505 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 16:24:06,877 - INFO - ➡ Método HTTP:
+2025-11-27 16:24:06,878 - INFO - POST
+2025-11-27 16:24:06,878 - INFO - ➡ Headers:
+2025-11-27 16:24:06,878 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '192', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 16:24:06,878 - INFO - ➡ request.data crudo:
+2025-11-27 16:24:06,879 - INFO - b'{"id":"793b14d0-7d16-4a98-8fa0-dd0052f97aad","name":"attack 4","type":"attack","ip_private":"192.168.100.142","ip_floating":"10.0.2.30","ip":"10.0.2.30","status":"ACTIVE","tools":["suricata"]}'
+2025-11-27 16:24:06,879 - INFO - ➡ request.form:
+2025-11-27 16:24:06,879 - INFO - ImmutableMultiDict([])
+2025-11-27 16:24:06,879 - INFO - ➡ request.args:
+2025-11-27 16:24:06,879 - INFO - ImmutableMultiDict([])
+2025-11-27 16:24:06,880 - INFO - 📂 Guardado en:
+2025-11-27 16:24:06,880 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/unknown_tools.json
+2025-11-27 16:24:06,885 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 16:24:06,885 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 16:24:07,860 - INFO - ➡ Método HTTP:
+2025-11-27 16:24:07,860 - INFO - POST
+2025-11-27 16:24:07,860 - INFO - ➡ Headers:
+2025-11-27 16:24:07,860 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '192', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 16:24:07,860 - INFO - ➡ request.data crudo:
+2025-11-27 16:24:07,860 - INFO - b'{"id":"793b14d0-7d16-4a98-8fa0-dd0052f97aad","name":"attack 4","type":"attack","ip_private":"192.168.100.142","ip_floating":"10.0.2.30","ip":"10.0.2.30","status":"ACTIVE","tools":["suricata"]}'
+2025-11-27 16:24:07,860 - INFO - ➡ request.form:
+2025-11-27 16:24:07,861 - INFO - ImmutableMultiDict([])
+2025-11-27 16:24:07,861 - INFO - ➡ request.args:
+2025-11-27 16:24:07,861 - INFO - ImmutableMultiDict([])
+2025-11-27 16:24:07,861 - INFO - 📂 Guardado en:
+2025-11-27 16:24:07,862 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/unknown_tools.json
+2025-11-27 16:24:07,865 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 16:24:07,866 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 16:24:10,060 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 16:24:10,061 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 16:24:11,292 - INFO - ➡ Método HTTP:
+2025-11-27 16:24:11,292 - INFO - POST
+2025-11-27 16:24:11,292 - INFO - ➡ Headers:
+2025-11-27 16:24:11,293 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '192', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 16:24:11,293 - INFO - ➡ request.data crudo:
+2025-11-27 16:24:11,293 - INFO - b'{"id":"793b14d0-7d16-4a98-8fa0-dd0052f97aad","name":"attack 4","type":"attack","ip_private":"192.168.100.142","ip_floating":"10.0.2.30","ip":"10.0.2.30","status":"ACTIVE","tools":["suricata"]}'
+2025-11-27 16:24:11,293 - INFO - ➡ request.form:
+2025-11-27 16:24:11,293 - INFO - ImmutableMultiDict([])
+2025-11-27 16:24:11,293 - INFO - ➡ request.args:
+2025-11-27 16:24:11,294 - INFO - ImmutableMultiDict([])
+2025-11-27 16:24:11,294 - INFO - 📂 Guardado en:
+2025-11-27 16:24:11,294 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/unknown_tools.json
+2025-11-27 16:24:11,298 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 16:24:11,298 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 16:24:12,381 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 16:24:12,381 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-11-27 16:24:14,062 - INFO - ➡ Método HTTP:
+2025-11-27 16:24:14,063 - INFO - POST
+2025-11-27 16:24:14,063 - INFO - ➡ Headers:
+2025-11-27 16:24:14,063 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '194', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 16:24:14,064 - INFO - ➡ request.data crudo:
+2025-11-27 16:24:14,064 - INFO - b'{"id":"02c837ce-88e3-4df6-ae4e-ecc087142858","name":"victim 3","type":"victim","ip_private":"192.168.100.101","ip_floating":"10.0.2.162","ip":"10.0.2.162","status":"ACTIVE","tools":["suricata"]}'
+2025-11-27 16:24:14,064 - INFO - ➡ request.form:
+2025-11-27 16:24:14,064 - INFO - ImmutableMultiDict([])
+2025-11-27 16:24:14,064 - INFO - ➡ request.args:
+2025-11-27 16:24:14,064 - INFO - ImmutableMultiDict([])
+2025-11-27 16:24:14,065 - INFO - 📂 Guardado en:
+2025-11-27 16:24:14,065 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/unknown_tools.json
+2025-11-27 16:24:14,068 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 16:24:14,069 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-11-27 16:24:15,300 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 16:24:15,301 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 16:24:16,604 - INFO - ➡ Método HTTP:
+2025-11-27 16:24:16,605 - INFO - POST
+2025-11-27 16:24:16,605 - INFO - ➡ Headers:
+2025-11-27 16:24:16,605 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '192', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 16:24:16,605 - INFO - ➡ request.data crudo:
+2025-11-27 16:24:16,605 - INFO - b'{"id":"793b14d0-7d16-4a98-8fa0-dd0052f97aad","name":"attack 4","type":"attack","ip_private":"192.168.100.142","ip_floating":"10.0.2.30","ip":"10.0.2.30","status":"ACTIVE","tools":["suricata"]}'
+2025-11-27 16:24:16,605 - INFO - ➡ request.form:
+2025-11-27 16:24:16,605 - INFO - ImmutableMultiDict([])
+2025-11-27 16:24:16,606 - INFO - ➡ request.args:
+2025-11-27 16:24:16,606 - INFO - ImmutableMultiDict([])
+2025-11-27 16:24:16,606 - INFO - 📂 Guardado en:
+2025-11-27 16:24:16,606 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/unknown_tools.json
+2025-11-27 16:24:16,609 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 16:24:16,610 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 16:24:19,205 - INFO - ➡ Método HTTP:
+2025-11-27 16:24:19,205 - INFO - POST
+2025-11-27 16:24:19,205 - INFO - ➡ Headers:
+2025-11-27 16:24:19,205 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '188', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 16:24:19,206 - INFO - ➡ request.data crudo:
+2025-11-27 16:24:19,206 - INFO - b'{"id":"793b14d0-7d16-4a98-8fa0-dd0052f97aad","name":"attack 4","type":"attack","ip_private":"192.168.100.142","ip_floating":"10.0.2.30","ip":"10.0.2.30","status":"ACTIVE","tools":["nmap"]}'
+2025-11-27 16:24:19,206 - INFO - ➡ request.form:
+2025-11-27 16:24:19,206 - INFO - ImmutableMultiDict([])
+2025-11-27 16:24:19,207 - INFO - ➡ request.args:
+2025-11-27 16:24:19,207 - INFO - ImmutableMultiDict([])
+2025-11-27 16:24:19,207 - INFO - 📂 Guardado en:
+2025-11-27 16:24:19,208 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/unknown_tools.json
+2025-11-27 16:24:19,212 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 16:24:19,213 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 16:24:24,805 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 16:24:24,806 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-11-27 16:24:29,774 - INFO - ➡ Método HTTP:
+2025-11-27 16:24:29,774 - INFO - POST
+2025-11-27 16:24:29,774 - INFO - ➡ Headers:
+2025-11-27 16:24:29,774 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '199', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 16:24:29,775 - INFO - ➡ request.data crudo:
+2025-11-27 16:24:29,775 - INFO - b'{"id":"5d727d19-3c14-40d9-a801-e917cc9f80ca","name":"monitor 1","type":"monitor","ip_private":"192.168.100.108","ip_floating":"10.0.2.17","ip":"10.0.2.17","status":"ACTIVE","tools":["snort","snort"]}'
+2025-11-27 16:24:29,775 - INFO - ➡ request.form:
+2025-11-27 16:24:29,775 - INFO - ImmutableMultiDict([])
+2025-11-27 16:24:29,776 - INFO - ➡ request.args:
+2025-11-27 16:24:29,776 - INFO - ImmutableMultiDict([])
+2025-11-27 16:24:29,776 - INFO - 📂 Guardado en:
+2025-11-27 16:24:29,777 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/unknown_tools.json
+2025-11-27 16:24:29,780 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 16:24:29,781 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-11-27 16:29:09,224 - INFO - ➡ Método HTTP:
+2025-11-27 16:29:09,224 - INFO - POST
+2025-11-27 16:29:09,224 - INFO - ➡ Headers:
+2025-11-27 16:29:09,225 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '198', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 16:29:09,225 - INFO - ➡ request.data crudo:
+2025-11-27 16:29:09,225 - INFO - b'{"id":"5d727d19-3c14-40d9-a801-e917cc9f80ca","name":"monitor 1","type":"monitor","ip_private":"192.168.100.108","ip_floating":"10.0.2.17","ip":"10.0.2.17","status":"ACTIVE","tools":["snort","nmap"]}'
+2025-11-27 16:29:09,225 - INFO - ➡ request.form:
+2025-11-27 16:29:09,225 - INFO - ImmutableMultiDict([])
+2025-11-27 16:29:09,225 - INFO - ➡ request.args:
+2025-11-27 16:29:09,226 - INFO - ImmutableMultiDict([])
+2025-11-27 16:29:09,226 - INFO - 📂 Guardado en:
+2025-11-27 16:29:09,226 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/unknown_tools.json
+2025-11-27 16:29:09,235 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 16:29:09,235 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-11-27 16:35:00,546 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 16:35:00,563 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 16:35:00,617 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 16:35:00,649 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 16:35:00,847 - INFO - 📤 Salida del script:
+2025-11-27 16:35:00,849 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 16:35:00,849 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 16:35:00,854 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 16:35:00,886 - INFO - 📤 Salida del script:
+2025-11-27 16:35:00,886 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 16:35:00,886 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 16:35:00,887 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 16:35:00,889 - INFO - 📤 Salida del script:
+2025-11-27 16:35:00,890 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 16:35:00,890 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 16:35:00,891 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 16:35:00,950 - INFO - 📤 Salida del script:
+2025-11-27 16:35:00,951 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 16:35:00,952 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 16:35:00,952 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 16:35:13,596 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 16:35:13,597 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 16:35:16,204 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 16:35:16,205 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-11-27 16:35:17,316 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 16:35:17,316 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-11-27 16:35:18,700 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 16:35:18,701 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 16:35:22,924 - INFO - ➡ Método HTTP:
+2025-11-27 16:35:22,924 - INFO - POST
+2025-11-27 16:35:22,924 - INFO - ➡ Headers:
+2025-11-27 16:35:22,925 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '192', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 16:35:22,925 - INFO - ➡ request.data crudo:
+2025-11-27 16:35:22,925 - INFO - b'{"id":"793b14d0-7d16-4a98-8fa0-dd0052f97aad","name":"attack 4","type":"attack","ip_private":"192.168.100.142","ip_floating":"10.0.2.30","ip":"10.0.2.30","status":"ACTIVE","tools":["suricata"]}'
+2025-11-27 16:35:22,926 - INFO - 📂 Guardado en:
+2025-11-27 16:35:22,926 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/attack_4_tools.json
+2025-11-27 16:35:22,931 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 16:35:22,931 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 16:38:54,040 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 16:38:54,118 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 16:38:54,119 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 16:38:54,195 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 16:38:54,315 - INFO - 📤 Salida del script:
+2025-11-27 16:38:54,317 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 16:38:54,317 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 16:38:54,318 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 16:38:54,380 - INFO - 📤 Salida del script:
+2025-11-27 16:38:54,381 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 16:38:54,381 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 16:38:54,382 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 16:38:54,396 - INFO - 📤 Salida del script:
+2025-11-27 16:38:54,398 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 16:38:54,398 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 16:38:54,398 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 16:38:54,448 - INFO - 📤 Salida del script:
+2025-11-27 16:38:54,448 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 16:38:54,449 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 16:38:54,449 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 16:39:04,264 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 16:39:05,943 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 16:39:06,569 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 16:39:07,176 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 16:39:08,470 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 16:39:11,190 - INFO - ➡ Método HTTP:
+2025-11-27 16:39:11,191 - INFO - POST
+2025-11-27 16:39:11,191 - INFO - ➡ Headers:
+2025-11-27 16:39:11,191 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '213', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 16:39:11,191 - INFO - ➡ request.data crudo:
+2025-11-27 16:39:11,191 - INFO - b'{"instance":"victim 3","id":"02c837ce-88e3-4df6-ae4e-ecc087142858","name":"victim 3","type":"victim","ip_private":"192.168.100.101","ip_floating":"10.0.2.162","ip":"10.0.2.162","status":"ACTIVE","tools":["wazuh"]}'
+2025-11-27 16:39:11,192 - INFO - 📂 Guardado en:
+2025-11-27 16:39:11,193 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/victim_3_tools.json
+2025-11-27 16:39:11,198 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 16:39:11,198 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-11-27 16:39:12,694 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 16:39:12,694 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-11-27 16:39:14,064 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 16:39:14,064 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 16:39:17,343 - INFO - ➡ Método HTTP:
+2025-11-27 16:39:17,343 - INFO - POST
+2025-11-27 16:39:17,343 - INFO - ➡ Headers:
+2025-11-27 16:39:17,343 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '214', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 16:39:17,344 - INFO - ➡ request.data crudo:
+2025-11-27 16:39:17,344 - INFO - b'{"instance":"attack 4","id":"793b14d0-7d16-4a98-8fa0-dd0052f97aad","name":"attack 4","type":"attack","ip_private":"192.168.100.142","ip_floating":"10.0.2.30","ip":"10.0.2.30","status":"ACTIVE","tools":["suricata"]}'
+2025-11-27 16:39:17,344 - INFO - 📂 Guardado en:
+2025-11-27 16:39:17,345 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/attack_4_tools.json
+2025-11-27 16:39:17,349 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 16:39:17,349 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 16:39:18,702 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 16:39:18,703 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 16:39:21,983 - INFO - ➡ Método HTTP:
+2025-11-27 16:39:21,983 - INFO - POST
+2025-11-27 16:39:21,983 - INFO - ➡ Headers:
+2025-11-27 16:39:21,983 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '213', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 16:39:21,984 - INFO - ➡ request.data crudo:
+2025-11-27 16:39:21,984 - INFO - b'{"instance":"monitor 1","id":"5d727d19-3c14-40d9-a801-e917cc9f80ca","name":"monitor 1","type":"monitor","ip_private":"192.168.100.108","ip_floating":"10.0.2.17","ip":"10.0.2.17","status":"ACTIVE","tools":["nmap"]}'
+2025-11-27 16:39:21,985 - INFO - 📂 Guardado en:
+2025-11-27 16:39:21,985 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-11-27 16:39:21,988 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 16:39:21,989 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-11-27 16:39:25,919 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 16:39:25,920 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 16:39:27,751 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 16:39:27,752 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-11-27 16:39:30,296 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 16:39:30,296 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-11-27 16:39:35,752 - INFO - ➡ Método HTTP:
+2025-11-27 16:39:35,752 - INFO - POST
+2025-11-27 16:39:35,752 - INFO - ➡ Headers:
+2025-11-27 16:39:35,752 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '184', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 16:39:35,752 - INFO - ➡ request.data crudo:
+2025-11-27 16:39:35,753 - INFO - b'{"id":"5d727d19-3c14-40d9-a801-e917cc9f80ca","name":"monitor 1","type":"monitor","ip_private":"192.168.100.108","ip_floating":"10.0.2.17","ip":"10.0.2.17","status":"ACTIVE","tools":[]}'
+2025-11-27 16:39:35,753 - INFO - 📂 Guardado en:
+2025-11-27 16:39:35,753 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-11-27 16:39:35,757 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 16:39:35,758 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 16:39:37,287 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 16:39:37,288 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 16:39:44,832 - INFO - ➡ Método HTTP:
+2025-11-27 16:39:44,832 - INFO - POST
+2025-11-27 16:39:44,832 - INFO - ➡ Headers:
+2025-11-27 16:39:44,832 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '190', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 16:39:44,832 - INFO - ➡ request.data crudo:
+2025-11-27 16:39:44,833 - INFO - b'{"id":"5d727d19-3c14-40d9-a801-e917cc9f80ca","name":"monitor 1","type":"monitor","ip_private":"192.168.100.108","ip_floating":"10.0.2.17","ip":"10.0.2.17","status":"ACTIVE","tools":["zeek"]}'
+2025-11-27 16:39:44,833 - INFO - 📂 Guardado en:
+2025-11-27 16:39:44,833 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-11-27 16:39:44,837 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 16:39:44,837 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 16:39:48,088 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 16:39:48,088 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 16:39:54,111 - INFO - ➡ Método HTTP:
+2025-11-27 16:39:54,111 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 16:39:54,112 - INFO - POST
+2025-11-27 16:39:54,112 - INFO - ➡ Headers:
+2025-11-27 16:39:54,113 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '190', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 16:39:54,113 - INFO - ➡ request.data crudo:
+2025-11-27 16:39:54,114 - INFO - b'{"id":"5d727d19-3c14-40d9-a801-e917cc9f80ca","name":"monitor 1","type":"monitor","ip_private":"192.168.100.108","ip_floating":"10.0.2.17","ip":"10.0.2.17","status":"ACTIVE","tools":["zeek"]}'
+2025-11-27 16:39:54,114 - INFO - 📂 Guardado en:
+2025-11-27 16:39:54,114 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-11-27 16:39:54,114 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 16:39:54,129 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 16:39:54,131 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 16:40:02,161 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 16:40:02,162 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 16:40:04,496 - INFO - ➡ Método HTTP:
+2025-11-27 16:40:04,497 - INFO - POST
+2025-11-27 16:40:04,497 - INFO - ➡ Headers:
+2025-11-27 16:40:04,497 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '213', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 16:40:04,497 - INFO - ➡ request.data crudo:
+2025-11-27 16:40:04,497 - INFO - b'{"instance":"monitor 1","id":"5d727d19-3c14-40d9-a801-e917cc9f80ca","name":"monitor 1","type":"monitor","ip_private":"192.168.100.108","ip_floating":"10.0.2.17","ip":"10.0.2.17","status":"ACTIVE","tools":["zeek"]}'
+2025-11-27 16:40:04,498 - INFO - 📂 Guardado en:
+2025-11-27 16:40:04,498 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-11-27 16:40:04,501 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 16:40:04,502 - INFO - 📄 JSON encontrado: monitor_1_tools.json

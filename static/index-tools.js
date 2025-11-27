@@ -283,9 +283,22 @@ async function addTool() {
 
     // 2️⃣ Enviar al backend
     const payload = {
-        instance: instanceName,
-        tools: selectedInstance.tools
+            instance: selectedInstance.name,
+            id: selectedInstance.id,
+            name: selectedInstance.name || selectedInstance.label,
+            type: selectedInstance.type,
+
+            ip_private: selectedInstance.ip_private,
+            ip_floating: selectedInstance.ip_floating,
+            ip: selectedInstance.ip,
+
+            status: selectedInstance.status,
+            image: selectedInstance.image,
+            flavor: selectedInstance.flavor,
+
+            tools: selectedInstance.tools
     };
+
 
     await fetch("/api/add_tool_to_instance", {
         method: "POST",
@@ -370,9 +383,19 @@ async function removeToolFromScenario(tool) {
 
     // 3️⃣ Actualizar backend
     const payload = {
-        instance: instanceName,
+        instance: selectedInstance.name,
+        id: selectedInstance.id,
+        name: selectedInstance.name || selectedInstance.label,
+        type: selectedInstance.type,
+        ip_private: selectedInstance.ip_private,
+        ip_floating: selectedInstance.ip_floating,
+        ip: selectedInstance.ip,
+        status: selectedInstance.status,
+        image: selectedInstance.image,
+        flavor: selectedInstance.flavor,
         tools: selectedInstance.tools
     };
+
 
     await fetch("/api/add_tool_to_instance", {
         method: "POST",

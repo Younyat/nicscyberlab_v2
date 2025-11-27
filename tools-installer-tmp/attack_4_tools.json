@@ -1,4 +1,13 @@
 {
     "instance": "attack 4",
-    "tools": []
+    "id": "793b14d0-7d16-4a98-8fa0-dd0052f97aad",
+    "name": "attack 4",
+    "type": "attack",
+    "ip_private": "192.168.100.142",
+    "ip_floating": "10.0.2.30",
+    "ip": "10.0.2.30",
+    "status": "ACTIVE",
+    "tools": [
+        "suricata"
+    ]
 }
