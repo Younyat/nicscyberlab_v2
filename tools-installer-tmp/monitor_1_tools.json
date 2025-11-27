@@ -1,0 +1,6 @@
+{
+    "instance": "monitor 1",
+    "tools": [
+        "snort"
+    ]
+}

@@ -79,6 +79,15 @@
         </button>
 
         <h2 class="text-lg font-bold mt-6 mb-2">Terminal</h2>
+        <button onclick="loadToolsConfig()"
+        class="w-full mt-3 bg-blue-600 hover:bg-blue-500 py-2 rounded-lg font-bold">
+       <i class="fas fa-cogs"></i> Leer configuración de herramientas
+        </button>
+<button onclick="installTools()"
+        class="w-full mt-3 bg-green-600 hover:bg-green-500 py-2 rounded-lg font-bold">
+    <i class="fas fa-play"></i> Ejecutar instalación de herramientas
+</button>
+
         <div id="tools-terminal" 
              class="bg-black rounded-lg p-3 h-40 overflow-y-auto font-mono text-sm"></div>
     </div>

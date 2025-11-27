@@ -576,6 +576,9 @@ def get_openstack_connection():
         identity_interface="public"
     )
 
+
+
+
 @app.route("/api/openstack/instances", methods=["GET"])
 def api_get_openstack_instances():
     try:
@@ -605,6 +608,146 @@ def api_get_openstack_instances():
         logger.error(f"❌ Error al consultar instancias OpenStack: {e}", exc_info=True)
         return jsonify({"error": str(e)}), 500
 
+
+
+@app.route('/api/add_tool_to_instance', methods=['POST'])
+def add_tool_to_instance():
+    
+
+    # DEBUG PROFUNDO
+    print("➡ Método HTTP:", request.method)
+    print("➡ Headers:", dict(request.headers))
+    print("➡ request.data crudo:", request.data)
+    print("➡ request.form:", request.form)
+    print("➡ request.args:", request.args)
+
+    try:
+        data = request.get_json(force=True)
+      
+
+        if not data:
+            print("❌ JSON es None o vacío")
+            return jsonify({"status": "error", "msg": "JSON vacío"}), 400
+
+        # Procesado normal
+        instance = data.get("instance", "unknown")
+        tools = data.get("tools", [])
+
+        BASE = os.path.abspath(os.path.dirname(__file__))
+        DIR = os.path.join(BASE, "tools-installer-tmp")
+        os.makedirs(DIR, exist_ok=True)
+
+        safe = re.sub(r'[^a-zA-Z0-9_-]', '_', instance)
+        path = os.path.join(DIR, f"{safe}_tools.json")
+
+        with open(path, "w") as f:
+            json.dump(data, f, indent=4)
+
+        print("📂 Guardado en:", path)
+
+        return jsonify({"status": "success", "saved": path})
+
+    except Exception as e:
+        print("❌ ERROR:", e)
+        return jsonify({"status": "error", "msg": str(e)}), 500
+
+
+@app.route('/api/read_tools_configs', methods=['GET'])
+def read_tools_configs():
+    print("📥 Leyendo archivos tools-installer/ ...")
+
+    BASE = os.path.abspath(os.path.dirname(__file__))
+    DIR = os.path.join(BASE, "tools-installer-tmp")
+
+    if not os.path.exists(DIR):
+        return jsonify({"files": []})
+
+    result = []
+
+    for filename in os.listdir(DIR):
+        if filename.endswith("_tools.json"):
+            path = os.path.join(DIR, filename)
+
+            with open(path, "r") as f:
+                data = json.load(f)
+
+            result.append({
+                "file": filename,
+                "instance": data.get("instance"),
+                "tools": data.get("tools", [])
+            })
+
+            print(f"📄 {filename}: {data}")
+
+    return jsonify({"files": result})
+
+
+
+@app.route('/api/install_tools', methods=['POST'])
+def install_tools():
+    print("🚀 Iniciando instalación de tools...")
+
+    BASE = os.path.abspath(os.path.dirname(__file__))
+    SCRIPT = os.path.join(BASE, "tools-installer", "tools_install_master.sh")
+
+    if not os.path.exists(SCRIPT):
+        return jsonify({"status": "error", "msg": "Script maestro no encontrado"}), 404
+
+    # Asegurar permisos
+    os.chmod(SCRIPT, 0o755)
+
+    # Ejecutar script
+    process = subprocess.Popen(
+        ["bash", SCRIPT],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True
+    )
+
+    output, error = process.communicate()
+
+    resp = output.split("\n")
+    if error:
+        resp += error.split("\n")
+
+    return jsonify({
+        "status": "success",
+        "output": resp
+    })
+
+
+@app.route('/api/get_tools_for_instance', methods=['GET'])
+def get_tools_for_instance():
+    instance = request.args.get("instance")
+
+    if not instance:
+        return jsonify({"tools": []})
+
+    BASE = os.path.abspath(os.path.dirname(__file__))
+    DIR = os.path.join(BASE, "tools-installer-tmp")
+
+    instance = instance.strip().lower()
+
+    print(f"🔎 Buscando JSON para instancia: {instance}")
+
+    for filename in os.listdir(DIR):
+        if filename.endswith("_tools.json"):
+            path = os.path.join(DIR, filename)
+
+            with open(path, "r") as f:
+                data = json.load(f)
+
+            stored = (data.get("instance") or "").strip().lower()
+
+            if stored == instance:
+                print(f"📄 JSON encontrado: {filename}")
+                return jsonify({
+                    "instance": instance,
+                    "tools": data.get("tools", [])
+                })
+
+    print("⚠️ JSON NO encontrado para esta instancia")
+    return jsonify({"instance": instance, "tools": []})
 
 @app.route('/')
 def index():

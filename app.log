@@ -29625,3 +29625,2650 @@ echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
 
 2025-11-26 17:45:09,925 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
 2025-11-26 17:45:09,925 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 11:48:13,954 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 11:48:13,995 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 11:48:14,013 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 11:48:14,046 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 11:48:14,054 - INFO - 📤 Salida del script:
+2025-11-27 11:48:14,054 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+
+2025-11-27 11:48:14,054 - WARNING - 📥 Errores durante la ejecución del script:
+2025-11-27 11:48:14,055 - WARNING - chmod: no se puede acceder a '/tmp/clouds.json': No existe el archivo o el directorio
+
+2025-11-27 11:48:14,055 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 11:48:14,055 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 11:48:14,207 - INFO - 📤 Salida del script:
+2025-11-27 11:48:14,207 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 11:48:14,207 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 11:48:14,208 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 11:48:14,272 - INFO - 📤 Salida del script:
+2025-11-27 11:48:14,272 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 11:48:14,273 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 11:48:14,273 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 11:48:14,297 - INFO - 📤 Salida del script:
+2025-11-27 11:48:14,298 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 11:48:14,298 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 11:48:14,299 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 11:48:43,591 - INFO - 
+==============================
+2025-11-27 11:48:43,591 - INFO - 📥 JSON recibido del frontend
+2025-11-27 11:48:43,591 - INFO - ==============================
+2025-11-27 11:48:43,591 - INFO - {
+    "tools": [
+        "wazuh"
+    ]
+}
+2025-11-27 11:48:43,591 - INFO - ==============================
+2025-11-27 11:48:43,591 - INFO - 🔧 Herramientas para None: ['wazuh']
+2025-11-27 11:48:59,848 - INFO - 
+==============================
+2025-11-27 11:48:59,848 - INFO - 📥 JSON recibido del frontend
+2025-11-27 11:48:59,848 - INFO - ==============================
+2025-11-27 11:48:59,848 - INFO - {
+    "tools": [
+        "wazuh",
+        "nmap"
+    ]
+}
+2025-11-27 11:48:59,848 - INFO - ==============================
+2025-11-27 11:48:59,848 - INFO - 🔧 Herramientas para None: ['wazuh', 'nmap']
+2025-11-27 12:03:53,340 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:03:53,399 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:03:53,422 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:03:53,468 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:03:53,594 - INFO - 📤 Salida del script:
+2025-11-27 12:03:53,595 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 12:03:53,595 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 12:03:53,595 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:03:53,651 - INFO - 📤 Salida del script:
+2025-11-27 12:03:53,653 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 12:03:53,653 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 12:03:53,653 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:03:53,665 - INFO - 📤 Salida del script:
+2025-11-27 12:03:53,665 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 12:03:53,666 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 12:03:53,666 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:03:53,713 - INFO - 📤 Salida del script:
+2025-11-27 12:03:53,713 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 12:03:53,714 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:03:53,714 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:11:03,034 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:11:03,064 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:11:03,141 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:11:03,210 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:11:03,258 - INFO - 📤 Salida del script:
+2025-11-27 12:11:03,258 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+
+2025-11-27 12:11:03,258 - WARNING - 📥 Errores durante la ejecución del script:
+2025-11-27 12:11:03,258 - WARNING - jq: error: Could not open file /tmp/clouds.json: No existe el archivo o el directorio
+
+2025-11-27 12:11:03,258 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 2
+2025-11-27 12:11:03,259 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:11:03,336 - INFO - 📤 Salida del script:
+2025-11-27 12:11:03,336 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 12:11:03,337 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 12:11:03,337 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:11:03,388 - INFO - 📤 Salida del script:
+2025-11-27 12:11:03,388 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 12:11:03,389 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 12:11:03,389 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:11:03,463 - INFO - 📤 Salida del script:
+2025-11-27 12:11:03,463 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 12:11:03,463 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:11:03,464 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:11:03,565 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:11:03,666 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:11:03,686 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:11:03,754 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:11:22,870 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:13:29,043 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:13:29,118 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:13:29,145 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:13:29,172 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:13:29,342 - INFO - 📤 Salida del script:
+2025-11-27 12:13:29,345 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 12:13:29,345 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 12:13:29,345 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:13:29,392 - INFO - 📤 Salida del script:
+2025-11-27 12:13:29,392 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 12:13:29,393 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:13:29,393 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:13:29,397 - INFO - 📤 Salida del script:
+2025-11-27 12:13:29,398 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 12:13:29,399 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:13:29,399 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:13:29,425 - INFO - 📤 Salida del script:
+2025-11-27 12:13:29,425 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 12:13:29,426 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:13:29,428 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:13:29,660 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:13:29,705 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:13:29,706 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:13:29,790 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:13:34,554 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:13:34,555 - INFO - 🔥 JSON recibido:
+2025-11-27 12:13:34,555 - INFO - {'tools': ['suricata', 'wazuh', 'wazuh', 'caldera', 'caldera', 'caldera', 'wazuh', 'wazuh', 'wazuh', 'wazuh']}
+2025-11-27 12:13:34,555 - INFO - 📂 Guardado en:
+2025-11-27 12:13:34,555 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer/default_tools.json
+2025-11-27 12:15:04,421 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:15:04,516 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:15:04,570 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:15:04,609 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:15:04,664 - INFO - 📤 Salida del script:
+2025-11-27 12:15:04,666 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+
+2025-11-27 12:15:04,669 - WARNING - 📥 Errores durante la ejecución del script:
+2025-11-27 12:15:04,669 - WARNING - jq: error: Could not open file /tmp/clouds.json: No existe el archivo o el directorio
+
+2025-11-27 12:15:04,669 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 2
+2025-11-27 12:15:04,669 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:15:04,757 - INFO - 📤 Salida del script:
+2025-11-27 12:15:04,759 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 12:15:04,759 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 12:15:04,759 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:15:04,834 - INFO - 📤 Salida del script:
+2025-11-27 12:15:04,835 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 12:15:04,836 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:15:04,836 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:15:04,855 - INFO - 📤 Salida del script:
+2025-11-27 12:15:04,855 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 12:15:04,856 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:15:04,856 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:15:04,972 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:15:05,061 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:15:05,129 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:15:05,157 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:15:25,792 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:15:33,633 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:15:39,336 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:16:47,009 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:17:52,357 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:17:52,425 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:17:52,454 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:17:52,496 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:17:52,622 - INFO - 📤 Salida del script:
+2025-11-27 12:17:52,622 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 12:17:52,623 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 12:17:52,623 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:17:52,681 - INFO - 📤 Salida del script:
+2025-11-27 12:17:52,682 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 12:17:52,682 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 12:17:52,682 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:17:52,712 - INFO - 📤 Salida del script:
+2025-11-27 12:17:52,712 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 12:17:52,713 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 12:17:52,713 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:17:52,748 - INFO - 📤 Salida del script:
+2025-11-27 12:17:52,748 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 12:17:52,749 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:17:52,750 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:17:52,924 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:17:52,997 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:17:53,011 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:17:53,071 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:18:15,874 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:19:07,445 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:19:07,446 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:19:07,534 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:19:07,597 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:19:07,690 - INFO - 📤 Salida del script:
+2025-11-27 12:19:07,690 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 12:19:07,690 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 12:19:07,691 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:19:07,696 - INFO - 📤 Salida del script:
+2025-11-27 12:19:07,697 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 12:19:07,697 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 12:19:07,697 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:19:07,782 - INFO - 📤 Salida del script:
+2025-11-27 12:19:07,782 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 12:19:07,783 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 12:19:07,783 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:19:07,851 - INFO - 📤 Salida del script:
+2025-11-27 12:19:07,852 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 12:19:07,852 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:19:07,853 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:19:07,997 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:19:07,999 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:19:08,094 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:19:08,193 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:19:15,170 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:19:15,170 - INFO - ➡ Método HTTP:
+2025-11-27 12:19:15,170 - INFO - POST
+2025-11-27 12:19:15,170 - INFO - ➡ Headers:
+2025-11-27 12:19:15,170 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '22', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 12:19:15,171 - INFO - ➡ request.data crudo:
+2025-11-27 12:19:15,171 - INFO - b'{"tools":["suricata"]}'
+2025-11-27 12:19:15,171 - INFO - ➡ request.form:
+2025-11-27 12:19:15,171 - INFO - ImmutableMultiDict([])
+2025-11-27 12:19:15,171 - INFO - ➡ request.args:
+2025-11-27 12:19:15,171 - INFO - ImmutableMultiDict([])
+2025-11-27 12:19:15,171 - INFO - 🔥 JSON recibido =
+2025-11-27 12:19:15,172 - INFO - {'tools': ['suricata']}
+2025-11-27 12:19:15,172 - INFO - 📂 Guardado en:
+2025-11-27 12:19:15,172 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer/unknown_tools.json
+2025-11-27 12:21:04,965 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:21:04,965 - INFO - ➡ Método HTTP:
+2025-11-27 12:21:04,966 - INFO - POST
+2025-11-27 12:21:04,966 - INFO - ➡ Headers:
+2025-11-27 12:21:04,966 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '21', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 12:21:04,966 - INFO - ➡ request.data crudo:
+2025-11-27 12:21:04,967 - INFO - b'{"tools":["caldera"]}'
+2025-11-27 12:21:04,967 - INFO - ➡ request.form:
+2025-11-27 12:21:04,967 - INFO - ImmutableMultiDict([])
+2025-11-27 12:21:04,967 - INFO - ➡ request.args:
+2025-11-27 12:21:04,967 - INFO - ImmutableMultiDict([])
+2025-11-27 12:21:04,967 - INFO - 🔥 JSON recibido =
+2025-11-27 12:21:04,967 - INFO - {'tools': ['caldera']}
+2025-11-27 12:21:04,968 - INFO - 📂 Guardado en:
+2025-11-27 12:21:04,968 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer/unknown_tools.json
+2025-11-27 12:21:11,155 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:21:11,155 - INFO - ➡ Método HTTP:
+2025-11-27 12:21:11,155 - INFO - POST
+2025-11-27 12:21:11,155 - INFO - ➡ Headers:
+2025-11-27 12:21:11,155 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '19', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 12:21:11,156 - INFO - ➡ request.data crudo:
+2025-11-27 12:21:11,156 - INFO - b'{"tools":["snort"]}'
+2025-11-27 12:21:11,156 - INFO - ➡ request.form:
+2025-11-27 12:21:11,156 - INFO - ImmutableMultiDict([])
+2025-11-27 12:21:11,156 - INFO - ➡ request.args:
+2025-11-27 12:21:11,156 - INFO - ImmutableMultiDict([])
+2025-11-27 12:21:11,156 - INFO - 🔥 JSON recibido =
+2025-11-27 12:21:11,156 - INFO - {'tools': ['snort']}
+2025-11-27 12:21:11,157 - INFO - 📂 Guardado en:
+2025-11-27 12:21:11,157 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer/unknown_tools.json
+2025-11-27 12:24:23,078 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:24:23,079 - INFO - ➡ Método HTTP:
+2025-11-27 12:24:23,079 - INFO - POST
+2025-11-27 12:24:23,079 - INFO - ➡ Headers:
+2025-11-27 12:24:23,079 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '27', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 12:24:23,080 - INFO - ➡ request.data crudo:
+2025-11-27 12:24:23,080 - INFO - b'{"tools":["snort","snort"]}'
+2025-11-27 12:24:23,081 - INFO - ➡ request.form:
+2025-11-27 12:24:23,081 - INFO - ImmutableMultiDict([])
+2025-11-27 12:24:23,081 - INFO - ➡ request.args:
+2025-11-27 12:24:23,081 - INFO - ImmutableMultiDict([])
+2025-11-27 12:24:23,082 - INFO - 🔥 JSON recibido =
+2025-11-27 12:24:23,082 - INFO - {'tools': ['snort', 'snort']}
+2025-11-27 12:24:23,083 - INFO - 📂 Guardado en:
+2025-11-27 12:24:23,083 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer/unknown_tools.json
+2025-11-27 12:24:41,341 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:24:41,342 - INFO - ➡ Método HTTP:
+2025-11-27 12:24:41,342 - INFO - POST
+2025-11-27 12:24:41,342 - INFO - ➡ Headers:
+2025-11-27 12:24:41,342 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '52', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 12:24:41,342 - INFO - ➡ request.data crudo:
+2025-11-27 12:24:41,342 - INFO - b'{"instance":"attack 4","tools":["suricata","snort"]}'
+2025-11-27 12:24:41,343 - INFO - ➡ request.form:
+2025-11-27 12:24:41,343 - INFO - ImmutableMultiDict([])
+2025-11-27 12:24:41,343 - INFO - ➡ request.args:
+2025-11-27 12:24:41,343 - INFO - ImmutableMultiDict([])
+2025-11-27 12:24:41,343 - INFO - 🔥 JSON recibido =
+2025-11-27 12:24:41,343 - INFO - {'instance': 'attack 4', 'tools': ['suricata', 'snort']}
+2025-11-27 12:24:41,343 - INFO - 📂 Guardado en:
+2025-11-27 12:24:41,344 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer/attack_4_tools.json
+2025-11-27 12:24:43,086 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:24:43,087 - INFO - ➡ Método HTTP:
+2025-11-27 12:24:43,087 - INFO - POST
+2025-11-27 12:24:43,087 - INFO - ➡ Headers:
+2025-11-27 12:24:43,087 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '60', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 12:24:43,087 - INFO - ➡ request.data crudo:
+2025-11-27 12:24:43,087 - INFO - b'{"instance":"attack 4","tools":["suricata","snort","snort"]}'
+2025-11-27 12:24:43,088 - INFO - ➡ request.form:
+2025-11-27 12:24:43,088 - INFO - ImmutableMultiDict([])
+2025-11-27 12:24:43,088 - INFO - ➡ request.args:
+2025-11-27 12:24:43,088 - INFO - ImmutableMultiDict([])
+2025-11-27 12:24:43,088 - INFO - 🔥 JSON recibido =
+2025-11-27 12:24:43,088 - INFO - {'instance': 'attack 4', 'tools': ['suricata', 'snort', 'snort']}
+2025-11-27 12:24:43,089 - INFO - 📂 Guardado en:
+2025-11-27 12:24:43,089 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer/attack_4_tools.json
+2025-11-27 12:24:43,821 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:24:43,821 - INFO - ➡ Método HTTP:
+2025-11-27 12:24:43,821 - INFO - POST
+2025-11-27 12:24:43,821 - INFO - ➡ Headers:
+2025-11-27 12:24:43,822 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '68', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 12:24:43,822 - INFO - ➡ request.data crudo:
+2025-11-27 12:24:43,822 - INFO - b'{"instance":"attack 4","tools":["suricata","snort","snort","snort"]}'
+2025-11-27 12:24:43,822 - INFO - ➡ request.form:
+2025-11-27 12:24:43,822 - INFO - ImmutableMultiDict([])
+2025-11-27 12:24:43,822 - INFO - ➡ request.args:
+2025-11-27 12:24:43,822 - INFO - ImmutableMultiDict([])
+2025-11-27 12:24:43,822 - INFO - 🔥 JSON recibido =
+2025-11-27 12:24:43,822 - INFO - {'instance': 'attack 4', 'tools': ['suricata', 'snort', 'snort', 'snort']}
+2025-11-27 12:24:43,823 - INFO - 📂 Guardado en:
+2025-11-27 12:24:43,823 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer/attack_4_tools.json
+2025-11-27 12:24:45,422 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:24:45,422 - INFO - ➡ Método HTTP:
+2025-11-27 12:24:45,423 - INFO - POST
+2025-11-27 12:24:45,423 - INFO - ➡ Headers:
+2025-11-27 12:24:45,423 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '76', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 12:24:45,423 - INFO - ➡ request.data crudo:
+2025-11-27 12:24:45,423 - INFO - b'{"instance":"attack 4","tools":["suricata","snort","snort","snort","snort"]}'
+2025-11-27 12:24:45,423 - INFO - ➡ request.form:
+2025-11-27 12:24:45,423 - INFO - ImmutableMultiDict([])
+2025-11-27 12:24:45,423 - INFO - ➡ request.args:
+2025-11-27 12:24:45,423 - INFO - ImmutableMultiDict([])
+2025-11-27 12:24:45,424 - INFO - 🔥 JSON recibido =
+2025-11-27 12:24:45,424 - INFO - {'instance': 'attack 4', 'tools': ['suricata', 'snort', 'snort', 'snort', 'snort']}
+2025-11-27 12:24:45,424 - INFO - 📂 Guardado en:
+2025-11-27 12:24:45,424 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer/attack_4_tools.json
+2025-11-27 12:24:54,158 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:24:54,158 - INFO - ➡ Método HTTP:
+2025-11-27 12:24:54,159 - INFO - POST
+2025-11-27 12:24:54,159 - INFO - ➡ Headers:
+2025-11-27 12:24:54,159 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '35', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 12:24:54,159 - INFO - ➡ request.data crudo:
+2025-11-27 12:24:54,160 - INFO - b'{"tools":["snort","snort","snort"]}'
+2025-11-27 12:24:54,160 - INFO - ➡ request.form:
+2025-11-27 12:24:54,160 - INFO - ImmutableMultiDict([])
+2025-11-27 12:24:54,160 - INFO - ➡ request.args:
+2025-11-27 12:24:54,160 - INFO - ImmutableMultiDict([])
+2025-11-27 12:24:54,160 - INFO - 🔥 JSON recibido =
+2025-11-27 12:24:54,160 - INFO - {'tools': ['snort', 'snort', 'snort']}
+2025-11-27 12:24:54,161 - INFO - 📂 Guardado en:
+2025-11-27 12:24:54,161 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer/unknown_tools.json
+2025-11-27 12:25:09,823 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:25:09,824 - INFO - ➡ Método HTTP:
+2025-11-27 12:25:09,824 - INFO - POST
+2025-11-27 12:25:09,824 - INFO - ➡ Headers:
+2025-11-27 12:25:09,824 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '66', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 12:25:09,824 - INFO - ➡ request.data crudo:
+2025-11-27 12:25:09,825 - INFO - b'{"instance":"monitor 1","tools":["snort","snort","snort","snort"]}'
+2025-11-27 12:25:09,825 - INFO - ➡ request.form:
+2025-11-27 12:25:09,825 - INFO - ImmutableMultiDict([])
+2025-11-27 12:25:09,825 - INFO - ➡ request.args:
+2025-11-27 12:25:09,826 - INFO - ImmutableMultiDict([])
+2025-11-27 12:25:09,827 - INFO - 🔥 JSON recibido =
+2025-11-27 12:25:09,828 - INFO - {'instance': 'monitor 1', 'tools': ['snort', 'snort', 'snort', 'snort']}
+2025-11-27 12:25:09,828 - INFO - 📂 Guardado en:
+2025-11-27 12:25:09,828 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer/monitor_1_tools.json
+2025-11-27 12:25:14,391 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:25:14,391 - INFO - ➡ Método HTTP:
+2025-11-27 12:25:14,391 - INFO - POST
+2025-11-27 12:25:14,391 - INFO - ➡ Headers:
+2025-11-27 12:25:14,391 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '84', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 12:25:14,392 - INFO - ➡ request.data crudo:
+2025-11-27 12:25:14,392 - INFO - b'{"instance":"attack 4","tools":["suricata","snort","snort","snort","snort","snort"]}'
+2025-11-27 12:25:14,392 - INFO - ➡ request.form:
+2025-11-27 12:25:14,392 - INFO - ImmutableMultiDict([])
+2025-11-27 12:25:14,392 - INFO - ➡ request.args:
+2025-11-27 12:25:14,392 - INFO - ImmutableMultiDict([])
+2025-11-27 12:25:14,393 - INFO - 🔥 JSON recibido =
+2025-11-27 12:25:14,393 - INFO - {'instance': 'attack 4', 'tools': ['suricata', 'snort', 'snort', 'snort', 'snort', 'snort']}
+2025-11-27 12:25:14,393 - INFO - 📂 Guardado en:
+2025-11-27 12:25:14,394 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer/attack_4_tools.json
+2025-11-27 12:33:02,847 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:33:02,892 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:33:02,893 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:33:02,978 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:33:03,103 - INFO - 📤 Salida del script:
+2025-11-27 12:33:03,104 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 12:33:03,104 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 12:33:03,105 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:33:03,134 - INFO - 📤 Salida del script:
+2025-11-27 12:33:03,134 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 12:33:03,134 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 12:33:03,134 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:33:03,165 - INFO - 📤 Salida del script:
+2025-11-27 12:33:03,165 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 12:33:03,166 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 12:33:03,166 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:33:03,253 - INFO - 📤 Salida del script:
+2025-11-27 12:33:03,254 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 12:33:03,254 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:33:03,255 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:33:03,416 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:33:03,443 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:33:03,488 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:33:03,570 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:33:21,948 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:33:21,949 - INFO - ➡ Método HTTP:
+2025-11-27 12:33:21,949 - INFO - POST
+2025-11-27 12:33:21,949 - INFO - ➡ Headers:
+2025-11-27 12:33:21,949 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '40', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 12:33:21,949 - INFO - ➡ request.data crudo:
+2025-11-27 12:33:21,949 - INFO - b'{"instance":"attack 4","tools":["zeek"]}'
+2025-11-27 12:33:21,950 - INFO - ➡ request.form:
+2025-11-27 12:33:21,950 - INFO - ImmutableMultiDict([])
+2025-11-27 12:33:21,950 - INFO - ➡ request.args:
+2025-11-27 12:33:21,950 - INFO - ImmutableMultiDict([])
+2025-11-27 12:33:21,950 - INFO - 🔥 JSON recibido =
+2025-11-27 12:33:21,950 - INFO - {'instance': 'attack 4', 'tools': ['zeek']}
+2025-11-27 12:33:21,951 - INFO - 📂 Guardado en:
+2025-11-27 12:33:21,951 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer/attack_4_tools.json
+2025-11-27 12:33:32,171 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:33:32,171 - INFO - ➡ Método HTTP:
+2025-11-27 12:33:32,173 - INFO - POST
+2025-11-27 12:33:32,173 - INFO - ➡ Headers:
+2025-11-27 12:33:32,173 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '47', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 12:33:32,173 - INFO - ➡ request.data crudo:
+2025-11-27 12:33:32,173 - INFO - b'{"instance":"attack 4","tools":["zeek","nmap"]}'
+2025-11-27 12:33:32,174 - INFO - ➡ request.form:
+2025-11-27 12:33:32,174 - INFO - ImmutableMultiDict([])
+2025-11-27 12:33:32,174 - INFO - ➡ request.args:
+2025-11-27 12:33:32,174 - INFO - ImmutableMultiDict([])
+2025-11-27 12:33:32,174 - INFO - 🔥 JSON recibido =
+2025-11-27 12:33:32,175 - INFO - {'instance': 'attack 4', 'tools': ['zeek', 'nmap']}
+2025-11-27 12:33:32,176 - INFO - 📂 Guardado en:
+2025-11-27 12:33:32,176 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer/attack_4_tools.json
+2025-11-27 12:33:36,284 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:33:36,284 - INFO - ➡ Método HTTP:
+2025-11-27 12:33:36,285 - INFO - POST
+2025-11-27 12:33:36,285 - INFO - ➡ Headers:
+2025-11-27 12:33:36,285 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '57', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 12:33:36,285 - INFO - ➡ request.data crudo:
+2025-11-27 12:33:36,285 - INFO - b'{"instance":"attack 4","tools":["zeek","nmap","tcpdump"]}'
+2025-11-27 12:33:36,285 - INFO - ➡ request.form:
+2025-11-27 12:33:36,285 - INFO - ImmutableMultiDict([])
+2025-11-27 12:33:36,286 - INFO - ➡ request.args:
+2025-11-27 12:33:36,286 - INFO - ImmutableMultiDict([])
+2025-11-27 12:33:36,286 - INFO - 🔥 JSON recibido =
+2025-11-27 12:33:36,286 - INFO - {'instance': 'attack 4', 'tools': ['zeek', 'nmap', 'tcpdump']}
+2025-11-27 12:33:36,286 - INFO - 📂 Guardado en:
+2025-11-27 12:33:36,287 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer/attack_4_tools.json
+2025-11-27 12:34:06,989 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:34:06,989 - INFO - ➡ Método HTTP:
+2025-11-27 12:34:06,990 - INFO - POST
+2025-11-27 12:34:06,990 - INFO - ➡ Headers:
+2025-11-27 12:34:06,990 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '44', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 12:34:06,990 - INFO - ➡ request.data crudo:
+2025-11-27 12:34:06,990 - INFO - b'{"instance":"victim 3","tools":["suricata"]}'
+2025-11-27 12:34:06,991 - INFO - ➡ request.form:
+2025-11-27 12:34:06,991 - INFO - ImmutableMultiDict([])
+2025-11-27 12:34:06,991 - INFO - ➡ request.args:
+2025-11-27 12:34:06,991 - INFO - ImmutableMultiDict([])
+2025-11-27 12:34:06,991 - INFO - 🔥 JSON recibido =
+2025-11-27 12:34:06,991 - INFO - {'instance': 'victim 3', 'tools': ['suricata']}
+2025-11-27 12:34:06,992 - INFO - 📂 Guardado en:
+2025-11-27 12:34:06,992 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer/victim_3_tools.json
+2025-11-27 12:35:08,310 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:35:08,310 - INFO - ➡ Método HTTP:
+2025-11-27 12:35:08,311 - INFO - POST
+2025-11-27 12:35:08,311 - INFO - ➡ Headers:
+2025-11-27 12:35:08,311 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '41', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 12:35:08,311 - INFO - ➡ request.data crudo:
+2025-11-27 12:35:08,311 - INFO - b'{"instance":"monitor 1","tools":["nmap"]}'
+2025-11-27 12:35:08,311 - INFO - ➡ request.form:
+2025-11-27 12:35:08,311 - INFO - ImmutableMultiDict([])
+2025-11-27 12:35:08,312 - INFO - ➡ request.args:
+2025-11-27 12:35:08,312 - INFO - ImmutableMultiDict([])
+2025-11-27 12:35:08,312 - INFO - 🔥 JSON recibido =
+2025-11-27 12:35:08,312 - INFO - {'instance': 'monitor 1', 'tools': ['nmap']}
+2025-11-27 12:35:08,312 - INFO - 📂 Guardado en:
+2025-11-27 12:35:08,313 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer/monitor_1_tools.json
+2025-11-27 12:35:27,366 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:35:27,366 - INFO - ➡ Método HTTP:
+2025-11-27 12:35:27,367 - INFO - POST
+2025-11-27 12:35:27,367 - INFO - ➡ Headers:
+2025-11-27 12:35:27,367 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '49', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 12:35:27,367 - INFO - ➡ request.data crudo:
+2025-11-27 12:35:27,367 - INFO - b'{"instance":"monitor 1","tools":["nmap","snort"]}'
+2025-11-27 12:35:27,367 - INFO - ➡ request.form:
+2025-11-27 12:35:27,368 - INFO - ImmutableMultiDict([])
+2025-11-27 12:35:27,368 - INFO - ➡ request.args:
+2025-11-27 12:35:27,368 - INFO - ImmutableMultiDict([])
+2025-11-27 12:35:27,368 - INFO - 🔥 JSON recibido =
+2025-11-27 12:35:27,368 - INFO - {'instance': 'monitor 1', 'tools': ['nmap', 'snort']}
+2025-11-27 12:35:27,369 - INFO - 📂 Guardado en:
+2025-11-27 12:35:27,369 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer/monitor_1_tools.json
+2025-11-27 12:40:48,674 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:40:48,695 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:40:48,797 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:40:48,809 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 12:40:48,935 - INFO - 📤 Salida del script:
+2025-11-27 12:40:48,937 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 12:40:48,937 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 12:40:48,937 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:40:48,939 - INFO - 📤 Salida del script:
+2025-11-27 12:40:48,939 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 12:40:48,940 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 12:40:48,940 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:40:49,064 - INFO - 📤 Salida del script:
+2025-11-27 12:40:49,064 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 12:40:49,065 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:40:49,065 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:40:49,067 - INFO - 📤 Salida del script:
+2025-11-27 12:40:49,068 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 12:40:49,069 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:40:49,069 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 12:40:49,249 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:40:49,287 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:40:49,364 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:40:49,395 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 12:41:41,131 - INFO - 📥 Leyendo archivos tools-installer/ ...
+2025-11-27 12:41:41,131 - INFO - 📄 monitor_1_tools.json: {'instance': 'monitor 1', 'tools': ['nmap', 'snort']}
+2025-11-27 12:41:41,132 - INFO - 📄 victim_3_tools.json: {'instance': 'victim 3', 'tools': ['suricata']}
+2025-11-27 12:46:17,860 - INFO - 📥 Leyendo archivos tools-installer/ ...
+2025-11-27 12:46:17,861 - INFO - 📄 monitor_1_tools.json: {'instance': 'monitor 1', 'tools': ['nmap', 'snort']}
+2025-11-27 12:46:17,861 - INFO - 📄 victim_3_tools.json: {'instance': 'victim 3', 'tools': ['suricata']}
+2025-11-27 12:59:35,983 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:59:35,983 - INFO - ➡ Método HTTP:
+2025-11-27 12:59:35,983 - INFO - POST
+2025-11-27 12:59:35,983 - INFO - ➡ Headers:
+2025-11-27 12:59:35,984 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '44', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 12:59:35,984 - INFO - ➡ request.data crudo:
+2025-11-27 12:59:35,984 - INFO - b'{"instance":"victim 3","tools":["suricata"]}'
+2025-11-27 12:59:35,984 - INFO - ➡ request.form:
+2025-11-27 12:59:35,984 - INFO - ImmutableMultiDict([])
+2025-11-27 12:59:35,984 - INFO - ➡ request.args:
+2025-11-27 12:59:35,984 - INFO - ImmutableMultiDict([])
+2025-11-27 12:59:35,985 - INFO - 🔥 JSON recibido =
+2025-11-27 12:59:35,985 - INFO - {'instance': 'victim 3', 'tools': ['suricata']}
+2025-11-27 12:59:35,986 - INFO - 📂 Guardado en:
+2025-11-27 12:59:35,986 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer/victim_3_tools.json
+2025-11-27 12:59:41,734 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:59:41,734 - INFO - ➡ Método HTTP:
+2025-11-27 12:59:41,734 - INFO - POST
+2025-11-27 12:59:41,735 - INFO - ➡ Headers:
+2025-11-27 12:59:41,735 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '45', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 12:59:41,735 - INFO - ➡ request.data crudo:
+2025-11-27 12:59:41,735 - INFO - b'{"instance":"monitor 1","tools":["suricata"]}'
+2025-11-27 12:59:41,735 - INFO - ➡ request.form:
+2025-11-27 12:59:41,736 - INFO - ImmutableMultiDict([])
+2025-11-27 12:59:41,736 - INFO - ➡ request.args:
+2025-11-27 12:59:41,736 - INFO - ImmutableMultiDict([])
+2025-11-27 12:59:41,736 - INFO - 🔥 JSON recibido =
+2025-11-27 12:59:41,737 - INFO - {'instance': 'monitor 1', 'tools': ['suricata']}
+2025-11-27 12:59:41,738 - INFO - 📂 Guardado en:
+2025-11-27 12:59:41,738 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer/monitor_1_tools.json
+2025-11-27 12:59:45,030 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 12:59:45,030 - INFO - ➡ Método HTTP:
+2025-11-27 12:59:45,031 - INFO - POST
+2025-11-27 12:59:45,031 - INFO - ➡ Headers:
+2025-11-27 12:59:45,031 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '41', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 12:59:45,031 - INFO - ➡ request.data crudo:
+2025-11-27 12:59:45,031 - INFO - b'{"instance":"attack 4","tools":["snort"]}'
+2025-11-27 12:59:45,031 - INFO - ➡ request.form:
+2025-11-27 12:59:45,032 - INFO - ImmutableMultiDict([])
+2025-11-27 12:59:45,032 - INFO - ➡ request.args:
+2025-11-27 12:59:45,032 - INFO - ImmutableMultiDict([])
+2025-11-27 12:59:45,032 - INFO - 🔥 JSON recibido =
+2025-11-27 12:59:45,032 - INFO - {'instance': 'attack 4', 'tools': ['snort']}
+2025-11-27 12:59:45,032 - INFO - 📂 Guardado en:
+2025-11-27 12:59:45,032 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer/attack_4_tools.json
+2025-11-27 12:59:47,118 - INFO - 📥 Leyendo archivos tools-installer/ ...
+2025-11-27 12:59:47,118 - INFO - 📄 monitor_1_tools.json: {'instance': 'monitor 1', 'tools': ['suricata']}
+2025-11-27 12:59:47,119 - INFO - 📄 victim_3_tools.json: {'instance': 'victim 3', 'tools': ['suricata']}
+2025-11-27 12:59:47,119 - INFO - 📄 attack_4_tools.json: {'instance': 'attack 4', 'tools': ['snort']}
+2025-11-27 13:00:09,548 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:00:09,581 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:00:09,620 - INFO - 📤 Salida del script:
+2025-11-27 13:00:09,621 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+
+2025-11-27 13:00:09,621 - WARNING - 📥 Errores durante la ejecución del script:
+2025-11-27 13:00:09,621 - WARNING - chmod: no se puede acceder a '/tmp/clouds.json': No existe el archivo o el directorio
+
+2025-11-27 13:00:09,621 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 13:00:09,621 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:00:09,667 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:00:09,753 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:00:09,801 - INFO - 📤 Salida del script:
+2025-11-27 13:00:09,802 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+
+2025-11-27 13:00:09,802 - WARNING - 📥 Errores durante la ejecución del script:
+2025-11-27 13:00:09,802 - WARNING - jq: error: Could not open file /tmp/clouds.json: No existe el archivo o el directorio
+
+2025-11-27 13:00:09,802 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 2
+2025-11-27 13:00:09,802 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:00:09,923 - INFO - 📤 Salida del script:
+2025-11-27 13:00:09,924 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 13:00:09,924 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 13:00:09,924 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:00:09,940 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 13:00:10,031 - INFO - 📤 Salida del script:
+2025-11-27 13:00:10,034 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 13:00:10,035 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:00:10,036 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:00:10,103 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 13:00:10,251 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 13:00:10,373 - INFO - 🔵 Flask cargó el endpoint /api/add_tool_to_instance
+2025-11-27 13:00:13,639 - INFO - 📥 Leyendo archivos tools-installer/ ...
+2025-11-27 13:00:16,679 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 13:00:16,679 - INFO - ➡ Método HTTP:
+2025-11-27 13:00:16,679 - INFO - POST
+2025-11-27 13:00:16,680 - INFO - ➡ Headers:
+2025-11-27 13:00:16,680 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '53', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 13:00:16,680 - INFO - ➡ request.data crudo:
+2025-11-27 13:00:16,680 - INFO - b'{"instance":"monitor 1","tools":["suricata","snort"]}'
+2025-11-27 13:00:16,681 - INFO - ➡ request.form:
+2025-11-27 13:00:16,681 - INFO - ImmutableMultiDict([])
+2025-11-27 13:00:16,681 - INFO - ➡ request.args:
+2025-11-27 13:00:16,681 - INFO - ImmutableMultiDict([])
+2025-11-27 13:00:16,681 - INFO - 🔥 JSON recibido =
+2025-11-27 13:00:16,682 - INFO - {'instance': 'monitor 1', 'tools': ['suricata', 'snort']}
+2025-11-27 13:00:16,682 - INFO - 📂 Guardado en:
+2025-11-27 13:00:16,683 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer/monitor_1_tools.json
+2025-11-27 13:00:19,470 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 13:00:19,471 - INFO - ➡ Método HTTP:
+2025-11-27 13:00:19,471 - INFO - POST
+2025-11-27 13:00:19,472 - INFO - ➡ Headers:
+2025-11-27 13:00:19,472 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '52', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 13:00:19,474 - INFO - ➡ request.data crudo:
+2025-11-27 13:00:19,474 - INFO - b'{"instance":"victim 3","tools":["suricata","snort"]}'
+2025-11-27 13:00:19,474 - INFO - ➡ request.form:
+2025-11-27 13:00:19,474 - INFO - ImmutableMultiDict([])
+2025-11-27 13:00:19,474 - INFO - ➡ request.args:
+2025-11-27 13:00:19,474 - INFO - ImmutableMultiDict([])
+2025-11-27 13:00:19,475 - INFO - 🔥 JSON recibido =
+2025-11-27 13:00:19,475 - INFO - {'instance': 'victim 3', 'tools': ['suricata', 'snort']}
+2025-11-27 13:00:19,475 - INFO - 📂 Guardado en:
+2025-11-27 13:00:19,475 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer/victim_3_tools.json
+2025-11-27 13:00:22,454 - INFO - 🔥 ENDPOINT EJECUTADO add_tool_to_instance
+2025-11-27 13:00:22,455 - INFO - ➡ Método HTTP:
+2025-11-27 13:00:22,455 - INFO - POST
+2025-11-27 13:00:22,455 - INFO - ➡ Headers:
+2025-11-27 13:00:22,455 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '52', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 13:00:22,455 - INFO - ➡ request.data crudo:
+2025-11-27 13:00:22,456 - INFO - b'{"instance":"attack 4","tools":["snort","suricata"]}'
+2025-11-27 13:00:22,456 - INFO - ➡ request.form:
+2025-11-27 13:00:22,456 - INFO - ImmutableMultiDict([])
+2025-11-27 13:00:22,456 - INFO - ➡ request.args:
+2025-11-27 13:00:22,456 - INFO - ImmutableMultiDict([])
+2025-11-27 13:00:22,456 - INFO - 🔥 JSON recibido =
+2025-11-27 13:00:22,457 - INFO - {'instance': 'attack 4', 'tools': ['snort', 'suricata']}
+2025-11-27 13:00:22,458 - INFO - 📂 Guardado en:
+2025-11-27 13:00:22,458 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer/attack_4_tools.json
+2025-11-27 13:11:01,716 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:11:01,799 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:11:01,849 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:11:01,950 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:11:01,979 - INFO - 📤 Salida del script:
+2025-11-27 13:11:01,979 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 13:11:01,980 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 13:11:01,980 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:11:02,074 - INFO - 📤 Salida del script:
+2025-11-27 13:11:02,075 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 13:11:02,075 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 13:11:02,075 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:11:02,121 - INFO - 📤 Salida del script:
+2025-11-27 13:11:02,121 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 13:11:02,121 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 13:11:02,122 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:11:02,203 - INFO - 📤 Salida del script:
+2025-11-27 13:11:02,204 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 13:11:02,204 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:11:02,205 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:11:24,775 - INFO - ➡ Método HTTP:
+2025-11-27 13:11:24,775 - INFO - POST
+2025-11-27 13:11:24,776 - INFO - ➡ Headers:
+2025-11-27 13:11:24,776 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '60', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 13:11:24,776 - INFO - ➡ request.data crudo:
+2025-11-27 13:11:24,776 - INFO - b'{"instance":"attack 4","tools":["snort","suricata","wazuh"]}'
+2025-11-27 13:11:24,776 - INFO - ➡ request.form:
+2025-11-27 13:11:24,777 - INFO - ImmutableMultiDict([])
+2025-11-27 13:11:24,777 - INFO - ➡ request.args:
+2025-11-27 13:11:24,777 - INFO - ImmutableMultiDict([])
+2025-11-27 13:11:24,779 - INFO - 📂 Guardado en:
+2025-11-27 13:11:24,779 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/attack_4_tools.json
+2025-11-27 13:11:33,911 - INFO - ➡ Método HTTP:
+2025-11-27 13:11:33,911 - INFO - POST
+2025-11-27 13:11:33,911 - INFO - ➡ Headers:
+2025-11-27 13:11:33,911 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '59', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 13:11:33,911 - INFO - ➡ request.data crudo:
+2025-11-27 13:11:33,912 - INFO - b'{"instance":"victim 3","tools":["suricata","snort","nmap"]}'
+2025-11-27 13:11:33,912 - INFO - ➡ request.form:
+2025-11-27 13:11:33,912 - INFO - ImmutableMultiDict([])
+2025-11-27 13:11:33,912 - INFO - ➡ request.args:
+2025-11-27 13:11:33,912 - INFO - ImmutableMultiDict([])
+2025-11-27 13:11:33,913 - INFO - 📂 Guardado en:
+2025-11-27 13:11:33,913 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/victim_3_tools.json
+2025-11-27 13:11:41,638 - INFO - ➡ Método HTTP:
+2025-11-27 13:11:41,638 - INFO - POST
+2025-11-27 13:11:41,638 - INFO - ➡ Headers:
+2025-11-27 13:11:41,638 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '61', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 13:11:41,639 - INFO - ➡ request.data crudo:
+2025-11-27 13:11:41,639 - INFO - b'{"instance":"monitor 1","tools":["suricata","snort","wazuh"]}'
+2025-11-27 13:11:41,639 - INFO - ➡ request.form:
+2025-11-27 13:11:41,639 - INFO - ImmutableMultiDict([])
+2025-11-27 13:11:41,639 - INFO - ➡ request.args:
+2025-11-27 13:11:41,639 - INFO - ImmutableMultiDict([])
+2025-11-27 13:11:41,640 - INFO - 📂 Guardado en:
+2025-11-27 13:11:41,640 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-11-27 13:23:49,057 - INFO - ➡ Método HTTP:
+2025-11-27 13:23:49,058 - INFO - POST
+2025-11-27 13:23:49,058 - INFO - ➡ Headers:
+2025-11-27 13:23:49,058 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '45', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 13:23:49,059 - INFO - ➡ request.data crudo:
+2025-11-27 13:23:49,059 - INFO - b'{"instance":"monitor 1","tools":["suricata"]}'
+2025-11-27 13:23:49,059 - INFO - ➡ request.form:
+2025-11-27 13:23:49,059 - INFO - ImmutableMultiDict([])
+2025-11-27 13:23:49,059 - INFO - ➡ request.args:
+2025-11-27 13:23:49,059 - INFO - ImmutableMultiDict([])
+2025-11-27 13:23:49,060 - INFO - 📂 Guardado en:
+2025-11-27 13:23:49,060 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-11-27 13:23:51,294 - INFO - 📥 Leyendo archivos tools-installer/ ...
+2025-11-27 13:23:51,295 - INFO - 📄 monitor_1_tools.json: {'instance': 'monitor 1', 'tools': ['suricata']}
+2025-11-27 13:23:51,295 - INFO - 📄 victim_3_tools.json: {'instance': 'victim 3', 'tools': ['suricata', 'snort', 'nmap']}
+2025-11-27 13:23:51,295 - INFO - 📄 attack_4_tools.json: {'instance': 'attack 4', 'tools': ['snort', 'suricata', 'wazuh']}
+2025-11-27 13:23:56,984 - INFO - ➡ Método HTTP:
+2025-11-27 13:23:56,984 - INFO - POST
+2025-11-27 13:23:56,985 - INFO - ➡ Headers:
+2025-11-27 13:23:56,986 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '44', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 13:23:56,986 - INFO - ➡ request.data crudo:
+2025-11-27 13:23:56,986 - INFO - b'{"instance":"victim 3","tools":["suricata"]}'
+2025-11-27 13:23:56,987 - INFO - ➡ request.form:
+2025-11-27 13:23:56,987 - INFO - ImmutableMultiDict([])
+2025-11-27 13:23:56,987 - INFO - ➡ request.args:
+2025-11-27 13:23:56,988 - INFO - ImmutableMultiDict([])
+2025-11-27 13:23:56,988 - INFO - 📂 Guardado en:
+2025-11-27 13:23:56,989 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/victim_3_tools.json
+2025-11-27 13:24:06,527 - INFO - ➡ Método HTTP:
+2025-11-27 13:24:06,527 - INFO - POST
+2025-11-27 13:24:06,528 - INFO - ➡ Headers:
+2025-11-27 13:24:06,528 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '40', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 13:24:06,528 - INFO - ➡ request.data crudo:
+2025-11-27 13:24:06,528 - INFO - b'{"instance":"attack 4","tools":["nmap"]}'
+2025-11-27 13:24:06,528 - INFO - ➡ request.form:
+2025-11-27 13:24:06,528 - INFO - ImmutableMultiDict([])
+2025-11-27 13:24:06,528 - INFO - ➡ request.args:
+2025-11-27 13:24:06,528 - INFO - ImmutableMultiDict([])
+2025-11-27 13:24:06,529 - INFO - 📂 Guardado en:
+2025-11-27 13:24:06,529 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/attack_4_tools.json
+2025-11-27 13:24:10,783 - INFO - ➡ Método HTTP:
+2025-11-27 13:24:10,783 - INFO - POST
+2025-11-27 13:24:10,783 - INFO - ➡ Headers:
+2025-11-27 13:24:10,783 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '34', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 13:24:10,784 - INFO - ➡ request.data crudo:
+2025-11-27 13:24:10,784 - INFO - b'{"instance":"attack 4","tools":[]}'
+2025-11-27 13:24:10,784 - INFO - ➡ request.form:
+2025-11-27 13:24:10,784 - INFO - ImmutableMultiDict([])
+2025-11-27 13:24:10,784 - INFO - ➡ request.args:
+2025-11-27 13:24:10,784 - INFO - ImmutableMultiDict([])
+2025-11-27 13:24:10,785 - INFO - 📂 Guardado en:
+2025-11-27 13:24:10,785 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/attack_4_tools.json
+2025-11-27 13:24:18,887 - INFO - ➡ Método HTTP:
+2025-11-27 13:24:18,887 - INFO - POST
+2025-11-27 13:24:18,888 - INFO - ➡ Headers:
+2025-11-27 13:24:18,888 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '34', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 13:24:18,888 - INFO - ➡ request.data crudo:
+2025-11-27 13:24:18,888 - INFO - b'{"instance":"victim 3","tools":[]}'
+2025-11-27 13:24:18,888 - INFO - ➡ request.form:
+2025-11-27 13:24:18,889 - INFO - ImmutableMultiDict([])
+2025-11-27 13:24:18,889 - INFO - ➡ request.args:
+2025-11-27 13:24:18,889 - INFO - ImmutableMultiDict([])
+2025-11-27 13:24:18,891 - INFO - 📂 Guardado en:
+2025-11-27 13:24:18,891 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/victim_3_tools.json
+2025-11-27 13:26:46,324 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:26:46,327 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:26:46,356 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:26:46,470 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:26:46,578 - INFO - 📤 Salida del script:
+2025-11-27 13:26:46,579 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 13:26:46,579 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 13:26:46,580 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:26:46,588 - INFO - 📤 Salida del script:
+2025-11-27 13:26:46,589 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 13:26:46,589 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 13:26:46,589 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:26:46,608 - INFO - 📤 Salida del script:
+2025-11-27 13:26:46,608 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 13:26:46,609 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 13:26:46,609 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:26:46,731 - INFO - 📤 Salida del script:
+2025-11-27 13:26:46,731 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 13:26:46,732 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:26:46,733 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:27:23,338 - INFO - 📥 Leyendo archivos tools-installer/ ...
+2025-11-27 13:27:23,339 - INFO - 📄 monitor_1_tools.json: {'instance': 'monitor 1', 'tools': ['suricata']}
+2025-11-27 13:27:23,340 - INFO - 📄 victim_3_tools.json: {'instance': 'victim 3', 'tools': []}
+2025-11-27 13:27:23,340 - INFO - 📄 attack_4_tools.json: {'instance': 'attack 4', 'tools': []}
+2025-11-27 13:31:03,800 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:31:03,903 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:31:03,913 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:31:03,954 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:31:04,153 - INFO - 📤 Salida del script:
+2025-11-27 13:31:04,154 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 13:31:04,154 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 13:31:04,154 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:31:04,220 - INFO - 📤 Salida del script:
+2025-11-27 13:31:04,220 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 13:31:04,220 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 13:31:04,220 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:31:04,244 - INFO - 📤 Salida del script:
+2025-11-27 13:31:04,244 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 13:31:04,245 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:31:04,245 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:31:04,270 - INFO - 📤 Salida del script:
+2025-11-27 13:31:04,270 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 13:31:04,272 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:31:04,272 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:32:59,448 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:32:59,471 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:32:59,547 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:32:59,627 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:32:59,709 - INFO - 📤 Salida del script:
+2025-11-27 13:32:59,711 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 13:32:59,711 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 13:32:59,711 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:32:59,732 - INFO - 📤 Salida del script:
+2025-11-27 13:32:59,733 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 13:32:59,733 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 13:32:59,734 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:32:59,813 - INFO - 📤 Salida del script:
+2025-11-27 13:32:59,815 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 13:32:59,815 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 13:32:59,815 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:32:59,911 - INFO - 📤 Salida del script:
+2025-11-27 13:32:59,913 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 13:32:59,913 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:32:59,914 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:33:16,678 - INFO - 🚀 Iniciando instalación de tools...
+2025-11-27 13:34:08,959 - INFO - ➡ Método HTTP:
+2025-11-27 13:34:08,959 - INFO - POST
+2025-11-27 13:34:08,960 - INFO - ➡ Headers:
+2025-11-27 13:34:08,960 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '41', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 13:34:08,961 - INFO - ➡ request.data crudo:
+2025-11-27 13:34:08,961 - INFO - b'{"instance":"attack 4","tools":["wazuh"]}'
+2025-11-27 13:34:08,961 - INFO - ➡ request.form:
+2025-11-27 13:34:08,961 - INFO - ImmutableMultiDict([])
+2025-11-27 13:34:08,961 - INFO - ➡ request.args:
+2025-11-27 13:34:08,961 - INFO - ImmutableMultiDict([])
+2025-11-27 13:34:08,962 - INFO - 📂 Guardado en:
+2025-11-27 13:34:08,962 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/attack_4_tools.json
+2025-11-27 13:34:26,848 - INFO - ➡ Método HTTP:
+2025-11-27 13:34:26,849 - INFO - POST
+2025-11-27 13:34:26,849 - INFO - ➡ Headers:
+2025-11-27 13:34:26,849 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '44', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 13:34:26,849 - INFO - ➡ request.data crudo:
+2025-11-27 13:34:26,850 - INFO - b'{"instance":"victim 3","tools":["suricata"]}'
+2025-11-27 13:34:26,850 - INFO - ➡ request.form:
+2025-11-27 13:34:26,850 - INFO - ImmutableMultiDict([])
+2025-11-27 13:34:26,850 - INFO - ➡ request.args:
+2025-11-27 13:34:26,850 - INFO - ImmutableMultiDict([])
+2025-11-27 13:34:26,851 - INFO - 📂 Guardado en:
+2025-11-27 13:34:26,851 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/victim_3_tools.json
+2025-11-27 13:34:31,105 - INFO - 📥 Leyendo archivos tools-installer/ ...
+2025-11-27 13:34:31,105 - INFO - 📄 victim_3_tools.json: {'instance': 'victim 3', 'tools': ['suricata']}
+2025-11-27 13:34:31,105 - INFO - 📄 attack_4_tools.json: {'instance': 'attack 4', 'tools': ['wazuh']}
+2025-11-27 13:38:28,180 - INFO - ➡ Método HTTP:
+2025-11-27 13:38:28,180 - INFO - POST
+2025-11-27 13:38:28,182 - INFO - ➡ Headers:
+2025-11-27 13:38:28,183 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '44', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 13:38:28,183 - INFO - ➡ request.data crudo:
+2025-11-27 13:38:28,183 - INFO - b'{"instance":"victim 3","tools":["suricata"]}'
+2025-11-27 13:38:28,184 - INFO - ➡ request.form:
+2025-11-27 13:38:28,184 - INFO - ImmutableMultiDict([])
+2025-11-27 13:38:28,184 - INFO - ➡ request.args:
+2025-11-27 13:38:28,184 - INFO - ImmutableMultiDict([])
+2025-11-27 13:38:28,185 - INFO - 📂 Guardado en:
+2025-11-27 13:38:28,185 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/victim_3_tools.json
+2025-11-27 13:43:29,546 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:43:29,617 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:43:29,641 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:43:29,705 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:43:29,762 - INFO - 📤 Salida del script:
+2025-11-27 13:43:29,763 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+
+2025-11-27 13:43:29,763 - WARNING - 📥 Errores durante la ejecución del script:
+2025-11-27 13:43:29,763 - WARNING - jq: error: Could not open file /tmp/clouds.json: No existe el archivo o el directorio
+
+2025-11-27 13:43:29,763 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 2
+2025-11-27 13:43:29,764 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:43:29,857 - INFO - 📤 Salida del script:
+2025-11-27 13:43:29,858 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 13:43:29,858 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 13:43:29,859 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:43:29,916 - INFO - 📤 Salida del script:
+2025-11-27 13:43:29,917 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 13:43:29,917 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 13:43:29,917 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:43:30,004 - INFO - 📤 Salida del script:
+2025-11-27 13:43:30,006 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 13:43:30,007 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:43:30,007 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:43:34,765 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 13:43:34,765 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 13:43:36,301 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 13:43:36,302 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 13:43:37,499 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 13:43:37,500 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 13:43:39,436 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 13:43:39,436 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 13:44:47,548 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:44:47,592 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:44:47,658 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:44:47,682 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/nics/Escritorio/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-11-27 13:44:47,726 - INFO - 📤 Salida del script:
+2025-11-27 13:44:47,726 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+
+2025-11-27 13:44:47,726 - WARNING - 📥 Errores durante la ejecución del script:
+2025-11-27 13:44:47,726 - WARNING - chmod: no se puede acceder a '/tmp/clouds.json': No existe el archivo o el directorio
+
+2025-11-27 13:44:47,726 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 13:44:47,726 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:44:47,815 - INFO - 📤 Salida del script:
+2025-11-27 13:44:47,816 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 13:44:47,817 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 13:44:47,817 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:44:47,842 - INFO - 📤 Salida del script:
+2025-11-27 13:44:47,842 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-11-27 13:44:47,842 - WARNING - ⚠️ No se generó correctamente /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-11-27 13:44:47,843 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:44:47,957 - INFO - 📤 Salida del script:
+2025-11-27 13:44:47,958 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.5.12:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=SYm2HzC9IgRgWYwiZVoIeJWpAaeTbVNkF7S5D8L1
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-11-27 13:44:47,959 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:44:47,960 - INFO - ✅ Credenciales OpenStack cargadas desde /home/nics/Escritorio/cyber-range-v1/admin-openrc.sh
+2025-11-27 13:44:52,687 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 13:44:52,687 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 13:44:55,054 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 13:44:55,055 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-11-27 13:44:56,269 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 13:44:56,270 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 13:45:02,078 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 13:45:02,078 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-11-27 13:45:03,469 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 13:45:03,469 - INFO - ➡ Método HTTP:
+2025-11-27 13:45:03,469 - INFO - POST
+2025-11-27 13:45:03,469 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-11-27 13:45:03,469 - INFO - ➡ Headers:
+2025-11-27 13:45:03,470 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '34', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 13:45:03,470 - INFO - ➡ request.data crudo:
+2025-11-27 13:45:03,470 - INFO - b'{"instance":"victim 3","tools":[]}'
+2025-11-27 13:45:03,470 - INFO - ➡ request.form:
+2025-11-27 13:45:03,470 - INFO - ImmutableMultiDict([])
+2025-11-27 13:45:03,471 - INFO - ➡ request.args:
+2025-11-27 13:45:03,471 - INFO - ImmutableMultiDict([])
+2025-11-27 13:45:03,472 - INFO - 📂 Guardado en:
+2025-11-27 13:45:03,472 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/victim_3_tools.json
+2025-11-27 13:45:14,668 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 13:45:14,669 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-11-27 13:45:17,982 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 13:45:17,983 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-11-27 13:45:18,788 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 13:45:18,789 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 13:45:19,957 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 13:45:19,958 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 13:45:21,957 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 13:45:21,958 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 13:45:23,278 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 13:45:23,279 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-11-27 13:45:24,149 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 13:45:24,150 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 13:45:25,227 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 13:45:25,228 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 13:45:26,885 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 13:45:26,886 - INFO - ➡ Método HTTP:
+2025-11-27 13:45:26,886 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 13:45:26,886 - INFO - POST
+2025-11-27 13:45:26,887 - INFO - ➡ Headers:
+2025-11-27 13:45:26,887 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '34', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 13:45:26,887 - INFO - ➡ request.data crudo:
+2025-11-27 13:45:26,887 - INFO - b'{"instance":"attack 4","tools":[]}'
+2025-11-27 13:45:26,887 - INFO - ➡ request.form:
+2025-11-27 13:45:26,887 - INFO - ImmutableMultiDict([])
+2025-11-27 13:45:26,888 - INFO - ➡ request.args:
+2025-11-27 13:45:26,888 - INFO - ImmutableMultiDict([])
+2025-11-27 13:45:26,888 - INFO - 📂 Guardado en:
+2025-11-27 13:45:26,888 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/attack_4_tools.json
+2025-11-27 13:45:35,606 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 13:45:35,606 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-11-27 13:45:36,200 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 13:45:36,201 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 13:45:36,733 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 13:45:36,734 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-11-27 13:45:37,328 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 13:45:37,328 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 13:45:38,324 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 13:45:38,324 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-11-27 13:45:38,876 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 13:45:38,877 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 13:45:52,916 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 13:45:52,916 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 13:45:53,358 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 13:45:53,359 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-11-27 13:45:53,753 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 13:45:53,753 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 13:46:16,239 - INFO - 📥 Leyendo archivos tools-installer/ ...
+2025-11-27 13:46:16,240 - INFO - 📄 victim_3_tools.json: {'instance': 'victim 3', 'tools': []}
+2025-11-27 13:46:16,240 - INFO - 📄 attack_4_tools.json: {'instance': 'attack 4', 'tools': []}
+2025-11-27 13:46:24,532 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 13:46:24,533 - INFO - ⚠️ JSON NO encontrado para esta instancia
+2025-11-27 13:46:27,382 - INFO - ➡ Método HTTP:
+2025-11-27 13:46:27,382 - INFO - POST
+2025-11-27 13:46:27,383 - INFO - ➡ Headers:
+2025-11-27 13:46:27,383 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '42', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 13:46:27,383 - INFO - ➡ request.data crudo:
+2025-11-27 13:46:27,383 - INFO - b'{"instance":"monitor 1","tools":["snort"]}'
+2025-11-27 13:46:27,383 - INFO - ➡ request.form:
+2025-11-27 13:46:27,383 - INFO - ImmutableMultiDict([])
+2025-11-27 13:46:27,383 - INFO - ➡ request.args:
+2025-11-27 13:46:27,384 - INFO - ImmutableMultiDict([])
+2025-11-27 13:46:27,384 - INFO - 📂 Guardado en:
+2025-11-27 13:46:27,385 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-11-27 13:46:27,392 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 13:46:27,393 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-11-27 13:57:02,590 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 13:57:02,591 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 13:57:04,714 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 13:57:04,715 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-11-27 13:57:05,513 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 13:57:05,513 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-11-27 13:57:06,667 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 13:57:06,667 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 13:57:07,636 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 13:57:07,637 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-11-27 13:57:08,374 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 13:57:08,375 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-11-27 13:57:09,860 - INFO - ➡ Método HTTP:
+2025-11-27 13:57:09,860 - INFO - POST
+2025-11-27 13:57:09,860 - INFO - ➡ Headers:
+2025-11-27 13:57:09,860 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '35', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 13:57:09,860 - INFO - ➡ request.data crudo:
+2025-11-27 13:57:09,861 - INFO - b'{"instance":"monitor 1","tools":[]}'
+2025-11-27 13:57:09,861 - INFO - ➡ request.form:
+2025-11-27 13:57:09,861 - INFO - ImmutableMultiDict([])
+2025-11-27 13:57:09,861 - INFO - ➡ request.args:
+2025-11-27 13:57:09,862 - INFO - ImmutableMultiDict([])
+2025-11-27 13:57:09,862 - INFO - 📂 Guardado en:
+2025-11-27 13:57:09,863 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-11-27 13:57:09,868 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 13:57:09,868 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-11-27 13:57:11,437 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 13:57:11,437 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-11-27 13:57:12,421 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 13:57:12,421 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-11-27 13:57:15,524 - INFO - ➡ Método HTTP:
+2025-11-27 13:57:15,524 - INFO - POST
+2025-11-27 13:57:15,524 - INFO - ➡ Headers:
+2025-11-27 13:57:15,524 - INFO - {'Host': 'localhost:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://localhost:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '42', 'Origin': 'http://localhost:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-11-27 13:57:15,525 - INFO - ➡ request.data crudo:
+2025-11-27 13:57:15,525 - INFO - b'{"instance":"monitor 1","tools":["snort"]}'
+2025-11-27 13:57:15,525 - INFO - ➡ request.form:
+2025-11-27 13:57:15,525 - INFO - ImmutableMultiDict([])
+2025-11-27 13:57:15,525 - INFO - ➡ request.args:
+2025-11-27 13:57:15,525 - INFO - ImmutableMultiDict([])
+2025-11-27 13:57:15,527 - INFO - 📂 Guardado en:
+2025-11-27 13:57:15,527 - INFO - /home/nics/Escritorio/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-11-27 13:57:15,531 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 13:57:15,531 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-11-27 13:57:16,923 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 13:57:16,924 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-11-27 13:57:18,165 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-11-27 13:57:18,165 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-11-27 13:57:19,428 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-11-27 13:57:19,429 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-11-27 13:57:20,371 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-11-27 13:57:20,372 - INFO - 📄 JSON encontrado: monitor_1_tools.json
