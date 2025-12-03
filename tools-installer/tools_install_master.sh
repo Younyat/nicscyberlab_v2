@@ -231,8 +231,7 @@ for FILE in *_tools.json; do
             chmod +x "$INSTALL_SCRIPT_LOCAL"
         fi
 
-
-        echo "📁 Creando directorio remoto: $TOOL_DIR_REMOTE"
+     echo "📁 Creando directorio remoto: $TOOL_DIR_REMOTE"
         ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" "$USER@$IP" \
             "sudo mkdir -p $TOOL_DIR_REMOTE"
 
@@ -253,31 +252,54 @@ for FILE in *_tools.json; do
             sudo chmod +x $TOOL_DIR_REMOTE/installer.sh 2>/dev/null || true
         "
 
+        # -----------------------------------------------------
+        # 🧠 Ejecución del installer 
+        # (con la IP bien pasada como argumento)
+        # -----------------------------------------------------
         if ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" "$USER@$IP" \
             "[ -f $TOOL_DIR_REMOTE/installer.sh ]"; then
             
             echo "🚀 Ejecutando installer.sh de la instancia..."
             ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" "$USER@$IP" \
-                "cd $TOOL_DIR_REMOTE && sudo bash ./installer.sh" \
+                "cd $TOOL_DIR_REMOTE && sudo bash ./installer.sh \"$IP\"" \
                 >"$LOG_FILE" 2>&1
 
         else
             echo "⚠ No existe installer.sh dentro de la instancia."
             echo "➡ Ejecutando install_${TOOL}.sh desde /tmp como fallback"
             ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" "$USER@$IP" \
-                "sudo bash /tmp/install_${TOOL}.sh" \
+                "sudo bash /tmp/install_${TOOL}.sh \"$IP\"" \
                 >"$LOG_FILE" 2>&1
         fi
 
         echo "✔ Instalación ejecutada (log almacenado)"
 
-        echo "🔎 Verificando instalación de $TOOL..."
-
+        # -----------------------------------------------------
+        # 🔍 Validación de instalación
+        # -----------------------------------------------------
         case "$TOOL" in
-            suricata) CHECK_CMD="suricata -V" ;;
-            snort)    CHECK_CMD="snort -V" ;;
-            wazuh)    CHECK_CMD="systemctl status wazuh-agent" ;;
-            *)        CHECK_CMD="which $TOOL" ;;
+            suricata)
+                CHECK_CMD="suricata -V"
+                ;;
+
+            snort)
+                CHECK_CMD="snort -V"
+                ;;
+
+            wazuh)
+                CHECK_CMD="systemctl status wazuh-manager"
+                ;;
+
+            caldera)
+                CHECK_CMD="
+                    ps aux | grep -q '[p]ython3 server.py' &&
+                    ss -tunlp | grep -q ':8888'
+                "
+            ;;
+
+            *)
+                CHECK_CMD="which $TOOL"
+                ;;
         esac
 
         if ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" "$USER@$IP" "$CHECK_CMD" >/dev/null 2>&1; then
@@ -287,6 +309,7 @@ for FILE in *_tools.json; do
         fi
 
         echo "----------------------------------------------------"
+
     done  # <-- CIERRA for TOOL
 
 done  # <-- CIERRA for FILE

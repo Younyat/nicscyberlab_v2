@@ -1,5 +1,22 @@
-🛠️ Preparando entorno para Caldera...
-⚠️ installer.sh ya existe para Caldera.
-ℹ️ Ejecútalo manualmente si quieres:
-   bash "tools-installer/caldera/installer.sh"
-📂 Directorio: tools-installer/caldera
+====================================================
+🚀 Instalador de MITRE Caldera
+====================================================
+🌍 IP recibida desde el master installer: 10.0.2.237
+🌐 IP final para Dashboard: 10.0.2.237
+----------------------------------------------------
+✔ Detectada instalación previa: /root/caldera
+✔ Proceso Caldera ya ejecutándose
+✔ Puerto 8888 activo
+====================================================
+🎉 MITRE Caldera YA ESTÁ INSTALADO
+====================================================
+🌍 URL      : http://10.0.2.237:8888
+🔑 Usuario  : admin
+🔑 Password : admin (por defecto)
+📁 Carpeta  : /root/caldera
+
+⚙ Si necesitas forzar reinstalación:
+   rm -rf /root/caldera
+   sudo pkill -f server.py 2>/dev/null
+   sudo systemctl stop caldera 2>/dev/null
+====================================================
