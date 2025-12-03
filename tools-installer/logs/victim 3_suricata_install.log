@@ -1,0 +1,5 @@
+🛠️ Preparando entorno para Caldera...
+⚠️ installer.sh ya existe para Caldera.
+ℹ️ Ejecútalo manualmente si quieres:
+   bash "tools-installer/suricata/installer.sh"
+📂 Directorio: tools-installer/suricata

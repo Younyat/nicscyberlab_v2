@@ -56264,3 +56264,117 @@ openstack server create \
 
 2025-12-02 17:02:03,178 - INFO - 📥 STDERR:
 2025-12-02 17:02:03,178 - INFO - 
+2025-12-03 12:48:42,609 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-12-03 12:48:42,610 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-12-03 12:48:44,964 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-12-03 12:48:44,964 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-12-03 12:48:46,504 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-03 12:48:46,504 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-03 12:48:48,613 - INFO - ➡ Método HTTP:
+2025-12-03 12:48:48,614 - INFO - POST
+2025-12-03 12:48:48,614 - INFO - ➡ Headers:
+2025-12-03 12:48:48,614 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '207', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-12-03 12:48:48,614 - INFO - ➡ request.data crudo:
+2025-12-03 12:48:48,615 - INFO - b'{"instance":"monitor 1","id":"7590bbad-95fd-4ab3-8e33-af1902d1abc9","name":"monitor 1","type":"monitor","ip_private":"192.168.100.137","ip_floating":"10.0.2.13","ip":"10.0.2.13","status":"ACTIVE","tools":[]}'
+2025-12-03 12:48:48,615 - INFO - 📂 Guardado en:
+2025-12-03 12:48:48,615 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-12-03 12:48:48,619 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-03 12:48:48,619 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-03 12:48:49,974 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-12-03 12:48:49,974 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-12-03 12:48:52,070 - INFO - ➡ Método HTTP:
+2025-12-03 12:48:52,071 - INFO - POST
+2025-12-03 12:48:52,071 - INFO - ➡ Headers:
+2025-12-03 12:48:52,072 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '206', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-12-03 12:48:52,072 - INFO - ➡ request.data crudo:
+2025-12-03 12:48:52,072 - INFO - b'{"instance":"victim 3","id":"ec96e1dd-b07e-4005-a518-daef182f3025","name":"victim 3","type":"victim","ip_private":"192.168.100.109","ip_floating":"10.0.2.173","ip":"10.0.2.173","status":"ACTIVE","tools":[]}'
+2025-12-03 12:48:52,073 - INFO - 📂 Guardado en:
+2025-12-03 12:48:52,073 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/victim_3_tools.json
+2025-12-03 12:48:52,078 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-12-03 12:48:52,078 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-12-03 12:48:53,128 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-12-03 12:48:53,129 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-12-03 12:48:54,648 - INFO - ➡ Método HTTP:
+2025-12-03 12:48:54,648 - INFO - POST
+2025-12-03 12:48:54,648 - INFO - ➡ Headers:
+2025-12-03 12:48:54,648 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '205', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-12-03 12:48:54,649 - INFO - ➡ request.data crudo:
+2025-12-03 12:48:54,649 - INFO - b'{"instance":"attack 4","id":"9196a09c-f660-4a8f-9803-2bbd72c6f980","name":"attack 4","type":"attack","ip_private":"192.168.100.36","ip_floating":"10.0.2.237","ip":"10.0.2.237","status":"ACTIVE","tools":[]}'
+2025-12-03 12:48:54,650 - INFO - 📂 Guardado en:
+2025-12-03 12:48:54,650 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/attack_4_tools.json
+2025-12-03 12:48:54,654 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-12-03 12:48:54,654 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-12-03 12:48:56,217 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-12-03 12:48:56,218 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-12-03 12:49:58,102 - INFO - ➡ Método HTTP:
+2025-12-03 12:49:58,103 - INFO - POST
+2025-12-03 12:49:58,103 - INFO - ➡ Headers:
+2025-12-03 12:49:58,103 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '214', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-12-03 12:49:58,103 - INFO - ➡ request.data crudo:
+2025-12-03 12:49:58,103 - INFO - b'{"instance":"attack 4","id":"9196a09c-f660-4a8f-9803-2bbd72c6f980","name":"attack 4","type":"attack","ip_private":"192.168.100.36","ip_floating":"10.0.2.237","ip":"10.0.2.237","status":"ACTIVE","tools":["caldera"]}'
+2025-12-03 12:49:58,104 - INFO - 📂 Guardado en:
+2025-12-03 12:49:58,104 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/attack_4_tools.json
+2025-12-03 12:49:58,107 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-12-03 12:49:58,107 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-12-03 12:49:59,809 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-12-03 12:49:59,810 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-12-03 12:50:09,235 - INFO - ➡ Método HTTP:
+2025-12-03 12:50:09,235 - INFO - POST
+2025-12-03 12:50:09,236 - INFO - ➡ Headers:
+2025-12-03 12:50:09,236 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '216', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-12-03 12:50:09,236 - INFO - ➡ request.data crudo:
+2025-12-03 12:50:09,236 - INFO - b'{"instance":"victim 3","id":"ec96e1dd-b07e-4005-a518-daef182f3025","name":"victim 3","type":"victim","ip_private":"192.168.100.109","ip_floating":"10.0.2.173","ip":"10.0.2.173","status":"ACTIVE","tools":["suricata"]}'
+2025-12-03 12:50:09,237 - INFO - 📂 Guardado en:
+2025-12-03 12:50:09,237 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/victim_3_tools.json
+2025-12-03 12:50:09,241 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-12-03 12:50:09,241 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-12-03 12:50:11,725 - INFO - ➡ Método HTTP:
+2025-12-03 12:50:11,725 - INFO - POST
+2025-12-03 12:50:11,726 - INFO - ➡ Headers:
+2025-12-03 12:50:11,726 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '224', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-12-03 12:50:11,726 - INFO - ➡ request.data crudo:
+2025-12-03 12:50:11,727 - INFO - b'{"instance":"victim 3","id":"ec96e1dd-b07e-4005-a518-daef182f3025","name":"victim 3","type":"victim","ip_private":"192.168.100.109","ip_floating":"10.0.2.173","ip":"10.0.2.173","status":"ACTIVE","tools":["suricata","snort"]}'
+2025-12-03 12:50:11,727 - INFO - 📂 Guardado en:
+2025-12-03 12:50:11,728 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/victim_3_tools.json
+2025-12-03 12:50:11,731 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-12-03 12:50:11,732 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-12-03 12:50:13,771 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-03 12:50:13,772 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-03 12:50:17,024 - INFO - ➡ Método HTTP:
+2025-12-03 12:50:17,024 - INFO - POST
+2025-12-03 12:50:17,024 - INFO - ➡ Headers:
+2025-12-03 12:50:17,025 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '214', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-12-03 12:50:17,025 - INFO - ➡ request.data crudo:
+2025-12-03 12:50:17,025 - INFO - b'{"instance":"monitor 1","id":"7590bbad-95fd-4ab3-8e33-af1902d1abc9","name":"monitor 1","type":"monitor","ip_private":"192.168.100.137","ip_floating":"10.0.2.13","ip":"10.0.2.13","status":"ACTIVE","tools":["wazuh"]}'
+2025-12-03 12:50:17,026 - INFO - 📂 Guardado en:
+2025-12-03 12:50:17,026 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-12-03 12:50:17,030 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-03 12:50:17,030 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-03 12:50:19,588 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-12-03 12:50:19,588 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-12-03 12:50:20,099 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-12-03 12:50:20,099 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-12-03 12:50:21,029 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-03 12:50:21,029 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-03 12:50:32,359 - INFO - 📥 Leyendo archivos tools-installer/ ...
+2025-12-03 12:50:32,359 - INFO - 📄 attack_4_tools.json: {'instance': 'attack 4', 'id': '9196a09c-f660-4a8f-9803-2bbd72c6f980', 'name': 'attack 4', 'type': 'attack', 'ip_private': '192.168.100.36', 'ip_floating': '10.0.2.237', 'ip': '10.0.2.237', 'status': 'ACTIVE', 'tools': ['caldera']}
+2025-12-03 12:50:32,360 - INFO - 📄 monitor_1_tools.json: {'instance': 'monitor 1', 'id': '7590bbad-95fd-4ab3-8e33-af1902d1abc9', 'name': 'monitor 1', 'type': 'monitor', 'ip_private': '192.168.100.137', 'ip_floating': '10.0.2.13', 'ip': '10.0.2.13', 'status': 'ACTIVE', 'tools': ['wazuh']}
+2025-12-03 12:50:32,360 - INFO - 📄 victim_3_tools.json: {'instance': 'victim 3', 'id': 'ec96e1dd-b07e-4005-a518-daef182f3025', 'name': 'victim 3', 'type': 'victim', 'ip_private': '192.168.100.109', 'ip_floating': '10.0.2.173', 'ip': '10.0.2.173', 'status': 'ACTIVE', 'tools': ['suricata', 'snort']}
+2025-12-03 12:50:39,790 - INFO - 🚀 Iniciando instalación de tools...
+2025-12-03 12:59:10,308 - INFO - 🚀 Iniciando instalación de tools...
+2025-12-03 12:59:50,547 - INFO - 📥 Leyendo archivos tools-installer/ ...
+2025-12-03 12:59:50,548 - INFO - 📄 attack_4_tools.json: {'instance': 'attack 4', 'id': '9196a09c-f660-4a8f-9803-2bbd72c6f980', 'name': 'attack 4', 'type': 'attack', 'ip_private': '192.168.100.36', 'ip_floating': '10.0.2.237', 'ip': '10.0.2.237', 'status': 'ACTIVE', 'tools': ['caldera']}
+2025-12-03 12:59:50,548 - INFO - 📄 monitor_1_tools.json: {'instance': 'monitor 1', 'id': '7590bbad-95fd-4ab3-8e33-af1902d1abc9', 'name': 'monitor 1', 'type': 'monitor', 'ip_private': '192.168.100.137', 'ip_floating': '10.0.2.13', 'ip': '10.0.2.13', 'status': 'ACTIVE', 'tools': ['wazuh']}
+2025-12-03 12:59:50,548 - INFO - 📄 victim_3_tools.json: {'instance': 'victim 3', 'id': 'ec96e1dd-b07e-4005-a518-daef182f3025', 'name': 'victim 3', 'type': 'victim', 'ip_private': '192.168.100.109', 'ip_floating': '10.0.2.173', 'ip': '10.0.2.173', 'status': 'ACTIVE', 'tools': ['suricata', 'snort']}
+2025-12-03 12:59:55,355 - INFO - 🚀 Iniciando instalación de tools...
+2025-12-03 13:01:25,121 - INFO - 🚀 Iniciando instalación de tools...
+2025-12-03 13:08:29,532 - INFO - 🚀 Iniciando instalación de tools...
+2025-12-03 13:18:36,892 - INFO - 🚀 Iniciando instalación de tools...
+2025-12-03 13:25:56,139 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-12-03 13:25:56,139 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-12-03 13:27:02,192 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-12-03 13:27:02,193 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-12-03 13:27:05,654 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-12-03 13:27:05,654 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-12-03 13:27:06,180 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-12-03 13:27:06,180 - INFO - 📄 JSON encontrado: victim_3_tools.json

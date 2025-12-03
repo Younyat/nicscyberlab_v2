@@ -1,13 +1,13 @@
 {
     "instance": "monitor 1",
-    "id": "5d727d19-3c14-40d9-a801-e917cc9f80ca",
+    "id": "7590bbad-95fd-4ab3-8e33-af1902d1abc9",
     "name": "monitor 1",
     "type": "monitor",
-    "ip_private": "192.168.100.108",
-    "ip_floating": "10.0.2.17",
-    "ip": "10.0.2.17",
+    "ip_private": "192.168.100.137",
+    "ip_floating": "10.0.2.13",
+    "ip": "10.0.2.13",
     "status": "ACTIVE",
     "tools": [
-        "snort"
+        "wazuh"
     ]
 }

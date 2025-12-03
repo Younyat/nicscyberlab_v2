@@ -1,13 +1,14 @@
 {
     "instance": "victim 3",
-    "id": "02c837ce-88e3-4df6-ae4e-ecc087142858",
+    "id": "ec96e1dd-b07e-4005-a518-daef182f3025",
     "name": "victim 3",
     "type": "victim",
-    "ip_private": "192.168.100.101",
-    "ip_floating": "10.0.2.162",
-    "ip": "10.0.2.162",
+    "ip_private": "192.168.100.109",
+    "ip_floating": "10.0.2.173",
+    "ip": "10.0.2.173",
     "status": "ACTIVE",
     "tools": [
-        "wazuh"
+        "suricata",
+        "snort"
     ]
 }

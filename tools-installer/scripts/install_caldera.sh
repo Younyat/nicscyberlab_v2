@@ -2,11 +2,11 @@
 set -euo pipefail
 
 BASE_DIR="tools-installer"
-TOOL_NAME="snort"
+TOOL_NAME="caldera"
 TOOL_DIR="${BASE_DIR}/${TOOL_NAME}"
 INSTALLER="${TOOL_DIR}/installer.sh"
 
-echo "🛠️ Preparando entorno para snort..."
+echo "🛠️ Preparando entorno para Caldera..."
 
 mkdir -p "$TOOL_DIR"
 

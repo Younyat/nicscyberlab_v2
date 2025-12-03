@@ -1,24 +1,38 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-INSTANCE="$1"
-IP="$2"
-USER="$3"
+BASE_DIR="tools-installer"
+TOOL_NAME="wazuh"
+TOOL_DIR="${BASE_DIR}/${TOOL_NAME}"
+INSTALLER="${TOOL_DIR}/installer.sh"
 
-echo "🔥 Instalando Wazuh en $INSTANCE ($IP)..."
+echo "🛠️ Preparando entorno para wazuh..."
 
-ssh -o StrictHostKeyChecking=no "$USER@$IP" << 'EOF'
-sudo apt update -y
-sudo apt install -y curl gnupg apt-transport-https
+mkdir -p "$TOOL_DIR"
 
-curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | sudo tee /etc/apt/trusted.gpg.d/wazuh.asc >/dev/null
+if [ ! -f "$INSTALLER" ]; then
+    cat << 'EOF' > "$INSTALLER"
+#!/usr/bin/env bash
+set -euo pipefail
 
-echo "deb https://packages.wazuh.com/4.x/apt/ stable main" | sudo tee /etc/apt/sources.list.d/wazuh.list >/dev/null
-
-sudo apt update -y
-sudo apt install -y wazuh-agent
-
-sudo systemctl enable wazuh-agent
-sudo systemctl start wazuh-agent
+echo "🚀 Instalando Caldera..."
+# TODO: añadir comandos de instalación real
 EOF
 
-echo "✔ Wazuh instalado correctamente en $INSTANCE"
+    chmod +x "$INSTALLER"
+
+    echo "✔ installer.sh creado para Caldera."
+
+    # ============================================
+    # 🚀 Ejecutar el installer inmediatamente
+    # ============================================
+    echo "🏁 Ejecutando installer.sh..."
+    bash "$INSTALLER"
+
+else
+    echo "⚠️ installer.sh ya existe para Caldera."
+    echo "ℹ️ Ejecútalo manualmente si quieres:"
+    echo "   bash \"$INSTALLER\""
+fi
+
+echo "📂 Directorio: $TOOL_DIR"

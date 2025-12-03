@@ -1,17 +1,38 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-INSTANCE="$1"
-IP="$2"
-USER="$3"
+BASE_DIR="tools-installer"
+TOOL_NAME="suricata"
+TOOL_DIR="${BASE_DIR}/${TOOL_NAME}"
+INSTALLER="${TOOL_DIR}/installer.sh"
 
-echo "🔥 Instalando Suricata en $INSTANCE ($IP)..."
+echo "🛠️ Preparando entorno para suricata..."
 
-ssh -o StrictHostKeyChecking=no "$USER@$IP" << 'EOF'
-sudo apt update -y
-sudo apt install -y suricata
+mkdir -p "$TOOL_DIR"
 
-sudo systemctl enable suricata
-sudo systemctl start suricata
+if [ ! -f "$INSTALLER" ]; then
+    cat << 'EOF' > "$INSTALLER"
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🚀 Instalando Caldera..."
+# TODO: añadir comandos de instalación real
 EOF
 
-echo "✔ Suricata instalado correctamente en $INSTANCE"
+    chmod +x "$INSTALLER"
+
+    echo "✔ installer.sh creado para Caldera."
+
+    # ============================================
+    # 🚀 Ejecutar el installer inmediatamente
+    # ============================================
+    echo "🏁 Ejecutando installer.sh..."
+    bash "$INSTALLER"
+
+else
+    echo "⚠️ installer.sh ya existe para Caldera."
+    echo "ℹ️ Ejecútalo manualmente si quieres:"
+    echo "   bash \"$INSTALLER\""
+fi
+
+echo "📂 Directorio: $TOOL_DIR"

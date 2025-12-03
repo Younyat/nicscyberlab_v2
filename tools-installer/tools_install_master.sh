@@ -1,55 +1,174 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
+trap 'echo "❌ ERROR en línea ${LINENO}" >&2' ERR
 
+echo "===================================================="
+echo "🚀 TOOLS INSTALLER MASTER INIT"
+echo "===================================================="
+
+# ====================================================
+# 🌍 Obtener directorio raíz (donde está la app)
+# ====================================================
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-TOOLS_DIR="$BASE_DIR/tools-installer-tmp"
+TOOLS_JSON_DIR="$BASE_DIR/tools-installer-tmp"
+TOOLS_SCRIPTS_DIR="$BASE_DIR/tools-installer/scripts"
+LOGS_DIR="$BASE_DIR/tools-installer/logs"
 
-echo "📂 Buscando archivos JSON en: $TOOLS_DIR"
+mkdir -p "$LOGS_DIR"
+
+echo "📌 BASE_DIR:             $BASE_DIR"
+echo "📂 JSON Tools Directory: $TOOLS_JSON_DIR"
+echo "📂 Scripts Directory:    $TOOLS_SCRIPTS_DIR"
+echo "📂 Logs Directory:       $LOGS_DIR"
 echo "----------------------------------------------------"
 
-cd "$TOOLS_DIR" || exit 1
+# ====================================================
+# 🧪 Validar carpeta JSON
+# ====================================================
+if [[ ! -d "$TOOLS_JSON_DIR" ]]; then
+    echo "❌ ERROR: No existe $TOOLS_JSON_DIR"
+    exit 1
+fi
+
+cd "$TOOLS_JSON_DIR"
+
 
 # ====================================================
-# 🔍 BUSCAR CLAVE SSH EN ~/.ssh
+# 🔍 Verificar dependencias básicas
 # ====================================================
+echo "🔍 Comprobando dependencias..."
+
+REQUIRED_PKGS=("jq" "ssh" "scp" "openstack")
+
+for pkg in "${REQUIRED_PKGS[@]}"; do
+    if ! command -v "$pkg" >/dev/null 2>&1; then
+        echo "❌ ERROR: Falta '$pkg'"
+        echo "👉 Instala con: sudo apt install -y $pkg"
+        exit 1
+    fi
+done
+
+echo "✔ Dependencias OK"
+echo "----------------------------------------------------"
+
+
+# ====================================================
+# 🔐 Cargar admin-openrc antes de usar openstack
+# ====================================================
+ADMIN_OPENRC="$BASE_DIR/admin-openrc.sh"
+
+if [[ -f "$ADMIN_OPENRC" ]]; then
+    source "$ADMIN_OPENRC"
+    echo "🔐 Credenciales OpenStack cargadas."
+else
+    echo "❌ ERROR: No existe $ADMIN_OPENRC"
+    exit 1
+fi
+
+# ====================================================
+# 🧩 Validar variables OpenStack
+# ====================================================
+REQUIRED_VARS=(
+    OS_AUTH_URL OS_USERNAME OS_PASSWORD
+    OS_PROJECT_NAME OS_USER_DOMAIN_NAME OS_PROJECT_DOMAIN_NAME
+)
+
+for v in "${REQUIRED_VARS[@]}"; do
+    if [[ -z "${!v:-}" ]]; then
+        echo "❌ ERROR: Falta variable de entorno '$v'."
+        echo "👉 Asegúrate de ejecutar correctamente admin-openrc.sh"
+        exit 1
+    fi
+done
+
+echo "✔ Variables OpenStack OK"
+echo "----------------------------------------------------"
+
+
+# ====================================================
+# 🔑 Buscar SSH key
+# ====================================================
+echo "🔑 Buscando clave SSH disponible..."
+
 SSH_KEY=""
-for KEY in "$HOME/.ssh/"*.pem "$HOME/.ssh/"*key "$HOME/.ssh/id_rsa"; do
-    if [[ -f "$KEY" ]]; then
-        SSH_KEY="$KEY"
+
+# Buscar ficheros privados válidos
+for CANDIDATE in \
+    "$HOME/.ssh/id_rsa" \
+    "$HOME/.ssh/id_ed25519" \
+    "$HOME/.ssh"/* \
+; do
+    if [[ -f "$CANDIDATE" ]] && grep -q "PRIVATE KEY" "$CANDIDATE" 2>/dev/null; then
+        SSH_KEY="$CANDIDATE"
         break
     fi
 done
 
 if [[ -z "$SSH_KEY" ]]; then
-    echo "❌ ERROR: No existe ninguna clave válida en ~/.ssh/"
+    echo "❌ ERROR: No se encontró ninguna clave privada válida en ~/.ssh"
     exit 1
 fi
 
-echo "🔑 Usando identity SSH: $SSH_KEY"
+echo "🔑 Clave detectada: $SSH_KEY"
 chmod 600 "$SSH_KEY"
 
+echo "✔ Usando llave SSH: $SSH_KEY"
+echo "----------------------------------------------------"
+
+
 # ====================================================
-# 🚀 PROCESO PRINCIPAL
+# 🧠 PROCESADO DE JSONS
 # ====================================================
+echo "📄 Buscando JSON de herramientas..."
+echo ""
+
+FILES_FOUND=false
+
 for FILE in *_tools.json; do
-    [ -f "$FILE" ] || continue
+    [[ -f "$FILE" ]] || continue
+    FILES_FOUND=true
 
     echo "===================================================="
-    echo "📄 Archivo detectado: $FILE"
+    echo "📄 Detectado archivo: $FILE"
+
+    # -------------------------------------------
+    # Validación mínima JSON
+    # -------------------------------------------
+    for field in name tools; do
+        if ! jq -e ".${field}" "$FILE" >/dev/null 2>&1; then
+            echo "❌ ERROR: $FILE no tiene '$field'"
+            continue 2
+        fi
+    done
 
     INSTANCE=$(jq -r '.name' "$FILE")
-    TOOLS=$(jq -r '.tools[]' "$FILE")
+    TOOLS=$(jq -r '
+    if (.tools | type == "string") 
+    then (.tools | fromjson[]) 
+    else (.tools[]) 
+    end
+    ' "$FILE")
+
 
     echo "🖥 Instancia: $INSTANCE"
+    echo "🔧 Tools     : $TOOLS"
 
     FLOATING_IP=$(jq -r '.ip_floating // empty' "$FILE")
     PRIVATE_IP=$(jq -r '.ip_private // empty' "$FILE")
 
-    IP="$FLOATING_IP"
-    [[ -z "$IP" ]] && IP="$PRIVATE_IP"
+    [[ -n "$FLOATING_IP" ]] && IP="$FLOATING_IP" || IP="$PRIVATE_IP"
 
-    echo "🌐 IP detectada: $IP"
+    if [[ -z "$IP" ]]; then
+        echo "❌ ERROR: No IP válida encontrada en $FILE"
+        continue
+    fi
 
-    echo "🔍 Consultando imagen de OpenStack..."
+    echo "🌐 IP usada para conexión: $IP"
+
+
+    # ====================================================
+    # 🔍 Detectar imagen y usuario correcto
+    # ====================================================
     RAW_IMAGE=$(openstack server show "$INSTANCE" -f json | jq -r '.image')
 
     if echo "$RAW_IMAGE" | jq empty 2>/dev/null; then
@@ -60,83 +179,124 @@ for FILE in *_tools.json; do
 
     echo "🧩 Imagen detectada: $IMAGE_NAME"
 
-    # Determinar usuario
     if echo "$IMAGE_NAME" | grep -qi "ubuntu"; then
         POSSIBLE_USERS=("ubuntu" "debian")
     elif echo "$IMAGE_NAME" | grep -qi "debian"; then
         POSSIBLE_USERS=("debian" "ubuntu")
     else
-        POSSIBLE_USERS=("debian" "ubuntu")
+        POSSIBLE_USERS=("ubuntu" "debian")
     fi
 
-    echo "🔍 Detectando usuario SSH..."
     USER=""
     for u in "${POSSIBLE_USERS[@]}"; do
-        if ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" $u@"$IP" "echo ok" >/dev/null 2>&1; then
+        if ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" "$u@$IP" "echo ok" >/dev/null 2>&1; then
             USER="$u"
             break
         fi
     done
 
     if [[ -z "$USER" ]]; then
-        echo "❌ No fue posible autenticar vía SSH."
+        echo "❌ ERROR: No fue posible conectar vía SSH."
         continue
     fi
 
     echo "👤 Usuario SSH detectado: $USER"
-    echo "🌐 Conectando a IP: $IP"
+    echo "----------------------------------------------------"
+
 
     # ====================================================
-    # 🔥 INSTALAR CADA TOOL + VERIFICAR INSTALACIÓN
+    # 🚀 Instalación por herramienta
     # ====================================================
     for TOOL in $TOOLS; do
-        echo "▶ Instalando $TOOL en $INSTANCE..."
+        echo "▶ Instalando herramienta: $TOOL"
 
-        SCRIPT="$BASE_DIR/tools-installer/scripts/install_${TOOL}.sh"
+        INSTALL_SCRIPT_LOCAL="$TOOLS_SCRIPTS_DIR/install_${TOOL}.sh"
+        TOOL_DIR_LOCAL="$BASE_DIR/tools-installer/${TOOL}"
+        TOOL_DIR_REMOTE="/opt/tools/${TOOL}"
 
-        if [[ ! -f "$SCRIPT" ]]; then
-            echo "❌ Script no encontrado: $SCRIPT"
+        LOG_FILE="$LOGS_DIR/${INSTANCE}_${TOOL}_install.log"
+        echo "📝 Log → $LOG_FILE"
+
+        # -------------------------------------------
+        # Validar existencia de instalador local
+        # -------------------------------------------
+        if [[ ! -f "$INSTALL_SCRIPT_LOCAL" ]]; then
+            echo "❌ ERROR: Falta script de instalación: $INSTALL_SCRIPT_LOCAL"
             continue
         fi
 
-        echo "📦 Subiendo script..."
-        scp -o StrictHostKeyChecking=no -i "$SSH_KEY" "$SCRIPT" $USER@"$IP":/tmp/
+        # Asegurar permisos aunque no existan
+        if [[ ! -x "$INSTALL_SCRIPT_LOCAL" ]]; then
+            echo "🔧 Ajustando permiso +x al script: $INSTALL_SCRIPT_LOCAL"
+            chmod +x "$INSTALL_SCRIPT_LOCAL"
+        fi
 
-        echo "🚀 Ejecutando script vía SSH..."
-        ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" $USER@"$IP" "sudo bash /tmp/install_${TOOL}.sh"
 
-        echo "✔ Instalación de $TOOL completada."
+        echo "📁 Creando directorio remoto: $TOOL_DIR_REMOTE"
+        ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" "$USER@$IP" \
+            "sudo mkdir -p $TOOL_DIR_REMOTE"
 
-        # ====================================================
-        # 🔍 VERIFICACIÓN REAL DE INSTALACIÓN
-        # ====================================================
-        echo "🔎 Verificando instalación de $TOOL en $INSTANCE..."
+        if [[ -d "$TOOL_DIR_LOCAL" ]]; then
+            echo "📦 Copiando contenido de $TOOL_DIR_LOCAL → instancia"
+            scp -o StrictHostKeyChecking=no -i "$SSH_KEY" \
+                -r "$TOOL_DIR_LOCAL/" "$USER@$IP:$TOOL_DIR_REMOTE/"
+        fi
+
+        echo "📜 Subiendo install_${TOOL}.sh a /tmp por compatibilidad"
+        scp -o StrictHostKeyChecking=no -i "$SSH_KEY" \
+            "$INSTALL_SCRIPT_LOCAL" "$USER@$IP:/tmp/"
+
+        echo "🔐 Ajustando permisos remotos..."
+        ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" "$USER@$IP" "
+            sudo chmod -R 755 $TOOL_DIR_REMOTE || true
+            sudo chmod +x /tmp/install_${TOOL}.sh || true
+            sudo chmod +x $TOOL_DIR_REMOTE/installer.sh 2>/dev/null || true
+        "
+
+        if ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" "$USER@$IP" \
+            "[ -f $TOOL_DIR_REMOTE/installer.sh ]"; then
+            
+            echo "🚀 Ejecutando installer.sh de la instancia..."
+            ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" "$USER@$IP" \
+                "cd $TOOL_DIR_REMOTE && sudo bash ./installer.sh" \
+                >"$LOG_FILE" 2>&1
+
+        else
+            echo "⚠ No existe installer.sh dentro de la instancia."
+            echo "➡ Ejecutando install_${TOOL}.sh desde /tmp como fallback"
+            ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" "$USER@$IP" \
+                "sudo bash /tmp/install_${TOOL}.sh" \
+                >"$LOG_FILE" 2>&1
+        fi
+
+        echo "✔ Instalación ejecutada (log almacenado)"
+
+        echo "🔎 Verificando instalación de $TOOL..."
 
         case "$TOOL" in
-            suricata)
-                CHECK_CMD="suricata -V"
-                ;;
-            snort)
-                CHECK_CMD="snort -V"
-                ;;
-            wazuh)
-                CHECK_CMD="systemctl status wazuh-agent"
-                ;;
-            *)
-                CHECK_CMD="which $TOOL"
-                ;;
+            suricata) CHECK_CMD="suricata -V" ;;
+            snort)    CHECK_CMD="snort -V" ;;
+            wazuh)    CHECK_CMD="systemctl status wazuh-agent" ;;
+            *)        CHECK_CMD="which $TOOL" ;;
         esac
 
-        ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" $USER@"$IP" "$CHECK_CMD" >/dev/null 2>&1
-        if [[ $? -eq 0 ]]; then
-            echo "✅ Verificado: $TOOL está instalado en $INSTANCE"
+        if ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" "$USER@$IP" "$CHECK_CMD" >/dev/null 2>&1; then
+            echo "✅ Instalación CONFIRMADA: $TOOL está funcionando en $INSTANCE"
         else
-            echo "❌ ERROR: $TOOL NO aparece instalado en $INSTANCE"
+            echo "❌ ERROR DE INSTALACIÓN: $TOOL NO responde como instalado"
         fi
 
         echo "----------------------------------------------------"
-    done
+    done  # <-- CIERRA for TOOL
 
-done
+done  # <-- CIERRA for FILE
 
+
+if [[ "$FILES_FOUND" == false ]]; then
+    echo "⚠️ No se encontraron JSONs en $TOOLS_JSON_DIR"
+fi
+
+echo ""
+echo "===================================================="
 echo "🎉 PROCESO COMPLETO FINALIZADO"
+echo "===================================================="
