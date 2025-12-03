@@ -1,5 +1,55 @@
-🛠️ Preparando entorno para snort...
-⚠️ installer.sh ya existe para Caldera.
-ℹ️ Ejecútalo manualmente si quieres:
-   bash "tools-installer/snort/installer.sh"
-📂 Directorio: tools-installer/snort
+====================================================
+🚀 Instalador de Snort 3
+====================================================
+🌍 Floating IP recibida: 10.0.2.173
+📡 Interfaz detectada: ens3
+
+====================================================
+🎉 Snort 3 YA está instalado en este sistema
+====================================================
+
+====================================================
+🧪 Validación completa de Snort 3
+====================================================
+✔ Binario: /usr/local/bin/snort
+
+📦 Versión detectada:
+
+   ,,_     -*> Snort++ <*-
+  o"  )~   Version 3.10.0.0
+   ''''    By Martin Roesch & The Snort Team
+           http://snort.org/contact#team
+           Copyright (C) 2014-2025 Cisco and/or its affiliates. All rights reserved.
+           Copyright (C) 1998-2013 Sourcefire, Inc., et al.
+           Using DAQ version 3.0.23
+           Using libpcap version 1.10.3 (with TPACKET_V3)
+           Using LuaJIT version 2.1.0-beta3
+           Using LZMA version 5.4.1
+           Using OpenSSL 3.0.17 1 Jul 2025
+           Using PCRE2 version 10.42 2022-12-11
+           Using ZLIB version 1.2.13
+
+
+🔍 Localizando snort.lua...
+✔ Configuración: /usr/local/snort3/etc/snort/snort.lua
+
+🧮 Reglas activas:
+   0
+0 reglas activas
+
+🧪 Test de configuración:
+✨ VALIDACIÓN OK - Configuración correcta
+
+====================================================
+🎉 Snort 3 operativo y validado
+⏱ Tiempo total: 0m 0s
+====================================================
+🌍 IP:        10.0.2.173
+🧩 Interfaz:  ens3
+----------------------------------------------------
+🚨 Ejecutar Snort:
+sudo snort -i ens3 -c /usr/local/snort3/etc/snort/snort.lua -A alert_fast -k none -l /var/log/snort
+
+📡 Logs tiempo real:
+sudo tail -f /var/log/snort/alert_fast.txt
+====================================================

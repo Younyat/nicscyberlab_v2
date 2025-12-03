@@ -694,6 +694,12 @@ def read_tools_configs():
 
 
 
+
+
+
+
+    from flask import Response
+
 @app.route('/api/install_tools', methods=['POST'])
 def install_tools():
     print("🚀 Iniciando instalación de tools...")
@@ -704,27 +710,29 @@ def install_tools():
     if not os.path.exists(SCRIPT):
         return jsonify({"status": "error", "msg": "Script maestro no encontrado"}), 404
 
-    # Asegurar permisos
     os.chmod(SCRIPT, 0o755)
 
-    # Ejecutar script
-    process = subprocess.Popen(
-        ["bash", SCRIPT],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True
-    )
+    def generate():
+        process = subprocess.Popen(
+            ["bash", SCRIPT],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,  # stderr unido a stdout
+            text=True,
+            bufsize=1
+        )
 
-    output, error = process.communicate()
+        for line in process.stdout:
+            yield f"data: {line.strip()}\n\n"
 
-    resp = output.split("\n")
-    if error:
-        resp += error.split("\n")
+        process.wait()
+        yield f"data: [FIN] Exit Code: {process.returncode}\n\n"
 
-    return jsonify({
-        "status": "success",
-        "output": resp
-    })
+    return Response(generate(), mimetype='text/event-stream')
+
+
+
+
+
 
 
 @app.route('/api/get_tools_for_instance', methods=['GET'])

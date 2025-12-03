@@ -1,5 +1,25 @@
-🛠️ Preparando entorno para suricata...
-⚠️ installer.sh ya existe para Caldera.
-ℹ️ Ejecútalo manualmente si quieres:
-   bash "tools-installer/suricata/installer.sh"
-📂 Directorio: tools-installer/suricata
+====================================================
+🚀 Instalador de Suricata
+====================================================
+🌍 Floating IP recibida: 10.0.2.173
+📡 Interfaz activa detectada: ens3
+----------------------------------------------------
+📂 Binario        : /usr/bin/suricata
+📂 Configuración  : /etc/suricata
+📂 Logs           : /var/log/suricata
+----------------------------------------------------
+✔ Suricata ya está instalado
+✔ Configuración existente detectada
+
+====================================================
+🎉 Suricata YA está instalado
+====================================================
+🌍 IP: 10.0.2.173
+🧩 Interfaz: ens3
+
+🚨 Ejecutar IDS:
+   sudo suricata -c /etc/suricata/suricata.yaml -i ens3
+
+📡 Logs:
+   sudo tail -f /var/log/suricata/fast.log
+====================================================
