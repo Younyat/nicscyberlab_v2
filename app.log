@@ -56378,3 +56378,9 @@ openstack server create \
 2025-12-03 13:27:05,654 - INFO - 📄 JSON encontrado: attack_4_tools.json
 2025-12-03 13:27:06,180 - INFO - 🔎 Buscando JSON para instancia: victim 3
 2025-12-03 13:27:06,180 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-12-03 13:47:47,820 - INFO - 🚀 Iniciando instalación de tools...
+2025-12-03 13:53:21,359 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-03 14:46:50,098 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-03 14:46:50,099 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-03 14:55:43,676 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-03 14:55:43,677 - INFO - 📄 JSON encontrado: monitor_1_tools.json

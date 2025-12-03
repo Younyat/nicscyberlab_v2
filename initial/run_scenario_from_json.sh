@@ -232,11 +232,27 @@ create_security_group() {
         return
     fi
 
-    log "🔐 Configurando reglas ICMP + SSH..."
+    log "🔐 Configurando reglas ICMP + SSH+.Wazuh+.Caldera"
 
     openstack security group create "$SECGRP_NAME"
     openstack security group rule create --proto icmp "$SECGRP_NAME"
+    # ICMP
+    openstack security group rule create --proto icmp "$SECGRP_NAME"
+
+    # SSH
     openstack security group rule create --proto tcp --dst-port 22 "$SECGRP_NAME"
+
+    # Wazuh
+    openstack security group rule create --proto tcp --dst-port 1515 "$SECGRP_NAME"
+    openstack security group rule create --proto udp --dst-port 1514 "$SECGRP_NAME"
+    openstack security group rule create --proto tcp --dst-port 55000 "$SECGRP_NAME"
+    openstack security group rule create --proto tcp --dst-port 5601 "$SECGRP_NAME"
+    openstack security group rule create --proto tcp --dst-port 443 "$SECGRP_NAME"
+
+    # Caldera
+    openstack security group rule create --proto tcp --dst-port 8888 "$SECGRP_NAME"
+
+
 }
 
 create_flavors() {

@@ -1,5 +1,34 @@
-🛠️ Preparando entorno para Caldera...
-✔ installer.sh creado para Caldera.
-🏁 Ejecutando installer.sh...
-🚀 Instalando Caldera...
-📂 Directorio: tools-installer/wazuh
+====================================================
+🚀 Instalando Wazuh Manager dentro de la instancia
+====================================================
+[+] Actualizando sistema...
+debconf: unable to initialize frontend: Dialog
+debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+dpkg-preconfigure: unable to re-open stdin: 
+[+] Instalando dependencias necesarias...
+debconf: unable to initialize frontend: Dialog
+debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+dpkg-preconfigure: unable to re-open stdin: 
+[+] Descargando instalador oficial de Wazuh...
+[+] Ejecutando instalador automático...
+[+] Obteniendo contraseña admin...
+[+] Comprobando estado del servicio wazuh-manager...
+✔ Servicio wazuh-manager activo.
+[+] Comprobando puerto 1515...
+✔ Puerto 1515 abierto correctamente.
+====================================================
+🎉 Instalación de Wazuh completada
+⏱ Tiempo total: 670s
+====================================================
+🔑 Credenciales para Panel Web:
+URL       : https://192.168.100.137
+Usuario   : admin
+Password  : eY4W4phhCyTK42f4HjZsKQb48*v+TchA

@@ -5,7 +5,7 @@
 # =============================================
 
 PORT=5001
-TIMEOUT=300  # ⏱️ Timeout de Gunicorn
+TIMEOUT=20000   # ⏱️ Timeout de Gunicorn
 APP_PATH="$(dirname "$(realpath "$0")")"
 
 echo "============================================="

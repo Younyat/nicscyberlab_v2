@@ -1,38 +1,92 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-BASE_DIR="tools-installer"
-TOOL_NAME="wazuh"
-TOOL_DIR="${BASE_DIR}/${TOOL_NAME}"
-INSTALLER="${TOOL_DIR}/installer.sh"
+echo "===================================================="
+echo "🚀 Instalando Wazuh Manager dentro de la instancia"
+echo "===================================================="
 
-echo "🛠️ Preparando entorno para wazuh..."
+START_TIME=$(date +%s)
 
-mkdir -p "$TOOL_DIR"
+# -------------------------------
+# Actualizar repos y paquetes
+# -------------------------------
+echo "[+] Actualizando sistema..."
+sudo apt-get update -y >/dev/null
+sudo apt-get upgrade -y >/dev/null
 
-if [ ! -f "$INSTALLER" ]; then
-    cat << 'EOF' > "$INSTALLER"
-#!/usr/bin/env bash
-set -euo pipefail
+# -------------------------------
+# Instalar dependencias
+# -------------------------------
+echo "[+] Instalando dependencias necesarias..."
+sudo apt-get install -y curl net-tools >/dev/null
 
-echo "🚀 Instalando Caldera..."
-# TODO: añadir comandos de instalación real
-EOF
+# -------------------------------
+# Descargar Wazuh
+# -------------------------------
+cd /tmp
+echo "[+] Descargando instalador oficial de Wazuh..."
+sudo curl -sO https://packages.wazuh.com/4.9/wazuh-install.sh
 
-    chmod +x "$INSTALLER"
+# -------------------------------
+# Ejecutar instalación
+# -------------------------------
+echo "[+] Ejecutando instalador automático..."
+sudo bash ./wazuh-install.sh -a >/tmp/wazuh-install.log 2>&1 || true
 
-    echo "✔ installer.sh creado para Caldera."
+# -------------------------------
+# Extraer contraseña admin
+# -------------------------------
+echo "[+] Obteniendo contraseña admin..."
 
-    # ============================================
-    # 🚀 Ejecutar el installer inmediatamente
-    # ============================================
-    echo "🏁 Ejecutando installer.sh..."
-    bash "$INSTALLER"
+ADMIN_PASS=""
 
-else
-    echo "⚠️ installer.sh ya existe para Caldera."
-    echo "ℹ️ Ejecútalo manualmente si quieres:"
-    echo "   bash \"$INSTALLER\""
+if [ -f wazuh-install-files.tar ]; then
+    ADMIN_PASS=$(sudo tar -axf wazuh-install-files.tar wazuh-install-files/wazuh-passwords.txt -O \
+        | grep -P "'admin'" -A 1 \
+        | tail -n 1 \
+        | awk -F"'" '{print $2}')
+    
+    echo "$ADMIN_PASS" | sudo tee /tmp/wazuh-admin-password >/dev/null
 fi
 
-echo "📂 Directorio: $TOOL_DIR"
+# -------------------------------
+# Verificar servicio
+# -------------------------------
+echo "[+] Comprobando estado del servicio wazuh-manager..."
+if sudo systemctl status wazuh-manager.service --no-pager >/dev/null 2>&1; then
+    echo "✔ Servicio wazuh-manager activo."
+else
+    echo "❌ Advertencia: wazuh-manager no parece estar activo."
+fi
+
+# -------------------------------
+# Check puerto 1515
+# -------------------------------
+echo "[+] Comprobando puerto 1515..."
+if sudo netstat -tuln | grep 1515 >/dev/null; then
+    echo "✔ Puerto 1515 abierto correctamente."
+else
+    echo "❌ Puerto 1515 NO está abierto. Verifica configuración."
+fi
+
+END_TIME=$(date +%s)
+TOTAL=$((END_TIME - START_TIME))
+
+echo "===================================================="
+echo "🎉 Instalación de Wazuh completada"
+echo "⏱ Tiempo total: ${TOTAL}s"
+echo "===================================================="
+
+if [[ -n "$ADMIN_PASS" ]]; then
+    MY_IP=$(hostname -I | awk '{print $1}')
+
+    echo "🔑 Credenciales para Panel Web:"
+    echo "URL       : https://$MY_IP"
+    echo "Usuario   : admin"
+    echo "Password  : $ADMIN_PASS"
+else
+    echo "⚠ No se pudo obtener la contraseña admin automáticamente."
+    echo "   Ejecútalo dentro de la instancia:"
+    echo "   sudo tar -O -xvf wazuh-install-files.tar wazuh-install-files/wazuh-passwords.txt"
+fi
+
