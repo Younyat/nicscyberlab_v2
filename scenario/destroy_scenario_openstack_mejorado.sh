@@ -1,30 +1,49 @@
-#!/usr/bin/env bash
-set -euo pipefail
+set -euo pipefail 
+############################################################## 
+# DESTRUCCIÓN BASADA ÚNICAMENTE EN summary.json 
+# # - Elimina instancias, FIPs y puertos 
+# # - Elimina keypair y claves locales 
+# # - NO usa scenario.json # # - Idempotente: no falla si algo ya está borrado
+# ##############################################################
+# === 0. Resolver rutas RELATIVAS al repositorio =======================
 
-##############################################################
-#     DESTRUCCIÓN BASADA ÚNICAMENTE EN summary.json          #
-#   - Elimina instancias, FIPs y puertos                     #
-#   - Elimina keypair y claves locales                       #
-#   - NO usa scenario.json                                   #
-#   - Idempotente: no falla si algo ya está borrado          #
-##############################################################
+# Ruta absoluta del script actual
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-ADMIN_OPENRC="$HOME/Escritorio/cyber-range-v1/admin-openrc.sh"
+# Raíz del repositorio (directorio superior)
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+# Archivo admin-openrc.sh generado por app.py
+ADMIN_OPENRC="$REPO_ROOT/admin-openrc.sh"
 
 DEFAULT_KEYPAIR="cyberlab-key"
 LOCAL_KEYFILE="$HOME/.ssh/cyberlab-key"
 
+echo "📌 SCRIPT_DIR: $SCRIPT_DIR"
+echo "📌 REPO_ROOT : $REPO_ROOT"
+echo "📌 ADMIN_OPENRC : $ADMIN_OPENRC"
 
 # ============================================================
-# 1. Cargar credenciales OpenStack
+# 1. Cargar credenciales OpenStack (no obligatorio)
 # ============================================================
 
 if [ -f "$ADMIN_OPENRC" ]; then
+    # shellcheck disable=SC1090
     source "$ADMIN_OPENRC"
-    echo "🔐 Credenciales OpenStack cargadas."
+    echo "🔐 Credenciales OpenStack cargadas desde $ADMIN_OPENRC"
+
+    # Validar token por si está caducado
+    if openstack token issue >/dev/null 2>&1; then
+        echo "✔ Token OpenStack válido"
+    else
+        echo "⚠️ WARNING: admin-openrc.sh encontrado, pero token inválido."
+        echo "⚠️ Podrían fallar comandos OpenStack si requieren autenticación."
+    fi
 else
-    echo "⚠️ No se encontró admin-openrc. Siguiendo igualmente."
+    echo "⚠️ No se encontró admin-openrc.sh en el repositorio ($ADMIN_OPENRC)"
+    echo "⚠️ Continuando destrucción igualmente."
 fi
+
 
 
 # ============================================================

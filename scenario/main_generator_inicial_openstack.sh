@@ -1,31 +1,48 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-##############################################################
-#     FASE 2 - CREACIÓN DE INSTANCIAS A PARTIR DEL JSON      #
-#         Todavía NO toca redes, imágenes ni router          #
-##############################################################
+# === 0. Resolver rutas RELATIVAS al repositorio =======================
 
-# === 0. Variables del entorno =========================================
+# Ruta absoluta donde está este script (*.sh)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-ADMIN_OPENRC="$HOME/Escritorio/cyber-range-v1/admin-openrc.sh"
+# Raíz del repositorio (directorio superior)
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+# Archivo admin-openrc.sh generado por app.py
+ADMIN_OPENRC="$REPO_ROOT/admin-openrc.sh"
 
 DEFAULT_KEYPAIR="cyberlab-key"
 LOCAL_KEYFILE="$HOME/.ssh/cyberlab-key"
-
 DEFAULT_EXTERNAL_NET="external-net"
+
+echo "📌 SCRIPT_DIR: $SCRIPT_DIR"
+echo "📌 REPO_ROOT : $REPO_ROOT"
+echo "📌 ADMIN_OPENRC : $ADMIN_OPENRC"
 
 # ======================================================================
 # === 1. Cargar credenciales ===========================================
 # ======================================================================
 
-if [ -f "$ADMIN_OPENRC" ]; then
-    source "$ADMIN_OPENRC"
-    echo "🔐 Credenciales OpenStack cargadas."
-else
-    echo "❌ ERROR: No se encontró admin-openrc en: $ADMIN_OPENRC"
+if [ ! -f "$ADMIN_OPENRC" ]; then
+    echo "❌ ERROR: No se encontró admin-openrc.sh en el root del repositorio."
+    echo "Ruta esperada: $ADMIN_OPENRC"
+    echo "⚠️ app.py debería haberlo generado automáticamente."
     exit 1
 fi
+
+# shellcheck disable=SC1090
+source "$ADMIN_OPENRC"
+echo "🔐 Credenciales OpenStack cargadas desde: $ADMIN_OPENRC"
+
+# Validar que hay token
+if openstack token issue >/dev/null 2>&1; then
+    echo "✔ Token OpenStack válido"
+else
+    echo "❌ ERROR: Credenciales inválidas (falló 'openstack token issue')."
+    exit 1
+fi
+
 
 # ======================================================================
 # === 2. Validar entorno del script ===================================

@@ -2,7 +2,7 @@
 #bash openstack-installer.sh 2>&1 | tee nombre_del_log.log
 
 # ============================================================
-# 🚀 Script completo: Instalación OpenStack + Kolla-Ansible
+#  Script completo: Instalación OpenStack + Kolla-Ansible
 # ============================================================
 
 set -euo pipefail
@@ -223,26 +223,32 @@ sudo cp "$KOLLA_INVENTORY/all-in-one" /etc/kolla/ansible/inventory/
 sudo chown -R "$USER:$USER" /etc/kolla
 
 echo "✅ Archivos de configuración de Kolla copiados completamente."
-
-
-
 # ============================================================
 # 6️⃣ GENERAR PASSWORDS Y CONFIGURAR GLOBALS
 # ============================================================
-# ============================================================
-# 6️⃣ Generar passwords y configurar globals.yml
-# ============================================================
+
 sudo chown "$USER:$USER" /etc/kolla/passwords.yml
 kolla-genpwd || true
 
 
-# -----*****************************Cambiar(automatizar)*******************************
-SUBNET="192.168.5"
-# -----************************************************************
+# === Detectar SUBNET automáticamente ================================
+MAIN_IFACE=$(ip route | awk '/default/ {print $5; exit}')
+MAIN_IP=$(ip -4 addr show "$MAIN_IFACE" | awk '/inet / {print $2}' | cut -d/ -f1)
+SUBNET=$(echo "$MAIN_IP" | cut -d. -f1-3)
 
+echo "📌 Interfaz detectada: $MAIN_IFACE"
+echo "📌 IP principal:       $MAIN_IP"
+echo "📌 SUBNET detectada:   $SUBNET"
+# ====================================================================
+
+
+# === Buscar IP libre para VIP =======================================
 START=10
 END=50
 VIP=""
+
+echo "🔎 Buscando IP libre en rango $SUBNET.$START → $SUBNET.$END..."
+
 for i in $(seq $START $END); do
   IP="$SUBNET.$i"
   if ! ping -c 1 -W 1 "$IP" &>/dev/null; then
@@ -251,9 +257,18 @@ for i in $(seq $START $END); do
     break
   fi
 done
-[ -z "$VIP" ] && { echo "❌ No se encontró IP libre"; exit 1; }
 
+[ -z "$VIP" ] && { echo "❌ No se encontró IP libre en el rango."; exit 1; }
+
+
+# === Detectar interfaz de red principal para Kolla ===================
 DEFAULT_IFACE=$(ip route | awk '/default/ {print $5; exit}')
+
+echo "🔧 network_interface detectado para Kolla: $DEFAULT_IFACE"
+
+
+# === Generar archivo globals.yml =====================================
+echo "📝 Generando /etc/kolla/globals.yml..."
 
 sudo tee /etc/kolla/globals.yml > /dev/null <<EOF
 kolla_base_distro: "ubuntu"
@@ -264,7 +279,12 @@ EOF
 
 sudo chown "$USER:$USER" /etc/kolla/globals.yml
 
+echo "✔ Archivo globals.yml configurado correctamente"
+echo "📍 VIP final:     $VIP"
+echo "📍 Interfaz:      $DEFAULT_IFACE"
 
+
+# === Export PATH ======================================================
 export PATH="$VENV_PATH/bin:$PATH"
 
 # ============================================================
@@ -308,6 +328,8 @@ echo "✅ Colecciones Ansible y fix de modprobe configurados."
 # ============================================================
 # 8️⃣ DESPLIEGUE DE OPENSTACK
 # ============================================================
+
+
 echo "🚀 Iniciando despliegue de OpenStack..."
 kolla-ansible bootstrap-servers -i /etc/kolla/ansible/inventory/all-in-one
 kolla-ansible prechecks -i /etc/kolla/ansible/inventory/all-in-one
