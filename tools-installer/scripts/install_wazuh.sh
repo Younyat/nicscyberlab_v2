@@ -1,183 +1,148 @@
 #!/usr/bin/env bash
-#
 # ============================================================
-#       Wazuh Manager Installer (Idempotent + Floating IP)
+#   Wazuh Single-Node Installer (Ubuntu 22.04, OpenStack)
+#   100% Idempotente y Autoconfigurado
 # ============================================================
 set -euo pipefail
 
 START_TIME=$(date +%s)
-WAZUH_PASS_FILE="/tmp/wazuh-admin-password"
+ADMIN_PASS_FILE="/tmp/wazuh-admin-password"
 WAZUH_DIR="/var/ossec"
-ADMIN_PASS=""
 
-format_time() {
-    local t=$1
-    printf "%dm %ds\n" $((t/60)) $((t%60))
+# -------------------------------
+# Pretty Print
+# -------------------------------
+ok()   { echo -e "  \e[32m✔\e[0m $1"; }
+warn() { echo -e "  \e[33m⚠\e[0m $1"; }
+err()  { echo -e "  \e[31m✖ $1\e[0m"; }
+
+# -------------------------------
+# Floating IP detection
+# -------------------------------
+detect_ip() {
+    echo "🔎 Detectando Floating IP desde OpenStack metadata"
+
+    META=$(curl -s http://169.254.169.254/openstack/latest/meta_data.json || true)
+
+    if [[ -n "$META" ]]; then
+        INSTANCE_ID=$(echo "$META" | grep '"uuid"' | awk -F'"' '{print $4}')
+        ADDR=$(openstack server show "$INSTANCE_ID" -c addresses -f value 2>/dev/null || true)
+        FLOATING=$(echo "$ADDR" | sed 's/.*=//' | awk -F',' '{print $NF}' | tr -d ' ')
+    fi
+
+    if [[ -n "$FLOATING" ]]; then
+        IP="$FLOATING"
+        ok "Floating IP detectada: $IP"
+        return
+    fi
+
+    warn "No fue posible detectar Floating IP → usar IP interna"
+    IP=$(hostname -I | awk '{print $1}')
+}
+detect_ip
+
+echo "🌍 Dashboard previsto: https://$IP"
+echo
+
+
+# -------------------------------
+# Idempotencia real
+# -------------------------------
+is_ok() {
+    systemctl is-active --quiet wazuh-indexer.service &&
+    systemctl is-active --quiet wazuh-manager.service &&
+    systemctl is-active --quiet wazuh-dashboard.service
 }
 
-echo "===================================================="
-echo "🚀 Instalador de Wazuh Manager"
-echo "===================================================="
-
-# -----------------------------------------------------
-# 💠 IP Floating recibida como parámetro
-# -----------------------------------------------------
-FLOATING_IP=""
-
-if [[ $# -ge 1 ]]; then
-    FLOATING_IP="$1"
-    echo "🌍 Floating IP recibida desde el master installer: $FLOATING_IP"
-fi
-
-# -----------------------------------------------------
-# 📌 Función fallback: obtener Floating IP desde OpenStack
-# -----------------------------------------------------
-get_floating_ip() {
-    local instance_name="$1"
-    openstack server show "$instance_name" -f json \
-        | jq -r '.addresses' \
-        | grep -oP '((?:[0-9]{1,3}\.){3}[0-9]{1,3})' \
-        | tail -n1
-}
-
-if [[ -z "$FLOATING_IP" ]]; then
-    echo "⚠️ No se recibió Floating IP como parámetro."
-    echo "   🧪 Intentando detectarla automáticamente usando OpenStack..."
-    INSTANCE_NAME=$(hostname)
-
-    if command -v openstack >/dev/null 2>&1; then
-        FLOATING_IP=$(get_floating_ip "$INSTANCE_NAME" || true)
-    fi
-
-    if [[ -z "$FLOATING_IP" ]]; then
-        echo "❌ No pude detectar Floating IP. Se usará IP interna."
-        FLOATING_IP=$(hostname -I | awk '{print $1}')
-    fi
-fi
-
-echo "🌐 IP final detectada para Dashboard: $FLOATING_IP"
-echo "----------------------------------------------------"
-
-
-# -----------------------------------------------------
-# 🧠 DETECCIÓN: ¿Ya está instalado Wazuh?
-# -----------------------------------------------------
-ALREADY=false
-
-# 1) Detectar estructura de instalación
-if [[ -d "$WAZUH_DIR" ]]; then
-    echo "✔ Instalación existente detectada: $WAZUH_DIR"
-    ALREADY=true
-fi
-
-# 2) Servicio corriendo
-if systemctl is-active --quiet wazuh-manager.service; then
-    echo "✔ Servicio wazuh-manager activo"
-    ALREADY=true
-fi
-
-# 3) Puertos de Wazuh
-if ss -tunlp | grep -Eq ":1515|:55000"; then
-    echo "✔ Puertos Wazuh detectados"
-    ALREADY=true
-fi
-
-# 4) Password previa
-if [[ -f "$WAZUH_PASS_FILE" ]]; then
-    ADMIN_PASS=$(cat "$WAZUH_PASS_FILE")
-fi
-
-
-# -----------------------------------------------------
-# 🔸 SI YA ESTÁ INSTALADO → SALIR
-# -----------------------------------------------------
-if $ALREADY; then
-    echo
-    echo "===================================================="
-    echo "🎉 Wazuh ya está instalado en esta máquina"
-    echo "===================================================="
-
-    echo "🌍 Dashboard: https://$FLOATING_IP"
-    echo "🔑 Usuario: admin"
-
-    if [[ -n "$ADMIN_PASS" ]]; then
-        echo "🔑 Password: $ADMIN_PASS"
-    else
-        echo "⚠ No se detectó password."
-        echo "   Puedes recuperarla así:"
-        echo "   sudo tar -O -xf wazuh-install-files.tar wazuh-install-files/wazuh-passwords.txt"
-    fi
-
-    echo "✔ Instalación confirmada. EXIT."
+if is_ok; then
+    ok "Wazuh YA está instalado y activo"
+    PASS=$(cat "$ADMIN_PASS_FILE" 2>/dev/null || echo "<No detectada>")
+    echo "🌐 URL: https://$IP"
+    echo "🔑 Admin password: $PASS"
     exit 0
 fi
 
 
-# -----------------------------------------------------
-# 🚧 INSTALACIÓN NUEVA
-# -----------------------------------------------------
-echo
-echo "🆕 No detectada instalación previa. Instalando Wazuh Manager..."
-export DEBIAN_FRONTEND=noninteractive
+echo "🆕 Wazuh NO detectado → instalación nueva"
+echo "[1/5] 🔄 Preparando sistema..."
+sudo apt-get update -y
+sudo apt-get install -y curl lsb-release net-tools jq
 
-echo "[1/6] 🔄 Actualizando sistema..."
-sudo apt-get update -y >/dev/null
-sudo apt-get upgrade -y >/dev/null
 
-echo "[2/6] 🔧 Instalando dependencias..."
-sudo apt-get install -y curl net-tools >/dev/null
-
-echo "[3/6] 📥 Descargando instalador oficial..."
-cd /tmp
+echo "[2/5] 📥 Descargando instalador oficial Wazuh..."
 sudo curl -sO https://packages.wazuh.com/4.9/wazuh-install.sh
 
-echo "[4/6] 🧩 Ejecutando instalador..."
-sudo bash ./wazuh-install.sh -a >/tmp/wazuh-install.log 2>&1 || true
 
-echo "[5/6] 🔑 Extrayendo contraseña..."
+echo "[3/5] 🏗 Ejecutando instalación oficial con auto-configuración..."
+sudo bash ./wazuh-install.sh -a > /tmp/wazuh-install.log 2>&1 || true
+
+
+echo "[4/5] 🔑 Extrayendo contraseña admin real..."
 if [[ -f wazuh-install-files.tar ]]; then
-    ADMIN_PASS=$(sudo tar -axf wazuh-install-files.tar \
-        wazuh-install-files/wazuh-passwords.txt -O \
-        | grep -P "'admin'" -A 1 \
-        | tail -n 1 \
+    PASS=$(sudo tar -axf wazuh-install-files.tar wazuh-install-files/wazuh-passwords.txt -O \
+        | grep -P "'admin'" -A1 \
+        | tail -n1 \
         | awk -F"'" '{print $2}')
 
-    echo "$ADMIN_PASS" | sudo tee "$WAZUH_PASS_FILE" >/dev/null
-fi
-
-echo "[6/6] 🔍 Comprobando servicio..."
-if systemctl is-active --quiet wazuh-manager.service; then
-    echo "✔ Servicio ACTIVO"
+    echo "$PASS" | sudo tee "$ADMIN_PASS_FILE" >/dev/null
 else
-    echo "❌ ADVERTENCIA: wazuh-manager no parece estar activo"
+    warn "No se pudo extraer automáticamente → usar tar manual"
+    PASS="<No detectada>"
 fi
 
-echo "[+] Verificando puerto 1515..."
-if ss -tunlp | grep -q ":1515"; then
-    echo "✔ Puerto 1515 abierto"
+
+echo "[5/5] 🚀 Activando y arrancando servicios..."
+sudo systemctl daemon-reload || true
+sudo systemctl enable wazuh-indexer.service || true
+sudo systemctl enable wazuh-manager.service || true
+sudo systemctl enable wazuh-dashboard.service || true
+
+sudo systemctl restart wazuh-indexer.service || true
+sudo systemctl restart wazuh-manager.service || true
+sudo systemctl restart wazuh-dashboard.service || true
+
+sleep 6
+
+
+# -------------------------------
+# Validación final
+# -------------------------------
+echo
+echo "🧪 Validando instalación real Wazuh..."
+FAILED=false
+
+systemctl is-active --quiet wazuh-indexer.service || FAILED=true
+systemctl is-active --quiet wazuh-manager.service || FAILED=true
+systemctl is-active --quiet wazuh-dashboard.service || FAILED=true
+
+if sudo curl -k --max-time 5 "https://$IP" >/dev/null 2>&1; then
+    ok "Dashboard responde HTTPS"
 else
-    echo "❌ Puerto 1515 NO está abierto"
+    warn "Dashboard NO responde HTTPS"
+    FAILED=true
+fi
+
+if $FAILED; then
+    err "❌ Instalación incompleta o servicios no levantaron"
+    echo "📄 Log oficial: /tmp/wazuh-install.log"
+    exit 1
 fi
 
 
-# -----------------------------------------------------
-# 🎉 FIN INSTALACIÓN
-# -----------------------------------------------------
+# -------------------------------
+# Instalación correcta
+# -------------------------------
 END_TIME=$(date +%s)
 TOTAL=$((END_TIME - START_TIME))
 
 echo
 echo "===================================================="
-echo "🎉 Instalación completa de Wazuh Manager"
-echo "⏱ Tiempo total: $(format_time $TOTAL)"
+echo "🎉 Wazuh INSTALADO y FUNCIONANDO correctamente"
+echo "⏱ Tiempo total: $((TOTAL / 60))m $((TOTAL % 60))s"
 echo "===================================================="
-
-echo "🌍 URL Dashboard:"
-echo "    https://$FLOATING_IP"
-echo
-echo "🔑 Credenciales:"
-echo "    Usuario : admin"
-echo "    Password: ${ADMIN_PASS:-<NO DETECTADA>}"
+echo "🌐 Dashboard: https://$IP"
+echo "🔐 Usuario: admin"
+echo "🔑 Password: $PASS"
 echo
 echo "📄 Log instalación: /tmp/wazuh-install.log"
-echo
+echo "===================================================="

@@ -90,27 +90,26 @@ async function loadExistingScenario() {
             return;
         }
 
-const scenario = {
-    nodes: data.instances.map((vm, i) => ({
-        id: vm.id,
-        name: vm.name,
-        type: detectType(vm.name),
+        const scenario = {
+            nodes: data.instances.map((vm, i) => ({
+                id: vm.id,
+                name: vm.name,
+                type: detectType(vm.name),
 
-        // 🔥 Nueva información
-        ip: vm.ip_floating || vm.ip_private || "N/A",
-        ip_private: vm.ip_private,
-        ip_floating: vm.ip_floating,
-        image: vm.image_name,
-        flavor: vm.flavor_name,
-        status: vm.status,
+                // 🔥 Nueva información
+                ip: vm.ip_floating || vm.ip_private || "N/A",
+                ip_private: vm.ip_private,
+                ip_floating: vm.ip_floating,
+                image: vm.image_name,
+                flavor: vm.flavor_name,
+                status: vm.status,
 
-        tools: [],
+                tools: [],
 
-        position: { x: 200 + i * 200, y: 150 }
-    })),
-    edges: []
-};
-
+                position: { x: 200 + i * 200, y: 150 }
+            })),
+            edges: []
+        };
 
         loadScenarioGraph(scenario);
         loadScenarioTools(scenario);
@@ -163,18 +162,18 @@ function loadScenarioGraph(scenario) {
     scenario.nodes.forEach(n => {
         elements.push({
             data: {
-                    id: n.id,
-                    label: n.name,
-                    type: n.type,
-                    ip_private: n.ip_private,
-                    ip_floating: n.ip_floating,
-                    ip: n.ip_floating || n.ip_private || "N/A",
+                id: n.id,
+                label: n.name,
+                type: n.type,
+                ip_private: n.ip_private,
+                ip_floating: n.ip_floating,
+                ip: n.ip_floating || n.ip_private || "N/A",
 
-                    status: n.status,
-                    image: n.image,
-                    flavor: n.flavor,
-                    tools: n.tools || []
-                },
+                status: n.status,
+                image: n.image,
+                flavor: n.flavor,
+                tools: n.tools || []
+            },
             position: n.position
         });
     });
@@ -192,10 +191,6 @@ function loadScenarioGraph(scenario) {
         const node = evt.target.data();
         selectInstanceFromScenario(node);
     });
-    /* ============================================================
-   🎨 Aplicar colores según el estado de OpenStack
-   ============================================================ */
-   
 }
 
 /* ============================================================
@@ -242,10 +237,17 @@ async function selectInstanceFromScenario(node) {
         console.log("❌ Error obteniendo tools:", err);
     }
 
+    renderToolsList(tools);
+}
+
+/* ============================================================
+   6. Render Tools con botones JSON / UNINSTALL
+   ============================================================ */
+function renderToolsList(tools) {
     const toolsBox = document.getElementById("installed-tools");
     toolsBox.innerHTML = "";
 
-    if (tools.length === 0) {
+    if (!tools || tools.length === 0) {
         toolsBox.innerHTML = `<p class="text-gray-400 text-sm">No hay herramientas instaladas.</p>`;
         return;
     }
@@ -256,19 +258,26 @@ async function selectInstanceFromScenario(node) {
 
         row.innerHTML = `
             <span>${tool}</span>
-            <button onclick="removeToolFromScenario('${tool}')" class="text-red-500">🗑</button>
-        `;
+            <div class="flex space-x-2">
 
+                <button onclick="removeToolFromScenario('${tool}')"
+                        class="text-red-500 font-bold">
+                    🗑 JSON
+                </button>
+
+                <button onclick="uninstallTool('${tool}')"
+                        class="text-yellow-400 font-bold">
+                    ⚙ Uninstall
+                </button>
+
+            </div>
+        `;
         toolsBox.appendChild(row);
     });
 }
 
-
-
-
-
 /* ============================================================
-   6. Añadir herramienta + enviar JSON al backend
+   7. Añadir herramienta + enviar JSON al backend
    ============================================================ */
 async function addTool() {
     const select = document.getElementById("available-tools");
@@ -278,27 +287,24 @@ async function addTool() {
 
     const instanceName = selectedInstance.name || selectedInstance.label || selectedInstance.id;
 
-    // 1️⃣ Actualizar lista en memoria
     selectedInstance.tools.push(tool);
 
-    // 2️⃣ Enviar al backend
     const payload = {
-            instance: selectedInstance.name,
-            id: selectedInstance.id,
-            name: selectedInstance.name || selectedInstance.label,
-            type: selectedInstance.type,
+        instance: selectedInstance.name,
+        id: selectedInstance.id,
+        name: selectedInstance.name || selectedInstance.label,
+        type: selectedInstance.type,
 
-            ip_private: selectedInstance.ip_private,
-            ip_floating: selectedInstance.ip_floating,
-            ip: selectedInstance.ip,
+        ip_private: selectedInstance.ip_private,
+        ip_floating: selectedInstance.ip_floating,
+        ip: selectedInstance.ip,
 
-            status: selectedInstance.status,
-            image: selectedInstance.image,
-            flavor: selectedInstance.flavor,
+        status: selectedInstance.status,
+        image: selectedInstance.image,
+        flavor: selectedInstance.flavor,
 
-            tools: selectedInstance.tools
+        tools: selectedInstance.tools
     };
-
 
     await fetch("/api/add_tool_to_instance", {
         method: "POST",
@@ -306,12 +312,11 @@ async function addTool() {
         body: JSON.stringify(payload)
     });
 
-    // 3️⃣ Ahora recargar herramientas REALES desde backend
     await selectInstanceFromScenario(selectedInstance);
 }
 
 /* ============================================================
-   7. Leer archivos JSON con configuraciones de tools
+   8. Leer archivos JSON con configuraciones de tools
    ============================================================ */
 async function loadToolsConfig() {
     const terminal = document.getElementById("tools-terminal");
@@ -333,55 +338,61 @@ async function loadToolsConfig() {
         terminal.innerHTML += `❌ Error leyendo archivos: ${err}\n`;
     }
 }
+
 /* ============================================================
-   8. Ejecutar instalación de tools
+   🔧 Ejecutar instalación de tools
    ============================================================ */
 async function installTools() {
     const terminal = document.getElementById("tools-terminal");
-
-    // Limpiar terminal y congelar la interfaz
-    terminal.innerHTML += "\n🚀 Iniciando instalación de herramientas...\n";
-    freezeUI();  // 🔥 Congelar la UI
+    terminal.innerHTML += "\n🚀 Iniciando instalación...\n";
+    freezeUI();
 
     try {
         const res = await fetch("/api/install_tools", { method: "POST" });
-        const data = await res.json();
 
-        terminal.innerHTML += "📢 Instalación iniciada:\n";
+        if (!res.ok) {
+            terminal.innerHTML += `❌ Error HTTP: ${res.status}\n`;
+            unfreezeUI();
+            return;
+        }
 
-        data.output.forEach(line => {
-            terminal.innerHTML += `➡ ${line}\n`;
-        });
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder("utf-8");
 
-        terminal.innerHTML += "✅ Instalación completada.\n";
+        while (true) {
+            const { value, done } = await reader.read();
+            if (done) break;
+
+            const text = decoder.decode(value, { stream: true });
+
+            // Procesar lineas estilo SSE: "data: ..."
+            text.split("\n").forEach(line => {
+                if (line.startsWith("data:")) {
+                    terminal.innerHTML += line.replace("data: ", "") + "\n";
+                }
+            });
+        }
+
+        terminal.innerHTML += "🎉 Finalizado.\n";
 
     } catch (err) {
         terminal.innerHTML += `❌ Error ejecutando instalación: ${err}\n`;
     }
 
-    // 🔥 Descongelar la UI
     unfreezeUI();
 }
 
 
-
-
-
-
+/* ============================================================
+   🔄 Eliminar tool SOLO de JSON
+   ============================================================ */
 async function removeToolFromScenario(tool) {
     if (!selectedInstance) return;
 
-    const instanceName = selectedInstance.name || selectedInstance.label || selectedInstance.id;
-
-    console.log(`🗑 Eliminando herramienta ${tool} de ${instanceName}`);
-
-    // 1️⃣ Eliminar de la instancia EN MEMORIA
     selectedInstance.tools = selectedInstance.tools.filter(t => t !== tool);
 
-    // 2️⃣ ACTUALIZAR LA UI INMEDIATAMENTE
     renderToolsList(selectedInstance.tools);
 
-    // 3️⃣ Actualizar backend
     const payload = {
         instance: selectedInstance.name,
         id: selectedInstance.id,
@@ -396,54 +407,61 @@ async function removeToolFromScenario(tool) {
         tools: selectedInstance.tools
     };
 
-
     await fetch("/api/add_tool_to_instance", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
     });
 
-    // 4️⃣ Releer desde backend (sincronizar)
     await selectInstanceFromScenario(selectedInstance);
 }
 
-function renderToolsList(tools) {
-    const toolsBox = document.getElementById("installed-tools");
-    toolsBox.innerHTML = "";
+/* ============================================================
+   🔥 Desinstalación REAL via Backend
+   ============================================================ */
+async function uninstallTool(tool) {
+    if (!selectedInstance) return;
 
-    if (!tools || tools.length === 0) {
-        toolsBox.innerHTML = `<p class="text-gray-400 text-sm">No hay herramientas instaladas.</p>`;
-        return;
+    const terminal = document.getElementById("tools-terminal");
+    terminal.innerHTML += `\n⛔ Desinstalando ${tool} en ${selectedInstance.name}...\n`;
+
+    try {
+        const payload = {
+            instance: selectedInstance.name,
+            ip_private: selectedInstance.ip_private,
+            ip_floating: selectedInstance.ip_floating,
+            tool: tool     // <-- CORRECTO
+        };
+
+        const res = await fetch("/api/uninstall_tool_from_instance", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+
+        terminal.innerHTML += `➡ ${JSON.stringify(data, null, 2)}\n`;
+
+        if (data.status === "success" && data.exit_code === 0) {
+    console.log("🟢 Desinstalación verificada. Eliminando del JSON...");
+    selectedInstance.tools = selectedInstance.tools.filter(t => t !== tool);
+
+    renderToolsList(selectedInstance.tools);
+    updateToolsBackend(selectedInstance);
+
+    } else {
+        console.warn("⚠ La herramienta NO se ha eliminado del sistema.");
+        console.warn("⚠ NO se actualizará el JSON porque todavía existen restos.");
+
+        terminal.innerHTML += "\n⚠ La herramienta sigue detectada en la instancia. Revisa logs.\n";
     }
 
-    tools.forEach(tool => {
-        const row = document.createElement("div");
-        row.className = "flex justify-between bg-gray-800 p-2 rounded-lg";
-
-        row.innerHTML = `
-            <span>${tool}</span>
-            <button onclick="removeToolFromScenario('${tool}')" class="text-red-500">🗑</button>
-        `;
-        toolsBox.appendChild(row);
-    });
+    } catch (err) {
+        terminal.innerHTML += `❌ Error al desinstalar ${tool}: ${err}\n`;
+    }
 }
 
-
-
-
-
-async function updateToolsBackend(instance) {
-    const payload = {
-        instance: instance.name || instance.label || instance.id,
-        tools: instance.tools
-    };
-
-    await fetch("/api/add_tool_to_instance", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-    });
-}
 
 
 /* ============================================================
@@ -469,4 +487,20 @@ function freezeUI() {
 function unfreezeUI() {
     const overlay = document.getElementById("ui-freeze");
     if (overlay) overlay.remove();
+}
+
+/* ============================================================
+   Sincronizar backend
+   ============================================================ */
+async function updateToolsBackend(instance) {
+    const payload = {
+        instance: instance.name || instance.label || instance.id,
+        tools: instance.tools
+    };
+
+    await fetch("/api/add_tool_to_instance", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    });
 }

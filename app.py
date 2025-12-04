@@ -768,6 +768,50 @@ def get_tools_for_instance():
     print("⚠️ JSON NO encontrado para esta instancia")
     return jsonify({"instance": instance, "tools": []})
 
+
+
+
+
+
+from tools_uninstall_manager.tools_uninstall_manager import uninstall_tool
+
+@app.route('/api/uninstall_tool_from_instance', methods=['POST'])
+def api_uninstall_tool():
+    try:
+        data = request.get_json()
+
+        if not data:
+            return jsonify({"status": "error", "msg": "JSON vacío"}), 400
+
+        instance = data.get("instance")
+        ip_private = data.get("ip_private", "")
+        ip_floating = data.get("ip_floating", "")
+        tool = data.get("tool")  # 🔥 ahora correcto
+
+        if not instance or not tool:
+            return jsonify({
+                "status": "error",
+                "msg": "Faltan campos: instance y tool son obligatorios"
+            }), 400
+
+        result = uninstall_tool(
+            instance,
+            tool,
+            ip_private,
+            ip_floating
+        )
+
+        return jsonify(result), 200
+
+    except Exception as e:
+        logger.error(f"❌ Error API uninstall: {e}", exc_info=True)
+        return jsonify({"status": "error", "msg": str(e)}), 500
+
+
+
+
+
+
 @app.route('/')
 def index():
     return send_from_directory('static', 'index.html')

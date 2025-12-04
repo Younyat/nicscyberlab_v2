@@ -8,7 +8,7 @@
     "ip": "10.0.2.173",
     "status": "ACTIVE",
     "tools": [
-        "suricata",
-        "snort"
+        "snort",
+        "suricata"
     ]
 }
