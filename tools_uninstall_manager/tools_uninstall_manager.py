@@ -11,7 +11,7 @@ logger = logging.getLogger("tools_uninstall_manager")
 
 
 # ============================================================
-# 🧠 Detectar sistema operativo y usuario SSH
+#  Detectar sistema operativo y usuario SSH
 # ============================================================
 def detect_instance_os_and_user(instance_name, ip):
     """
@@ -30,7 +30,7 @@ def detect_instance_os_and_user(instance_name, ip):
         else:
             image_name = str(raw_image).lower()
 
-        logger.info(f"🧩 Imagen detectada: {image_name}")
+        logger.info(f" Imagen detectada: {image_name}")
 
         # Posibles usuarios según la imagen
         if "ubuntu" in image_name:
@@ -55,19 +55,19 @@ def detect_instance_os_and_user(instance_name, ip):
                 text=True
             )
             if test.returncode == 0:
-                logger.info(f"👤 Usuario SSH detectado: {u}")
+                logger.info(f" Usuario SSH detectado: {u}")
                 return u
 
-        logger.warning("⚠️ No fue posible detectar un usuario SSH válido. Usando fallback: ubuntu")
+        logger.warning(" No fue posible detectar un usuario SSH válido. Usando fallback: ubuntu")
         return "ubuntu"
 
     except Exception as e:
-        logger.error(f"⚠️ Error detectando usuario OS: {e}")
+        logger.error(f" Error detectando usuario OS: {e}")
         return "ubuntu"
 
 
 # ============================================================
-# 📁 Rutas principales
+#  Rutas principales
 # ============================================================
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 SCRIPTS_DIR = os.path.join(BASE_DIR, "tools_uninstall_manager", "uninstall_scripts")
@@ -97,7 +97,7 @@ def uninstall_tool(instance: str, tool: str, ip_private: str, ip_floating: str):
         ip_floating or ip_private
     )
 
-    logger.info(f"👤 SSH User FINAL para desinstalación: {ssh_user}")
+    logger.info(f" SSH User FINAL para desinstalación: {ssh_user}")
 
     proc = subprocess.run(
         [script, instance, ip_private, ip_floating, ssh_user],
@@ -108,9 +108,9 @@ def uninstall_tool(instance: str, tool: str, ip_private: str, ip_floating: str):
 
     exit_code = proc.returncode
 
-    logger.info(f"⏹ UNINSTALL exit code: {exit_code}")
-    logger.info(f"📤 STDOUT:\n{proc.stdout}")
-    logger.info(f"📥 STDERR:\n{proc.stderr}")
+    logger.info(f" UNINSTALL exit code: {exit_code}")
+    logger.info(f" STDOUT:\n{proc.stdout}")
+    logger.info(f" STDERR:\n{proc.stderr}")
 
     # ============================================================
     # SOLO si exit_code == 0 eliminamos del JSON

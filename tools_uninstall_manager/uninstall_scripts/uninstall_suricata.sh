@@ -85,7 +85,7 @@ suricata-update list-sources || true
 # -----------------------------------------
 # Test config
 # -----------------------------------------
-echo "🧪 Validando configuracion..."
+echo " Validando configuracion..."
 suricata -T -c "$RULES_DIR/suricata.yaml"
 
 
@@ -98,10 +98,10 @@ sleep 3
 # -----------------------------------------
 # Validación real
 # -----------------------------------------
-echo "🔎 Validación final..."
+echo " Validación final..."
 
 check() {
-    echo "❌ ERROR: $1"; exit 1
+    echo " ERROR: $1"; exit 1
 }
 
 command -v suricata >/dev/null || check "Binario no cargado"
@@ -120,13 +120,13 @@ TOTAL=$((END_TIME - START_TIME))
 
 echo
 echo "===================================================="
-echo "🎉 Suricata INSTALADO con éxito"
-echo "⏱ Tiempo: ${TOTAL}s"
+echo " Suricata INSTALADO con éxito"
+echo "Tiempo: ${TOTAL}s"
 echo "===================================================="
-echo "🌍 IP instancia: $FLOATING_IP"
-echo "🧩 Interfaz: $INTERFACE"
+echo " IP instancia: $FLOATING_IP"
+echo " Interfaz: $INTERFACE"
 echo
-echo "🚨 Ejecutar IDS:"
+echo " Ejecutar IDS:"
 echo " sudo systemctl restart suricata"
 echo " sudo tail -f $LOG_DIR/eve.json"
 echo "===================================================="

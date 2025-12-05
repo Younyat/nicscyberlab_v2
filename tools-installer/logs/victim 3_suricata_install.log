@@ -1,25 +1,25 @@
 ====================================================
-🚀 Instalador de Suricata
+ Instalador de Suricata
 ====================================================
-🌍 Floating IP recibida: 10.0.2.173
-📡 Interfaz activa detectada: ens3
+ Floating IP recibida: 10.0.2.173
+Interfaz activa detectada: ens3
 ----------------------------------------------------
-📂 Binario        : /usr/bin/suricata
-📂 Configuración  : /etc/suricata
-📂 Logs           : /var/log/suricata
+ Binario        : /usr/bin/suricata
+ Configuración  : /etc/suricata
+ Logs           : /var/log/suricata
 ----------------------------------------------------
 ✔ Suricata ya está instalado
 ✔ Configuración existente detectada
 
 ====================================================
-🎉 Suricata YA está instalado
+ Suricata YA está instalado
 ====================================================
-🌍 IP: 10.0.2.173
-🧩 Interfaz: ens3
+ IP: 10.0.2.173
+ Interfaz: ens3
 
-🚨 Ejecutar IDS:
+ Ejecutar IDS:
    sudo suricata -c /etc/suricata/suricata.yaml -i ens3
 
-📡 Logs:
+ Logs:
    sudo tail -f /var/log/suricata/fast.log
 ====================================================

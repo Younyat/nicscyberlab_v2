@@ -1,25 +1,25 @@
 ====================================================
-🚀 Instalador de MITRE Caldera
+ Instalador de MITRE Caldera
 ====================================================
-🌐 IP final para Dashboard: 10.0.2.237
+ IP final para Dashboard: 10.0.2.237
 ----------------------------------------------------
 ✔ Detectada carpeta existente: /root/caldera
 ✔ Proceso server.py en ejecución
 ✔ Puerto 8888 ya está en uso
 
-🧠 Caldera detectado previamente. Validando estado...
-🧪 Validando estado de Caldera...
+ Caldera detectado previamente. Validando estado...
+ Validando estado de Caldera...
    (Proceso, puerto y respuesta HTTP)
 ✔ Proceso server.py activo
 ✔ Puerto 8888 en escucha
 ✔ Dashboard responde HTTP
 
 ====================================================
-🎉 MITRE Caldera YA ESTÁ INSTALADO Y FUNCIONAL
+ MITRE Caldera YA ESTÁ INSTALADO Y FUNCIONAL
 ====================================================
-🌍 URL      : http://10.0.2.237:8888
-🔑 Usuario  : admin
-🔑 Password : admin
-📁 Carpeta  : /root/caldera
-📄 Log      : /root/caldera/caldera.log
+ URL      : http://10.0.2.237:8888
+ Usuario  : admin
+ Password : admin
+ Carpeta  : /root/caldera
+ Log      : /root/caldera/caldera.log
 ====================================================

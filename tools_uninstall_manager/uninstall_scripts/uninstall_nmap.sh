@@ -7,13 +7,13 @@ IP_FLOAT="$3"
 USER="$4"
 
 IP="${IP_FLOAT:-$IP_PRIV}"
-echo "❎ Desinstalando NMAP en $INSTANCE ($IP)"
+echo " Desinstalando NMAP en $INSTANCE ($IP)"
 
 SSH_KEY=""
 for K in "$HOME/.ssh/"*; do
     [[ -f "$K" ]] && grep -q "PRIVATE KEY" "$K" && SSH_KEY="$K" && break
 done
-[[ -z "$SSH_KEY" ]] && echo "❌ ERROR: No key encontrada" && exit 1
+[[ -z "$SSH_KEY" ]] && echo " ERROR: No key encontrada" && exit 1
 chmod 600 "$SSH_KEY"
 
 ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" "$USER@$IP" <<'EOF'

@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
-trap 'echo "❌ ERROR en línea ${LINENO}" >&2' ERR
+trap 'echo " ERROR en línea ${LINENO}" >&2' ERR
 
 echo "===================================================="
-echo "🚀 Instalador de Snort 3 (Idempotente y Validado)"
+echo " Instalador de Snort 3 (Idempotente y Validado)"
 echo "===================================================="
 
 INSTALL_PREFIX="/usr/local"
@@ -32,12 +32,12 @@ is_snort_installed() {
 }
 
 if is_snort_installed; then
-    echo "🎉 Snort ya está instalado. Nada que hacer."
+    echo " Snort ya está instalado. Nada que hacer."
     snort --version
     exit 0
 fi
 
-echo "🆕 Instalando Snort 3..."
+echo " Instalando Snort 3..."
 export DEBIAN_FRONTEND=noninteractive
 
 # --------------------------------------------
@@ -73,11 +73,11 @@ sudo make install
 ETC_DIR=$(find "$SRC_DIR" -maxdepth 2 -type d -name etc | head -n1)
 
 if [[ -z "$ETC_DIR" ]]; then
-    echo "❌ ERROR CRÍTICO: No se encontró carpeta 'etc' dentro del proyecto"
+    echo " ERROR CRÍTICO: No se encontró carpeta 'etc' dentro del proyecto"
     exit 1
 fi
 
-echo "📁 Configuración fuente detectada: $ETC_DIR"
+echo "Configuración fuente detectada: $ETC_DIR"
 
 sudo mkdir -p "$CONF_DIR" "$RULES_DIR" "$LOG_DIR"
 sudo cp -r "$ETC_DIR"/* "$CONF_DIR"
@@ -94,7 +94,7 @@ sudo sed -i "s|# include \$RULE_PATH/local.rules|include \$RULE_PATH/local.rules
 # --------------------------------------------
 # 6) Validación Snort config
 # --------------------------------------------
-echo "🧪 Validando configuración de Snort..."
+echo " Validando configuración de Snort..."
 sudo snort -T -c "$CONF_DIR/snort.lua"
 
 echo "✔ Test de configuración OK"
@@ -104,11 +104,11 @@ echo "✔ Test de configuración OK"
 # --------------------------------------------
 if is_snort_installed; then
     echo "===================================================="
-    echo "🎉 Snort 3 instalado correctamente"
+    echo " Snort 3 instalado correctamente"
     echo "===================================================="
     snort --version
     exit 0
 else
-    echo "❌ ERROR: Snort NO se instaló correctamente"
+    echo " ERROR: Snort NO se instaló correctamente"
     exit 1
 fi

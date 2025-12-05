@@ -60746,3 +60746,2421 @@ echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
 2025-12-04 18:16:30,962 - INFO - 🔎 Buscando JSON para instancia: monitor 1
 2025-12-04 18:16:30,962 - INFO - 📄 JSON encontrado: monitor_1_tools.json
 2025-12-04 18:16:32,132 - INFO - 🚀 Iniciando instalación de tools...
+2025-12-05 11:28:57,155 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 11:28:57,192 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 11:28:57,213 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 11:28:57,242 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 11:28:57,297 - INFO - 📤 Salida del script:
+2025-12-05 11:28:57,297 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+
+2025-12-05 11:28:57,297 - WARNING - 📥 Errores durante la ejecución del script:
+2025-12-05 11:28:57,297 - WARNING - chown: cannot access '/tmp/clouds.json': No such file or directory
+
+2025-12-05 11:28:57,297 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 11:28:57,298 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:28:57,431 - INFO - 📤 Salida del script:
+2025-12-05 11:28:57,431 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 11:28:57,431 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 11:28:57,432 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:28:57,458 - INFO - 📤 Salida del script:
+2025-12-05 11:28:57,458 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 11:28:57,458 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 11:28:57,459 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:28:57,515 - INFO - 📤 Salida del script:
+2025-12-05 11:28:57,516 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.10:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=JE6663lP1THXJqP8zVCWz3OQxqyXzu74b7Cd0Z7s
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-12-05 11:28:57,516 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:28:57,516 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:29:04,922 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 11:29:04,923 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 11:29:12,617 - INFO - ➡ Método HTTP:
+2025-12-05 11:29:12,618 - INFO - POST
+2025-12-05 11:29:12,618 - INFO - ➡ Headers:
+2025-12-05 11:29:12,618 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '35', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=4'}
+2025-12-05 11:29:12,618 - INFO - ➡ request.data crudo:
+2025-12-05 11:29:12,618 - INFO - b'{"instance":"monitor 1","tools":[]}'
+2025-12-05 11:29:12,619 - INFO - 📂 Guardado en:
+2025-12-05 11:29:12,619 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-12-05 11:29:18,933 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 11:29:18,933 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 11:29:19,696 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 11:29:19,697 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 11:29:22,526 - INFO - ➡ Método HTTP:
+2025-12-05 11:29:22,526 - INFO - POST
+2025-12-05 11:29:22,526 - INFO - ➡ Headers:
+2025-12-05 11:29:22,527 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '214', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-12-05 11:29:22,527 - INFO - ➡ request.data crudo:
+2025-12-05 11:29:22,527 - INFO - b'{"instance":"monitor 1","id":"7590bbad-95fd-4ab3-8e33-af1902d1abc9","name":"monitor 1","type":"monitor","ip_private":"192.168.100.137","ip_floating":"10.0.2.13","ip":"10.0.2.13","status":"ACTIVE","tools":["wazuh"]}'
+2025-12-05 11:29:22,527 - INFO - 📂 Guardado en:
+2025-12-05 11:29:22,528 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-12-05 11:29:22,531 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 11:29:22,532 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 11:29:24,332 - INFO - 🚀 Iniciando instalación de tools...
+2025-12-05 11:35:31,195 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 11:35:31,240 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 11:35:31,328 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 11:35:31,391 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 11:35:31,495 - INFO - 📤 Salida del script:
+2025-12-05 11:35:31,496 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 11:35:31,496 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 11:35:31,496 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:35:31,546 - INFO - 📤 Salida del script:
+2025-12-05 11:35:31,546 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 11:35:31,546 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 11:35:31,546 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:35:31,619 - INFO - 📤 Salida del script:
+2025-12-05 11:35:31,619 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 11:35:31,619 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 11:35:31,619 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:35:31,701 - INFO - 📤 Salida del script:
+2025-12-05 11:35:31,701 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.10:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=JE6663lP1THXJqP8zVCWz3OQxqyXzu74b7Cd0Z7s
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-12-05 11:35:31,703 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:35:31,703 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:35:37,625 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 11:35:37,625 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 11:35:51,332 - INFO - ➡ Método HTTP:
+2025-12-05 11:35:51,333 - INFO - POST
+2025-12-05 11:35:51,333 - INFO - ➡ Headers:
+2025-12-05 11:35:51,333 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '35', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=4'}
+2025-12-05 11:35:51,333 - INFO - ➡ request.data crudo:
+2025-12-05 11:35:51,333 - INFO - b'{"instance":"monitor 1","tools":[]}'
+2025-12-05 11:35:51,334 - INFO - 📂 Guardado en:
+2025-12-05 11:35:51,334 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-12-05 11:35:59,131 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 11:35:59,131 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 11:36:08,627 - INFO - ➡ Método HTTP:
+2025-12-05 11:36:08,627 - INFO - POST
+2025-12-05 11:36:08,628 - INFO - ➡ Headers:
+2025-12-05 11:36:08,628 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '214', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-12-05 11:36:08,629 - INFO - ➡ request.data crudo:
+2025-12-05 11:36:08,629 - INFO - b'{"instance":"monitor 1","id":"7590bbad-95fd-4ab3-8e33-af1902d1abc9","name":"monitor 1","type":"monitor","ip_private":"192.168.100.137","ip_floating":"10.0.2.13","ip":"10.0.2.13","status":"ACTIVE","tools":["wazuh"]}'
+2025-12-05 11:36:08,630 - INFO - 📂 Guardado en:
+2025-12-05 11:36:08,630 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-12-05 11:36:08,635 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 11:36:08,636 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 11:36:11,111 - INFO - 🚀 Iniciando instalación de tools...
+2025-12-05 11:38:54,477 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 11:38:54,522 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 11:38:54,588 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 11:38:54,613 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 11:38:54,670 - INFO - 📤 Salida del script:
+2025-12-05 11:38:54,670 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+
+2025-12-05 11:38:54,671 - WARNING - 📥 Errores durante la ejecución del script:
+2025-12-05 11:38:54,671 - WARNING - chown: cannot access '/tmp/clouds.json': No such file or directory
+
+2025-12-05 11:38:54,671 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 11:38:54,671 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:38:54,781 - INFO - 📤 Salida del script:
+2025-12-05 11:38:54,782 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 11:38:54,782 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 11:38:54,782 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:38:54,813 - INFO - 📤 Salida del script:
+2025-12-05 11:38:54,813 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 11:38:54,814 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 11:38:54,814 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:38:54,895 - INFO - 📤 Salida del script:
+2025-12-05 11:38:54,895 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.10:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=JE6663lP1THXJqP8zVCWz3OQxqyXzu74b7Cd0Z7s
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-12-05 11:38:54,896 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:38:54,897 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:38:59,240 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 11:38:59,240 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 11:39:14,589 - INFO - ➡ Método HTTP:
+2025-12-05 11:39:14,589 - INFO - POST
+2025-12-05 11:39:14,589 - INFO - ➡ Headers:
+2025-12-05 11:39:14,590 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '35', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=4'}
+2025-12-05 11:39:14,590 - INFO - ➡ request.data crudo:
+2025-12-05 11:39:14,590 - INFO - b'{"instance":"monitor 1","tools":[]}'
+2025-12-05 11:39:14,590 - INFO - 📂 Guardado en:
+2025-12-05 11:39:14,591 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-12-05 11:39:23,047 - INFO - ➡ Método HTTP:
+2025-12-05 11:39:23,047 - INFO - POST
+2025-12-05 11:39:23,047 - INFO - ➡ Headers:
+2025-12-05 11:39:23,047 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '214', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-12-05 11:39:23,047 - INFO - ➡ request.data crudo:
+2025-12-05 11:39:23,047 - INFO - b'{"instance":"monitor 1","id":"7590bbad-95fd-4ab3-8e33-af1902d1abc9","name":"monitor 1","type":"monitor","ip_private":"192.168.100.137","ip_floating":"10.0.2.13","ip":"10.0.2.13","status":"ACTIVE","tools":["wazuh"]}'
+2025-12-05 11:39:23,048 - INFO - 📂 Guardado en:
+2025-12-05 11:39:23,048 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-12-05 11:39:23,053 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 11:39:23,054 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 11:39:24,884 - INFO - 🚀 Iniciando instalación de tools...
+2025-12-05 11:53:13,006 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 11:53:13,034 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 11:53:13,146 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 11:53:13,150 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 11:53:13,270 - INFO - 📤 Salida del script:
+2025-12-05 11:53:13,271 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 11:53:13,271 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 11:53:13,271 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:53:13,299 - INFO - 📤 Salida del script:
+2025-12-05 11:53:13,299 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 11:53:13,299 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 11:53:13,299 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:53:13,419 - INFO - 📤 Salida del script:
+2025-12-05 11:53:13,419 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.10:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=JE6663lP1THXJqP8zVCWz3OQxqyXzu74b7Cd0Z7s
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-12-05 11:53:13,419 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:53:13,420 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:53:13,450 - INFO - 📤 Salida del script:
+2025-12-05 11:53:13,452 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.10:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=JE6663lP1THXJqP8zVCWz3OQxqyXzu74b7Cd0Z7s
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-12-05 11:53:13,452 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:53:13,452 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:53:17,368 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 11:53:17,369 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 11:57:12,580 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 11:57:12,596 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 11:57:12,688 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 11:57:12,745 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 11:57:12,849 - INFO - 📤 Salida del script:
+2025-12-05 11:57:12,852 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 11:57:12,853 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 11:57:12,853 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:57:12,888 - INFO - 📤 Salida del script:
+2025-12-05 11:57:12,889 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 11:57:12,889 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 11:57:12,889 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:57:12,957 - INFO - 📤 Salida del script:
+2025-12-05 11:57:12,957 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 11:57:12,958 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 11:57:12,958 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:57:13,053 - INFO - 📤 Salida del script:
+2025-12-05 11:57:13,053 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.10:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=JE6663lP1THXJqP8zVCWz3OQxqyXzu74b7Cd0Z7s
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-12-05 11:57:13,055 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:57:13,055 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:59:28,692 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 11:59:28,694 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 11:59:28,704 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 11:59:28,768 - INFO - 📤 Salida del script:
+2025-12-05 11:59:28,768 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+
+2025-12-05 11:59:28,768 - WARNING - 📥 Errores durante la ejecución del script:
+2025-12-05 11:59:28,768 - WARNING - chmod: cannot access '/tmp/clouds.json': No such file or directory
+
+2025-12-05 11:59:28,768 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 11:59:28,769 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:59:28,775 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 11:59:28,975 - INFO - 📤 Salida del script:
+2025-12-05 11:59:28,976 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 11:59:28,976 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 11:59:28,976 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:59:29,009 - INFO - 📤 Salida del script:
+2025-12-05 11:59:29,012 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 11:59:29,012 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 11:59:29,012 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:59:29,105 - INFO - 📤 Salida del script:
+2025-12-05 11:59:29,106 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.10:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=JE6663lP1THXJqP8zVCWz3OQxqyXzu74b7Cd0Z7s
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-12-05 11:59:29,107 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:59:29,107 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 11:59:33,079 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 11:59:33,080 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:01:13,661 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:01:13,662 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:01:13,753 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:01:13,850 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:01:13,905 - INFO - 📤 Salida del script:
+2025-12-05 12:01:13,905 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+
+2025-12-05 12:01:13,905 - WARNING - 📥 Errores durante la ejecución del script:
+2025-12-05 12:01:13,905 - WARNING - jq: error: Could not open file /tmp/clouds.json: No such file or directory
+
+2025-12-05 12:01:13,906 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 2
+2025-12-05 12:01:13,906 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:01:13,915 - INFO - 📤 Salida del script:
+2025-12-05 12:01:13,916 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 12:01:13,916 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:01:13,916 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:01:14,038 - INFO - 📤 Salida del script:
+2025-12-05 12:01:14,038 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 12:01:14,039 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:01:14,039 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:01:14,139 - INFO - 📤 Salida del script:
+2025-12-05 12:01:14,139 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.10:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=JE6663lP1THXJqP8zVCWz3OQxqyXzu74b7Cd0Z7s
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-12-05 12:01:14,139 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:01:14,140 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:01:15,581 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:01:15,582 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:01:19,577 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:01:19,577 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:03:11,262 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:03:11,314 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:03:11,342 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:03:11,414 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:03:11,537 - INFO - 📤 Salida del script:
+2025-12-05 12:03:11,538 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 12:03:11,538 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:03:11,538 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:03:11,575 - INFO - 📤 Salida del script:
+2025-12-05 12:03:11,576 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 12:03:11,576 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:03:11,576 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:03:11,612 - INFO - 📤 Salida del script:
+2025-12-05 12:03:11,612 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 12:03:11,612 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:03:11,612 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:03:11,675 - INFO - 📤 Salida del script:
+2025-12-05 12:03:11,676 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.10:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=JE6663lP1THXJqP8zVCWz3OQxqyXzu74b7Cd0Z7s
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-12-05 12:03:11,677 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:03:11,678 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:03:15,793 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:03:15,793 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:06:22,807 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:06:22,889 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:06:23,002 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:06:23,073 - INFO - 📤 Salida del script:
+2025-12-05 12:06:23,074 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+
+2025-12-05 12:06:23,074 - WARNING - 📥 Errores durante la ejecución del script:
+2025-12-05 12:06:23,074 - WARNING - jq: error: Could not open file /tmp/clouds.json: No such file or directory
+
+2025-12-05 12:06:23,074 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 2
+2025-12-05 12:06:23,074 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:06:23,081 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:06:23,281 - INFO - 📤 Salida del script:
+2025-12-05 12:06:23,282 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 12:06:23,282 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:06:23,282 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:06:23,369 - INFO - 📤 Salida del script:
+2025-12-05 12:06:23,370 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 12:06:23,370 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:06:23,371 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:06:23,440 - INFO - 📤 Salida del script:
+2025-12-05 12:06:23,440 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.10:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=JE6663lP1THXJqP8zVCWz3OQxqyXzu74b7Cd0Z7s
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-12-05 12:06:23,446 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:06:23,447 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:06:26,677 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:06:26,677 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:08:40,958 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:08:40,987 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:08:41,012 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:08:41,053 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:08:41,076 - INFO - 📤 Salida del script:
+2025-12-05 12:08:41,076 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+
+2025-12-05 12:08:41,079 - WARNING - 📥 Errores durante la ejecución del script:
+2025-12-05 12:08:41,079 - WARNING - chown: cannot access '/tmp/clouds.json': No such file or directory
+
+2025-12-05 12:08:41,079 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:08:41,080 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:08:41,238 - INFO - 📤 Salida del script:
+2025-12-05 12:08:41,238 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 12:08:41,239 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:08:41,239 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:08:41,283 - INFO - 📤 Salida del script:
+2025-12-05 12:08:41,283 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 12:08:41,283 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:08:41,283 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:08:41,330 - INFO - 📤 Salida del script:
+2025-12-05 12:08:41,334 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.10:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=JE6663lP1THXJqP8zVCWz3OQxqyXzu74b7Cd0Z7s
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-12-05 12:08:41,334 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:08:41,334 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:08:45,653 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:08:45,654 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:10:36,633 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:10:36,700 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:10:36,791 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:10:36,829 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:10:36,955 - INFO - 📤 Salida del script:
+2025-12-05 12:10:36,955 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 12:10:36,956 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:10:36,957 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:10:37,038 - INFO - 📤 Salida del script:
+2025-12-05 12:10:37,038 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 12:10:37,038 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:10:37,039 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:10:37,078 - INFO - 📤 Salida del script:
+2025-12-05 12:10:37,078 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 12:10:37,079 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:10:37,079 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:10:37,152 - INFO - 📤 Salida del script:
+2025-12-05 12:10:37,152 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.10:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=JE6663lP1THXJqP8zVCWz3OQxqyXzu74b7Cd0Z7s
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-12-05 12:10:37,152 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:10:37,152 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:10:44,058 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:10:44,059 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:12:35,812 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:12:35,833 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:12:35,888 - INFO - 📤 Salida del script:
+2025-12-05 12:12:35,889 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+
+2025-12-05 12:12:35,889 - WARNING - 📥 Errores durante la ejecución del script:
+2025-12-05 12:12:35,890 - WARNING - chown: cannot access '/tmp/clouds.json': No such file or directory
+
+2025-12-05 12:12:35,890 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:12:35,890 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:12:35,947 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:12:35,960 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:12:36,101 - INFO - 📤 Salida del script:
+2025-12-05 12:12:36,101 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 12:12:36,102 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:12:36,102 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:12:36,237 - INFO - 📤 Salida del script:
+2025-12-05 12:12:36,238 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.10:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=JE6663lP1THXJqP8zVCWz3OQxqyXzu74b7Cd0Z7s
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-12-05 12:12:36,239 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:12:36,239 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:12:36,254 - INFO - 📤 Salida del script:
+2025-12-05 12:12:36,255 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.10:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=JE6663lP1THXJqP8zVCWz3OQxqyXzu74b7Cd0Z7s
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-12-05 12:12:36,255 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:12:36,259 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:12:39,768 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:12:39,768 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:14:32,304 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:14:32,384 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:14:32,473 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:14:32,505 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:14:32,559 - INFO - 📤 Salida del script:
+2025-12-05 12:14:32,559 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+
+2025-12-05 12:14:32,559 - WARNING - 📥 Errores durante la ejecución del script:
+2025-12-05 12:14:32,560 - WARNING - jq: error: Could not open file /tmp/clouds.json: No such file or directory
+
+2025-12-05 12:14:32,560 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 2
+2025-12-05 12:14:32,560 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:14:32,672 - INFO - 📤 Salida del script:
+2025-12-05 12:14:32,672 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 12:14:32,672 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:14:32,672 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:14:32,790 - INFO - 📤 Salida del script:
+2025-12-05 12:14:32,791 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.10:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=JE6663lP1THXJqP8zVCWz3OQxqyXzu74b7Cd0Z7s
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-12-05 12:14:32,792 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:14:32,792 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:14:32,792 - INFO - 📤 Salida del script:
+2025-12-05 12:14:32,793 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.10:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=JE6663lP1THXJqP8zVCWz3OQxqyXzu74b7Cd0Z7s
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-12-05 12:14:32,793 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:14:32,794 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:14:36,188 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:14:36,188 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:16:43,895 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:16:43,984 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:16:44,029 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:16:44,110 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:16:44,163 - INFO - 📤 Salida del script:
+2025-12-05 12:16:44,163 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+
+2025-12-05 12:16:44,163 - WARNING - 📥 Errores durante la ejecución del script:
+2025-12-05 12:16:44,164 - WARNING - jq: error: Could not open file /tmp/clouds.json: No such file or directory
+
+2025-12-05 12:16:44,164 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 2
+2025-12-05 12:16:44,164 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:16:44,271 - INFO - 📤 Salida del script:
+2025-12-05 12:16:44,272 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 12:16:44,276 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:16:44,277 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:16:44,311 - INFO - 📤 Salida del script:
+2025-12-05 12:16:44,311 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 12:16:44,312 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:16:44,312 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:16:44,396 - INFO - 📤 Salida del script:
+2025-12-05 12:16:44,396 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.10:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=JE6663lP1THXJqP8zVCWz3OQxqyXzu74b7Cd0Z7s
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-12-05 12:16:44,397 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:16:44,397 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:16:47,825 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:16:47,825 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:17:01,340 - INFO - ➡ Método HTTP:
+2025-12-05 12:17:01,340 - INFO - POST
+2025-12-05 12:17:01,341 - INFO - ➡ Headers:
+2025-12-05 12:17:01,341 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '35', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=4'}
+2025-12-05 12:17:01,341 - INFO - ➡ request.data crudo:
+2025-12-05 12:17:01,341 - INFO - b'{"instance":"monitor 1","tools":[]}'
+2025-12-05 12:17:01,342 - INFO - 📂 Guardado en:
+2025-12-05 12:17:01,342 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-12-05 12:17:07,215 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:17:07,215 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:17:09,798 - INFO - ➡ Método HTTP:
+2025-12-05 12:17:09,798 - INFO - POST
+2025-12-05 12:17:09,799 - INFO - ➡ Headers:
+2025-12-05 12:17:09,799 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '214', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-12-05 12:17:09,799 - INFO - ➡ request.data crudo:
+2025-12-05 12:17:09,799 - INFO - b'{"instance":"monitor 1","id":"7590bbad-95fd-4ab3-8e33-af1902d1abc9","name":"monitor 1","type":"monitor","ip_private":"192.168.100.137","ip_floating":"10.0.2.13","ip":"10.0.2.13","status":"ACTIVE","tools":["wazuh"]}'
+2025-12-05 12:17:09,800 - INFO - 📂 Guardado en:
+2025-12-05 12:17:09,800 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-12-05 12:17:09,804 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:17:09,804 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:17:12,109 - INFO - 🚀 Iniciando instalación de tools...
+2025-12-05 12:27:37,612 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:27:37,612 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:27:41,370 - INFO - 🚀 Iniciando instalación de tools...
+2025-12-05 12:28:38,167 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:28:38,167 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:28:47,453 - INFO - ➡ Método HTTP:
+2025-12-05 12:28:47,453 - INFO - POST
+2025-12-05 12:28:47,453 - INFO - ➡ Headers:
+2025-12-05 12:28:47,453 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '35', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=4'}
+2025-12-05 12:28:47,454 - INFO - ➡ request.data crudo:
+2025-12-05 12:28:47,454 - INFO - b'{"instance":"monitor 1","tools":[]}'
+2025-12-05 12:28:47,455 - INFO - 📂 Guardado en:
+2025-12-05 12:28:47,455 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-12-05 12:28:50,919 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:28:50,920 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:28:53,618 - INFO - ➡ Método HTTP:
+2025-12-05 12:28:53,618 - INFO - POST
+2025-12-05 12:28:53,619 - INFO - ➡ Headers:
+2025-12-05 12:28:53,619 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '214', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-12-05 12:28:53,619 - INFO - ➡ request.data crudo:
+2025-12-05 12:28:53,619 - INFO - b'{"instance":"monitor 1","id":"7590bbad-95fd-4ab3-8e33-af1902d1abc9","name":"monitor 1","type":"monitor","ip_private":"192.168.100.137","ip_floating":"10.0.2.13","ip":"10.0.2.13","status":"ACTIVE","tools":["wazuh"]}'
+2025-12-05 12:28:53,620 - INFO - 📂 Guardado en:
+2025-12-05 12:28:53,620 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-12-05 12:28:53,624 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:28:53,624 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:28:55,036 - INFO - 🚀 Iniciando instalación de tools...
+2025-12-05 12:30:46,092 - INFO - ➡ Método HTTP:
+2025-12-05 12:30:46,092 - INFO - POST
+2025-12-05 12:30:46,093 - INFO - ➡ Headers:
+2025-12-05 12:30:46,093 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '207', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-12-05 12:30:46,093 - INFO - ➡ request.data crudo:
+2025-12-05 12:30:46,093 - INFO - b'{"instance":"monitor 1","id":"7590bbad-95fd-4ab3-8e33-af1902d1abc9","name":"monitor 1","type":"monitor","ip_private":"192.168.100.137","ip_floating":"10.0.2.13","ip":"10.0.2.13","status":"ACTIVE","tools":[]}'
+2025-12-05 12:30:46,094 - INFO - 📂 Guardado en:
+2025-12-05 12:30:46,094 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-12-05 12:30:46,097 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:30:46,098 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:30:50,224 - INFO - ➡ Método HTTP:
+2025-12-05 12:30:50,224 - INFO - POST
+2025-12-05 12:30:50,224 - INFO - ➡ Headers:
+2025-12-05 12:30:50,224 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '214', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-12-05 12:30:50,225 - INFO - ➡ request.data crudo:
+2025-12-05 12:30:50,225 - INFO - b'{"instance":"monitor 1","id":"7590bbad-95fd-4ab3-8e33-af1902d1abc9","name":"monitor 1","type":"monitor","ip_private":"192.168.100.137","ip_floating":"10.0.2.13","ip":"10.0.2.13","status":"ACTIVE","tools":["wazuh"]}'
+2025-12-05 12:30:50,225 - INFO - 📂 Guardado en:
+2025-12-05 12:30:50,225 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-12-05 12:30:50,229 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:30:50,230 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:30:51,448 - INFO - 🚀 Iniciando instalación de tools...
+2025-12-05 12:31:28,565 - INFO - ➡ Método HTTP:
+2025-12-05 12:31:28,565 - INFO - POST
+2025-12-05 12:31:28,566 - INFO - ➡ Headers:
+2025-12-05 12:31:28,566 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '35', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=4'}
+2025-12-05 12:31:28,566 - INFO - ➡ request.data crudo:
+2025-12-05 12:31:28,567 - INFO - b'{"instance":"monitor 1","tools":[]}'
+2025-12-05 12:31:28,567 - INFO - 📂 Guardado en:
+2025-12-05 12:31:28,567 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-12-05 12:32:14,548 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:32:14,666 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:32:14,722 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:32:14,774 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:32:14,834 - INFO - 📤 Salida del script:
+2025-12-05 12:32:14,834 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+
+2025-12-05 12:32:14,835 - WARNING - 📥 Errores durante la ejecución del script:
+2025-12-05 12:32:14,835 - WARNING - jq: error: Could not open file /tmp/clouds.json: No such file or directory
+
+2025-12-05 12:32:14,835 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 2
+2025-12-05 12:32:14,836 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:32:14,981 - INFO - 📤 Salida del script:
+2025-12-05 12:32:14,983 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 12:32:14,984 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:32:14,985 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:32:15,020 - INFO - 📤 Salida del script:
+2025-12-05 12:32:15,020 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 12:32:15,020 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:32:15,020 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:32:15,092 - INFO - 📤 Salida del script:
+2025-12-05 12:32:15,092 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.10:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=JE6663lP1THXJqP8zVCWz3OQxqyXzu74b7Cd0Z7s
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-12-05 12:32:15,092 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:32:15,092 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:32:23,431 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:32:23,431 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:32:27,903 - INFO - ➡ Método HTTP:
+2025-12-05 12:32:27,904 - INFO - POST
+2025-12-05 12:32:27,904 - INFO - ➡ Headers:
+2025-12-05 12:32:27,904 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '214', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-12-05 12:32:27,904 - INFO - ➡ request.data crudo:
+2025-12-05 12:32:27,904 - INFO - b'{"instance":"monitor 1","id":"7590bbad-95fd-4ab3-8e33-af1902d1abc9","name":"monitor 1","type":"monitor","ip_private":"192.168.100.137","ip_floating":"10.0.2.13","ip":"10.0.2.13","status":"ACTIVE","tools":["wazuh"]}'
+2025-12-05 12:32:27,905 - INFO - 📂 Guardado en:
+2025-12-05 12:32:27,906 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-12-05 12:32:27,912 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:32:27,913 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:32:29,478 - INFO - 🚀 Iniciando instalación de tools...
+2025-12-05 12:35:21,361 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:35:21,404 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:35:21,451 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:35:21,476 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:35:21,648 - INFO - 📤 Salida del script:
+2025-12-05 12:35:21,649 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 12:35:21,649 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:35:21,649 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:35:21,700 - INFO - 📤 Salida del script:
+2025-12-05 12:35:21,700 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 12:35:21,700 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:35:21,700 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:35:21,738 - INFO - 📤 Salida del script:
+2025-12-05 12:35:21,739 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.10:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=JE6663lP1THXJqP8zVCWz3OQxqyXzu74b7Cd0Z7s
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-12-05 12:35:21,740 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:35:21,740 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:35:21,764 - INFO - 📤 Salida del script:
+2025-12-05 12:35:21,764 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.10:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=JE6663lP1THXJqP8zVCWz3OQxqyXzu74b7Cd0Z7s
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-12-05 12:35:21,765 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:35:21,765 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:35:26,094 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:35:26,094 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:35:36,829 - INFO - ➡ Método HTTP:
+2025-12-05 12:35:36,829 - INFO - POST
+2025-12-05 12:35:36,829 - INFO - ➡ Headers:
+2025-12-05 12:35:36,830 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '35', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=4'}
+2025-12-05 12:35:36,830 - INFO - ➡ request.data crudo:
+2025-12-05 12:35:36,830 - INFO - b'{"instance":"monitor 1","tools":[]}'
+2025-12-05 12:35:36,831 - INFO - 📂 Guardado en:
+2025-12-05 12:35:36,831 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-12-05 12:35:39,138 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:35:39,138 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:35:41,969 - INFO - ➡ Método HTTP:
+2025-12-05 12:35:41,969 - INFO - POST
+2025-12-05 12:35:41,970 - INFO - ➡ Headers:
+2025-12-05 12:35:41,970 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '214', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-12-05 12:35:41,970 - INFO - ➡ request.data crudo:
+2025-12-05 12:35:41,970 - INFO - b'{"instance":"monitor 1","id":"7590bbad-95fd-4ab3-8e33-af1902d1abc9","name":"monitor 1","type":"monitor","ip_private":"192.168.100.137","ip_floating":"10.0.2.13","ip":"10.0.2.13","status":"ACTIVE","tools":["wazuh"]}'
+2025-12-05 12:35:41,971 - INFO - 📂 Guardado en:
+2025-12-05 12:35:41,971 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-12-05 12:35:41,976 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:35:41,977 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:35:51,204 - INFO - 🚀 Iniciando instalación de tools...
+2025-12-05 12:39:31,600 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:39:31,609 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:39:31,629 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:39:31,693 - INFO - 📤 Salida del script:
+2025-12-05 12:39:31,693 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+
+2025-12-05 12:39:31,693 - WARNING - 📥 Errores durante la ejecución del script:
+2025-12-05 12:39:31,693 - WARNING - chown: cannot access '/tmp/clouds.json': No such file or directory
+
+2025-12-05 12:39:31,694 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:39:31,694 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:39:31,711 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:39:31,896 - INFO - 📤 Salida del script:
+2025-12-05 12:39:31,896 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 12:39:31,896 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:39:31,897 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:39:31,926 - INFO - 📤 Salida del script:
+2025-12-05 12:39:31,926 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 12:39:31,927 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:39:31,927 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:39:32,004 - INFO - 📤 Salida del script:
+2025-12-05 12:39:32,004 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.10:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=JE6663lP1THXJqP8zVCWz3OQxqyXzu74b7Cd0Z7s
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-12-05 12:39:32,005 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:39:32,005 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:39:39,714 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:39:39,714 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:39:49,218 - INFO - ➡ Método HTTP:
+2025-12-05 12:39:49,218 - INFO - POST
+2025-12-05 12:39:49,218 - INFO - ➡ Headers:
+2025-12-05 12:39:49,218 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '35', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=4'}
+2025-12-05 12:39:49,218 - INFO - ➡ request.data crudo:
+2025-12-05 12:39:49,219 - INFO - b'{"instance":"monitor 1","tools":[]}'
+2025-12-05 12:39:49,219 - INFO - 📂 Guardado en:
+2025-12-05 12:39:49,219 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-12-05 12:39:51,378 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:39:51,378 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:39:58,504 - INFO - ➡ Método HTTP:
+2025-12-05 12:39:58,505 - INFO - POST
+2025-12-05 12:39:58,505 - INFO - ➡ Headers:
+2025-12-05 12:39:58,505 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '214', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-12-05 12:39:58,505 - INFO - ➡ request.data crudo:
+2025-12-05 12:39:58,505 - INFO - b'{"instance":"monitor 1","id":"7590bbad-95fd-4ab3-8e33-af1902d1abc9","name":"monitor 1","type":"monitor","ip_private":"192.168.100.137","ip_floating":"10.0.2.13","ip":"10.0.2.13","status":"ACTIVE","tools":["wazuh"]}'
+2025-12-05 12:39:58,506 - INFO - 📂 Guardado en:
+2025-12-05 12:39:58,506 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-12-05 12:39:58,511 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:39:58,511 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:39:59,483 - INFO - 🚀 Iniciando instalación de tools...
+2025-12-05 12:43:05,516 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:43:05,529 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:43:05,632 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:43:05,655 - INFO - ⚙️ Ejecutando script de generación de credenciales: /home/younes/Desktop/cyber-range-v1/generate_app_cred_openrc_from_clouds.sh
+2025-12-05 12:43:05,811 - INFO - 📤 Salida del script:
+2025-12-05 12:43:05,812 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 12:43:05,812 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:43:05,812 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:43:05,814 - INFO - 📤 Salida del script:
+2025-12-05 12:43:05,814 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+❌ Error: No se pudo leer la configuración del cloud 'kolla-admin' en /etc/kolla/clouds.yaml.
+
+2025-12-05 12:43:05,815 - WARNING - ⚠️ No se generó correctamente /home/younes/Desktop/cyber-range-v1/admin-openrc.sh. Código de salida: 1
+2025-12-05 12:43:05,815 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:43:05,915 - INFO - 📤 Salida del script:
+2025-12-05 12:43:05,915 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.10:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=JE6663lP1THXJqP8zVCWz3OQxqyXzu74b7Cd0Z7s
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-12-05 12:43:05,915 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:43:05,916 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:43:05,934 - INFO - 📤 Salida del script:
+2025-12-05 12:43:05,935 - INFO - ===============================================
+🔐 Generador de admin-openrc.sh para OpenStack
+===============================================
+🔧 Verificando permisos de archivos críticos...
+✅ Permisos corregidos para /etc/kolla/clouds.yaml
+✅ Archivo temporal preparado: /tmp/clouds.json
+
+✅ yq ya está instalado.
+✅ jq ya está instalado.
+✅ Convirtiendo /etc/kolla/clouds.yaml a JSON...
+✅ Credenciales OpenStack cargadas para admin (admin)
+✅ Archivo 'admin-openrc.sh' generado correctamente y con permisos correctos.
+📂 Contenido:
+-----------------------------------------------
+#!/bin/bash
+# ======================================================
+# 🧩 Archivo de credenciales para OpenStack
+# Generado automáticamente desde /etc/kolla/clouds.yaml
+# Cloud seleccionado: kolla-admin
+# ======================================================
+
+# ------------------------------------------------------
+# 🧹 Limpiar variables previas del entorno
+# ------------------------------------------------------
+unset OS_AUTH_TYPE
+unset OS_AUTH_URL
+unset OS_USERNAME
+unset OS_PASSWORD
+unset OS_USER_DOMAIN_NAME
+unset OS_PROJECT_NAME
+unset OS_PROJECT_DOMAIN_NAME
+unset OS_REGION_NAME
+unset OS_APPLICATION_CREDENTIAL_ID
+unset OS_APPLICATION_CREDENTIAL_SECRET
+unset OS_APPLICATION_CREDENTIAL_NAME
+
+# ------------------------------------------------------
+# 🔐 Configuración de credenciales
+# ------------------------------------------------------
+export OS_AUTH_URL=http://192.168.0.10:5000
+export OS_PROJECT_NAME=admin
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USERNAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PASSWORD=JE6663lP1THXJqP8zVCWz3OQxqyXzu74b7Cd0Z7s
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+
+echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+-----------------------------------------------
+
+🔧 Puedes usarlo con:
+   source admin-openrc.sh
+
+2025-12-05 12:43:05,935 - INFO - ✅ Script ejecutado correctamente. Archivo generado: /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:43:05,935 - INFO - ✅ Credenciales OpenStack cargadas desde /home/younes/Desktop/cyber-range-v1/admin-openrc.sh
+2025-12-05 12:43:12,175 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:43:12,176 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:43:21,605 - INFO - ➡ Método HTTP:
+2025-12-05 12:43:21,605 - INFO - POST
+2025-12-05 12:43:21,606 - INFO - ➡ Headers:
+2025-12-05 12:43:21,606 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '35', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=4'}
+2025-12-05 12:43:21,606 - INFO - ➡ request.data crudo:
+2025-12-05 12:43:21,606 - INFO - b'{"instance":"monitor 1","tools":[]}'
+2025-12-05 12:43:21,607 - INFO - 📂 Guardado en:
+2025-12-05 12:43:21,607 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-12-05 12:43:26,979 - INFO - ➡ Método HTTP:
+2025-12-05 12:43:26,980 - INFO - POST
+2025-12-05 12:43:26,980 - INFO - ➡ Headers:
+2025-12-05 12:43:26,980 - INFO - {'Host': '127.0.0.1:5001', 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0', 'Accept': '*/*', 'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Referer': 'http://127.0.0.1:5001/index-tools.html', 'Content-Type': 'application/json', 'Content-Length': '214', 'Origin': 'http://127.0.0.1:5001', 'Connection': 'keep-alive', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Site': 'same-origin', 'Priority': 'u=0'}
+2025-12-05 12:43:26,981 - INFO - ➡ request.data crudo:
+2025-12-05 12:43:26,981 - INFO - b'{"instance":"monitor 1","id":"7590bbad-95fd-4ab3-8e33-af1902d1abc9","name":"monitor 1","type":"monitor","ip_private":"192.168.100.137","ip_floating":"10.0.2.13","ip":"10.0.2.13","status":"ACTIVE","tools":["wazuh"]}'
+2025-12-05 12:43:26,982 - INFO - 📂 Guardado en:
+2025-12-05 12:43:26,982 - INFO - /home/younes/Desktop/cyber-range-v1/tools-installer-tmp/monitor_1_tools.json
+2025-12-05 12:43:26,989 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 12:43:26,989 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 12:43:28,081 - INFO - 🚀 Iniciando instalación de tools...
+2025-12-05 13:13:14,503 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 13:13:14,504 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 13:13:18,728 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-12-05 13:13:18,729 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-12-05 13:13:21,479 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-12-05 13:13:21,480 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-12-05 13:15:29,379 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 13:15:29,379 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 13:15:31,698 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-12-05 13:15:31,698 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-12-05 13:15:59,926 - INFO - 📥 Leyendo archivos tools-installer/ ...
+2025-12-05 13:15:59,926 - INFO - 📄 attack_4_tools.json: {'instance': 'attack 4', 'id': '9196a09c-f660-4a8f-9803-2bbd72c6f980', 'name': 'attack 4', 'type': 'attack', 'ip_private': '192.168.100.36', 'ip_floating': '10.0.2.237', 'ip': '10.0.2.237', 'status': 'ACTIVE', 'tools': ['caldera']}
+2025-12-05 13:15:59,926 - INFO - 📄 monitor_1_tools.json: {'instance': 'monitor 1', 'id': '7590bbad-95fd-4ab3-8e33-af1902d1abc9', 'name': 'monitor 1', 'type': 'monitor', 'ip_private': '192.168.100.137', 'ip_floating': '10.0.2.13', 'ip': '10.0.2.13', 'status': 'ACTIVE', 'tools': ['wazuh']}
+2025-12-05 13:15:59,927 - INFO - 📄 victim_3_tools.json: {'instance': 'victim 3', 'id': 'ec96e1dd-b07e-4005-a518-daef182f3025', 'name': 'victim 3', 'type': 'victim', 'ip_private': '192.168.100.109', 'ip_floating': '10.0.2.173', 'ip': '10.0.2.173', 'status': 'ACTIVE', 'tools': ['snort', 'suricata']}
+2025-12-05 13:23:51,946 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-12-05 13:23:51,946 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-12-05 13:23:54,614 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-12-05 13:23:54,614 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-12-05 13:23:57,197 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 13:23:57,198 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 13:26:02,966 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-12-05 13:26:02,967 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-12-05 13:30:49,528 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-12-05 13:30:49,529 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-12-05 13:30:50,981 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 13:30:50,981 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 13:31:05,049 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-12-05 13:31:05,049 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-12-05 13:31:15,375 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-12-05 13:31:15,376 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-12-05 13:31:30,146 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-12-05 13:31:30,146 - INFO - 📄 JSON encontrado: victim_3_tools.json
+2025-12-05 13:32:08,901 - INFO - 🔎 Buscando JSON para instancia: monitor 1
+2025-12-05 13:32:08,902 - INFO - 📄 JSON encontrado: monitor_1_tools.json
+2025-12-05 13:48:52,661 - INFO - 🔎 Buscando JSON para instancia: attack 4
+2025-12-05 13:48:52,661 - INFO - 📄 JSON encontrado: attack_4_tools.json
+2025-12-05 13:48:53,842 - INFO - 🔎 Buscando JSON para instancia: victim 3
+2025-12-05 13:48:53,842 - INFO - 📄 JSON encontrado: victim_3_tools.json

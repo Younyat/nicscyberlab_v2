@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-trap 'echo "❌ ERROR en línea ${LINENO}" >&2' ERR
+trap 'echo " ERROR en línea ${LINENO}" >&2' ERR
 
 INSTANCE="$1"
 IP_PRIV="$2"
@@ -9,13 +9,13 @@ USER="$4"
 
 IP="${IP_FLOAT:-$IP_PRIV}"
 
-echo "❎ Desinstalando Snort en $INSTANCE"
-echo "🌍 IP destino: $IP"
-echo "👤 Usuario SSH: $USER"
+echo " Desinstalando Snort en $INSTANCE"
+echo " IP destino: $IP"
+echo " Usuario SSH: $USER"
 echo "---------------------------------------------------------------"
 
 # =====================================================
-# 🔑 DETECTAR CLAVE SSH SOLO EN $HOME/.ssh
+#  DETECTAR CLAVE SSH SOLO EN $HOME/.ssh
 # =====================================================
 SSH_KEY=""
 
@@ -27,11 +27,11 @@ for KEYFILE in "$HOME/.ssh/"*; do
 done
 
 if [[ -z "$SSH_KEY" ]]; then
-    echo "❌ ERROR: No se encontró ninguna clave privada válida en $HOME/.ssh/"
+    echo " ERROR: No se encontró ninguna clave privada válida en $HOME/.ssh/"
     exit 1
 fi
 
-echo "🔑 Clave detectada: $SSH_KEY"
+echo " Clave detectada: $SSH_KEY"
 chmod 600 "$SSH_KEY"
 
 # =====================================================

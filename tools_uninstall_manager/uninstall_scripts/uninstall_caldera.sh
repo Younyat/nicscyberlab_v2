@@ -8,7 +8,7 @@ USER="$4"
 
 IP="${IP_FLOAT:-$IP_PRIV}"
 
-echo "❎ Desinstalando MITRE Caldera en $INSTANCE ($IP)"
+echo " Desinstalando MITRE Caldera en $INSTANCE ($IP)"
 
 # ------------------------------------------
 # Detectar llave SSH válida
@@ -19,11 +19,11 @@ for K in "$HOME/.ssh/"*; do
 done
 
 if [[ -z "$SSH_KEY" ]]; then
-    echo "❌ ERROR: No se encontró clave privada SSH"
+    echo " ERROR: No se encontró clave privada SSH"
     exit 2
 fi
 
-echo "🔑 Key usada: $SSH_KEY"
+echo " Key usada: $SSH_KEY"
 chmod 600 "$SSH_KEY"
 
 # ------------------------------------------
@@ -45,29 +45,29 @@ CALDERA_PORTS="8888 8443"
 ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" "$USER@$IP" bash << 'EOF'
 set -euo pipefail
 
-echo "🧹 Eliminando servicios Caldera..."
+echo " Eliminando servicios Caldera..."
 
 # Intento de detener servicio si existe
 sudo systemctl stop caldera.service 2>/dev/null || true
 sudo systemctl disable caldera.service 2>/dev/null || true
 
-echo "🧹 Matando procesos python relacionados..."
+echo " Matando procesos python relacionados..."
 sudo pkill -f "caldera" 2>/dev/null || true
 sudo pkill -f "server.py" 2>/dev/null || true
 
-echo "🧹 Eliminando directorios..."
+echo " Eliminando directorios..."
 rm -rf /opt/caldera 2>/dev/null || true
 rm -rf /etc/caldera 2>/dev/null || true
 rm -rf /tmp/caldera 2>/dev/null || true
 rm -rf /usr/local/caldera 2>/dev/null || true
 rm -rf /var/log/caldera 2>/dev/null || true
 
-echo "🧹 Eliminando systemd service si existe..."
+echo " Eliminando systemd service si existe..."
 sudo rm -f /etc/systemd/system/caldera.service 2>/dev/null || true
 
 sudo systemctl daemon-reload || true
 
-echo "🧽 Validando eliminación..."
+echo " Validando eliminación..."
 EOF
 
 # ------------------------------------------

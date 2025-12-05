@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
-trap 'echo "❌ ERROR en línea ${LINENO}" >&2' ERR
+trap 'echo " ERROR en línea ${LINENO}" >&2' ERR
 
 echo "===================================================="
-echo "🚀 TOOLS INSTALLER MASTER INIT"
+echo " TOOLS INSTALLER MASTER INIT"
 echo "===================================================="
 
 # ====================================================
-# 🌍 Obtener directorio raíz (donde está la app)
+#  Obtener directorio raíz (donde está la app)
 # ====================================================
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 TOOLS_JSON_DIR="$BASE_DIR/tools-installer-tmp"
@@ -16,17 +16,17 @@ LOGS_DIR="$BASE_DIR/tools-installer/logs"
 
 mkdir -p "$LOGS_DIR"
 
-echo "📌 BASE_DIR:             $BASE_DIR"
-echo "📂 JSON Tools Directory: $TOOLS_JSON_DIR"
-echo "📂 Scripts Directory:    $TOOLS_SCRIPTS_DIR"
-echo "📂 Logs Directory:       $LOGS_DIR"
+echo " BASE_DIR:             $BASE_DIR"
+echo " JSON Tools Directory: $TOOLS_JSON_DIR"
+echo " Scripts Directory:    $TOOLS_SCRIPTS_DIR"
+echo " Logs Directory:       $LOGS_DIR"
 echo "----------------------------------------------------"
 
 # ====================================================
-# 🧪 Validar carpeta JSON
+#  Validar carpeta JSON
 # ====================================================
 if [[ ! -d "$TOOLS_JSON_DIR" ]]; then
-    echo "❌ ERROR: No existe $TOOLS_JSON_DIR"
+    echo " ERROR: No existe $TOOLS_JSON_DIR"
     exit 1
 fi
 
@@ -36,14 +36,14 @@ cd "$TOOLS_JSON_DIR"
 # ====================================================
 # 🔍 Verificar dependencias básicas
 # ====================================================
-echo "🔍 Comprobando dependencias..."
+echo " Comprobando dependencias..."
 
 REQUIRED_PKGS=("jq" "ssh" "scp" "openstack")
 
 for pkg in "${REQUIRED_PKGS[@]}"; do
     if ! command -v "$pkg" >/dev/null 2>&1; then
-        echo "❌ ERROR: Falta '$pkg'"
-        echo "👉 Instala con: sudo apt install -y $pkg"
+        echo " ERROR: Falta '$pkg'"
+        echo " Instala con: sudo apt install -y $pkg"
         exit 1
     fi
 done
@@ -53,20 +53,20 @@ echo "----------------------------------------------------"
 
 
 # ====================================================
-# 🔐 Cargar admin-openrc antes de usar openstack
+#  Cargar admin-openrc antes de usar openstack
 # ====================================================
 ADMIN_OPENRC="$BASE_DIR/admin-openrc.sh"
 
 if [[ -f "$ADMIN_OPENRC" ]]; then
     source "$ADMIN_OPENRC"
-    echo "🔐 Credenciales OpenStack cargadas."
+    echo " Credenciales OpenStack cargadas."
 else
-    echo "❌ ERROR: No existe $ADMIN_OPENRC"
+    echo " ERROR: No existe $ADMIN_OPENRC"
     exit 1
 fi
 
 # ====================================================
-# 🧩 Validar variables OpenStack
+#  Validar variables OpenStack
 # ====================================================
 REQUIRED_VARS=(
     OS_AUTH_URL OS_USERNAME OS_PASSWORD
@@ -75,8 +75,8 @@ REQUIRED_VARS=(
 
 for v in "${REQUIRED_VARS[@]}"; do
     if [[ -z "${!v:-}" ]]; then
-        echo "❌ ERROR: Falta variable de entorno '$v'."
-        echo "👉 Asegúrate de ejecutar correctamente admin-openrc.sh"
+        echo " ERROR: Falta variable de entorno '$v'."
+        echo " Asegúrate de ejecutar correctamente admin-openrc.sh"
         exit 1
     fi
 done
@@ -86,9 +86,9 @@ echo "----------------------------------------------------"
 
 
 # ====================================================
-# 🔑 Buscar SSH key
+#  Buscar SSH key
 # ====================================================
-echo "🔑 Buscando clave SSH disponible..."
+echo " Buscando clave SSH disponible..."
 
 SSH_KEY=""
 
@@ -105,11 +105,11 @@ for CANDIDATE in \
 done
 
 if [[ -z "$SSH_KEY" ]]; then
-    echo "❌ ERROR: No se encontró ninguna clave privada válida en ~/.ssh"
+    echo " ERROR: No se encontró ninguna clave privada válida en ~/.ssh"
     exit 1
 fi
 
-echo "🔑 Clave detectada: $SSH_KEY"
+echo " Clave detectada: $SSH_KEY"
 chmod 600 "$SSH_KEY"
 
 echo "✔ Usando llave SSH: $SSH_KEY"
@@ -117,9 +117,9 @@ echo "----------------------------------------------------"
 
 
 # ====================================================
-# 🧠 PROCESADO DE JSONS
+#  PROCESADO DE JSONS
 # ====================================================
-echo "📄 Buscando JSON de herramientas..."
+echo " Buscando JSON de herramientas..."
 echo ""
 
 FILES_FOUND=false
@@ -129,14 +129,14 @@ for FILE in *_tools.json; do
     FILES_FOUND=true
 
     echo "===================================================="
-    echo "📄 Detectado archivo: $FILE"
+    echo " Detectado archivo: $FILE"
 
     # -------------------------------------------
     # Validación mínima JSON
     # -------------------------------------------
     for field in name tools; do
         if ! jq -e ".${field}" "$FILE" >/dev/null 2>&1; then
-            echo "❌ ERROR: $FILE no tiene '$field'"
+            echo " ERROR: $FILE no tiene '$field'"
             continue 2
         fi
     done
@@ -159,11 +159,11 @@ for FILE in *_tools.json; do
     [[ -n "$FLOATING_IP" ]] && IP="$FLOATING_IP" || IP="$PRIVATE_IP"
 
     if [[ -z "$IP" ]]; then
-        echo "❌ ERROR: No IP válida encontrada en $FILE"
+        echo " ERROR: No IP válida encontrada en $FILE"
         continue
     fi
 
-    echo "🌐 IP usada para conexión: $IP"
+    echo " IP usada para conexión: $IP"
 
 
     # ====================================================
@@ -177,7 +177,7 @@ for FILE in *_tools.json; do
         IMAGE_NAME="$RAW_IMAGE"
     fi
 
-    echo "🧩 Imagen detectada: $IMAGE_NAME"
+    echo " Imagen detectada: $IMAGE_NAME"
 
     if echo "$IMAGE_NAME" | grep -qi "ubuntu"; then
         POSSIBLE_USERS=("ubuntu" "debian")
@@ -196,16 +196,16 @@ for FILE in *_tools.json; do
     done
 
     if [[ -z "$USER" ]]; then
-        echo "❌ ERROR: No fue posible conectar vía SSH."
+        echo " ERROR: No fue posible conectar vía SSH."
         continue
     fi
 
-    echo "👤 Usuario SSH detectado: $USER"
+    echo " Usuario SSH detectado: $USER"
     echo "----------------------------------------------------"
 
 
     # ====================================================
-    # 🚀 Instalación por herramienta
+    #  Instalación por herramienta
     # ====================================================
     for TOOL in $TOOLS; do
         echo "▶ Instalando herramienta: $TOOL"
@@ -215,37 +215,37 @@ for FILE in *_tools.json; do
         TOOL_DIR_REMOTE="/opt/tools/${TOOL}"
 
         LOG_FILE="$LOGS_DIR/${INSTANCE}_${TOOL}_install.log"
-        echo "📝 Log → $LOG_FILE"
+        echo " Log → $LOG_FILE"
 
         # -------------------------------------------
         # Validar existencia de instalador local
         # -------------------------------------------
         if [[ ! -f "$INSTALL_SCRIPT_LOCAL" ]]; then
-            echo "❌ ERROR: Falta script de instalación: $INSTALL_SCRIPT_LOCAL"
+            echo " ERROR: Falta script de instalación: $INSTALL_SCRIPT_LOCAL"
             continue
         fi
 
         # Asegurar permisos aunque no existan
         if [[ ! -x "$INSTALL_SCRIPT_LOCAL" ]]; then
-            echo "🔧 Ajustando permiso +x al script: $INSTALL_SCRIPT_LOCAL"
+            echo " Ajustando permiso +x al script: $INSTALL_SCRIPT_LOCAL"
             chmod +x "$INSTALL_SCRIPT_LOCAL"
         fi
 
-     echo "📁 Creando directorio remoto: $TOOL_DIR_REMOTE"
+     echo " Creando directorio remoto: $TOOL_DIR_REMOTE"
         ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" "$USER@$IP" \
             "sudo mkdir -p $TOOL_DIR_REMOTE"
 
         if [[ -d "$TOOL_DIR_LOCAL" ]]; then
-            echo "📦 Copiando contenido de $TOOL_DIR_LOCAL → instancia"
+            echo " Copiando contenido de $TOOL_DIR_LOCAL → instancia"
             scp -o StrictHostKeyChecking=no -i "$SSH_KEY" \
                 -r "$TOOL_DIR_LOCAL/" "$USER@$IP:$TOOL_DIR_REMOTE/"
         fi
 
-        echo "📜 Subiendo install_${TOOL}.sh a /tmp por compatibilidad"
+        echo " Subiendo install_${TOOL}.sh a /tmp por compatibilidad"
         scp -o StrictHostKeyChecking=no -i "$SSH_KEY" \
             "$INSTALL_SCRIPT_LOCAL" "$USER@$IP:/tmp/"
 
-        echo "🔐 Ajustando permisos remotos..."
+        echo " Ajustando permisos remotos..."
         ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" "$USER@$IP" "
             sudo chmod -R 755 $TOOL_DIR_REMOTE || true
             sudo chmod +x /tmp/install_${TOOL}.sh || true
@@ -253,13 +253,13 @@ for FILE in *_tools.json; do
         "
 
         # -----------------------------------------------------
-        # 🧠 Ejecución del installer 
+        #  Ejecución del installer 
         # (con la IP bien pasada como argumento)
         # -----------------------------------------------------
         if ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" "$USER@$IP" \
             "[ -f $TOOL_DIR_REMOTE/installer.sh ]"; then
             
-            echo "🚀 Ejecutando installer.sh de la instancia..."
+            echo " Ejecutando installer.sh de la instancia..."
             ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" "$USER@$IP" \
                 "cd $TOOL_DIR_REMOTE && sudo bash ./installer.sh \"$IP\"" \
                 >"$LOG_FILE" 2>&1
@@ -303,9 +303,9 @@ for FILE in *_tools.json; do
         esac
 
         if ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" "$USER@$IP" "$CHECK_CMD" >/dev/null 2>&1; then
-            echo "✅ Instalación CONFIRMADA: $TOOL está funcionando en $INSTANCE"
+            echo " Instalación CONFIRMADA: $TOOL está funcionando en $INSTANCE"
         else
-            echo "❌ ERROR DE INSTALACIÓN: $TOOL NO responde como instalado"
+            echo " ERROR DE INSTALACIÓN: $TOOL NO responde como instalado"
         fi
 
         echo "----------------------------------------------------"
@@ -316,10 +316,10 @@ done  # <-- CIERRA for FILE
 
 
 if [[ "$FILES_FOUND" == false ]]; then
-    echo "⚠️ No se encontraron JSONs en $TOOLS_JSON_DIR"
+    echo " No se encontraron JSONs en $TOOLS_JSON_DIR"
 fi
 
 echo ""
 echo "===================================================="
-echo "🎉 PROCESO COMPLETO FINALIZADO"
+echo " PROCESO COMPLETO FINALIZADO"
 echo "===================================================="

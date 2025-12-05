@@ -155,7 +155,7 @@ echo
 # ==================================================
 # Validación configuración
 # ==================================================
-echo "🧪 Validando configuración..."
+echo " Validando configuración..."
 if ! sudo "$BIN" -T -c "$SURICATA_YAML" >/dev/null 2>&1; then
     err "Configuración inválida. Detalles:"
     sudo "$BIN" -T -c "$SURICATA_YAML"
@@ -167,7 +167,7 @@ echo
 # ==================================================
 # Test real IDS
 # ==================================================
-echo "🚀 Ejecutando test ICMP real..."
+echo " Ejecutando test ICMP real..."
 rm -f "$TMP_OUT"
 
 sudo timeout 8 "$BIN" -c "$SURICATA_YAML" -i "$IFACE" \
