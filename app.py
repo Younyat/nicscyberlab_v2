@@ -808,8 +808,85 @@ def api_uninstall_tool():
         return jsonify({"status": "error", "msg": str(e)}), 500
 
 
+@app.route("/api/instance_roles", methods=["GET"])
+def api_instance_roles():
+    """
+    Detecta automáticamente attacker / monitor / victim según el nombre.
+    """
+    try:
+        conn = get_openstack_connection()
+        servers = conn.compute.servers()
+
+        result = {
+            "attacker": None,
+            "monitor": None,
+            "victim": None,
+            "unknown": []
+        }
+
+        for server in servers:
+
+            # ==========================
+            #     OBTENER IPs
+            # ==========================
+            ip_private = None
+            ip_floating = None
+
+            for net, addrs in server.addresses.items():
+                for addr in addrs:
+                    if addr.get("OS-EXT-IPS:type") == "floating":
+                        ip_floating = addr["addr"]
+                    else:
+                        ip_private = addr["addr"]
+
+            ip_final = ip_floating or ip_private or "N/A"
 
 
+            # ==========================
+            #     CLASIFICACIÓN POR NOMBRE
+            # ==========================
+
+            name = server.name.lower()
+
+            # 🟥 ATACANTE
+            if any(x in name for x in ["attack", "attacker", "redteam", "pentest"]):
+                result["attacker"] = {
+                    "name": server.name,
+                    "ip": ip_final,
+                    "status": server.status
+                }
+                continue
+
+            # 🟩 MONITOR (🔥 NUEVO BLOQUE)
+            if any(x in name for x in ["monitor", "wazuh", "log", "siem"]):
+                result["monitor"] = {
+                    "name": server.name,
+                    "ip": ip_final,
+                    "status": server.status
+                }
+                continue
+
+            # 🟦 VÍCTIMA
+            if any(x in name for x in ["victim", "target", "blue", "server", "web"]):
+                result["victim"] = {
+                    "name": server.name,
+                    "ip": ip_final,
+                    "status": server.status
+                }
+                continue
+
+            # 🟨 OTROS (UNKNOWN)
+            result["unknown"].append({
+                "name": server.name,
+                "ip": ip_final,
+                "status": server.status
+            })
+
+        return jsonify(result), 200
+
+    except Exception as e:
+        logger.error(f"❌ Error en /api/instance_roles: {e}", exc_info=True)
+        return jsonify({"error": str(e)}), 500
 
 
 @app.route('/')

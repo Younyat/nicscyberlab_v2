@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorio de Ciberseguridad - Control de Ataques</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js"></script>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="min-h-screen p-6">
+        <!-- HEADER -->
+        <div class="text-center mb-6">
+            <h1 class="text-4xl font-bold mb-2 flex items-center justify-center gap-3">
+                NICS | CyberLab
+            </h1>
+            <p class="text-gray-400 text-lg">Simulación de ataques y monitoreo en tiempo real</p>
+        </div>
+
+        <!-- PANEL HORIZONTAL CON 3 NODOS -->
+        <div class="flex gap-6 mb-6">
+
+            <!-- NODO ATACANTE -->
+            <div class="flex-1 bg-gray-800 rounded-xl p-5">
+
+                <div class="flex items-center gap-3 mb-5 pb-3 border-b border-gray-700">
+                    <i class="fas fa-crosshairs text-red-500 text-2xl"></i>
+
+                    <h2 class="text-2xl font-bold flex items-center gap-3">
+                        Nodo Atacante 
+                        <span id="status-attacker" class="text-2xl ml-2">🔴</span>
+
+                        <button id="btn-attacker-console"
+                                class="ml-auto bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded-lg text-xs hidden">
+                            Abrir Consola
+                        </button>
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 mb-5">
+                    <button onclick="openTool('MITRE Caldera', 'http://10.0.2.237:8888', 'Framework adversario automatizado', '🎯')" 
+                            class="bg-red-600 hover:bg-red-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
+                        <span class="text-2xl">🎯</span> <span class="text-xs">MITRE Caldera</span>
+                    </button>
+
+                    <button onclick="openTool('Nmap', 'https://nmap.org', 'Escáner de redes y puertos', '🔍')" 
+                            class="bg-red-600 hover:bg-red-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
+                        <span class="text-2xl">🔍</span> <span class="text-xs">Nmap</span>
+                    </button>
+
+                    <button onclick="openTool('Metasploit', 'https://www.metasploit.com', 'Framework de penetración', '💥')" 
+                            class="bg-red-600 hover:bg-red-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
+                        <span class="text-2xl">💥</span> <span class="text-xs">Metasploit</span>
+                    </button>
+
+                    <button onclick="openTool('Nikto', 'https://github.com/sullo/nikto', 'Escáner de vulnerabilidades web', '🌐')" 
+                            class="bg-red-600 hover:bg-red-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
+                        <span class="text-2xl">🌐</span> <span class="text-xs">Nikto</span>
+                    </button>
+
+                    <button onclick="openTool('Burp Suite', 'https://portswigger.net/burp', 'Pruebas de seguridad web', '🕷️')" 
+                            class="bg-red-600 hover:bg-red-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1 col-span-2">
+                        <span class="text-2xl">🕷️</span> <span class="text-xs">Burp Suite</span>
+                    </button>
+                </div>
+
+                <div class="bg-black rounded-lg p-4">
+                    <div class="flex items-center gap-2 mb-2">
+                        <i class="fas fa-terminal text-red-400"></i>
+                        <span class="text-red-400 text-sm font-mono">Terminal</span>
+                    </div>
+                    <div class="text-red-400 text-xs font-mono">
+                        <div>$ Sistema listo...</div>
+                        <div class="flex items-center gap-1"><span>$</span><span class="animate-pulse">_</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MONITOR CENTRAL -->
+            <div class="flex-1 bg-gray-800 rounded-xl p-5">
+                <div class="flex items-center gap-3 mb-5 pb-3 border-b border-gray-700">
+                    <i class="fas fa-eye text-green-500 text-2xl"></i>
+                    <h2 class="text-2xl font-bold flex items-center gap-3">
+                                Monitor Central
+
+                                <!-- 🔴🟢 Indicador -->
+                                <span id="status-monitor" class="text-2xl ml-2">🔴</span>
+
+                                <!-- Botón consola -->
+                                <button id="btn-monitor-console"
+                                        class="ml-auto bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded-lg text-xs hidden">
+                                    Abrir Consola
+                                </button>
+                            </h2>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 mb-5">
+                    <button onclick="openTool('Wazuh', 'https://10.0.2.13', 'SIEM y XDR', '👁️')" 
+                            class="bg-green-600 hover:bg-green-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
+                        <span class="text-2xl">👁️</span> <span class="text-xs">Wazuh</span>
+                    </button>
+
+                    <button onclick="openTool('Splunk', 'https://www.splunk.com', 'Analítica avanzada', '📊')" 
+                            class="bg-green-600 hover:bg-green-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
+                        <span class="text-2xl">📊</span> <span class="text-xs">Splunk</span>
+                    </button>
+
+                    <button onclick="openTool('ELK Stack', 'https://elastic.co', 'Elastic Stack', '🦌')" 
+                            class="bg-green-600 hover:bg-green-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
+                        <span class="text-2xl">🦌</span> <span class="text-xs">ELK Stack</span>
+                    </button>
+
+                    <button onclick="openTool('OSSEC', 'https://ossec.net', 'IDS/IPS', '🛡️')" 
+                            class="bg-green-600 hover:bg-green-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
+                        <span class="text-2xl">🛡️</span> <span class="text-xs">OSSEC</span>
+                    </button>
+
+                    <button onclick="openTool('Grafana', 'https://grafana.com', 'Visualización', '📈')" 
+                            class="bg-green-600 hover:bg-green-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1 col-span-2">
+                        <span class="text-2xl">📈</span> <span class="text-xs">Grafana</span>
+                    </button>
+                </div>
+
+                <div class="bg-black rounded-lg p-4">
+                    <div class="flex items-center gap-2 mb-2">
+                        <i class="fas fa-terminal text-green-400"></i>
+                        <span class="text-green-400 text-sm font-mono">Terminal</span>
+                    </div>
+                    <div class="text-green-400 text-xs font-mono">
+                        <div>$ Sistema listo...</div>
+                        <div class="flex items-center gap-1"><span>$</span><span class="animate-pulse">_</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NODO VÍCTIMA -->
+            <div class="flex-1 bg-gray-800 rounded-xl p-5">
+
+                <div class="flex items-center gap-3 mb-5 pb-3 border-b border-gray-700">
+                    <i class="fas fa-shield text-green-500 text-2xl"></i>
+
+                    <h2 class="text-2xl font-bold flex items-center gap-3">
+                        Nodo Víctima 
+                        <span id="status-victim" class="text-2xl ml-2">🔴</span>
+
+                        <button id="btn-victim-console"
+                                class="ml-auto bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded-lg text-xs hidden">
+                            Abrir Consola
+                        </button>
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 mb-5">
+                    <button onclick="openTool('Snort', 'https://snort.org', 'IDS Snort', '🐽')" 
+                            class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
+                        <span class="text-2xl">🐽</span> <span class="text-xs">Snort</span>
+                    </button>
+
+                    <button onclick="openTool('Suricata', 'https://suricata.io', 'IDS/IPS', '🦈')" 
+                            class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
+                        <span class="text-2xl">🦈</span> <span class="text-xs">Suricata</span>
+                    </button>
+
+                    <button onclick="openTool('Zeek', 'https://zeek.org', 'Network monitor', '👀')" 
+                            class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
+                        <span class="text-2xl">👀</span> <span class="text-xs">Zeek</span>
+                    </button>
+
+                    <button onclick="openTool('Fail2Ban', 'https://fail2ban.org', 'Intrusion prevention', '🚫')" 
+                            class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
+                        <span class="text-2xl">🚫</span> <span class="text-xs">Fail2Ban</span>
+                    </button>
+
+                    <button onclick="openTool('ModSecurity', 'https://modsecurity.org', 'WAF', '🛡️')" 
+                            class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1 col-span-2">
+                        <span class="text-2xl">🛡️</span> <span class="text-xs">ModSecurity</span>
+                    </button>
+                </div>
+
+                <div class="bg-black rounded-lg p-4">
+                    <div class="flex items-center gap-2 mb-2">
+                        <i class="fas fa-terminal text-blue-400"></i>
+                        <span class="text-blue-400 text-sm font-mono">Terminal</span>
+                    </div>
+                    <div class="text-blue-400 text-xs font-mono">
+                        <div>$ Sistema listo...</div>
+                        <div class="flex items-center gap-1"><span>$</span><span class="animate-pulse">_</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PANEL DE CONTROL DE ATAQUES -->
+        <div class="bg-gray-800 rounded-xl p-5">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-chart-line text-purple-500 text-xl"></i>
+                    <h3 class="text-xl font-bold">Control de Ataques</h3>
+                </div>
+                <button onclick="launchAttack()" id="attack-btn"
+                        class="bg-gradient-to-r from-red-600 to-purple-600 hover:from-red-500 hover:to-purple-500 text-white px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg flex items-center gap-2">
+                    <i class="fas fa-bolt"></i>
+                    <span id="attack-btn-text">Lanzar Ataque de Prueba</span>
+                </button>
+            </div>
+
+            <div class="bg-black rounded-lg p-4 h-48 overflow-y-auto font-mono text-sm" id="attack-log">
+                <div class="text-gray-500">No hay actividad registrada...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL PARA HERRAMIENTAS -->
+    <div id="tool-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4">
+        <div class="bg-gray-800 rounded-2xl shadow-2xl max-w-2xl w-full p-8">
+            <div class="flex items-start justify-between mb-6">
+                <div>
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="text-4xl" id="modal-icon"></span>
+                        <h2 class="text-3xl font-bold" id="modal-title"></h2>
+                    </div>
+                    <p class="text-gray-400 text-lg" id="modal-desc"></p>
+                </div>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white text-3xl leading-none">×</button>
+            </div>
+
+            <div class="bg-gray-900 rounded-lg p-6 mb-6 border border-gray-700">
+                <h3 class="font-semibold text-gray-300 mb-3 text-lg">Enlace de la herramienta:</h3>
+                <a id="modal-link" href="#" target="_blank" rel="noopener noreferrer"
+                   class="text-blue-400 hover:text-blue-300 underline break-all text-lg font-medium"></a>
+            </div>
+
+            <div class="flex gap-4">
+                <a id="modal-open-btn" href="#" target="_blank" rel="noopener noreferrer"
+                   class="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white px-6 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg text-center font-semibold">
+                    <i class="fas fa-external-link-alt mr-2"></i>
+                    Abrir herramienta
+                </a>
+
+                <button onclick="closeModal()"
+                        class="flex-1 bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg transition-all font-semibold">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====================== JAVASCRIPT ====================== -->
+    <script>
+
+    /* =======================================================
+           MODAL DE HERRAMIENTAS
+    ======================================================= */
+    function openTool(name, url, desc, icon) {
+        document.getElementById('modal-title').textContent = name;
+        document.getElementById('modal-desc').textContent = desc;
+        document.getElementById('modal-icon').textContent = icon;
+        document.getElementById('modal-link').textContent = url;
+        document.getElementById('modal-link').href = url;
+        document.getElementById('modal-open-btn').href = url;
+        document.getElementById('tool-modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+        document.getElementById('tool-modal').classList.add('hidden');
+    }
+
+
+    /* =======================================================
+            ABRIR CONSOLA DE UNA INSTANCIA (Backend correcto)
+    ======================================================= */
+ async function openConsole(instanceName) {
+    try {
+        const response = await fetch("http://localhost:5001/api/console_url", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ instance_name: instanceName })
+        });
+
+        const data = await response.json();
+
+        if (!data.output) {
+            alert("⚠ No se pudo obtener la URL de consola.\n\n" + data.stdout);
+            return;
+        }
+
+        document.getElementById("console-title").textContent = `Terminal: ${instanceName}`;
+        document.getElementById("console-iframe").src = data.output;
+
+        // Mostrar ventana flotante
+        document.getElementById("console-window").classList.remove("hidden");
+
+    } catch (err) {
+        console.error("❌ Error solicitando consola:", err);
+        alert("Error al solicitar consola.");
+    }
+}
+
+
+
+
+    /* =======================================================
+            CARGAR ROLES DESDE EL BACKEND
+    ======================================================= */
+    async function refreshRoles() {
+        try {
+            const res = await fetch("http://localhost:5001/api/instance_roles");
+            const data = await res.json();
+
+            updateAttackerUI(data.attacker);
+            updateVictimUI(data.victim);
+            updateMonitorUI(data.monitor);
+
+            // por si en el futuro agregas un nodo monitor
+            if (data.monitor) {
+                updateMonitorUI(data.monitor);
+            }
+
+        } catch (error) {
+            console.error("❌ Error consultando /api/instance_roles", error);
+        }
+    }
+
+
+    /* =======================================================
+            UI ATACANTE (Luz + botón consola)
+    ======================================================= */
+    function updateAttackerUI(attacker) {
+        const light = document.getElementById("status-attacker");
+        const btn = document.getElementById("btn-attacker-console");
+
+        if (!attacker || attacker.status !== "ACTIVE") {
+            light.textContent = "🔴";
+            btn.classList.add("hidden");
+            return;
+        }
+
+        light.textContent = "🟢";
+        btn.classList.remove("hidden");
+        btn.onclick = () => openConsole(attacker.name);
+    }
+
+
+    /* =======================================================
+            UI VÍCTIMA (Luz + botón consola)
+    ======================================================= */
+    function updateVictimUI(victim) {
+        const light = document.getElementById("status-victim");
+        const btn = document.getElementById("btn-victim-console");
+
+        if (!victim || victim.status !== "ACTIVE") {
+            light.textContent = "🔴";
+            btn.classList.add("hidden");
+            return;
+        }
+
+        light.textContent = "🟢";
+        btn.classList.remove("hidden");
+        btn.onclick = () => openConsole(victim.name);
+    }
+
+function updateMonitorUI(monitor) {
+    const light = document.getElementById("status-monitor");
+    const btn = document.getElementById("btn-monitor-console");
+
+    if (!light || !btn) return;  // seguridad
+
+    if (!monitor || monitor.status !== "ACTIVE") {
+        light.textContent = "🔴";
+        btn.classList.add("hidden");
+        return;
+    }
+
+    light.textContent = "🟢";
+    btn.classList.remove("hidden");
+
+    btn.onclick = () => openInstanceConsole(monitor.name);
+}
+
+ function closeConsoleWindow() {
+    const win = document.getElementById("console-window");
+    const iframe = document.getElementById("console-iframe");
+
+    win.classList.add("hidden");
+    iframe.src = "about:blank";
+}
+
+
+/* =======================================================
+        MOVILIDAD DE VENTANA (VERSIÓN PRO ESTABLE)
+======================================================= */
+function enableConsoleDrag() {
+    const win = document.getElementById("console-window");
+    const drag = document.getElementById("console-drag-area");
+
+    if (!win || !drag) return;
+
+    let dragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    drag.addEventListener("mousedown", (e) => {
+        dragging = true;
+
+        // Calcular desplazamiento inicial
+        offsetX = e.clientX - win.getBoundingClientRect().left;
+        offsetY = e.clientY - win.getBoundingClientRect().top;
+
+        // Deshabilitar transición si existe
+        win.style.transition = "none";
+
+        document.body.style.userSelect = "none";
+        drag.style.cursor = "grabbing";
+    });
+
+    document.addEventListener("mousemove", (e) => {
+        if (!dragging) return;
+
+        const x = e.clientX - offsetX;
+        const y = e.clientY - offsetY;
+
+        win.style.left = `${x}px`;
+        win.style.top = `${y}px`;
+    });
+
+    document.addEventListener("mouseup", () => {
+        dragging = false;
+        drag.style.cursor = "move";
+        document.body.style.userSelect = "auto";
+    });
+}
+
+// Activar movilidad al cargar la página
+document.addEventListener("DOMContentLoaded", enableConsoleDrag);
+
+    /* =======================================================
+            ACTUALIZACIÓN AUTOMÁTICA CADA 3 SEGUNDOS
+    ======================================================= */
+    setInterval(refreshRoles, 3000);
+    refreshRoles();
+
+
+</script>
+<!-- ==========================
+     VENTANA DE CONSOLA PERSONALIZADA
+=========================== -->
+<!-- =====================================
+     VENTANA FLOTANTE DE CONSOLA (MOVIBLE)
+======================================= -->
+<div id="console-window"
+     class="hidden fixed top-24 left-24 w-[900px] h-[550px] z-[9999] shadow-2xl rounded-xl border border-gray-700 bg-gray-900">
+    
+    <!-- HEADER - DRAG -->
+    <div id="console-drag-area"
+         class="cursor-move flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700 rounded-t-xl">
+        
+        <div class="text-white font-semibold flex items-center gap-2">
+            🖥 <span id="console-title">Terminal</span>
+        </div>
+
+        <button onclick="closeConsoleWindow()"
+                class="text-red-400 hover:text-red-300 text-xl font-bold">
+            ✖
+        </button>
+    </div>
+
+    <!-- IFRAME DE CONSOLA -->
+    <iframe id="console-iframe"
+            class="w-full h-[calc(100%-40px)] bg-black rounded-b-xl"
+            src="about:blank"></iframe>
+</div>
+
+
+</body>
+</html>
