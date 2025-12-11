@@ -812,7 +812,10 @@ def api_uninstall_tool():
 def api_instance_roles():
     """
     Detecta automáticamente attacker / monitor / victim según el nombre.
+    Maneja correctamente las conexiones OpenStack para evitar fugas.
     """
+    conn = None
+
     try:
         conn = get_openstack_connection()
         servers = conn.compute.servers()
@@ -827,7 +830,7 @@ def api_instance_roles():
         for server in servers:
 
             # ==========================
-            #     OBTENER IPs
+            #        OBTENER IPs
             # ==========================
             ip_private = None
             ip_floating = None
@@ -840,7 +843,6 @@ def api_instance_roles():
                         ip_private = addr["addr"]
 
             ip_final = ip_floating or ip_private or "N/A"
-
 
             # ==========================
             #     CLASIFICACIÓN POR NOMBRE
@@ -857,7 +859,7 @@ def api_instance_roles():
                 }
                 continue
 
-            # 🟩 MONITOR (🔥 NUEVO BLOQUE)
+            # 🟩 MONITOR
             if any(x in name for x in ["monitor", "wazuh", "log", "siem"]):
                 result["monitor"] = {
                     "name": server.name,
@@ -875,7 +877,7 @@ def api_instance_roles():
                 }
                 continue
 
-            # 🟨 OTROS (UNKNOWN)
+            # 🟨 OTROS
             result["unknown"].append({
                 "name": server.name,
                 "ip": ip_final,
@@ -887,6 +889,203 @@ def api_instance_roles():
     except Exception as e:
         logger.error(f"❌ Error en /api/instance_roles: {e}", exc_info=True)
         return jsonify({"error": str(e)}), 500
+
+    finally:
+        # 🔥 CIERRE CRÍTICO → evita “Too many open files”
+        if conn:
+            try:
+                conn.close()
+            except Exception:
+                pass
+
+@app.route('/api/check_wazuh', methods=['POST'])
+def api_check_wazuh():
+    try:
+        data = request.get_json()
+
+        instance = data.get("instance")
+        ip = data.get("ip")
+
+        if not instance or not ip:
+            return jsonify({"status": "error", "msg": "Faltan campos instance/ip"}), 400
+
+        # === Buscar clave SSH en ~/.ssh ===
+        SSH_DIR = os.path.expanduser("~/.ssh")
+        SSH_KEY = ""
+
+        for fname in os.listdir(SSH_DIR):
+            full = os.path.join(SSH_DIR, fname)
+
+            if fname.endswith(".pub"):
+                continue
+
+            if os.path.isfile(full):
+                with open(full, "r", errors="ignore") as f:
+                    content = f.read()
+                    if "PRIVATE KEY" in content:
+                        SSH_KEY = full
+                        break
+
+        if not SSH_KEY:
+            return jsonify({"status": "error", "msg": "No se encontró clave privada"}), 500
+
+        # === Detectar usuario real (Ubuntu / Debian / Kali / Root) ===
+        user = detect_remote_user(ip, SSH_KEY)
+
+        command = """
+            (systemctl status wazuh-dashboard.service 2>/dev/null ||
+             systemctl status wazuh-indexer.service 2>/dev/null ||
+             echo '❌ Wazuh NO está instalado')
+        """
+
+        ssh_cmd = [
+            "ssh",
+            "-o", "StrictHostKeyChecking=no",
+            "-i", SSH_KEY,
+            f"{user}@{ip}",
+            command
+        ]
+
+        proc = subprocess.run(
+            ssh_cmd,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True
+        )
+
+        return jsonify({
+            "status": "success",
+            "stdout": proc.stdout,
+            "stderr": proc.stderr,
+            "exit_code": proc.returncode
+        })
+
+    except Exception as e:
+        return jsonify({"status": "error", "msg": str(e)}), 500
+
+
+
+@app.route("/api/change_password", methods=["POST"])
+def api_change_password():
+    try:
+        data = request.get_json()
+
+        instance = data.get("instance")
+        ip = data.get("ip")
+        new_pass = data.get("new_password")
+
+        if not instance or not ip or not new_pass:
+            return jsonify({"error": "Faltan parámetros"}), 400
+
+        SSH_DIR = os.path.expanduser("~/.ssh")
+        SSH_KEY = ""
+
+        for fname in os.listdir(SSH_DIR):
+            full = os.path.join(SSH_DIR, fname)
+            if fname.endswith(".pub"): 
+                continue
+            if os.path.isfile(full):
+                if "PRIVATE KEY" in open(full,"r",errors="ignore").read():
+                    SSH_KEY = full
+                    break
+
+        if not SSH_KEY:
+            return jsonify({"error": "Clave privada no encontrada"}), 500
+
+        # Detectar usuario automáticamente
+        user = detect_remote_user(ip, SSH_KEY)
+
+        cmd_change = f"echo '{user}:{new_pass}' | sudo chpasswd"
+
+        proc_change = subprocess.run(
+            ["ssh","-o","StrictHostKeyChecking=no","-i",SSH_KEY,f"{user}@{ip}",cmd_change],
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
+        )
+
+        return jsonify({
+            "instance": instance,
+            "ip": ip,
+            "user": user,
+            "stdout": proc_change.stdout,
+            "stderr": proc_change.stderr,
+            "exitcode": proc_change.returncode
+        })
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route("/api/change_keyboard_layout", methods=["POST"])
+def api_change_keyboard_layout():
+    try:
+        data = request.get_json()
+
+        instance = data.get("instance")
+        ip = data.get("ip")
+        layout = data.get("layout", "es")
+
+        if not instance or not ip:
+            return jsonify({"error": "Faltan parámetros"}), 400
+
+        # Buscar clave SSH
+        SSH_DIR = os.path.expanduser("~/.ssh")
+        SSH_KEY = ""
+
+        for fname in os.listdir(SSH_DIR):
+            full = os.path.join(SSH_DIR, fname)
+            if fname.endswith(".pub"): continue
+            if os.path.isfile(full):
+                with open(full, "r", errors="ignore") as f:
+                    if "PRIVATE KEY" in f.read():
+                        SSH_KEY = full
+                        break
+
+        if not SSH_KEY:
+            return jsonify({"error": "Clave privada no encontrada"}), 500
+
+        # Detectar usuario correcto
+        user = detect_remote_user(ip, SSH_KEY)
+
+        # --- SOLO UN COMANDO: NO INSTALA NADA ---
+        cmd = f"sudo loadkeys {layout}"
+
+        proc = subprocess.run(
+            ["ssh","-o","StrictHostKeyChecking=no","-i",SSH_KEY,f"{user}@{ip}",cmd],
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
+        )
+
+        return jsonify({
+            "instance": instance,
+            "ip": ip,
+            "user": user,
+            "layout": layout,
+            "stdout": proc.stdout,
+            "stderr": proc.stderr
+        })
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+def detect_remote_user(ip, ssh_key):
+    """
+    Detecta automáticamente si una instancia es Ubuntu, Debian, Kali o usa Root.
+    """
+    detect_cmd = "cat /etc/os-release"
+
+    proc = subprocess.run(
+        ["ssh", "-o", "StrictHostKeyChecking=no", "-i", ssh_key, f"root@{ip}", detect_cmd],
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
+    )
+
+    info = (proc.stdout + proc.stderr).lower()
+
+    if "ubuntu" in info:
+        return "ubuntu"
+    if "debian" in info:
+        return "debian"
+    if "kali" in info:
+        return "kali"
+
+    return "root"
 
 
 @app.route('/')

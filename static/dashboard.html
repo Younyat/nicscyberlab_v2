@@ -58,10 +58,22 @@
                         <span class="text-2xl">🌐</span> <span class="text-xs">Nikto</span>
                     </button>
 
-                    <button onclick="openTool('Burp Suite', 'https://portswigger.net/burp', 'Pruebas de seguridad web', '🕷️')" 
-                            class="bg-red-600 hover:bg-red-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1 col-span-2">
-                        <span class="text-2xl">🕷️</span> <span class="text-xs">Burp Suite</span>
-                    </button>
+                <!-- Cambiar contraseña -->
+                <button onclick="changePassword('attacker')"
+                        class="bg-red-600 hover:bg-red-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg col-span-2">
+                    <span class="text-2xl">🔐</span>
+                    <span class="text-xs block">Cambiar contraseña</span>
+                </button>
+
+                <!-- Cambiar idioma teclado -->
+                <button onclick="changeKeyboard('attacker')"
+                        class="bg-red-600 hover:bg-red-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg col-span-2">
+                    <span class="text-2xl">⌨️</span>
+                    <span class="text-xs block">Cambiar idioma teclado</span>
+                </button>
+
+
+
                 </div>
 
                 <div class="bg-black rounded-lg p-4">
@@ -95,7 +107,7 @@
                 </div>
 
                 <div class="grid grid-cols-2 gap-3 mb-5">
-                    <button onclick="openTool('Wazuh', 'https://10.0.2.13', 'SIEM y XDR', '👁️')" 
+                    <button onclick="checkWazuhMonitor()"
                             class="bg-green-600 hover:bg-green-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
                         <span class="text-2xl">👁️</span> <span class="text-xs">Wazuh</span>
                     </button>
@@ -115,10 +127,22 @@
                         <span class="text-2xl">🛡️</span> <span class="text-xs">OSSEC</span>
                     </button>
 
-                    <button onclick="openTool('Grafana', 'https://grafana.com', 'Visualización', '📈')" 
-                            class="bg-green-600 hover:bg-green-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1 col-span-2">
-                        <span class="text-2xl">📈</span> <span class="text-xs">Grafana</span>
+                  <!-- Cambiar contraseña -->
+                    <button onclick="changePassword('monitor')"
+                            class="bg-green-600 hover:bg-green-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg col-span-2">
+                        <span class="text-2xl">🔐</span>
+                        <span class="text-xs">Cambiar contraseña</span>
                     </button>
+
+
+                    <!-- Cambiar idioma -->
+                    <button onclick="changeKeyboard('monitor')"
+                            class="bg-green-600 hover:bg-green-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg col-span-2">
+                        <span class="text-2xl">⌨️</span>
+                        <span class="text-xs">Cambiar idioma teclado</span>
+                    </button>
+
+
                 </div>
 
                 <div class="bg-black rounded-lg p-4">
@@ -126,7 +150,7 @@
                         <i class="fas fa-terminal text-green-400"></i>
                         <span class="text-green-400 text-sm font-mono">Terminal</span>
                     </div>
-                    <div class="text-green-400 text-xs font-mono">
+                    <div id="terminal-monitor" class="text-green-400 text-xs font-mono">
                         <div>$ Sistema listo...</div>
                         <div class="flex items-center gap-1"><span>$</span><span class="animate-pulse">_</span></div>
                     </div>
@@ -171,10 +195,20 @@
                         <span class="text-2xl">🚫</span> <span class="text-xs">Fail2Ban</span>
                     </button>
 
-                    <button onclick="openTool('ModSecurity', 'https://modsecurity.org', 'WAF', '🛡️')" 
-                            class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1 col-span-2">
-                        <span class="text-2xl">🛡️</span> <span class="text-xs">ModSecurity</span>
-                    </button>
+                    <!-- Cambiar contraseña -->
+                            <button onclick="changePassword('victim')"
+                                    class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg col-span-2">
+                                <span class="text-2xl">🔐</span>
+                                <span class="text-xs">Cambiar contraseña</span>
+                            </button>
+
+                            <!-- Cambiar idioma -->
+                            <button onclick="changeKeyboard('victim')"
+                                    class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg col-span-2">
+                                <span class="text-2xl">⌨️</span>
+                                <span class="text-xs">Cambiar idioma teclado</span>
+                            </button>
+
                 </div>
 
                 <div class="bg-black rounded-lg p-4">
@@ -269,7 +303,7 @@
     /* =======================================================
             ABRIR CONSOLA DE UNA INSTANCIA (Backend correcto)
     ======================================================= */
- async function openConsole(instanceName) {
+async function openConsole(instanceName) {
     try {
         const response = await fetch("http://localhost:5001/api/console_url", {
             method: "POST",
@@ -284,11 +318,29 @@
             return;
         }
 
-        document.getElementById("console-title").textContent = `Terminal: ${instanceName}`;
-        document.getElementById("console-iframe").src = data.output;
+        // 📌 ABRIR VENTANA INDEPENDIENTE (NO pestaña)
+        const width = 1100;
+        const height = 700;
 
-        // Mostrar ventana flotante
-        document.getElementById("console-window").classList.remove("hidden");
+        const left = (screen.width - width) / 2;
+        const top = (screen.height - height) / 2;
+
+        window.open(
+            data.output,
+            instanceName + "_console",
+            `
+            toolbar=no,
+            location=no,
+            status=no,
+            menubar=no,
+            scrollbars=yes,
+            resizable=yes,
+            width=${width},
+            height=${height},
+            top=${top},
+            left=${left}
+            `
+        );
 
     } catch (err) {
         console.error("❌ Error solicitando consola:", err);
@@ -374,7 +426,7 @@ function updateMonitorUI(monitor) {
     light.textContent = "🟢";
     btn.classList.remove("hidden");
 
-    btn.onclick = () => openInstanceConsole(monitor.name);
+    btn.onclick = () => openConsole(monitor.name);
 }
 
  function closeConsoleWindow() {
@@ -432,6 +484,221 @@ function enableConsoleDrag() {
 
 // Activar movilidad al cargar la página
 document.addEventListener("DOMContentLoaded", enableConsoleDrag);
+
+
+async function checkWazuhMonitor() {
+    // Obtener info del monitor desde el backend
+    const r = await fetch("http://localhost:5001/api/instance_roles");
+    const roles = await r.json();
+
+    if (!roles.monitor) {
+        appendAttackLog("❌ No se detecta instancia monitor.");
+        return;
+    }
+
+    const instanceName = roles.monitor.name;
+    const ip = roles.monitor.ip;
+
+    appendAttackLog(`🔍 Detectando Wazuh en ${instanceName} (${ip})...`);
+
+    const res = await fetch("http://localhost:5001/api/check_wazuh", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ instance: instanceName, ip: ip })
+    });
+
+    const data = await res.json();
+
+    let output = data.stdout || data.stderr || "❌ Sin salida";
+
+    // 1️⃣ Mostrar salida en panel Control de Ataques
+    appendAttackLog(output);
+
+    // 2️⃣ Mostrar salida en la terminal del monitor
+    updateMonitorTerminal(output);
+
+    // 3️⃣ ABRIR MODAL CON URL DE WAZUH
+    openTool(
+        "Wazuh",
+        `https://${ip}`,
+        "SIEM / XDR - Consola Web",
+        "👁️"
+    );
+}
+
+function updateMonitorTerminal(text) {
+    const terminal = document.getElementById("terminal-monitor");
+    if (!terminal) return;
+
+    terminal.innerHTML += `<div>$ ${text.replace(/\n/g, "<br>")}</div>`;
+    terminal.scrollTop = terminal.scrollHeight;
+}
+
+async function getRoleData(role) {
+    const res = await fetch("http://localhost:5001/api/instance_roles");
+    const data = await res.json();
+    return data[role];
+}
+function updateNodeTerminal(role, text) {
+    let selector = null;
+
+    if (role === "monitor") selector = ".text-green-400";
+    if (role === "attacker") selector = ".text-red-400";
+    if (role === "victim") selector = ".text-blue-400";
+
+    const terminal = document.querySelector(selector);
+
+    if (terminal) {
+        terminal.innerHTML += `<div>$ ${text.replace(/\n/g, "<br>")}</div>`;
+    }
+}
+function appendAttackLog(msg) {
+    const log = document.getElementById("attack-log");
+    log.innerHTML += `<div>${msg.replace(/\n/g, "<br>")}</div>`;
+    log.scrollTop = log.scrollHeight;
+}
+async function changeMonitorPassword() {
+    const newPass = prompt("Introduce la nueva contraseña:");
+
+    if (!newPass) {
+        appendAttackLog("⚠️ Operación cancelada.");
+        return;
+    }
+
+    const monitor = await getRoleData("monitor");
+
+    if (!monitor) {
+        appendAttackLog("❌ No se detecta instancia monitor.");
+        return;
+    }
+
+    appendAttackLog(`🔐 Cambiando contraseña en ${monitor.name} (${monitor.ip})...`);
+
+    const res = await fetch("http://localhost:5001/api/change_password", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            instance: monitor.name,
+            ip: monitor.ip,
+            new_password: newPass
+        })
+    });
+
+    const data = await res.json();
+
+    // Panel Control de Ataques
+    appendAttackLog(JSON.stringify(data, null, 2));
+
+    // Terminal del nodo monitor
+    updateMonitorTerminal(`Contraseña cambiada en ${monitor.name} para usuario '${data.user}'`);
+}
+async function changePassword(role) {
+    const node = await getRoleData(role);
+    if (!node) {
+        appendAttackLog(`❌ No se detecta instancia ${role}`);
+        return;
+    }
+
+    const newPass = prompt("Introduce nueva contraseña:");
+    if (!newPass) return;
+
+    appendAttackLog(`🔐 Cambiando contraseña en ${node.name} (${node.ip})...`);
+
+    const res = await fetch("http://localhost:5001/api/change_password", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            instance: node.name,
+            ip: node.ip,
+            new_password: newPass
+        })
+    });
+
+    const data = await res.json();
+
+    appendAttackLog(JSON.stringify(data, null, 2));
+    updateNodeTerminal(role, `Contraseña cambiada para usuario ${data.user}`);
+}
+
+async function changeKeyboardLayout(role) {
+    const node = await getRoleData(role);
+    if (!node) {
+        appendAttackLog(`❌ No se detecta instancia ${role}`);
+        return;
+    }
+
+    appendAttackLog(`⌨️ Cambiando teclado a Español en ${node.name} (${node.ip})...`);
+
+    const res = await fetch("http://localhost:5001/api/change_keyboard_layout", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            instance: node.name,
+            ip: node.ip,
+            layout: "es"   // español
+        })
+    });
+
+    const data = await res.json();
+
+    appendAttackLog(JSON.stringify(data, null, 2));
+    updateNodeTerminal(role, `Teclado configurado a Español`);
+}
+async function changePassword(role) {
+    const newPass = prompt("Nueva contraseña para " + role + ":");
+    if (!newPass) return;
+
+    const data = await fetch("http://localhost:5001/api/instance_roles").then(r => r.json());
+    const node = data[role];
+
+    if (!node) {
+        appendAttackLog("❌ No se encuentra instancia para rol " + role);
+        return;
+    }
+
+    appendAttackLog(`🔐 Cambiando contraseña en ${node.name} (${node.ip})...`);
+
+    const res = await fetch("http://localhost:5001/api/change_password", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            instance: node.name,
+            ip: node.ip,
+            new_password: newPass
+        })
+    });
+
+    const out = await res.json();
+    appendAttackLog(JSON.stringify(out, null, 2));
+}
+
+async function changeKeyboard(role) {
+    const layout = prompt("Idioma (es, en, fr...):", "es");
+    if (!layout) return;
+
+    const data = await fetch("http://localhost:5001/api/instance_roles").then(r => r.json());
+    const node = data[role];
+
+    if (!node) {
+        appendAttackLog("❌ No se encuentra instancia para rol " + role);
+        return;
+    }
+
+    appendAttackLog(`⌨️ Cambiando teclado a ${layout} en ${node.name} (${node.ip})...`);
+
+    const res = await fetch("http://localhost:5001/api/change_keyboard_layout", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            instance: node.name,
+            ip: node.ip,
+            layout: layout
+        })
+    });
+
+    const out = await res.json();
+    appendAttackLog(JSON.stringify(out, null, 2));
+}
 
     /* =======================================================
             ACTUALIZACIÓN AUTOMÁTICA CADA 3 SEGUNDOS
