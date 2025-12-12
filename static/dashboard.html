@@ -175,14 +175,16 @@
                 </div>
 
                 <div class="grid grid-cols-2 gap-3 mb-5">
-                    <button onclick="openTool('Snort', 'https://snort.org', 'IDS Snort', '🐽')" 
-                            class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
-                        <span class="text-2xl">🐽</span> <span class="text-xs">Snort</span>
-                    </button>
+                   <button onclick="runToolVersionOnVictim('snort')" 
+                                class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
+                            <span class="text-2xl">🐽</span>
+                            <span class="text-xs">Snort</span>
+                        </button>
 
-                    <button onclick="openTool('Suricata', 'https://suricata.io', 'IDS/IPS', '🦈')" 
+                    <button onclick="runToolVersionOnVictim('suricata')" 
                             class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
-                        <span class="text-2xl">🦈</span> <span class="text-xs">Suricata</span>
+                        <span class="text-2xl">🦈</span>
+                        <span class="text-xs">Suricata</span>
                     </button>
 
                     <button onclick="openTool('Zeek', 'https://zeek.org', 'Network monitor', '👀')" 
@@ -699,6 +701,47 @@ async function changeKeyboard(role) {
     const out = await res.json();
     appendAttackLog(JSON.stringify(out, null, 2));
 }
+
+
+async function runToolVersionOnVictim(tool) {
+    const roles = await fetch("http://localhost:5001/api/instance_roles")
+        .then(r => r.json());
+
+    if (!roles.victim) {
+        appendAttackLog("❌ No se detecta nodo víctima");
+        return;
+    }
+
+    const victim = roles.victim;
+
+    appendAttackLog(`🔎 Ejecutando ${tool} --version en ${victim.name} (${victim.ip})...`);
+
+    const res = await fetch("http://localhost:5001/api/run_tool_version", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            tool: tool,
+            instance: victim.name,
+            ip: victim.ip
+        })
+    });
+
+    const data = await res.json();
+
+    const output = data.stdout || data.stderr || "❌ Sin salida";
+
+    // 🖥 Terminal de la víctima
+    updateNodeTerminal("victim", output);
+
+    // 📊 Panel de ataques
+    appendAttackLog(output);
+
+    // 🚀 Abrir consola OpenStack
+    openConsole(victim.name);
+}
+
+
+
 
     /* =======================================================
             ACTUALIZACIÓN AUTOMÁTICA CADA 3 SEGUNDOS

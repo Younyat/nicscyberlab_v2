@@ -1067,25 +1067,115 @@ def api_change_keyboard_layout():
 
 def detect_remote_user(ip, ssh_key):
     """
-    Detecta automáticamente si una instancia es Ubuntu, Debian, Kali o usa Root.
+    Detecta usuario SSH válido y SO sin bloquear.
+    Compatible con Ubuntu / Debian / Kali / Root.
     """
-    detect_cmd = "cat /etc/os-release"
 
-    proc = subprocess.run(
-        ["ssh", "-o", "StrictHostKeyChecking=no", "-i", ssh_key, f"root@{ip}", detect_cmd],
-        stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
-    )
+    candidates = ["ubuntu", "debian", "kali", "root"]
 
-    info = (proc.stdout + proc.stderr).lower()
+    for user in candidates:
+        try:
+            proc = subprocess.run(
+                [
+                    "ssh",
+                    "-o", "BatchMode=yes",
+                    "-o", "StrictHostKeyChecking=no",
+                    "-o", "ConnectTimeout=5",
+                    "-i", ssh_key,
+                    f"{user}@{ip}",
+                    "cat /etc/os-release"
+                ],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True
+            )
 
-    if "ubuntu" in info:
-        return "ubuntu"
-    if "debian" in info:
-        return "debian"
-    if "kali" in info:
-        return "kali"
+            output = (proc.stdout + proc.stderr).lower()
 
-    return "root"
+            if proc.returncode == 0:
+                # 🎯 Usuario válido encontrado
+                if "ubuntu" in output:
+                    return "ubuntu"
+                if "debian" in output:
+                    return "debian"
+                if "kali" in output:
+                    return "kali"
+
+                # Usuario válido aunque no detectemos distro
+                return user
+
+        except Exception:
+            continue
+
+    raise RuntimeError("❌ No se pudo detectar usuario SSH válido")
+
+
+
+
+
+@app.route("/api/run_tool_version", methods=["POST"])
+def api_run_tool_version():
+    try:
+        data = request.get_json()
+        tool = data.get("tool")        # snort | suricata
+        instance = data.get("instance")
+        ip = data.get("ip")
+
+        if tool not in ["snort", "suricata"]:
+            return jsonify({"error": "Tool no soportada"}), 400
+
+        if not instance or not ip:
+            return jsonify({"error": "Faltan parámetros"}), 400
+
+        # 🔑 Buscar clave SSH
+        SSH_DIR = os.path.expanduser("~/.ssh")
+        SSH_KEY = None
+
+        for f in os.listdir(SSH_DIR):
+            p = os.path.join(SSH_DIR, f)
+            if f.endswith(".pub"):
+                continue
+            if os.path.isfile(p):
+                with open(p, "r", errors="ignore") as fd:
+                    if "PRIVATE KEY" in fd.read():
+                        SSH_KEY = p
+                        break
+
+        if not SSH_KEY:
+            return jsonify({"error": "No se encontró clave SSH"}), 500
+
+        # 👤 Detectar usuario remoto
+        user = detect_remote_user(ip, SSH_KEY)
+
+        # 🧪 Comando seguro
+        cmd = f"{tool} --version"
+
+        ssh_cmd = [
+            "ssh",
+            "-o", "StrictHostKeyChecking=no",
+            "-i", SSH_KEY,
+            f"{user}@{ip}",
+            cmd
+        ]
+
+        proc = subprocess.run(
+            ssh_cmd,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True
+        )
+
+        return jsonify({
+            "status": "success",
+            "tool": tool,
+            "stdout": proc.stdout.strip(),
+            "stderr": proc.stderr.strip(),
+            "exit_code": proc.returncode
+        })
+
+    except Exception as e:
+        logger.exception("❌ Error ejecutando tool --version")
+        return jsonify({"error": str(e)}), 500
 
 
 @app.route('/')
