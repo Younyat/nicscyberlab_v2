@@ -97,7 +97,7 @@ sudo sed -i "s|# include \$RULE_PATH/local.rules|include \$RULE_PATH/local.rules
 echo " Validando configuración de Snort..."
 sudo snort -T -c "$CONF_DIR/snort.lua"
 
-echo "✔ Test de configuración OK"
+echo " Test de configuración OK"
 
 # --------------------------------------------
 # 7) Validación instalación final

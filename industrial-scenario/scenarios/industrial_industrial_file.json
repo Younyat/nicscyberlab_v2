@@ -1,0 +1,88 @@
+{
+    "scenario_name": "industrial_file",
+    "base_scenario": "scenario/scenario_file.json",
+    "nodes": [
+        {
+            "id": "node1",
+            "name": "monitor 1",
+            "type": "monitor",
+            "industrial": false,
+            "linked_to": null,
+            "position": {
+                "x": 810.0832983359662,
+                "y": 204.02097884016928
+            }
+        },
+        {
+            "id": "node3",
+            "name": "victim 3",
+            "type": "victim",
+            "industrial": false,
+            "linked_to": null,
+            "position": {
+                "x": 1051.1080821618525,
+                "y": 181.01861357877763
+            }
+        },
+        {
+            "id": "node4",
+            "name": "attack 4",
+            "type": "attack",
+            "industrial": false,
+            "linked_to": null,
+            "position": {
+                "x": 1030.1032488016174,
+                "y": 332.0392839065915
+            }
+        },
+        {
+            "id": "plc_1765745102014",
+            "name": "PLC",
+            "type": "industrial_plc",
+            "industrial": true,
+            "linked_to": "node3",
+            "position": {
+                "x": 1171.1080821618525,
+                "y": 301.0186135787776
+            }
+        },
+        {
+            "id": "scada_1765745170184",
+            "name": "SCADA",
+            "type": "industrial_scada",
+            "industrial": true,
+            "linked_to": "node3",
+            "position": {
+                "x": 1193.1080821618525,
+                "y": 154.0186135787776
+            }
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge_node3_node1",
+            "source": "node3",
+            "target": "node1"
+        },
+        {
+            "id": "edge_node1_node3",
+            "source": "node1",
+            "target": "node3"
+        },
+        {
+            "id": "edge_node4_node3",
+            "source": "node4",
+            "target": "node3"
+        },
+        {
+            "id": "edge_node3_plc_1765745102014",
+            "source": "node3",
+            "target": "plc_1765745102014"
+        },
+        {
+            "id": "edge_node3_scada_1765745170184",
+            "source": "node3",
+            "target": "scada_1765745170184"
+        }
+    ]
+}

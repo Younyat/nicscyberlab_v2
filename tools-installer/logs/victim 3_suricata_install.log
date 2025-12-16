@@ -8,8 +8,8 @@ Interfaz activa detectada: ens3
  Configuración  : /etc/suricata
  Logs           : /var/log/suricata
 ----------------------------------------------------
-✔ Suricata ya está instalado
-✔ Configuración existente detectada
+ Suricata ya está instalado
+ Configuración existente detectada
 
 ====================================================
  Suricata YA está instalado

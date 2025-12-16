@@ -18,7 +18,7 @@ PORT="8888"
 START_TIME=$(date +%s)
 
 # -------------------------
-# ⏱ Formatear tiempo
+#  Formatear tiempo
 # -------------------------
 format_time() {
     local t=$1
@@ -30,7 +30,7 @@ echo " Instalador de MITRE Caldera"
 echo "===================================================="
 
 # -------------------------
-# 💠 Floating / Dashboard IP
+#  Floating / Dashboard IP
 # -------------------------
 FINAL_IP="${1:-}"
 
@@ -61,7 +61,7 @@ check_caldera_alive() {
 
     # 1) Proceso
     if pgrep -f "server.py" >/dev/null 2>&1; then
-        [[ "$verbose" == "1" ]] && echo "✔ Proceso server.py activo"
+        [[ "$verbose" == "1" ]] && echo " Proceso server.py activo"
     else
         [[ "$verbose" == "1" ]] && echo " Proceso server.py NO activo"
         rc=1
@@ -69,7 +69,7 @@ check_caldera_alive() {
 
     # 2) Puerto
     if ss -tunlp | grep -q ":${PORT}"; then
-        [[ "$verbose" == "1" ]] && echo "✔ Puerto ${PORT} en escucha"
+        [[ "$verbose" == "1" ]] && echo " Puerto ${PORT} en escucha"
     else
         [[ "$verbose" == "1" ]] && echo " Puerto ${PORT} no está en escucha"
         rc=1
@@ -77,7 +77,7 @@ check_caldera_alive() {
 
     # 3) HTTP básico
     if curl -s --max-time 1 "http://${FINAL_IP}:${PORT}" >/dev/null 2>&1; then
-        [[ "$verbose" == "1" ]] && echo "✔ Dashboard responde HTTP"
+        [[ "$verbose" == "1" ]] && echo " Dashboard responde HTTP"
     else
         [[ "$verbose" == "1" ]] && echo " Dashboard no responde en http://${FINAL_IP}:${PORT}"
         rc=1
@@ -95,7 +95,7 @@ wait_for_caldera() {
     echo " Esperando a que Caldera esté disponible (máx ${max_secs}s)..."
     for ((i=1; i<=max_secs; i++)); do
         if check_caldera_alive 0; then
-            echo "✔ Caldera activo tras ${i}s"
+            echo " Caldera activo tras ${i}s"
             return 0
         fi
         sleep 1
@@ -130,17 +130,17 @@ get_caldera_creds() {
 ALREADY=false
 
 if [[ -d "$CALDERA_DIR" ]]; then
-    echo "✔ Detectada carpeta existente: $CALDERA_DIR"
+    echo " Detectada carpeta existente: $CALDERA_DIR"
     ALREADY=true
 fi
 
 if pgrep -f "server.py" >/dev/null 2>&1; then
-    echo "✔ Proceso server.py en ejecución"
+    echo " Proceso server.py en ejecución"
     ALREADY=true
 fi
 
 if ss -tunlp | grep -q ":${PORT}"; then
-    echo "✔ Puerto ${PORT} ya está en uso"
+    echo " Puerto ${PORT} ya está en uso"
     ALREADY=true
 fi
 
@@ -159,8 +159,8 @@ if $ALREADY; then
         echo "===================================================="
     else
         echo
-        echo "⚠ Instalación detectada pero NO funcional."
-        echo "➡ Intentando levantar servicio de nuevo..."
+        echo " Instalación detectada pero NO funcional."
+        echo " Intentando levantar servicio de nuevo..."
 
         cd "$CALDERA_DIR"
         nohup python3 server.py --insecure --build > "$LOG_FILE" 2>&1 &
@@ -217,7 +217,7 @@ if ! command -v node >/dev/null 2>&1; then
         exit 1
     fi
 else
-    echo "✔ Node.js ya está instalado"
+    echo " Node.js ya está instalado"
 fi
 
 echo "[4/7]  Clonando repositorio Caldera..."
@@ -239,11 +239,11 @@ if [[ -d "$MAGMA_DIR" ]]; then
         vue@3.2.45 \
         --legacy-peer-deps \
         >/dev/null 2>&1; then
-        echo "⚠ No se pudieron instalar completamente las dependencias de Magma."
+        echo " No se pudieron instalar completamente las dependencias de Magma."
         echo "  Continuando instalación de Caldera igualmente..."
     fi
 else
-    echo "ℹ Plugin Magma no encontrado. Saltando paso de npm."
+    echo "Info: Plugin Magma no encontrado. Saltando paso de npm."
 fi
 
 echo "[6/7]  Instalando requisitos Python..."

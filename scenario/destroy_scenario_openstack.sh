@@ -21,9 +21,9 @@ LOCAL_KEYFILE="$HOME/.ssh/cyberlab-key"
 
 if [ -f "$ADMIN_OPENRC" ]; then
     source "$ADMIN_OPENRC"
-    echo "🔐 Credenciales OpenStack cargadas."
+    echo " Credenciales OpenStack cargadas."
 else
-    echo "❌ ERROR: No se encontró admin-openrc en: $ADMIN_OPENRC"
+    echo " ERROR: No se encontró admin-openrc en: $ADMIN_OPENRC"
     exit 1
 fi
 
@@ -41,19 +41,19 @@ OUTDIR="$2"
 SUMMARY_JSON="$OUTDIR/summary.json"
 
 if [ ! -f "$SCENARIO_JSON" ]; then
-    echo "❌ ERROR: No existe archivo de escenario: $SCENARIO_JSON"
+    echo " ERROR: No existe archivo de escenario: $SCENARIO_JSON"
     exit 1
 fi
 
 if [ ! -f "$SUMMARY_JSON" ]; then
-    echo "❌ ERROR: No existe summary.json: $SUMMARY_JSON"
+    echo " ERROR: No existe summary.json: $SUMMARY_JSON"
     exit 1
 fi
 
 echo ""
-echo "📄 Escenario: $SCENARIO_JSON"
-echo "📄 Summary:   $SUMMARY_JSON"
-echo "📂 Output dir: $OUTDIR"
+echo " Escenario: $SCENARIO_JSON"
+echo " Summary:   $SUMMARY_JSON"
+echo " Output dir: $OUTDIR"
 echo "------------------------------------------------------------"
 
 # ============================================================
@@ -70,25 +70,25 @@ while read -r node; do
     PORT_NAME="${SAFE_ID}-port"
 
     echo ""
-    echo "🔥 Eliminando nodo → $name"
+    echo " Eliminando nodo → $name"
     echo "------------------------------------------------------------"
 
     # === 1) Floating IP =================================================
 
     if [ -n "$fip" ] && openstack floating ip show "$fip" >/dev/null 2>&1; then
-        echo "🌍 Eliminando Floating IP: $fip"
+        echo " Eliminando Floating IP: $fip"
         openstack floating ip delete "$fip" || true
     else
-        echo "✔ No se encontró Floating IP."
+        echo " No se encontró Floating IP."
     fi
 
     # === 2) Instancia ===================================================
 
     if openstack server show "$name" >/dev/null 2>&1; then
-        echo "🖥 Eliminando instancia: $name"
+        echo " Eliminando instancia: $name"
         openstack server delete "$name" || true
     else
-        echo "✔ Instancia ya eliminada."
+        echo " Instancia ya eliminada."
     fi
 
     # Esperar eliminación real
@@ -102,13 +102,13 @@ while read -r node; do
     # === 3) Puerto ======================================================
 
     if openstack port show "$PORT_NAME" >/dev/null 2>&1; then
-        echo "🌐 Eliminando puerto: $PORT_NAME"
+        echo " Eliminando puerto: $PORT_NAME"
         openstack port delete "$PORT_NAME" || true
     else
-        echo "✔ Puerto ya eliminado o no existe."
+        echo " Puerto ya eliminado o no existe."
     fi
 
-    echo "✔ Nodo $name eliminado."
+    echo " Nodo $name eliminado."
     echo "------------------------------------------------------------"
 
 done < <(jq -c '.[]' "$SUMMARY_JSON")
@@ -119,20 +119,20 @@ done < <(jq -c '.[]' "$SUMMARY_JSON")
 # ============================================================
 
 echo ""
-echo "🔑 Eliminando keypair y claves locales..."
+echo " Eliminando keypair y claves locales..."
 
 if openstack keypair show "$DEFAULT_KEYPAIR" >/dev/null 2>&1; then
-    echo "🗑 Eliminando keypair OpenStack: $DEFAULT_KEYPAIR"
+    echo " Eliminando keypair OpenStack: $DEFAULT_KEYPAIR"
     openstack keypair delete "$DEFAULT_KEYPAIR" || true
 else
-    echo "✔ Keypair $DEFAULT_KEYPAIR no existe."
+    echo " Keypair $DEFAULT_KEYPAIR no existe."
 fi
 
 if [ -f "$LOCAL_KEYFILE" ] || [ -f "${LOCAL_KEYFILE}.pub" ]; then
-    echo "🗑 Eliminando claves locales: $LOCAL_KEYFILE*"
+    echo " Eliminando claves locales: $LOCAL_KEYFILE*"
     rm -f "$LOCAL_KEYFILE" "${LOCAL_KEYFILE}.pub" || true
 else
-    echo "✔ No se encontraron claves locales."
+    echo " No se encontraron claves locales."
 fi
 
 # ============================================================
@@ -140,21 +140,21 @@ fi
 # ============================================================
 
 echo ""
-echo "🧹 Limpiando directorio de salida: $OUTDIR"
+echo " Limpiando directorio de salida: $OUTDIR"
 rm -rf "${OUTDIR:?}/"* || true
 
 # ============================================================
 # 6. Eliminar escenario.json original
 # ============================================================
 
-echo "🗑 Eliminando archivo del escenario: $SCENARIO_JSON"
+echo " Eliminando archivo del escenario: $SCENARIO_JSON"
 rm -f "$SCENARIO_JSON" || true
 
 
 echo ""
 echo "=================================================================="
-echo "🎉 ESCENARIO COMPLETO ELIMINADO"
-echo "🧽 OUTDIR limpiado: $OUTDIR"
-echo "🗑 Escenario JSON eliminado: $SCENARIO_JSON"
-echo "🔑 Claves y keypair eliminadas"
+echo " ESCENARIO COMPLETO ELIMINADO"
+echo " OUTDIR limpiado: $OUTDIR"
+echo " Escenario JSON eliminado: $SCENARIO_JSON"
+echo " Claves y keypair eliminadas"
 echo "=================================================================="

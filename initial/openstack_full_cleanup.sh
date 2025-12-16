@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ======================================================
-# 🧹 Limpieza total de recursos en OpenStack
+#  Limpieza total de recursos en OpenStack
 # Elimina: instancias, volúmenes, routers, redes, subredes,
 # grupos de seguridad, imágenes y sabores.
 # Autor: Younes Assouyat
@@ -13,21 +13,21 @@ echo "  LIMPIEZA COMPLETA DE OPENSTACK"
 echo "==============================================="
 read -p "¿Seguro que deseas eliminar TODO (y/n)? " confirm
 if [[ "$confirm" != "y" ]]; then
-  echo "🚫 Operación cancelada."
+  echo " Operación cancelada."
   exit 0
 fi
 
 echo ""
 echo " Eliminando instancias (servers)..."
 for id in $(openstack server list -f value -c ID); do
-  echo "🗑️ Eliminando instancia: $id"
+  echo " Eliminando instancia: $id"
   openstack server delete "$id" || true
 done
 
 echo ""
 echo " Eliminando volúmenes..."
 for id in $(openstack volume list -f value -c ID); do
-  echo "🗑️ Eliminando volumen: $id"
+  echo " Eliminando volumen: $id"
   openstack volume delete "$id" || true
 done
 
@@ -66,7 +66,7 @@ for id in $(openstack security group list -f value -c ID); do
     echo "  Saltando grupo default ($id)"
     continue
   fi
-  echo "🗑️ Eliminando grupo de seguridad: $id ($NAME)"
+  echo " Eliminando grupo de seguridad: $id ($NAME)"
   openstack security group delete "$id" || true
 done
 
@@ -89,24 +89,24 @@ done
 
 
 echo "============================================="
-echo "🧹 LIMPIEZA COMPLETA OPENSTACK"
+echo " LIMPIEZA COMPLETA OPENSTACK"
 echo "============================================="
 
 
 # ---------------------------------------------------------
-# 1️⃣ BORRAR TODOS LOS ROUTERS
+# 1⃣ BORRAR TODOS LOS ROUTERS
 # ---------------------------------------------------------
 echo
-echo "🗑 Borrando routers..."
+echo " Borrando routers..."
 
 ROUTERS=$(openstack router list -f value -c ID)
 
 if [ -z "$ROUTERS" ]; then
-    echo "✔ No hay routers para borrar."
+    echo " No hay routers para borrar."
 else
     for ROUTER_ID in $ROUTERS; do
         echo "-------------------------------------------------"
-        echo "🗑 Procesando router: $ROUTER_ID"
+        echo " Procesando router: $ROUTER_ID"
         
         PORTS=$(openstack port list --router "$ROUTER_ID" -f value -c ID)
 
@@ -115,25 +115,25 @@ else
         else
             echo "   Eliminando interfaces:"
             for PORT_ID in $PORTS; do
-                echo "    ➤ Eliminando interfaz $PORT_ID..."
+                echo "     Eliminando interfaz $PORT_ID..."
                 openstack router remove port "$ROUTER_ID" "$PORT_ID" \
                     || echo "       Interfaz ya no existe, continuando..."
             done
         fi
 
-        echo "  🗑 Borrando router..."
+        echo "   Borrando router..."
         openstack router delete "$ROUTER_ID" \
-            && echo "  ✔ Router eliminado." \
+            && echo "   Router eliminado." \
             || echo "   No se pudo borrar (dependencias o no existe)."
     done
 fi
 
 
 # ---------------------------------------------------------
-# 2️⃣ BORRAR TODOS LOS SECURITY GROUPS (excepto default)
+# 2⃣ BORRAR TODOS LOS SECURITY GROUPS (excepto default)
 # ---------------------------------------------------------
 echo
-echo "🛡️ Borrando Security Groups..."
+echo " Borrando Security Groups..."
 
 SEC_GROUPS=$(openstack security group list -f value -c ID -c Name)
 
@@ -152,33 +152,33 @@ while IFS= read -r LINE; do
     RULES=$(openstack security group rule list "$SG_ID" -f value -c ID)
 
     for RULE_ID in $RULES; do
-        echo "  ➤ Eliminando regla $RULE_ID..."
+        echo "   Eliminando regla $RULE_ID..."
         openstack security group rule delete "$RULE_ID" \
             || echo "     La regla ya no existe."
     done
 
-    echo "  🗑 Eliminando Security Group..."
+    echo "   Eliminando Security Group..."
     openstack security group delete "$SG_ID" \
-        && echo "  ✔ Security Group eliminado." \
+        && echo "   Security Group eliminado." \
         || echo "   No se pudo eliminar."
 done <<< "$SEC_GROUPS"
 
 
 # ---------------------------------------------------------
-# 3️⃣ BORRAR TODOS LOS KEYPAIRS
+# 3⃣ BORRAR TODOS LOS KEYPAIRS
 # ---------------------------------------------------------
 echo
-echo "🗝️ Borrando todas las claves SSH..."
+echo " Borrando todas las claves SSH..."
 
 KEYPAIRS=$(openstack keypair list -f value -c Name)
 
 if [ -z "$KEYPAIRS" ]; then
-    echo "✔ No hay claves para borrar."
+    echo " No hay claves para borrar."
 else
     for KEY in $KEYPAIRS; do
-        echo "🗝️ Eliminando clave: $KEY"
+        echo " Eliminando clave: $KEY"
         openstack keypair delete "$KEY" \
-            && echo "   ✔ Clave borrada." \
+            && echo "    Clave borrada." \
             || echo "    No se pudo borrar."
     done
 fi
@@ -186,7 +186,7 @@ fi
 
 echo
 echo "============================================="
-echo "✔ LIMPIEZA COMPLETADA"
+echo " LIMPIEZA COMPLETADA"
 echo "============================================="
 
 

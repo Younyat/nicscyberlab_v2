@@ -66,21 +66,21 @@ El script configura los servicios necesarios y garantiza la persistencia de la r
 Durante la instalación se configura una red virtual persistente utilizada por OpenStack como red de gestión y red externa.
 
 ```
-                ┌────────────┐          ┌──────────────┐
-                │   ens33    │◀────────▶│   Internet   │
-                └────────────┘          └──────────────┘
-                        │
+                          
+                   ens33       Internet   
+                          
+                        
                   [ NAT / iptables ]
-                        │
-                ┌──────────────────────┐
-                │     uplinkbridge     │
-                └──────────────────────┘
-                        │
-                   ┌────┴────┐
-                   │         │
-              ┌────────┐ ┌────────┐
-              │ veth0  │ │ veth1  │
-              └────────┘ └────────┘
+                        
+                
+                     uplinkbridge     
+                
+                        
+                   
+                            
+               
+               veth0    veth1  
+               
 ```
 
 - `ens33`: interfaz física principal.  
@@ -245,4 +245,4 @@ Todo el flujo de trabajo del entorno NICS | CyberLab puede gestionarse desde est
 
 ---
 
-© NICS LAB — NICS | CyberLab
+NICS LAB — NICS | CyberLab

@@ -75,20 +75,20 @@ PROVIDER_FILE="$OUTDIR/provider.tf"
 GEN_PROVIDER_SCRIPT="$BASE_DIR/scenario/generate_provider_from_clouds.sh"
 
 echo "==============================================="
-echo "🚀 Iniciando generador principal de Terraform"
+echo " Iniciando generador principal de Terraform"
 echo "==============================================="
 
 # ------------------------------------------------------
-# 1️⃣ Comprobar si existe clouds.yaml y script generador
+# 1⃣ Comprobar si existe clouds.yaml y script generador
 # ------------------------------------------------------
 if [[ -f "/etc/kolla/clouds.yaml" && -f "$GEN_PROVIDER_SCRIPT" ]]; then
-    echo "✅ Detectado clouds.yaml en /etc/kolla y script generador."
-    echo "🔧 Ejecutando $GEN_PROVIDER_SCRIPT ..."
+    echo " Detectado clouds.yaml en /etc/kolla y script generador."
+    echo " Ejecutando $GEN_PROVIDER_SCRIPT ..."
     bash "$GEN_PROVIDER_SCRIPT" "$OUTDIR"
 else
-    echo "⚠️ No se encontró /etc/kolla/clouds.yaml o el script $GEN_PROVIDER_SCRIPT."
-    echo "🚫 No se generará provider.tf hasta que existan ambos archivos."
-    echo "   ➜ Asegúrate de tener:"
+    echo " No se encontró /etc/kolla/clouds.yaml o el script $GEN_PROVIDER_SCRIPT."
+    echo " No se generará provider.tf hasta que existan ambos archivos."
+    echo "    Asegúrate de tener:"
     echo "     - /etc/kolla/clouds.yaml"
     echo "     - generate_provider_from_clouds.sh"
     echo ""
@@ -98,7 +98,7 @@ else
     exit 1
 fi
 
-echo "✅ Archivo provider.tf generado en $PROVIDER_FILE"
+echo " Archivo provider.tf generado en $PROVIDER_FILE"
 
 # Plantilla inventory.tmpl
 cat > "$OUTDIR/inventory.tmpl" <<'TEMPLATE'
@@ -115,7 +115,7 @@ EOF
 SUMMARY="[]"
 
 count=0
-# 🚀 Cambiado: el bucle se ejecuta en la misma shell, evitando el problema del subshell
+#  Cambiado: el bucle se ejecuta en la misma shell, evitando el problema del subshell
 while read -r node; do
   id=$(echo "$node" | jq -r '.id')
   name=$(echo "$node" | jq -r '.name')
@@ -215,7 +215,7 @@ ${CLOUD_INIT}
 CLOUDCONF
 }
 
-# ✅ Asociar Floating IP después de que la instancia esté lista
+#  Asociar Floating IP después de que la instancia esté lista
 resource "openstack_networking_floatingip_associate_v2" "${safe_id}_fip_associate" {
   floating_ip = openstack_networking_floatingip_v2.${safe_id}_fip.address
   port_id     = openstack_networking_port_v2.${safe_id}_port.id
@@ -329,5 +329,5 @@ mv "$tmpfile" "$OUTDIR/summary.json"
 # (opcional) eliminar terraform_outputs.json si no lo quieres conservar
 rm -f "$OUTDIR/terraform_outputs.json"
 
-echo "✅ summary.json actualizado con IPs flotantes reales "
+echo " summary.json actualizado con IPs flotantes reales "
 

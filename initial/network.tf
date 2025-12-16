@@ -1,5 +1,5 @@
 ##############################################
-# 🚀 Infraestructura de Redes, Router y Seguridad en OpenStack
+#  Infraestructura de Redes, Router y Seguridad en OpenStack
 # Redes: red_privada y red_externa
 # Router: router_privado
 # Security Group: sg_wazuh_suricata
@@ -7,7 +7,7 @@
 ##############################################
 
 # -----------------------------
-# 🌐 Red Externa (Public/External)
+#  Red Externa (Public/External)
 # -----------------------------
 resource "openstack_networking_network_v2" "red_externa" {
   name           = "red_externa"
@@ -19,15 +19,15 @@ resource "openstack_networking_network_v2" "red_externa" {
 resource "openstack_networking_subnet_v2" "red_externa_subnet" {
   name            = "red_externa_subnet"
   network_id      = openstack_networking_network_v2.red_externa.id
-  cidr            = "10.0.2.0/24"        # ✅ Red física real (uplinkbridge)
+  cidr            = "10.0.2.0/24"        #  Red física real (uplinkbridge)
   ip_version      = 4
-  enable_dhcp     = false                 # ⚠️ NO usar DHCP en red externa
+  enable_dhcp     = false                 #  NO usar DHCP en red externa
   gateway_ip      = "10.0.2.1"            # Gateway del uplinkbridge
   dns_nameservers = ["8.8.8.8", "1.1.1.1"]
 }
 
 # -----------------------------
-# 🔒 Red Privada
+#  Red Privada
 # -----------------------------
 resource "openstack_networking_network_v2" "red_privada" {
   name           = "red_privada"
@@ -46,7 +46,7 @@ resource "openstack_networking_subnet_v2" "red_privada_subnet" {
 }
 
 # -----------------------------
-# 🚦 Router Privado
+#  Router Privado
 # -----------------------------
 resource "openstack_networking_router_v2" "router_privado" {
   name                = "router_privado"
@@ -60,14 +60,14 @@ resource "openstack_networking_router_interface_v2" "router_privado_interface" {
 }
 
 # -----------------------------
-# 🧱 Grupo de Seguridad Básico
+#  Grupo de Seguridad Básico
 # -----------------------------
 resource "openstack_networking_secgroup_v2" "sg_wazuh_suricata" {
   name        = "sg_wazuh_suricata"
   description = "Reglas básicas: SSH, ICMP, HTTP, HTTPS"
 }
 
-# ✅ SSH (Puerto 22)
+#  SSH (Puerto 22)
 resource "openstack_networking_secgroup_rule_v2" "ssh_in" {
   direction         = "ingress"
   ethertype         = "IPv4"
@@ -78,7 +78,7 @@ resource "openstack_networking_secgroup_rule_v2" "ssh_in" {
   security_group_id = openstack_networking_secgroup_v2.sg_wazuh_suricata.id
 }
 
-# ✅ ICMP (Ping)
+#  ICMP (Ping)
 resource "openstack_networking_secgroup_rule_v2" "icmp_in" {
   direction         = "ingress"
   ethertype         = "IPv4"
@@ -87,7 +87,7 @@ resource "openstack_networking_secgroup_rule_v2" "icmp_in" {
   security_group_id = openstack_networking_secgroup_v2.sg_wazuh_suricata.id
 }
 
-# ✅ HTTP (Puerto 80)
+#  HTTP (Puerto 80)
 resource "openstack_networking_secgroup_rule_v2" "http_in" {
   direction         = "ingress"
   ethertype         = "IPv4"
@@ -98,7 +98,7 @@ resource "openstack_networking_secgroup_rule_v2" "http_in" {
   security_group_id = openstack_networking_secgroup_v2.sg_wazuh_suricata.id
 }
 
-# ✅ HTTPS (Puerto 443)
+#  HTTPS (Puerto 443)
 resource "openstack_networking_secgroup_rule_v2" "https_in" {
   direction         = "ingress"
   ethertype         = "IPv4"
@@ -110,7 +110,7 @@ resource "openstack_networking_secgroup_rule_v2" "https_in" {
 }
 
 # -----------------------------
-# 📡 Salidas útiles
+#  Salidas útiles
 # -----------------------------
 output "router_privado_info" {
   description = "Información del router y redes creadas"

@@ -60,7 +60,7 @@ function showClearConfirmation() {
 function destruirScenarioConfirmation() {
   showConfirmationModal(
     '¿Destruir el escenario actual?',
-    '⚠️ Esta acción eliminará todos los recursos desplegados. No podrás revertirla.',
+    ' Esta acción eliminará todos los recursos desplegados. No podrás revertirla.',
     destruirScenario
   );
 }
@@ -368,7 +368,7 @@ function getScenarioData() {
 function showOverlay(show) {
   const overlay = document.getElementById('overlay');
   if (!overlay) {
-    console.warn('⚠️ Overlay no encontrado en el DOM.');
+    console.warn(' Overlay no encontrado en el DOM.');
     return;
   }
   overlay.classList.toggle('hidden', !show);
@@ -384,7 +384,7 @@ async function createScenario() {
   updateNodeProperties(false);
   const data = getScenarioData();
 
-  // 🔹 Bloquear botones y mostrar overlay
+  //  Bloquear botones y mostrar overlay
   const buttons = document.querySelectorAll("button");
   buttons.forEach(btn => {
     btn.disabled = true;
@@ -392,8 +392,8 @@ async function createScenario() {
   });
   showOverlay(true);
 
-  showToast('⏳ Escenario en proceso... esto puede tardar varios minutos.');
-  appendToTerminal('$ ⏳ Iniciando creación de escenario...', 'text-yellow-400');
+  showToast(' Escenario en proceso... esto puede tardar varios minutos.');
+  appendToTerminal('$  Iniciando creación de escenario...', 'text-yellow-400');
 
   try {
     const res = await fetch('http://127.0.0.1:5001/api/create_scenario', {
@@ -403,8 +403,8 @@ async function createScenario() {
     });
 
     if (!res.ok) {
-      showToast('❌ Error al enviar el escenario.');
-      appendToTerminal('$ ❌ Error al enviar el escenario al backend.', 'text-red-400');
+      showToast(' Error al enviar el escenario.');
+      appendToTerminal('$  Error al enviar el escenario al backend.', 'text-red-400');
       desbloquearBotones();
       showOverlay(false);
       return;
@@ -412,19 +412,19 @@ async function createScenario() {
 
     const info = await res.json();
     appendToTerminal(`$ ${info.message}`, 'text-yellow-300');
-    showToast('🛰️ Despliegue iniciado. Monitoreando progreso...');
+    showToast(' Despliegue iniciado. Monitoreando progreso...');
 
     if (info.status === 'running') {
       monitorDeploymentProgress();
     } else {
-      appendToTerminal('⚠️ Estado inesperado del backend.', 'text-orange-400');
+      appendToTerminal(' Estado inesperado del backend.', 'text-orange-400');
       desbloquearBotones();
       showOverlay(false);
     }
 
   } catch (e) {
-    showToast('❌ Error de conexión con el backend.');
-    appendToTerminal(`$ ❌ Error de conexión: ${e}`, 'text-red-400');
+    showToast(' Error de conexión con el backend.');
+    appendToTerminal(`$  Error de conexión: ${e}`, 'text-red-400');
     desbloquearBotones();
     showOverlay(false);
   }
@@ -434,13 +434,13 @@ async function createScenario() {
 // MONITOREO DE ESTADO DEL BACKEND
 // =======================
 async function monitorDeploymentProgress() {
-  appendToTerminal('🔄 Monitoreando progreso del despliegue...', 'text-gray-400');
+  appendToTerminal(' Monitoreando progreso del despliegue...', 'text-gray-400');
 
   const checkStatus = async () => {
     try {
       const res = await fetch('http://127.0.0.1:5001/api/deployment_status');
       if (!res.ok) {
-        appendToTerminal('⚠️ No se pudo leer el estado del despliegue.', 'text-red-400');
+        appendToTerminal(' No se pudo leer el estado del despliegue.', 'text-red-400');
         desbloquearBotones();
         return;
       }
@@ -448,21 +448,21 @@ async function monitorDeploymentProgress() {
       const statusData = await res.json();
 
       if (statusData.status === 'running') {
-        appendToTerminal('⏳ Despliegue aún en curso...', 'text-yellow-300');
+        appendToTerminal(' Despliegue aún en curso...', 'text-yellow-300');
         setTimeout(checkStatus, 10000); // vuelve a revisar cada 10s
       } else if (statusData.status === 'success') {
-        appendToTerminal('✅ Despliegue completado con éxito.', 'text-green-400');
-        showToast('✅ Escenario creado correctamente.');
+        appendToTerminal(' Despliegue completado con éxito.', 'text-green-400');
+        showToast(' Escenario creado correctamente.');
         desbloquearBotones();
       } else if (statusData.status === 'error') {
-        appendToTerminal('❌ Error durante el despliegue.', 'text-red-400');
+        appendToTerminal(' Error durante el despliegue.', 'text-red-400');
         if (statusData.stderr)
           appendToTerminal(statusData.stderr, 'text-red-300');
-        showToast('❌ Fallo en el despliegue.');
+        showToast(' Fallo en el despliegue.');
         desbloquearBotones();
       }
     } catch (err) {
-      appendToTerminal(`⚠️ Error al consultar estado: ${err}`, 'text-red-400');
+      appendToTerminal(` Error al consultar estado: ${err}`, 'text-red-400');
       desbloquearBotones();
     }
   };
@@ -480,7 +480,7 @@ function desbloquearBotones() {
     btn.disabled = false;
     btn.classList.remove("opacity-50", "cursor-not-allowed");
   });
-  showOverlay(false); // 🔹 Cierra overlay al desbloquear
+  showOverlay(false); //  Cierra overlay al desbloquear
 }
 
 
@@ -500,7 +500,7 @@ function appendToTerminal(message, className = 'text-white') {
 }
 
 // =======================
-// 🔥 DESTRUIR ESCENARIO (NUEVA VERSION)
+//  DESTRUIR ESCENARIO (NUEVA VERSION)
 // =======================
 async function destruirScenario___() {
   const buttons = document.querySelectorAll("button");
@@ -512,7 +512,7 @@ async function destruirScenario___() {
   });
   showOverlay(true);
 
-  appendToTerminal('$ ⏳ Iniciando destrucción del escenario...', 'text-yellow-400');
+  appendToTerminal('$  Iniciando destrucción del escenario...', 'text-yellow-400');
 
   try {
     const response = await fetch("http://localhost:5001/api/destroy_scenario", {
@@ -523,15 +523,15 @@ async function destruirScenario___() {
     try { data = await response.json(); } catch {}
 
     if (response.ok && data.status === "success") {
-      appendToTerminal("✔ Destrucción iniciada en segundo plano.", "text-green-400");
+      appendToTerminal(" Destrucción iniciada en segundo plano.", "text-green-400");
       appendToTerminal(data.message || "", "text-gray-300");
     } else {
-      appendToTerminal('$ ⚠️ Error al iniciar la destrucción.', 'text-orange-400');
+      appendToTerminal('$  Error al iniciar la destrucción.', 'text-orange-400');
       if (data.message) appendToTerminal(data.message, 'text-red-300');
     }
 
   } catch (err) {
-    appendToTerminal(`$ ❌ Error al conectar con el backend: ${err}`, 'text-red-400');
+    appendToTerminal(`$  Error al conectar con el backend: ${err}`, 'text-red-400');
 
   } finally {
     // Desbloquear UI
@@ -545,7 +545,7 @@ async function destruirScenario___() {
 }
 
 async function destruirScenario() {
-    appendToTerminal('$ ⏳ Iniciando destrucción...', 'text-yellow-400');
+    appendToTerminal('$  Iniciando destrucción...', 'text-yellow-400');
     showOverlay(true);
 
     const buttons = document.querySelectorAll("button");
@@ -567,7 +567,7 @@ async function destruirScenario() {
         }
 
     } catch (err) {
-        appendToTerminal(`❌ Error de conexión: ${err}`, "text-red-400");
+        appendToTerminal(` Error de conexión: ${err}`, "text-red-400");
     }
 }
 
@@ -578,11 +578,11 @@ async function monitorDestroyProgress() {
         const status = await res.json();
 
         if (status.status === "running") {
-            appendToTerminal('⏳ Destrucción en curso...', 'text-yellow-400');
+            appendToTerminal(' Destrucción en curso...', 'text-yellow-400');
             setTimeout(check, 5000);
         } else {
-            appendToTerminal('✔ Escenario destruido.', 'text-green-400');
-            showToast("✔ Escenario eliminado");
+            appendToTerminal(' Escenario destruido.', 'text-green-400');
+            showToast(" Escenario eliminado");
             showOverlay(false);
 
             document.querySelectorAll("button").forEach(b => {

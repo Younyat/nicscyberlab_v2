@@ -34,7 +34,7 @@ cd "$TOOLS_JSON_DIR"
 
 
 # ====================================================
-# 🔍 Verificar dependencias básicas
+#  Verificar dependencias básicas
 # ====================================================
 echo " Comprobando dependencias..."
 
@@ -48,7 +48,7 @@ for pkg in "${REQUIRED_PKGS[@]}"; do
     fi
 done
 
-echo "✔ Dependencias OK"
+echo " Dependencias OK"
 echo "----------------------------------------------------"
 
 
@@ -81,7 +81,7 @@ for v in "${REQUIRED_VARS[@]}"; do
     fi
 done
 
-echo "✔ Variables OpenStack OK"
+echo " Variables OpenStack OK"
 echo "----------------------------------------------------"
 
 
@@ -112,7 +112,7 @@ fi
 echo " Clave detectada: $SSH_KEY"
 chmod 600 "$SSH_KEY"
 
-echo "✔ Usando llave SSH: $SSH_KEY"
+echo " Usando llave SSH: $SSH_KEY"
 echo "----------------------------------------------------"
 
 
@@ -150,8 +150,8 @@ for FILE in *_tools.json; do
     ' "$FILE")
 
 
-    echo "🖥 Instancia: $INSTANCE"
-    echo "🔧 Tools     : $TOOLS"
+    echo " Instancia: $INSTANCE"
+    echo " Tools     : $TOOLS"
 
     FLOATING_IP=$(jq -r '.ip_floating // empty' "$FILE")
     PRIVATE_IP=$(jq -r '.ip_private // empty' "$FILE")
@@ -167,7 +167,7 @@ for FILE in *_tools.json; do
 
 
     # ====================================================
-    # 🔍 Detectar imagen y usuario correcto
+    #  Detectar imagen y usuario correcto
     # ====================================================
     RAW_IMAGE=$(openstack server show "$INSTANCE" -f json | jq -r '.image')
 
@@ -208,7 +208,7 @@ for FILE in *_tools.json; do
     #  Instalación por herramienta
     # ====================================================
     for TOOL in $TOOLS; do
-        echo "▶ Instalando herramienta: $TOOL"
+        echo " Instalando herramienta: $TOOL"
 
         INSTALL_SCRIPT_LOCAL="$TOOLS_SCRIPTS_DIR/install_${TOOL}.sh"
         TOOL_DIR_LOCAL="$BASE_DIR/tools-installer/${TOOL}"
@@ -265,17 +265,17 @@ for FILE in *_tools.json; do
                 >"$LOG_FILE" 2>&1
 
         else
-            echo "⚠ No existe installer.sh dentro de la instancia."
-            echo "➡ Ejecutando install_${TOOL}.sh desde /tmp como fallback"
+            echo " No existe installer.sh dentro de la instancia."
+            echo " Ejecutando install_${TOOL}.sh desde /tmp como fallback"
             ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" "$USER@$IP" \
                 "sudo bash /tmp/install_${TOOL}.sh \"$IP\"" \
                 >"$LOG_FILE" 2>&1
         fi
 
-        echo "✔ Instalación ejecutada (log almacenado)"
+        echo " Instalación ejecutada (log almacenado)"
 
         # -----------------------------------------------------
-        # 🔍 Validación de instalación
+        #  Validación de instalación
         # -----------------------------------------------------
         case "$TOOL" in
             suricata)

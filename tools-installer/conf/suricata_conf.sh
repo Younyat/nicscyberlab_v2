@@ -13,12 +13,12 @@ set -euo pipefail
 # --------------------------
 # Pretty printing
 # --------------------------
-ok()   { echo -e "  \e[32m✔\e[0m $1"; }
-warn() { echo -e "  \e[33m⚠\e[0m $1"; }
-err()  { echo -e "  \e[31m✖ $1\e[0m"; }
+ok()   { echo -e "  \e[32m\e[0m $1"; }
+warn() { echo -e "  \e[33m\e[0m $1"; }
+err()  { echo -e "  \e[31m $1\e[0m"; }
 
 echo "=================================================="
-echo " 🧠 Suricata Smart Checker"
+echo "  Suricata Smart Checker"
 echo "=================================================="
 
 # ==================================================
@@ -62,7 +62,7 @@ ok "Directorio de reglas: $RULES_DIR"
 # ==================================================
 # Detect INTERFACE real
 # ==================================================
-echo "🔎 Detectando interfaz activa..."
+echo " Detectando interfaz activa..."
 IFACE=$(ip route get 8.8.8.8 2>/dev/null | awk '{print $5;exit}')
 
 if [[ -z "$IFACE" ]]; then
@@ -181,17 +181,17 @@ sleep 3
 sudo pkill suricata >/dev/null 2>&1 || true
 
 echo
-echo "📄 RESULTADO DEL TEST"
+echo " RESULTADO DEL TEST"
 echo "---------------------------------------------------"
 
 if grep -q "ICMP detectado por Suricata" "$TMP_OUT"; then
-    echo "  🟢 ALERTAS DETECTADAS:"
+    echo "   ALERTAS DETECTADAS:"
     grep "ICMP detectado por Suricata" "$TMP_OUT" | sed 's/^/   /'
     echo "---------------------------------------------------"
     ok "TEST SUPERADO: IDS activo y regla funcionando"
 else
     warn "No se detectaron alertas"
-    echo "   📌 Comprueba:"
+    echo "    Comprueba:"
     echo "   - interfaz correcta"
     echo "   - reglas activas"
     echo "   - tráfico ICMP genera visibilidad"
@@ -200,5 +200,5 @@ fi
 echo
 echo "Logs guardados en: $TMP_OUT"
 echo "=================================================="
-echo " 🟢 FINALIZADO"
+echo "  FINALIZADO"
 echo "=================================================="

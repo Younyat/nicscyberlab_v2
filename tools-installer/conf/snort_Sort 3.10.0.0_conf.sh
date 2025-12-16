@@ -15,12 +15,12 @@ set -euo pipefail
 # --------------------------
 # Pretty printing
 # --------------------------
-ok()   { echo -e "  \e[32m✔\e[0m $1"; }
-warn() { echo -e "  \e[33m⚠\e[0m $1"; }
-err()  { echo -e "  \e[31m✖ $1\e[0m"; }
+ok()   { echo -e "  \e[32m\e[0m $1"; }
+warn() { echo -e "  \e[33m\e[0m $1"; }
+err()  { echo -e "  \e[31m $1\e[0m"; }
 
 echo "=================================================="
-echo " 🧠 Snort++ 3 Smart Checker"
+echo "  Snort++ 3 Smart Checker"
 echo "=================================================="
 
 # ==================================================
@@ -68,7 +68,7 @@ TMP_OUTPUT="/tmp/snort_sniff_test.log"
 # ==================================================
 # Detectar interfaz
 # ==================================================
-echo "🔎 Detectando interfaz activa..."
+echo " Detectando interfaz activa..."
 INTERFACE=$(ip route get 8.8.8.8 2>/dev/null | awk '{print $5;exit}')
 
 if [[ -z "${INTERFACE}" ]]; then
@@ -162,7 +162,7 @@ echo
 # ==================================================
 # Validate snort config
 # ==================================================
-echo "🧪 Validando configuración Snort..."
+echo " Validando configuración Snort..."
 if sudo "$SNORT_BIN" -T -c "$SNORT_LUA" >/dev/null 2>&1; then
     ok "Snort validado sin errores"
 else
@@ -175,7 +175,7 @@ echo
 # ==================================================
 # Detection test
 # ==================================================
-echo "🚀 Ejecutando test ICMP real en $INTERFACE"
+echo " Ejecutando test ICMP real en $INTERFACE"
 echo "--------------------------------------------------"
 
 rm -f "$TMP_OUTPUT"
@@ -195,14 +195,14 @@ echo
 # ==================================================
 # Parse detection result
 # ==================================================
-echo "📄 RESULTADO DE LA PRUEBA:"
+echo " RESULTADO DE LA PRUEBA:"
 echo "--------------------------------------------------"
 
 sleep 1
 sync
 
 if grep -q "ICMP Ping detectado" "$TMP_OUTPUT"; then
-    echo "  🟢 ALERTAS DETECTADAS:"
+    echo "   ALERTAS DETECTADAS:"
     grep "ICMP Ping detectado" "$TMP_OUTPUT" | sed 's/^/   /'
     echo "--------------------------------------------------"
     ok "TEST SUPERADO: regla activada correctamente"
@@ -213,5 +213,5 @@ fi
 
 echo "Logs disponibles en: $TMP_OUTPUT"
 echo "=================================================="
-echo " 🟢 FINALIZADO"
+echo "  FINALIZADO"
 echo "=================================================="

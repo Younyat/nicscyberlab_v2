@@ -7,7 +7,7 @@
 set -euo pipefail
 
 # ==========================================
-# 🔍 Detectar ruta raíz del proyecto
+#  Detectar ruta raíz del proyecto
 # ==========================================
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
@@ -37,47 +37,47 @@ ROUTER_NAME="router-cyberlab"
 SECGRP_NAME="allow-ssh-icmp"
 
 # ============================================================
-# 🔧 Verificación entorno virtual
+#  Verificación entorno virtual
 # ============================================================
 if [ ! -f "$VENV_PATH/bin/activate" ]; then
-    echo "[ERROR] ❌ No se encontró el entorno virtual en:"
+    echo "[ERROR]  No se encontró el entorno virtual en:"
     echo "   $VENV_PATH/bin/activate"
     exit 1
 fi
 
 source "$VENV_PATH/bin/activate"
-echo "[INFO] 🟢 Entorno virtual activado."
+echo "[INFO]  Entorno virtual activado."
 
 # ============================================================
-# 🔧 Verificar y cargar admin-openrc
+#  Verificar y cargar admin-openrc
 # ============================================================
 if [ ! -f "$ADMIN_OPENRC" ]; then
-    echo "[ERROR] ❌ admin-openrc.sh no encontrado en:"
+    echo "[ERROR]  admin-openrc.sh no encontrado en:"
     echo "    $ADMIN_OPENRC"
     exit 1
 fi
 
 source "$ADMIN_OPENRC"
-echo "[INFO] 🔐 Credenciales OpenStack cargadas."
+echo "[INFO]  Credenciales OpenStack cargadas."
 
 # ============================================================
 # Validación cliente OpenStack
 # ============================================================
 if ! command -v openstack >/dev/null 2>&1; then
-    echo "[ERROR] ❌ No existe el comando 'openstack' en el entorno actual."
+    echo "[ERROR]  No existe el comando 'openstack' en el entorno actual."
     exit 1
 fi
 
 # ============================================================
-# ✔ Confirmar login API
+#  Confirmar login API
 # ============================================================
 if ! openstack token issue >/dev/null 2>&1; then
-    echo "[ERROR] ❌ No se pudo emitir token. Credenciales o API incorrectos."
+    echo "[ERROR]  No se pudo emitir token. Credenciales o API incorrectos."
     exit 1
 fi
 
-echo "[INFO] 🟢 Token OpenStack generado correctamente (API OK)"
-echo "[INFO] 📂 BASE_DIR detectado: $BASE_DIR"
+echo "[INFO]  Token OpenStack generado correctamente (API OK)"
+echo "[INFO]  BASE_DIR detectado: $BASE_DIR"
 
 # ============================================================
 # Función de log
@@ -88,16 +88,16 @@ log() { echo -e "[LOG] $*"; }
 # Validar jq
 # ============================================================
 if ! command -v jq >/dev/null; then
-    echo "[ERROR] ❌ Falta jq. Instala con: sudo apt install jq"
+    echo "[ERROR]  Falta jq. Instala con: sudo apt install jq"
     exit 1
 fi
 
 if [ ! -f "$JSON_FILE" ]; then
-    echo "[ERROR] ❌ No existe el JSON: $JSON_FILE"
+    echo "[ERROR]  No existe el JSON: $JSON_FILE"
     exit 1
 fi
 
-log "📄 JSON encontrado correctamente."
+log " JSON encontrado correctamente."
 
 # --------- LEER JSON ----------------------------------------
 CLEANUP=$(jq -r '.cleanup' "$JSON_FILE")
@@ -114,36 +114,36 @@ DNS2=$(jq -r '.dns' "$JSON_FILE" | cut -d',' -f2 | xargs)
 download_images() {
 
     if [ "$IMAGE_CHOICE" != "ambas" ]; then
-        log "⏭ No descargo imágenes (image_choice != ambas)"
+        log " No descargo imágenes (image_choice != ambas)"
         return
     fi
 
-    log "📥 Descargando imágenes cloud..."
+    log " Descargando imágenes cloud..."
 
     if [ ! -f "$UBUNTU_IMG" ]; then
-        log "⬇ Ubuntu 22.04"
+        log " Ubuntu 22.04"
         wget -O "$UBUNTU_IMG" \
             https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
     else
-        log "✔ Ubuntu ya descargado"
+        log " Ubuntu ya descargado"
     fi
 
     if [ ! -f "$DEBIAN_IMG" ]; then
-        log "⬇ Debian 12"
+        log " Debian 12"
         wget -O "$DEBIAN_IMG" \
             https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-genericcloud-amd64.qcow2
     else
-        log "✔ Debian ya descargado"
+        log " Debian ya descargado"
     fi
 }
 
 create_ssh_key() {
     if openstack keypair show "$SSH_KEY_NAME" >/dev/null 2>&1; then
-        log "🔑 Keypair ya existe."
+        log " Keypair ya existe."
         return
     fi
 
-    log "🔑 Creando clave SSH..."
+    log " Creando clave SSH..."
 
     mkdir -p "$HOME/.ssh"
 
@@ -153,42 +153,42 @@ create_ssh_key() {
 
     openstack keypair create --public-key "${SSH_KEY_FILE}.pub" "$SSH_KEY_NAME"
 
-    log "✔ Keypair lista: $SSH_KEY_NAME"
+    log " Keypair lista: $SSH_KEY_NAME"
 }
 
 upload_images() {
 
     if [ "$IMAGE_CHOICE" != "ambas" ]; then
-        log "⏭ No subo imágenes (image_choice != ambas)"
+        log " No subo imágenes (image_choice != ambas)"
         return
     fi
 
     if ! openstack image show "$UBUNTU_IMG_NAME" >/dev/null 2>&1; then
-        log "⬆ Subiendo Ubuntu 22.04 a Glance..."
+        log " Subiendo Ubuntu 22.04 a Glance..."
         openstack image create "$UBUNTU_IMG_NAME" \
             --disk-format qcow2 \
             --container-format bare \
             --file "$UBUNTU_IMG" \
             --public
     else
-        log "✔ Ubuntu ya está en Glance"
+        log " Ubuntu ya está en Glance"
     fi
 
     if ! openstack image show "$DEBIAN_IMG_NAME" >/dev/null 2>&1; then
-        log "⬆ Subiendo Debian 12 a Glance..."
+        log " Subiendo Debian 12 a Glance..."
         openstack image create "$DEBIAN_IMG_NAME" \
             --disk-format qcow2 \
             --container-format bare \
             --file "$DEBIAN_IMG" \
             --public
     else
-        log "✔ Debian ya está en Glance"
+        log " Debian ya está en Glance"
     fi
 }
 
 create_networking() {
 
-    log "🌐 Configurando redes..."
+    log " Configurando redes..."
 
     if ! openstack network show "$EXTERNAL_NET_NAME" >/dev/null 2>&1; then
         openstack network create --external \
@@ -223,16 +223,16 @@ create_networking() {
     openstack router set "$ROUTER_NAME" --external-gateway "$EXTERNAL_NET_NAME" || true
     openstack router add subnet "$ROUTER_NAME" "$PRIVATE_SUBNET_NAME" || true
 
-    log "✔ Redes listas."
+    log " Redes listas."
 }
 
 create_security_group() {
     if openstack security group show "$SECGRP_NAME" >/dev/null 2>&1; then
-        log "✔ Security group ya existente."
+        log " Security group ya existente."
         return
     fi
 
-    log "🔐 Configurando reglas ICMP + SSH+.Wazuh+.Caldera"
+    log " Configurando reglas ICMP + SSH+.Wazuh+.Caldera"
 
     openstack security group create "$SECGRP_NAME"
     openstack security group rule create --proto icmp "$SECGRP_NAME"
@@ -256,24 +256,24 @@ create_security_group() {
 }
 
 create_flavors() {
-    log "💠 Creando flavours..."
+    log " Creando flavours..."
 
     openstack flavor create tiny   --vcpus 1 --ram 512  --disk 5  || true
     openstack flavor create small  --vcpus 1 --ram 1024 --disk 10 || true
     openstack flavor create medium --vcpus 2 --ram 2048 --disk 20 || true
     openstack flavor create large  --vcpus 4 --ram 4096 --disk 40 || true
 
-    log "✔ Flavors listos."
+    log " Flavors listos."
 }
 
 # ============================================================
 # EJECUCIÓN
 # ============================================================
 
-log "🧩 JSON cargado. Preparando todo..."
+log " JSON cargado. Preparando todo..."
 
 if [ "$CLEANUP" = "true" ]; then
-    log "🧹 Cleanup activado (pendiente implementar)."
+    log " Cleanup activado (pendiente implementar)."
 fi
 
 download_images
@@ -283,7 +283,7 @@ create_networking
 create_security_group
 create_flavors
 
-log "🎉 ESCENARIO LISTO"
+log " ESCENARIO LISTO"
 
 echo "
 Puedes lanzar instancias así:

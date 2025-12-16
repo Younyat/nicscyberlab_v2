@@ -1,5 +1,5 @@
 ##############################################
-# 🌐 Proveedor de OpenStack (Generado automáticamente)
+#  Proveedor de OpenStack (Generado automáticamente)
 # Fuente: kolla-admin desde /etc/kolla/clouds.yaml
 # Autor: Younes Assouyat
 ##############################################

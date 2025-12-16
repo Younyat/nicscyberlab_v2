@@ -35,7 +35,7 @@ echo " Clave detectada: $SSH_KEY"
 chmod 600 "$SSH_KEY"
 
 # =====================================================
-# 🚀 Ejecutar desinstalación vía SSH
+#  Ejecutar desinstalación vía SSH
 # =====================================================
 ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" "$USER@$IP" <<EOF
 sudo systemctl stop snort || true
@@ -49,4 +49,4 @@ sudo rm -rf /opt/snort* || true
 EOF
 
 echo "---------------------------------------------------------------"
-echo "✔ Snort desinstalado correctamente de $INSTANCE"
+echo " Snort desinstalado correctamente de $INSTANCE"

@@ -1,12 +1,12 @@
 #!/bin/bash
 # ======================================================
-# 🧩 Archivo de credenciales para OpenStack
+#  Archivo de credenciales para OpenStack
 # Generado automáticamente desde /etc/kolla/clouds.yaml
 # Cloud seleccionado: kolla-admin
 # ======================================================
 
 # ------------------------------------------------------
-# 🧹 Limpiar variables previas del entorno
+#  Limpiar variables previas del entorno
 # ------------------------------------------------------
 unset OS_AUTH_TYPE
 unset OS_AUTH_URL
@@ -21,7 +21,7 @@ unset OS_APPLICATION_CREDENTIAL_SECRET
 unset OS_APPLICATION_CREDENTIAL_NAME
 
 # ------------------------------------------------------
-# 🔐 Configuración de credenciales
+#  Configuración de credenciales
 # ------------------------------------------------------
 export OS_AUTH_URL=http://192.168.0.10:5000
 export OS_PROJECT_NAME=admin
@@ -33,4 +33,4 @@ export OS_INTERFACE=public
 export OS_IDENTITY_API_VERSION=3
 export OS_REGION_NAME=RegionOne
 
-echo "✅ Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"
+echo " Credenciales OpenStack cargadas para $OS_PROJECT_NAME ($OS_USERNAME)"

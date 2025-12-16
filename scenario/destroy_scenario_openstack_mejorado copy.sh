@@ -21,9 +21,9 @@ LOCAL_KEYFILE="$HOME/.ssh/cyberlab-key"
 
 if [ -f "$ADMIN_OPENRC" ]; then
     source "$ADMIN_OPENRC"
-    echo "🔐 Credenciales OpenStack cargadas."
+    echo " Credenciales OpenStack cargadas."
 else
-    echo "⚠️ No se encontró admin-openrc. Siguiendo igualmente."
+    echo " No se encontró admin-openrc. Siguiendo igualmente."
 fi
 
 
@@ -40,8 +40,8 @@ OUTDIR="$1"
 SUMMARY_JSON="tf_out/summary.json"
 
 echo ""
-echo "📁 OUTDIR:   $OUTDIR"
-echo "📄 Summary:  $SUMMARY_JSON"
+echo " OUTDIR:   $OUTDIR"
+echo " Summary:  $SUMMARY_JSON"
 echo "------------------------------------------------------------"
 
 
@@ -50,7 +50,7 @@ echo "------------------------------------------------------------"
 # ============================================================
 
 if [ ! -f "$SUMMARY_JSON" ]; then
-    echo "⚠️ No existe summary.json. No hay recursos que eliminar."
+    echo " No existe summary.json. No hay recursos que eliminar."
     exit 0
 fi
 
@@ -68,25 +68,25 @@ while read -r node; do
     PORT_NAME="${SAFE_ID}-port"
 
     echo ""
-    echo "🔥 Eliminando nodo → $name"
+    echo " Eliminando nodo → $name"
     echo "------------------------------------------------------------"
 
 
     # === Floating IP ====================================================
     if [ -n "$fip" ] && openstack floating ip show "$fip" >/dev/null 2>&1; then
-        echo "🌍 Eliminando Floating IP: $fip"
+        echo " Eliminando Floating IP: $fip"
         openstack floating ip delete "$fip" || true
     else
-        echo "✔ Floating IP ya no existe."
+        echo " Floating IP ya no existe."
     fi
 
 
     # === Instancia ======================================================
     if openstack server show "$name" >/dev/null 2>&1; then
-        echo "🖥 Eliminando instancia: $name"
+        echo " Eliminando instancia: $name"
         openstack server delete "$name" || true
     else
-        echo "✔ Instancia ya eliminada."
+        echo " Instancia ya eliminada."
     fi
 
     # esperar cierre real
@@ -98,13 +98,13 @@ while read -r node; do
 
     # === Puerto =========================================================
     if openstack port show "$PORT_NAME" >/dev/null 2>&1; then
-        echo "🌐 Eliminando puerto: $PORT_NAME"
+        echo " Eliminando puerto: $PORT_NAME"
         openstack port delete "$PORT_NAME" || true
     else
-        echo "✔ Puerto ya eliminado."
+        echo " Puerto ya eliminado."
     fi
 
-    echo "✔ Nodo $name eliminado."
+    echo " Nodo $name eliminado."
 
 done < <(jq -c '.[]' "$SUMMARY_JSON")
 
@@ -114,20 +114,20 @@ done < <(jq -c '.[]' "$SUMMARY_JSON")
 # ============================================================
 
 echo ""
-echo "🔑 Eliminando keypair y claves..."
+echo " Eliminando keypair y claves..."
 
 if openstack keypair show "$DEFAULT_KEYPAIR" >/dev/null 2>&1; then
-    echo "🗑 Eliminando keypair $DEFAULT_KEYPAIR"
+    echo " Eliminando keypair $DEFAULT_KEYPAIR"
     openstack keypair delete "$DEFAULT_KEYPAIR" || true
 else
-    echo "✔ Keypair ya no existe."
+    echo " Keypair ya no existe."
 fi
 
 if [ -f "$LOCAL_KEYFILE" ] || [ -f "${LOCAL_KEYFILE}.pub" ]; then
-    echo "🗑 Eliminando claves locales"
+    echo " Eliminando claves locales"
     rm -f "$LOCAL_KEYFILE" "${LOCAL_KEYFILE}.pub" || true
 else
-    echo "✔ Claves locales ya eliminadas."
+    echo " Claves locales ya eliminadas."
 fi
 
 
@@ -136,7 +136,7 @@ fi
 # ============================================================
 
 echo ""
-echo "🧹 Limpiando directorio de salida..."
+echo " Limpiando directorio de salida..."
 #rm -rf "${OUTDIR:?}/"* || true
 
 
@@ -146,9 +146,9 @@ echo "🧹 Limpiando directorio de salida..."
 
 echo ""
 echo "=================================================================="
-echo "🎉 INSTANCIAS ELIMINADAS CORRECTAMENTE"
-echo "🧽 OUTDIR limpiado"
-echo "🔑 Keypair & claves eliminadas"
+echo " INSTANCIAS ELIMINADAS CORRECTAMENTE"
+echo " OUTDIR limpiado"
+echo " Keypair & claves eliminadas"
 echo "=================================================================="
 
 exit 0

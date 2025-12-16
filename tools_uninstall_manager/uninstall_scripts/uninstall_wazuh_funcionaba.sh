@@ -114,7 +114,7 @@ if [[ "$FAILED" == false ]]; then
   echo "--------------------------------------------------"
 
   echo
-  echo "🛈 Quedan posibles entradas en dpkg, NO BLOQUEAN."
+  echo " Quedan posibles entradas en dpkg, NO BLOQUEAN."
   dpkg -l | grep -E 'wazuh|filebeat|opensearch' || true
   echo "Estos son solo metadatos e inofensivos."
   exit 0

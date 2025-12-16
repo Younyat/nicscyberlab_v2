@@ -1,27 +1,27 @@
 #!/bin/bash
 # ======================================================
-# 🔥 Generador Terraform basado en JSON (sin entorno virtual)
+#  Generador Terraform basado en JSON (sin entorno virtual)
 # Autor: Younes Assouyat
 # ======================================================
 
 set -euo pipefail
 
 echo "==============================================="
-echo "🚀 INICIO generar_desde_json.sh (sin venv)"
+echo " INICIO generar_desde_json.sh (sin venv)"
 echo "==============================================="
 
 # -----------------------------
-# 1️⃣ Leer JSON desde argumento
+# 1⃣ Leer JSON desde argumento
 # -----------------------------
 if [[ $# -ne 1 ]]; then
-  echo "❌ Uso: $0 <config.json>"
+  echo " Uso: $0 <config.json>"
   exit 1
 fi
 
 JSON_FILE="$1"
 
 if [[ ! -f "$JSON_FILE" ]]; then
-  echo "❌ Archivo JSON no encontrado: $JSON_FILE"
+  echo " Archivo JSON no encontrado: $JSON_FILE"
   exit 1
 fi
 
@@ -30,14 +30,14 @@ image_choice=$(jq -r '.image_choice' "$JSON_FILE")
 network=$(jq -r '.network' "$JSON_FILE")
 flavors_enabled=$(jq -r '.flavors_enabled' "$JSON_FILE")
 
-echo "📄 JSON recibido: $JSON_FILE"
-echo "🧩 cleanup=$cleanup"
-echo "🧩 image_choice=$image_choice"
-echo "🧩 network=$network"
-echo "🧩 flavors=$flavors_enabled"
+echo " JSON recibido: $JSON_FILE"
+echo " cleanup=$cleanup"
+echo " image_choice=$image_choice"
+echo " network=$network"
+echo " flavors=$flavors_enabled"
 
 # -----------------------------
-# 2️⃣ Variables y rutas
+# 2⃣ Variables y rutas
 # -----------------------------
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(dirname "$SCRIPT_DIR")"
@@ -45,39 +45,39 @@ ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 GEN_PROVIDER_SCRIPT="$SCRIPT_DIR/generate_provider_from_clouds.sh"
 CLEAN_SCRIPT="$SCRIPT_DIR/openstack_full_cleanup.sh"
 
-echo "📁 SCRIPT_DIR=$SCRIPT_DIR"
-echo "📁 ROOT_DIR=$ROOT_DIR"
+echo " SCRIPT_DIR=$SCRIPT_DIR"
+echo " ROOT_DIR=$ROOT_DIR"
 
 # -----------------------------
-# 3️⃣ Arreglar permisos
+# 3⃣ Arreglar permisos
 # -----------------------------
-echo "🔧 Corrigiendo permisos..."
+echo " Corrigiendo permisos..."
 for script in generate_provider_from_clouds.sh debian-linux.sh ubuntu-linux.sh flavors.sh network_generator.sh openstack_full_cleanup.sh; do
   if [[ -f "$SCRIPT_DIR/$script" ]]; then
     chmod +x "$SCRIPT_DIR/$script"
-    echo "  ✔ $script OK"
+    echo "   $script OK"
   fi
 done
 
 # -----------------------------
-# 4️⃣ Limpieza automática
+# 4⃣ Limpieza automática
 # -----------------------------
 if [[ "$cleanup" == "true" ]]; then
-  echo "🧹 Ejecutando limpieza total de OpenStack..."
+  echo " Ejecutando limpieza total de OpenStack..."
   bash "$CLEAN_SCRIPT" <<< "y"
 fi
 
 # -----------------------------
-# 5️⃣ Generar provider.tf
+# 5⃣ Generar provider.tf
 # -----------------------------
-echo "🔧 Generando provider.tf..."
+echo " Generando provider.tf..."
 bash "$GEN_PROVIDER_SCRIPT"
 
 # -----------------------------
-# 6️⃣ Ejecutar scripts según configuración JSON
+# 6⃣ Ejecutar scripts según configuración JSON
 # -----------------------------
 echo "==============================================="
-echo "⚙️  GENERANDO SEGÚN CONFIGURACIÓN DEL JSON"
+echo "  GENERANDO SEGÚN CONFIGURACIÓN DEL JSON"
 echo "==============================================="
 
 case "$image_choice" in
@@ -102,7 +102,7 @@ if [[ "$network" == "true" ]]; then
 fi
 
 echo "==============================================="
-echo "🎉 Generación completada correctamente (sin venv)."
+echo " Generación completada correctamente (sin venv)."
 echo "==============================================="
 
 exit 0

@@ -1,9 +1,9 @@
 ===============================================
-🔐 Generador de admin-openrc.sh para OpenStack
+ Generador de admin-openrc.sh para OpenStack
 ===============================================
-✅ yq ya está instalado.
-✅ jq ya está instalado.
-✅ Encontrado /etc/kolla/clouds.yaml
+ yq ya está instalado.
+ jq ya está instalado.
+ Encontrado /etc/kolla/clouds.yaml
 usage: yq [-h] [--yaml-output] [--yaml-roundtrip]
           [--yaml-output-grammar-version {1.1,1.2}] [--width WIDTH]
           [--indentless-lists] [--in-place] [--version]

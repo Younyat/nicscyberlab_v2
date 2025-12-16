@@ -21,13 +21,13 @@ echo "           Debian 12 + Wazuh Manager         "
 echo "============================================="
 
 # ===== Activar entorno virtual =====
-echo "🔹 Activando entorno virtual de OpenStack..."
+echo " Activando entorno virtual de OpenStack..."
 step_start=$(date +%s)
 if [[ -d "openstack-installer/openstack_venv" ]]; then
     source openstack-installer/openstack_venv/bin/activate
-    echo "[✔] Entorno virtual 'openstack_venv' activado correctamente."
+    echo "[] Entorno virtual 'openstack_venv' activado correctamente."
 else
-    echo "[✖] No se encontró el entorno 'openstack_venv'. Ejecuta primero openstack-recursos.sh"
+    echo "[] No se encontró el entorno 'openstack_venv'. Ejecuta primero openstack-recursos.sh"
     exit 1
 fi
 step_end=$(date +%s)
@@ -38,11 +38,11 @@ sleep 1
 if [[ -f "admin-openrc.sh" ]]; then
     echo "[+] Cargando variables del entorno OpenStack (admin-openrc.sh)..."
     source admin-openrc.sh
-    echo "[✔] Variables cargadas correctamente."
+    echo "[] Variables cargadas correctamente."
     echo "-------------------------------------------"
     sleep 1
 else
-    echo "[✖] No se encontró 'admin-openrc.sh'. Ejecuta primero openstack-recursos.sh"
+    echo "[] No se encontró 'admin-openrc.sh'. Ejecuta primero openstack-recursos.sh"
     exit 1
 fi
 
@@ -68,7 +68,7 @@ KNOWN_HOSTS_FILE="$HOME/.ssh/known_hosts"
 # =========================
 # VERIFICACIÓN DE RECURSOS
 # =========================
-echo "🔹 Verificando recursos necesarios..."
+echo " Verificando recursos necesarios..."
 
 if ! openstack image list -f value -c Name | grep -qw "$IMAGE_NAME"; then
     echo "[!] Falta la imagen '$IMAGE_NAME'. Ejecuta openstack-recursos.sh"; exit 1
@@ -98,7 +98,7 @@ if [[ ! -f "$USERDATA_FILE" ]]; then
     echo "[!] No se encuentra '$USERDATA_FILE'."; exit 1
 fi
 
-echo "[✔] Todos los recursos necesarios existen."
+echo "[] Todos los recursos necesarios existen."
 echo "-------------------------------------------"
 
 # =========================
@@ -114,13 +114,13 @@ if [[ -n "$EXISTING" ]]; then
         echo -n "."
     done
     echo
-    echo "[✔] Instancia '$INSTANCE_NAME' eliminada."
+    echo "[] Instancia '$INSTANCE_NAME' eliminada."
 fi
 
 # =========================
 # CREACIÓN DE LA INSTANCIA
 # =========================
-echo "🔹 Creando instancia '$INSTANCE_NAME'..."
+echo " Creando instancia '$INSTANCE_NAME'..."
 openstack server create \
   --image "$IMAGE_NAME" \
   --flavor "$FLAVOR" \
@@ -136,7 +136,7 @@ until [[ "$(openstack server show "$INSTANCE_NAME" -f value -c status)" == "ACTI
     echo -n "."
 done
 echo
-echo "[✔] Instancia '$INSTANCE_NAME' activa."
+echo "[] Instancia '$INSTANCE_NAME' activa."
 
 # =========================
 # IP FLOTANTE
@@ -162,13 +162,13 @@ until ssh -o StrictHostKeyChecking=no -i "$SSH_KEY_PATH" $SSH_USER@"$FLOATING_IP
     NOW=$(date +%s)
     if (( NOW - SSH_START > SSH_TIMEOUT )); then
         echo
-        echo "[✖] Timeout al intentar conectar por SSH"
+        echo "[] Timeout al intentar conectar por SSH"
         exit 1
     fi
 done
 
 echo
-echo "[✔] SSH disponible en $FLOATING_IP"
+echo "[] SSH disponible en $FLOATING_IP"
 
 # ===========================================
 # INSTALACIÓN DE WAZUH MANAGER (CON TIMER)
@@ -221,9 +221,9 @@ if [[ -z "$ADMIN_PASSWORD" ]]; then
     echo "    sudo tar -O -xvf wazuh-install-files.tar wazuh-install-files/wazuh-passwords.txt"
 fi
 
-echo "[✔] Wazuh Manager instalado y configurado."
-echo "[⏱] Tiempo de instalación de Wazuh: $(format_time $INSTALL_TIME)"
-echo "[✔] IP flotante asignada: $FLOATING_IP"
+echo "[] Wazuh Manager instalado y configurado."
+echo "[] Tiempo de instalación de Wazuh: $(format_time $INSTALL_TIME)"
+echo "[] IP flotante asignada: $FLOATING_IP"
 
 # ========================================
 # TIEMPO TOTAL DEL SCRIPT
@@ -232,12 +232,12 @@ SCRIPT_END=$(date +%s)
 SCRIPT_TIME=$((SCRIPT_END - SCRIPT_START))
 
 echo "===================================================="
-echo "[⏱] Tiempo TOTAL del script: $(format_time $SCRIPT_TIME)"
+echo "[] Tiempo TOTAL del script: $(format_time $SCRIPT_TIME)"
 echo "===================================================="
 
 echo
 echo "Acceso SSH a la instancia Wazuh Manager:"
-echo "[➜] ssh -i $SSH_KEY_PATH $SSH_USER@$FLOATING_IP"
+echo "[] ssh -i $SSH_KEY_PATH $SSH_USER@$FLOATING_IP"
 echo "-----------------------------------------------"
 echo
 echo "Acceso al Wazuh Dashboard:"

@@ -28,7 +28,7 @@
 
                     <h2 class="text-2xl font-bold flex items-center gap-3">
                         Nodo Atacante 
-                        <span id="status-attacker" class="text-2xl ml-2">🔴</span>
+                        <span id="status-attacker" class="text-2xl ml-2">OFF</span>
 
                         <button id="btn-attacker-console"
                                 class="ml-auto bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded-lg text-xs hidden">
@@ -38,37 +38,37 @@
                 </div>
 
                 <div class="grid grid-cols-2 gap-3 mb-5">
-                    <button onclick="openTool('MITRE Caldera', 'http://10.0.2.237:8888', 'Framework adversario automatizado', '🎯')" 
+                    <button onclick="openTool('MITRE Caldera', 'http://10.0.2.237:8888', 'Framework adversario automatizado', '')" 
                             class="bg-red-600 hover:bg-red-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
-                        <span class="text-2xl">🎯</span> <span class="text-xs">MITRE Caldera</span>
+                        <span class="text-2xl"></span> <span class="text-xs">MITRE Caldera</span>
                     </button>
 
-                    <button onclick="openTool('Nmap', 'https://nmap.org', 'Escáner de redes y puertos', '🔍')" 
+                    <button onclick="openTool('Nmap', 'https://nmap.org', 'Escáner de redes y puertos', '')" 
                             class="bg-red-600 hover:bg-red-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
-                        <span class="text-2xl">🔍</span> <span class="text-xs">Nmap</span>
+                        <span class="text-2xl"></span> <span class="text-xs">Nmap</span>
                     </button>
 
-                    <button onclick="openTool('Metasploit', 'https://www.metasploit.com', 'Framework de penetración', '💥')" 
+                    <button onclick="openTool('Metasploit', 'https://www.metasploit.com', 'Framework de penetración', '')" 
                             class="bg-red-600 hover:bg-red-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
-                        <span class="text-2xl">💥</span> <span class="text-xs">Metasploit</span>
+                        <span class="text-2xl"></span> <span class="text-xs">Metasploit</span>
                     </button>
 
-                    <button onclick="openTool('Nikto', 'https://github.com/sullo/nikto', 'Escáner de vulnerabilidades web', '🌐')" 
+                    <button onclick="openTool('Nikto', 'https://github.com/sullo/nikto', 'Escáner de vulnerabilidades web', '')" 
                             class="bg-red-600 hover:bg-red-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
-                        <span class="text-2xl">🌐</span> <span class="text-xs">Nikto</span>
+                        <span class="text-2xl"></span> <span class="text-xs">Nikto</span>
                     </button>
 
                 <!-- Cambiar contraseña -->
                 <button onclick="changePassword('attacker')"
                         class="bg-red-600 hover:bg-red-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg col-span-2">
-                    <span class="text-2xl">🔐</span>
+                    <span class="text-2xl"></span>
                     <span class="text-xs block">Cambiar contraseña</span>
                 </button>
 
                 <!-- Cambiar idioma teclado -->
                 <button onclick="changeKeyboard('attacker')"
                         class="bg-red-600 hover:bg-red-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg col-span-2">
-                    <span class="text-2xl">⌨️</span>
+                    <span class="text-2xl"></span>
                     <span class="text-xs block">Cambiar idioma teclado</span>
                 </button>
 
@@ -95,8 +95,8 @@
                     <h2 class="text-2xl font-bold flex items-center gap-3">
                                 Monitor Central
 
-                                <!-- 🔴🟢 Indicador -->
-                                <span id="status-monitor" class="text-2xl ml-2">🔴</span>
+                                <!--  Indicador -->
+                                <span id="status-monitor" class="text-2xl ml-2">OFF</span>
 
                                 <!-- Botón consola -->
                                 <button id="btn-monitor-console"
@@ -109,28 +109,28 @@
                 <div class="grid grid-cols-2 gap-3 mb-5">
                     <button onclick="checkWazuhMonitor()"
                             class="bg-green-600 hover:bg-green-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
-                        <span class="text-2xl">👁️</span> <span class="text-xs">Wazuh</span>
+                        <span class="text-2xl"></span> <span class="text-xs">Wazuh</span>
                     </button>
 
-                    <button onclick="openTool('Splunk', 'https://www.splunk.com', 'Analítica avanzada', '📊')" 
+                    <button onclick="openTool('Splunk', 'https://www.splunk.com', 'Analítica avanzada', '')" 
                             class="bg-green-600 hover:bg-green-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
-                        <span class="text-2xl">📊</span> <span class="text-xs">Splunk</span>
+                        <span class="text-2xl"></span> <span class="text-xs">Splunk</span>
                     </button>
 
-                    <button onclick="openTool('ELK Stack', 'https://elastic.co', 'Elastic Stack', '🦌')" 
+                    <button onclick="openTool('ELK Stack', 'https://elastic.co', 'Elastic Stack', '')" 
                             class="bg-green-600 hover:bg-green-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
-                        <span class="text-2xl">🦌</span> <span class="text-xs">ELK Stack</span>
+                        <span class="text-2xl"></span> <span class="text-xs">ELK Stack</span>
                     </button>
 
-                    <button onclick="openTool('OSSEC', 'https://ossec.net', 'IDS/IPS', '🛡️')" 
+                    <button onclick="openTool('OSSEC', 'https://ossec.net', 'IDS/IPS', '')" 
                             class="bg-green-600 hover:bg-green-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
-                        <span class="text-2xl">🛡️</span> <span class="text-xs">OSSEC</span>
+                        <span class="text-2xl"></span> <span class="text-xs">OSSEC</span>
                     </button>
 
                   <!-- Cambiar contraseña -->
                     <button onclick="changePassword('monitor')"
                             class="bg-green-600 hover:bg-green-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg col-span-2">
-                        <span class="text-2xl">🔐</span>
+                        <span class="text-2xl"></span>
                         <span class="text-xs">Cambiar contraseña</span>
                     </button>
 
@@ -138,7 +138,7 @@
                     <!-- Cambiar idioma -->
                     <button onclick="changeKeyboard('monitor')"
                             class="bg-green-600 hover:bg-green-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg col-span-2">
-                        <span class="text-2xl">⌨️</span>
+                        <span class="text-2xl"></span>
                         <span class="text-xs">Cambiar idioma teclado</span>
                     </button>
 
@@ -165,7 +165,7 @@
 
                     <h2 class="text-2xl font-bold flex items-center gap-3">
                         Nodo Víctima 
-                        <span id="status-victim" class="text-2xl ml-2">🔴</span>
+                        <span id="status-victim" class="text-2xl ml-2">OFF</span>
 
                         <button id="btn-victim-console"
                                 class="ml-auto bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded-lg text-xs hidden">
@@ -177,37 +177,37 @@
                 <div class="grid grid-cols-2 gap-3 mb-5">
                    <button onclick="runToolVersionOnVictim('snort')" 
                                 class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
-                            <span class="text-2xl">🐽</span>
+                            <span class="text-2xl"></span>
                             <span class="text-xs">Snort</span>
                         </button>
 
                     <button onclick="runToolVersionOnVictim('suricata')" 
                             class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
-                        <span class="text-2xl">🦈</span>
+                        <span class="text-2xl"></span>
                         <span class="text-xs">Suricata</span>
                     </button>
 
-                    <button onclick="openTool('Zeek', 'https://zeek.org', 'Network monitor', '👀')" 
+                    <button onclick="openTool('Zeek', 'https://zeek.org', 'Network monitor', '')" 
                             class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
-                        <span class="text-2xl">👀</span> <span class="text-xs">Zeek</span>
+                        <span class="text-2xl"></span> <span class="text-xs">Zeek</span>
                     </button>
 
-                    <button onclick="openTool('Fail2Ban', 'https://fail2ban.org', 'Intrusion prevention', '🚫')" 
+                    <button onclick="openTool('Fail2Ban', 'https://fail2ban.org', 'Intrusion prevention', '')" 
                             class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg flex flex-col items-center gap-1">
-                        <span class="text-2xl">🚫</span> <span class="text-xs">Fail2Ban</span>
+                        <span class="text-2xl"></span> <span class="text-xs">Fail2Ban</span>
                     </button>
 
                     <!-- Cambiar contraseña -->
                             <button onclick="changePassword('victim')"
                                     class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg col-span-2">
-                                <span class="text-2xl">🔐</span>
+                                <span class="text-2xl"></span>
                                 <span class="text-xs">Cambiar contraseña</span>
                             </button>
 
                             <!-- Cambiar idioma -->
                             <button onclick="changeKeyboard('victim')"
                                     class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105 shadow-lg col-span-2">
-                                <span class="text-2xl">⌨️</span>
+                                <span class="text-2xl"></span>
                                 <span class="text-xs">Cambiar idioma teclado</span>
                             </button>
 
@@ -316,11 +316,11 @@ async function openConsole(instanceName) {
         const data = await response.json();
 
         if (!data.output) {
-            alert("⚠ No se pudo obtener la URL de consola.\n\n" + data.stdout);
+            alert(" No se pudo obtener la URL de consola.\n\n" + data.stdout);
             return;
         }
 
-        // 📌 ABRIR VENTANA INDEPENDIENTE (NO pestaña)
+        //  ABRIR VENTANA INDEPENDIENTE (NO pestaña)
         const width = 1100;
         const height = 700;
 
@@ -345,7 +345,7 @@ async function openConsole(instanceName) {
         );
 
     } catch (err) {
-        console.error("❌ Error solicitando consola:", err);
+        console.error(" Error solicitando consola:", err);
         alert("Error al solicitar consola.");
     }
 }
@@ -371,7 +371,7 @@ async function openConsole(instanceName) {
             }
 
         } catch (error) {
-            console.error("❌ Error consultando /api/instance_roles", error);
+            console.error(" Error consultando /api/instance_roles", error);
         }
     }
 
@@ -384,12 +384,12 @@ async function openConsole(instanceName) {
         const btn = document.getElementById("btn-attacker-console");
 
         if (!attacker || attacker.status !== "ACTIVE") {
-            light.textContent = "🔴";
+            light.textContent = "OFF";
             btn.classList.add("hidden");
             return;
         }
 
-        light.textContent = "🟢";
+        light.textContent = "ON";
         btn.classList.remove("hidden");
         btn.onclick = () => openConsole(attacker.name);
     }
@@ -403,12 +403,12 @@ async function openConsole(instanceName) {
         const btn = document.getElementById("btn-victim-console");
 
         if (!victim || victim.status !== "ACTIVE") {
-            light.textContent = "🔴";
+            light.textContent = "OFF";
             btn.classList.add("hidden");
             return;
         }
 
-        light.textContent = "🟢";
+        light.textContent = "ON";
         btn.classList.remove("hidden");
         btn.onclick = () => openConsole(victim.name);
     }
@@ -420,12 +420,12 @@ function updateMonitorUI(monitor) {
     if (!light || !btn) return;  // seguridad
 
     if (!monitor || monitor.status !== "ACTIVE") {
-        light.textContent = "🔴";
+        light.textContent = "OFF";
         btn.classList.add("hidden");
         return;
     }
 
-    light.textContent = "🟢";
+    light.textContent = "ON";
     btn.classList.remove("hidden");
 
     btn.onclick = () => openConsole(monitor.name);
@@ -494,14 +494,14 @@ async function checkWazuhMonitor() {
     const roles = await r.json();
 
     if (!roles.monitor) {
-        appendAttackLog("❌ No se detecta instancia monitor.");
+        appendAttackLog(" No se detecta instancia monitor.");
         return;
     }
 
     const instanceName = roles.monitor.name;
     const ip = roles.monitor.ip;
 
-    appendAttackLog(`🔍 Detectando Wazuh en ${instanceName} (${ip})...`);
+    appendAttackLog(` Detectando Wazuh en ${instanceName} (${ip})...`);
 
     const res = await fetch("http://localhost:5001/api/check_wazuh", {
         method: "POST",
@@ -511,20 +511,20 @@ async function checkWazuhMonitor() {
 
     const data = await res.json();
 
-    let output = data.stdout || data.stderr || "❌ Sin salida";
+    let output = data.stdout || data.stderr || " Sin salida";
 
-    // 1️⃣ Mostrar salida en panel Control de Ataques
+    // 1⃣ Mostrar salida en panel Control de Ataques
     appendAttackLog(output);
 
-    // 2️⃣ Mostrar salida en la terminal del monitor
+    // 2⃣ Mostrar salida en la terminal del monitor
     updateMonitorTerminal(output);
 
-    // 3️⃣ ABRIR MODAL CON URL DE WAZUH
+    // 3⃣ ABRIR MODAL CON URL DE WAZUH
     openTool(
         "Wazuh",
         `https://${ip}`,
         "SIEM / XDR - Consola Web",
-        "👁️"
+        ""
     );
 }
 
@@ -563,18 +563,18 @@ async function changeMonitorPassword() {
     const newPass = prompt("Introduce la nueva contraseña:");
 
     if (!newPass) {
-        appendAttackLog("⚠️ Operación cancelada.");
+        appendAttackLog(" Operación cancelada.");
         return;
     }
 
     const monitor = await getRoleData("monitor");
 
     if (!monitor) {
-        appendAttackLog("❌ No se detecta instancia monitor.");
+        appendAttackLog(" No se detecta instancia monitor.");
         return;
     }
 
-    appendAttackLog(`🔐 Cambiando contraseña en ${monitor.name} (${monitor.ip})...`);
+    appendAttackLog(` Cambiando contraseña en ${monitor.name} (${monitor.ip})...`);
 
     const res = await fetch("http://localhost:5001/api/change_password", {
         method: "POST",
@@ -597,14 +597,14 @@ async function changeMonitorPassword() {
 async function changePassword(role) {
     const node = await getRoleData(role);
     if (!node) {
-        appendAttackLog(`❌ No se detecta instancia ${role}`);
+        appendAttackLog(` No se detecta instancia ${role}`);
         return;
     }
 
     const newPass = prompt("Introduce nueva contraseña:");
     if (!newPass) return;
 
-    appendAttackLog(`🔐 Cambiando contraseña en ${node.name} (${node.ip})...`);
+    appendAttackLog(` Cambiando contraseña en ${node.name} (${node.ip})...`);
 
     const res = await fetch("http://localhost:5001/api/change_password", {
         method: "POST",
@@ -625,11 +625,11 @@ async function changePassword(role) {
 async function changeKeyboardLayout(role) {
     const node = await getRoleData(role);
     if (!node) {
-        appendAttackLog(`❌ No se detecta instancia ${role}`);
+        appendAttackLog(` No se detecta instancia ${role}`);
         return;
     }
 
-    appendAttackLog(`⌨️ Cambiando teclado a Español en ${node.name} (${node.ip})...`);
+    appendAttackLog(` Cambiando teclado a Español en ${node.name} (${node.ip})...`);
 
     const res = await fetch("http://localhost:5001/api/change_keyboard_layout", {
         method: "POST",
@@ -654,11 +654,11 @@ async function changePassword(role) {
     const node = data[role];
 
     if (!node) {
-        appendAttackLog("❌ No se encuentra instancia para rol " + role);
+        appendAttackLog(" No se encuentra instancia para rol " + role);
         return;
     }
 
-    appendAttackLog(`🔐 Cambiando contraseña en ${node.name} (${node.ip})...`);
+    appendAttackLog(` Cambiando contraseña en ${node.name} (${node.ip})...`);
 
     const res = await fetch("http://localhost:5001/api/change_password", {
         method: "POST",
@@ -682,11 +682,11 @@ async function changeKeyboard(role) {
     const node = data[role];
 
     if (!node) {
-        appendAttackLog("❌ No se encuentra instancia para rol " + role);
+        appendAttackLog(" No se encuentra instancia para rol " + role);
         return;
     }
 
-    appendAttackLog(`⌨️ Cambiando teclado a ${layout} en ${node.name} (${node.ip})...`);
+    appendAttackLog(` Cambiando teclado a ${layout} en ${node.name} (${node.ip})...`);
 
     const res = await fetch("http://localhost:5001/api/change_keyboard_layout", {
         method: "POST",
@@ -708,13 +708,13 @@ async function runToolVersionOnVictim(tool) {
         .then(r => r.json());
 
     if (!roles.victim) {
-        appendAttackLog("❌ No se detecta nodo víctima");
+        appendAttackLog(" No se detecta nodo víctima");
         return;
     }
 
     const victim = roles.victim;
 
-    appendAttackLog(`🔎 Ejecutando ${tool} --version en ${victim.name} (${victim.ip})...`);
+    appendAttackLog(` Ejecutando ${tool} --version en ${victim.name} (${victim.ip})...`);
 
     const res = await fetch("http://localhost:5001/api/run_tool_version", {
         method: "POST",
@@ -728,15 +728,15 @@ async function runToolVersionOnVictim(tool) {
 
     const data = await res.json();
 
-    const output = data.stdout || data.stderr || "❌ Sin salida";
+    const output = data.stdout || data.stderr || " Sin salida";
 
-    // 🖥 Terminal de la víctima
+    //  Terminal de la víctima
     updateNodeTerminal("victim", output);
 
-    // 📊 Panel de ataques
+    //  Panel de ataques
     appendAttackLog(output);
 
-    // 🚀 Abrir consola OpenStack
+    //  Abrir consola OpenStack
     openConsole(victim.name);
 }
 
@@ -765,12 +765,12 @@ async function runToolVersionOnVictim(tool) {
          class="cursor-move flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700 rounded-t-xl">
         
         <div class="text-white font-semibold flex items-center gap-2">
-            🖥 <span id="console-title">Terminal</span>
+             <span id="console-title">Terminal</span>
         </div>
 
         <button onclick="closeConsoleWindow()"
                 class="text-red-400 hover:text-red-300 text-xl font-bold">
-            ✖
+            
         </button>
     </div>
 

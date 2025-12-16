@@ -31,7 +31,7 @@ fi
 
 
 # -----------------------------------------------------
-# 🔍 Detectar interfaz activa automáticamente
+#  Detectar interfaz activa automáticamente
 # -----------------------------------------------------
 INTERFACE=$(ip route get 8.8.8.8 2>/dev/null | awk '{print $5; exit}')
 
@@ -69,19 +69,19 @@ ALREADY=false
 
 # Binario existente
 if command -v suricata >/dev/null 2>&1; then
-    echo "✔ Suricata ya está instalado"
+    echo " Suricata ya está instalado"
     ALREADY=true
 fi
 
 # Puerto estándar IDS
 if ss -tunlp | grep -q ':9000'; then
-    echo "✔ Puerto Suricata detectado"
+    echo " Puerto Suricata detectado"
     ALREADY=true
 fi
 
 # Config existente
 if [[ -f "$RULES_DIR/suricata.yaml" ]]; then
-    echo "✔ Configuración existente detectada"
+    echo " Configuración existente detectada"
     ALREADY=true
 fi
 
@@ -139,17 +139,17 @@ sudo mkdir -p "$LOG_DIR"
 sudo touch "$LOG_DIR/fast.log"
 sudo chmod -R 755 "$LOG_DIR"
 
-echo "[5/5] ▶ Permitir modo promiscuo..."
+echo "[5/5]  Permitir modo promiscuo..."
 sudo ip link set "$INTERFACE" promisc on
 
 
 
 
 # -----------------------------------------------------
-# 🔍 Verificación automática de instalación y reglas
+#  Verificación automática de instalación y reglas
 # -----------------------------------------------------
 echo
-echo "🔎 Validando estado de Suricata..."
+echo " Validando estado de Suricata..."
 
 # 1) Verificar binario
 if ! command -v suricata >/dev/null 2>&1; then
@@ -157,7 +157,7 @@ if ! command -v suricata >/dev/null 2>&1; then
     echo "   Revisa la instalación."
     exit 1
 else
-    echo "✔ Binario detectado: $(command -v suricata)"
+    echo " Binario detectado: $(command -v suricata)"
 fi
 
 # 2) Validar configuración
@@ -165,7 +165,7 @@ if [[ ! -f "$RULES_DIR/suricata.yaml" ]]; then
     echo " ERROR: No existe configuración Suricata en $RULES_DIR/suricata.yaml"
     exit 1
 else
-    echo "✔ Configuración YAML detectada"
+    echo " Configuración YAML detectada"
 fi
 
 # 3) Validar reglas cargadas
@@ -173,15 +173,15 @@ if [[ ! -f "$RULES_DIR/rules/local.rules" ]]; then
     echo " Advertencia: No se encontró archivo de reglas $RULES_DIR/rules/local.rules"
 else
     RULES_COUNT=$(grep -E "^(alert|drop|reject)" "$RULES_DIR/rules/local.rules" | wc -l)
-    echo "✔ Reglas cargadas: $RULES_COUNT"
+    echo " Reglas cargadas: $RULES_COUNT"
     [[ "$RULES_COUNT" -eq 0 ]] && echo " No hay reglas activas, Suricata arrancará 'vacío'"
 fi
 
 # 4) Arranque en modo test para validar config
 echo
-echo "🧪 Probando configuración..."
+echo " Probando configuración..."
 if sudo suricata -T -c "$RULES_DIR/suricata.yaml" >/dev/null 2>&1; then
-    echo "✔ Configuración válida (test OK)"
+    echo " Configuración válida (test OK)"
 else
     echo " ERROR en configuración Suricata"
     sudo suricata -T -c "$RULES_DIR/suricata.yaml"
@@ -190,11 +190,11 @@ fi
 
 # 5) Confirmar arranque
 echo
-echo "🎯 Confirmando arranque del motor IDS..."
+echo " Confirmando arranque del motor IDS..."
 if sudo suricata -c "$RULES_DIR/suricata.yaml" -i "$INTERFACE" >/dev/null 2>&1 & then
     sleep 2
     if ss -tunlp | grep -q "suricata"; then
-        echo "✔ Motor Suricata ACTIVO en la interfaz $INTERFACE"
+        echo " Motor Suricata ACTIVO en la interfaz $INTERFACE"
     else
         echo " Suricata arrancó pero no se detectan procesos escuchando"
     fi
@@ -214,7 +214,7 @@ TOTAL=$((END_TIME - START_TIME))
 
 
 # -----------------------------------------------------
-# 🎉 Instalación terminada
+#  Instalación terminada
 # -----------------------------------------------------
 echo
 echo "===================================================="

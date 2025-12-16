@@ -12,15 +12,15 @@ WAZUH_DIR="/var/ossec"
 # -------------------------------
 # Pretty Print
 # -------------------------------
-ok()   { echo -e "  \e[32m✔\e[0m $1"; }
-warn() { echo -e "  \e[33m⚠\e[0m $1"; }
-err()  { echo -e "  \e[31m✖ $1\e[0m"; }
+ok()   { echo -e "  \e[32m\e[0m $1"; }
+warn() { echo -e "  \e[33m\e[0m $1"; }
+err()  { echo -e "  \e[31m $1\e[0m"; }
 
 # -------------------------------
 # Floating IP detection
 # -------------------------------
 detect_ip() {
-    echo "🔎 Detectando Floating IP desde OpenStack metadata"
+    echo " Detectando Floating IP desde OpenStack metadata"
 
     META=$(curl -s http://169.254.169.254/openstack/latest/meta_data.json || true)
 
@@ -73,7 +73,7 @@ echo "[2/5]  Descargando instalador oficial Wazuh..."
 sudo curl -sO https://packages.wazuh.com/4.9/wazuh-install.sh
 
 
-echo "[3/5] 🏗 Ejecutando instalación oficial con auto-configuración..."
+echo "[3/5]  Ejecutando instalación oficial con auto-configuración..."
 sudo bash ./wazuh-install.sh -a > /tmp/wazuh-install.log 2>&1 || true
 
 
@@ -138,11 +138,11 @@ TOTAL=$((END_TIME - START_TIME))
 echo
 echo "===================================================="
 echo " Wazuh INSTALADO y FUNCIONANDO correctamente"
-echo "⏱ Tiempo total: $((TOTAL / 60))m $((TOTAL % 60))s"
+echo " Tiempo total: $((TOTAL / 60))m $((TOTAL % 60))s"
 echo "===================================================="
 echo " Dashboard: https://$IP"
 echo " Usuario: admin"
 echo " Password: $PASS"
 echo
-echo "📄 Log instalación: /tmp/wazuh-install.log"
+echo " Log instalación: /tmp/wazuh-install.log"
 echo "===================================================="

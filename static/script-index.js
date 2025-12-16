@@ -139,15 +139,15 @@ async function createScenario() {
 
         if (response.ok) {
             const result = await response.json();
-            showToast(`✅ Escenario creado: ${result.message}`);
+            showToast(` Escenario creado: ${result.message}`);
             console.log("Respuesta del Back-end:", result);
         } else {
             const errorText = await response.text();
-            showToast(`❌ Error al crear escenario: ${response.status} - ${errorText.substring(0, 50)}...`);
+            showToast(` Error al crear escenario: ${response.status} - ${errorText.substring(0, 50)}...`);
         }
     } catch (error) {
         console.error('Error de red o CORS:', error);
-        showToast('🚨 Error de conexión con el back-end. ¿Está ejecutándose el servidor Python?');
+        showToast(' Error de conexión con el back-end. ¿Está ejecutándose el servidor Python?');
     }
 }
 
@@ -160,7 +160,7 @@ function addNode(x, y) {
     nodeCounter++;
     const nodeId = `node${nodeCounter}`;
     const nodeType = currentMode;
-    const icons = { monitor: '🛡️', attack: '⚡', victim: '🎯' };
+    const icons = { monitor: '', attack: '', victim: '' };
     const nodeData = {
         id: nodeId,
         name: `${icons[nodeType]} ${nodeType.charAt(0).toUpperCase() + nodeType.slice(1)} ${nodeCounter}`,
@@ -387,7 +387,7 @@ async function loadScenario() {
 
         if (!response.ok) {
             const errorText = await response.text();
-            showToast(`❌ Error al cargar: ${response.status} - ${errorText}`);
+            showToast(` Error al cargar: ${response.status} - ${errorText}`);
             return;
         }
 
@@ -442,11 +442,11 @@ async function loadScenario() {
 
         // 4. Actualizar las estadísticas y notificar al usuario
         updateStats();
-        showToast('✅ Escenario cargado correctamente.');
+        showToast(' Escenario cargado correctamente.');
 
     } catch (error) {
         console.error('Error de red o CORS al cargar escenario:', error);
-        showToast('🚨 Error de conexión. No se pudo cargar el escenario.');
+        showToast(' Error de conexión. No se pudo cargar el escenario.');
     }
 }
 

@@ -1,16 +1,16 @@
-console.log("JS CARGADO CORRECTAMENTE ✅");
+console.log("JS CARGADO CORRECTAMENTE ");
 
 /* ============================================================
-   🔥 VARIABLES GLOBALES
+    VARIABLES GLOBALES
    ============================================================ */
 let cy = null;
 let selectedInstance = null;
 
 /* ============================================================
-   🔥 SE EJECUTA AL CARGAR LA PÁGINA
+    SE EJECUTA AL CARGAR LA PÁGINA
    ============================================================ */
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("🔄 Cargando escenario inicial…");
+    console.log(" Cargando escenario inicial…");
     loadExistingScenario();
 });
 
@@ -21,12 +21,12 @@ function ensureCy() {
     const container = document.getElementById("cy");
 
     if (!container) {
-        console.error("❌ Contenedor #cy no encontrado.");
+        console.error(" Contenedor #cy no encontrado.");
         return false;
     }
 
     if (typeof cytoscape === "undefined") {
-        console.error("❌ Cytoscape NO está cargado.");
+        console.error(" Cytoscape NO está cargado.");
         return false;
     }
 
@@ -57,7 +57,7 @@ function ensureCy() {
         ]
     });
 
-    console.log("🟢 Cytoscape inicializado correctamente.");
+    console.log(" Cytoscape inicializado correctamente.");
     return true;
 }
 
@@ -65,27 +65,27 @@ function ensureCy() {
    1. Consultar instancias en OpenStack
    ============================================================ */
 async function loadExistingScenario() {
-    console.log("🔍 Iniciando carga del escenario...");
+    console.log(" Iniciando carga del escenario...");
 
     try {
         const res = await fetch("/api/openstack/instances");
         const raw = await res.text();
 
-        console.log("📡 RAW API RESPONSE:", raw);
+        console.log(" RAW API RESPONSE:", raw);
 
         let data;
         try {
             data = JSON.parse(raw);
         } catch (err) {
-            console.error("❌ Error parseando JSON:", err);
+            console.error(" Error parseando JSON:", err);
             showNoScenario();
             return;
         }
 
-        console.log("📦 JSON PARSEADO:", data);
+        console.log(" JSON PARSEADO:", data);
 
         if (!data.instances || data.instances.length === 0) {
-            console.warn("⚠️ No hay instancias en OpenStack");
+            console.warn(" No hay instancias en OpenStack");
             showNoScenario();
             return;
         }
@@ -96,7 +96,7 @@ async function loadExistingScenario() {
                 name: vm.name,
                 type: detectType(vm.name),
 
-                // 🔥 Nueva información
+                //  Nueva información
                 ip: vm.ip_floating || vm.ip_private || "N/A",
                 ip_private: vm.ip_private,
                 ip_floating: vm.ip_floating,
@@ -115,7 +115,7 @@ async function loadExistingScenario() {
         loadScenarioTools(scenario);
 
     } catch (error) {
-        console.error("❌ Error llamando al backend:", error);
+        console.error(" Error llamando al backend:", error);
         showNoScenario();
     }
 }
@@ -137,8 +137,8 @@ function detectType(name) {
 function showNoScenario() {
     document.getElementById("instance-list").innerHTML = `
         <div class="p-4 bg-red-700 rounded-lg text-center">
-            ❌ No hay instancias en OpenStack.<br>
-            ⚠️ Verifica que OpenStack esté funcionando.
+             No hay instancias en OpenStack.<br>
+             Verifica que OpenStack esté funcionando.
         </div>
     `;
 
@@ -152,7 +152,7 @@ function showNoScenario() {
    3. Pintar grafo
    ============================================================ */
 function loadScenarioGraph(scenario) {
-    console.log("🎨 Renderizando grafo…");
+    console.log(" Renderizando grafo…");
 
     if (!ensureCy()) return;
 
@@ -226,15 +226,15 @@ async function selectInstanceFromScenario(node) {
     document.getElementById("instance-name").innerText = instanceName;
     document.getElementById("instance-ip").innerText = `Privada: ${node.ip_private || "N/A"} | Flotante: ${node.ip_floating || "N/A"}`;
 
-    // === 🔥 Cargar tools desde backend ===
+    // ===  Cargar tools desde backend ===
     let tools = [];
     try {
         const res = await fetch(`/api/get_tools_for_instance?instance=${instanceName}`);
         const data = await res.json();
         tools = data.tools || [];
-        node.tools = tools;  // 🔥 Guardar en memoria
+        node.tools = tools;  //  Guardar en memoria
     } catch (err) {
-        console.log("❌ Error obteniendo tools:", err);
+        console.log(" Error obteniendo tools:", err);
     }
 
     renderToolsList(tools);
@@ -262,12 +262,12 @@ function renderToolsList(tools) {
 
                 <button onclick="removeToolFromScenario('${tool}')"
                         class="text-red-500 font-bold">
-                    🗑 JSON
+                     JSON
                 </button>
 
                 <button onclick="uninstallTool('${tool}')"
                         class="text-yellow-400 font-bold">
-                    ⚙ Uninstall
+                     Uninstall
                 </button>
 
             </div>
@@ -320,38 +320,38 @@ async function addTool() {
    ============================================================ */
 async function loadToolsConfig() {
     const terminal = document.getElementById("tools-terminal");
-    terminal.innerHTML += "🔍 Leyendo archivos de configuración...\n";
+    terminal.innerHTML += " Leyendo archivos de configuración...\n";
 
     try {
         const res = await fetch("/api/read_tools_configs");
         const data = await res.json();
 
-        terminal.innerHTML += "📂 Archivos detectados:\n";
+        terminal.innerHTML += " Archivos detectados:\n";
 
         data.files.forEach(file => {
-            terminal.innerHTML += `➡ ${file.instance}: ${JSON.stringify(file.tools)}\n`;
+            terminal.innerHTML += ` ${file.instance}: ${JSON.stringify(file.tools)}\n`;
         });
 
-        terminal.innerHTML += "✅ Lectura completada.\n";
+        terminal.innerHTML += " Lectura completada.\n";
 
     } catch (err) {
-        terminal.innerHTML += `❌ Error leyendo archivos: ${err}\n`;
+        terminal.innerHTML += ` Error leyendo archivos: ${err}\n`;
     }
 }
 
 /* ============================================================
-   🔧 Ejecutar instalación de tools
+    Ejecutar instalación de tools
    ============================================================ */
 async function installTools() {
     const terminal = document.getElementById("tools-terminal");
-    terminal.innerHTML += "\n🚀 Iniciando instalación...\n";
+    terminal.innerHTML += "\n Iniciando instalación...\n";
     freezeUI();
 
     try {
         const res = await fetch("/api/install_tools", { method: "POST" });
 
         if (!res.ok) {
-            terminal.innerHTML += `❌ Error HTTP: ${res.status}\n`;
+            terminal.innerHTML += ` Error HTTP: ${res.status}\n`;
             unfreezeUI();
             return;
         }
@@ -373,10 +373,10 @@ async function installTools() {
             });
         }
 
-        terminal.innerHTML += "🎉 Finalizado.\n";
+        terminal.innerHTML += " Finalizado.\n";
 
     } catch (err) {
-        terminal.innerHTML += `❌ Error ejecutando instalación: ${err}\n`;
+        terminal.innerHTML += ` Error ejecutando instalación: ${err}\n`;
     }
 
     unfreezeUI();
@@ -384,7 +384,7 @@ async function installTools() {
 
 
 /* ============================================================
-   🔄 Eliminar tool SOLO de JSON
+    Eliminar tool SOLO de JSON
    ============================================================ */
 async function removeToolFromScenario(tool) {
     if (!selectedInstance) return;
@@ -417,13 +417,13 @@ async function removeToolFromScenario(tool) {
 }
 
 /* ============================================================
-   🔥 Desinstalación REAL via Backend
+    Desinstalación REAL via Backend
    ============================================================ */
 async function uninstallTool(tool) {
     if (!selectedInstance) return;
 
     const terminal = document.getElementById("tools-terminal");
-    terminal.innerHTML += `\n⛔ Desinstalando ${tool} en ${selectedInstance.name}...\n`;
+    terminal.innerHTML += `\n Desinstalando ${tool} en ${selectedInstance.name}...\n`;
 
     try {
         const payload = {
@@ -441,31 +441,31 @@ async function uninstallTool(tool) {
 
         const data = await res.json();
 
-        terminal.innerHTML += `➡ ${JSON.stringify(data, null, 2)}\n`;
+        terminal.innerHTML += ` ${JSON.stringify(data, null, 2)}\n`;
 
         if (data.status === "success" && data.exit_code === 0) {
-    console.log("🟢 Desinstalación verificada. Eliminando del JSON...");
+    console.log(" Desinstalación verificada. Eliminando del JSON...");
     selectedInstance.tools = selectedInstance.tools.filter(t => t !== tool);
 
     renderToolsList(selectedInstance.tools);
     updateToolsBackend(selectedInstance);
 
     } else {
-        console.warn("⚠ La herramienta NO se ha eliminado del sistema.");
-        console.warn("⚠ NO se actualizará el JSON porque todavía existen restos.");
+        console.warn(" La herramienta NO se ha eliminado del sistema.");
+        console.warn(" NO se actualizará el JSON porque todavía existen restos.");
 
-        terminal.innerHTML += "\n⚠ La herramienta sigue detectada en la instancia. Revisa logs.\n";
+        terminal.innerHTML += "\n La herramienta sigue detectada en la instancia. Revisa logs.\n";
     }
 
     } catch (err) {
-        terminal.innerHTML += `❌ Error al desinstalar ${tool}: ${err}\n`;
+        terminal.innerHTML += ` Error al desinstalar ${tool}: ${err}\n`;
     }
 }
 
 
 
 /* ============================================================
-   🔒 BLOQUEAR / DESBLOQUEAR FRONTEND
+    BLOQUEAR / DESBLOQUEAR FRONTEND
    ============================================================ */
 function freezeUI() {
     const overlay = document.createElement("div");

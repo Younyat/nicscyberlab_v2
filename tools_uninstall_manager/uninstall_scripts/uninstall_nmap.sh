@@ -27,10 +27,10 @@ EOF
 )
 
 if [[ -z "$VALID" ]]; then
-    echo "✔ Nmap eliminado correctamente"
+    echo " Nmap eliminado correctamente"
     exit 0
 else
-    echo "⚠ Nmap sigue presente:"
+    echo " Nmap sigue presente:"
     echo "$VALID"
     exit 3
 fi

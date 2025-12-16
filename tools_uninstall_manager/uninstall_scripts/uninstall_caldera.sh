@@ -95,9 +95,9 @@ EOF
 )
 
 if [[ -z "$OUT" ]]; then
-    echo "✔ LIMPIEZA OK: No queda rastro de Caldera"
+    echo " LIMPIEZA OK: No queda rastro de Caldera"
     exit 0
 else
-    echo "⚠ RASTROS DETECTADOS: $OUT"
+    echo " RASTROS DETECTADOS: $OUT"
     exit 3
 fi

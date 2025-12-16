@@ -54,7 +54,7 @@ fi
 
 INSTANCE_NAME="$1"
 
-echo "🔍 Buscando instancia '$INSTANCE_NAME'..."
+echo " Buscando instancia '$INSTANCE_NAME'..."
 INSTANCE_ID=$(openstack server list -f value -c ID -c Name | grep -w "$INSTANCE_NAME" | awk '{print $1}')
 
 if [ -z "$INSTANCE_ID" ]; then
@@ -67,7 +67,7 @@ echo "Instancia encontrada: $INSTANCE_ID"
 
 
 # Obtener URL de la consola
-echo "📡 Obteniendo URL de consola VNC..."
+echo " Obteniendo URL de consola VNC..."
 CONSOLE_URL=$(openstack console url show "$INSTANCE_NAME" -f value -c url)
 
 if [ -z "$CONSOLE_URL" ]; then

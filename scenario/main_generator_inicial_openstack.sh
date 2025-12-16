@@ -16,30 +16,30 @@ DEFAULT_KEYPAIR="cyberlab-key"
 LOCAL_KEYFILE="$HOME/.ssh/cyberlab-key"
 DEFAULT_EXTERNAL_NET="external-net"
 
-echo "📌 SCRIPT_DIR: $SCRIPT_DIR"
-echo "📌 REPO_ROOT : $REPO_ROOT"
-echo "📌 ADMIN_OPENRC : $ADMIN_OPENRC"
+echo " SCRIPT_DIR: $SCRIPT_DIR"
+echo " REPO_ROOT : $REPO_ROOT"
+echo " ADMIN_OPENRC : $ADMIN_OPENRC"
 
 # ======================================================================
 # === 1. Cargar credenciales ===========================================
 # ======================================================================
 
 if [ ! -f "$ADMIN_OPENRC" ]; then
-    echo "❌ ERROR: No se encontró admin-openrc.sh en el root del repositorio."
+    echo " ERROR: No se encontró admin-openrc.sh en el root del repositorio."
     echo "Ruta esperada: $ADMIN_OPENRC"
-    echo "⚠️ app.py debería haberlo generado automáticamente."
+    echo " app.py debería haberlo generado automáticamente."
     exit 1
 fi
 
 # shellcheck disable=SC1090
 source "$ADMIN_OPENRC"
-echo "🔐 Credenciales OpenStack cargadas desde: $ADMIN_OPENRC"
+echo " Credenciales OpenStack cargadas desde: $ADMIN_OPENRC"
 
 # Validar que hay token
 if openstack token issue >/dev/null 2>&1; then
-    echo "✔ Token OpenStack válido"
+    echo " Token OpenStack válido"
 else
-    echo "❌ ERROR: Credenciales inválidas (falló 'openstack token issue')."
+    echo " ERROR: Credenciales inválidas (falló 'openstack token issue')."
     exit 1
 fi
 
@@ -49,7 +49,7 @@ fi
 # ======================================================================
 
 if ! command -v jq >/dev/null 2>&1; then
-  echo "❌ Error: jq no está instalado."
+  echo " Error: jq no está instalado."
   exit 1
 fi
 
@@ -64,17 +64,17 @@ OUTDIR="${2:-./os_out}"
 mkdir -p "$OUTDIR"
 rm -f "$OUTDIR"/*.json
 
-echo "📁 Escenario JSON: $SCENARIO_JSON"
-echo "📂 Output: $OUTDIR"
-echo "🔑 Keypair objetivo: $DEFAULT_KEYPAIR"
-echo "🌐 Floating desde: $DEFAULT_EXTERNAL_NET"
+echo " Escenario JSON: $SCENARIO_JSON"
+echo " Output: $OUTDIR"
+echo " Keypair objetivo: $DEFAULT_KEYPAIR"
+echo " Floating desde: $DEFAULT_EXTERNAL_NET"
 
 
 # ======================================================================
 # === 3. Verificar todos los recursos ANTES de crear nada ==============
 # ======================================================================
 
-echo "🔍 Verificando recursos del escenario..."
+echo " Verificando recursos del escenario..."
 
 while read -r node; do
   name=$(echo "$node" | jq -r '.name')
@@ -96,7 +96,7 @@ done < <(jq -c '.nodes[]' "$SCENARIO_JSON")
 
 openstack network show "$DEFAULT_EXTERNAL_NET" >/dev/null
 
-echo "✔️ Verificación completada."
+echo " Verificación completada."
 echo "------------------------------------------------------------"
 
 
@@ -104,26 +104,26 @@ echo "------------------------------------------------------------"
 # === 4. Verificar / crear keypair =====================================
 # ======================================================================
 
-echo "🔐 Verificando keypair '$DEFAULT_KEYPAIR'..."
+echo " Verificando keypair '$DEFAULT_KEYPAIR'..."
 
 if openstack keypair show "$DEFAULT_KEYPAIR" >/dev/null 2>&1; then
-    echo "✔ La keypair existe en OpenStack."
+    echo " La keypair existe en OpenStack."
 else
-    echo "⚠ La keypair NO existe. Creándola…"
+    echo " La keypair NO existe. Creándola…"
 
     mkdir -p "$HOME/.ssh"
 
     if [ ! -f "$LOCAL_KEYFILE" ]; then
-        echo "🆕 Generando clave local $LOCAL_KEYFILE..."
+        echo " Generando clave local $LOCAL_KEYFILE..."
         ssh-keygen -t rsa -b 4096 -f "$LOCAL_KEYFILE" -N ""
     else
-        echo "✔ Usando clave local existente: $LOCAL_KEYFILE"
+        echo " Usando clave local existente: $LOCAL_KEYFILE"
     fi
 
     openstack keypair create "$DEFAULT_KEYPAIR" \
         --public-key "${LOCAL_KEYFILE}.pub"
 
-    echo "✔ Keypair '$DEFAULT_KEYPAIR' creada."
+    echo " Keypair '$DEFAULT_KEYPAIR' creada."
 fi
 
 echo "------------------------------------------------------------"
@@ -150,7 +150,7 @@ while read -r node; do
   safe=$(echo "$id" | tr -c '[:alnum:]' '_')
 
   echo ""
-  echo "🔥 CREANDO NODO → $name"
+  echo " CREANDO NODO → $name"
   echo "------------------------------------------------------------"
 
   # === Crear puerto ====================================================
@@ -160,7 +160,7 @@ while read -r node; do
         --security-group "$secgroup" \
         -f value -c id)
 
-  echo "   ✔ Puerto creado: $PORT_ID"
+  echo "    Puerto creado: $PORT_ID"
 
   # === Crear instancia =================================================
 
@@ -171,8 +171,8 @@ while read -r node; do
         --nic port-id="$PORT_ID" \
         -f value -c id)
 
-  echo "   🖥 Instancia creada, ID: $SERVER_ID"
-  echo "   ⏳ Esperando a ACTIVE..."
+  echo "    Instancia creada, ID: $SERVER_ID"
+  echo "    Esperando a ACTIVE..."
 
   # === Polling manual ==================================================
 
@@ -183,17 +183,17 @@ while read -r node; do
       STATUS=$(openstack server show "$SERVER_ID" -f value -c status)
 
       if [[ "$STATUS" == "ACTIVE" ]]; then
-          echo "   ✔ Estado ACTIVE."
+          echo "    Estado ACTIVE."
           break
       fi
 
       if [[ "$STATUS" == "ERROR" ]]; then
-          echo "❌ ERROR: La instancia $name entró en estado ERROR."
+          echo " ERROR: La instancia $name entró en estado ERROR."
           exit 1
       fi
 
       if (( attempt >= MAX_ATTEMPTS )); then
-          echo "❌ TIMEOUT esperando a que $name esté ACTIVE"
+          echo " TIMEOUT esperando a que $name esté ACTIVE"
           exit 1
       fi
 
@@ -206,11 +206,11 @@ while read -r node; do
   FIP=$(openstack floating ip create "$DEFAULT_EXTERNAL_NET" \
         -f value -c floating_ip_address)
 
-  echo "   🌍 Floating IP creada: $FIP"
+  echo "    Floating IP creada: $FIP"
 
   openstack server add floating ip "$SERVER_ID" "$FIP"
 
-  echo "   🔗 Floating IP asociada."
+  echo "    Floating IP asociada."
 
   # === Determinar usuario ==============================================
 
@@ -237,7 +237,7 @@ while read -r node; do
         ssh_user:$ssh_user
       }]')
 
-  echo "✔ Nodo $name creado correctamente."
+  echo " Nodo $name creado correctamente."
   echo "------------------------------------------------------------"
 
 done < <(jq -c '.nodes[]' "$SCENARIO_JSON")
@@ -252,6 +252,6 @@ echo "$SUMMARY" | jq '.' > "$SUMMARY_PATH"
 
 echo ""
 echo "============================================================"
-echo "🎉 ESCENARIO CREADO CORRECTAMENTE"
-echo "📄 summary.json → $SUMMARY_PATH"
+echo " ESCENARIO CREADO CORRECTAMENTE"
+echo " summary.json → $SUMMARY_PATH"
 echo "============================================================"

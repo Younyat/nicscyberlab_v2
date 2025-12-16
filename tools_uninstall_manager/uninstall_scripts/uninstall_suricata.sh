@@ -7,9 +7,9 @@ RULES_DIR=""
 LOG_DIR="/var/log/suricata"
 
 echo "===================================================="
-echo "🚀 Instalador de Suricata (PRO)"
+echo " Instalador de Suricata (PRO)"
 echo "===================================================="
-echo "🌍 IP final: $FLOATING_IP"
+echo " IP final: $FLOATING_IP"
 
 
 # -----------------------------------------
@@ -18,7 +18,7 @@ echo "🌍 IP final: $FLOATING_IP"
 INTERFACE=$(ip route get 8.8.8.8 | awk '{print $5; exit}')
 [[ -z "$INTERFACE" ]] && INTERFACE=$(ls /sys/class/net | grep -v lo | head -n1)
 
-echo "📡 Interfaz detectada: $INTERFACE"
+echo " Interfaz detectada: $INTERFACE"
 
 
 # -----------------------------------------
@@ -32,7 +32,7 @@ is_installed() {
 }
 
 if is_installed; then
-    echo "🎉 Suricata YA instalado y operativo."
+    echo " Suricata YA instalado y operativo."
     exit 0
 fi
 
@@ -40,7 +40,7 @@ fi
 # -----------------------------------------
 # Instalación limpia
 # -----------------------------------------
-echo "🆕 Instalando..."
+echo " Instalando..."
 apt update -y
 apt install -y suricata suricata-update jq net-tools
 
@@ -112,7 +112,7 @@ pgrep -f suricata >/dev/null || check "Proceso no ejecutándose"
 
 grep -q "ICMP" "$RULES_DIR/rules/local.rules" || check "Regla ICMP no configurada"
 
-echo "✔ Todo correcto"
+echo " Todo correcto"
 
 
 END_TIME=$(date +%s)

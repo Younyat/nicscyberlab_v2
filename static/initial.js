@@ -58,12 +58,12 @@ function terminalWrite(msg, colorClass = 'text-slate-100') {
   termOutput.scrollTop = termOutput.scrollHeight;
 }
 
-terminalWrite("🟢 Terminal listo...");
+terminalWrite(" Terminal listo...");
 setStatus("Configuración no guardada", "Modifica los campos y guarda antes de ejecutar.", "idle");
 
 document.getElementById("clear-terminal").onclick = () => {
   termOutput.textContent = "";
-  terminalWrite("🧹 Terminal limpiado.", 'text-slate-400');
+  terminalWrite(" Terminal limpiado.", 'text-slate-400');
 };
 
 /* ======================
@@ -122,7 +122,7 @@ document.querySelectorAll(".editable, input[type='radio']")
   .forEach(el => {
     el.addEventListener("input", () => {
       actualizarEstado(false);
-      terminalWrite("⚠️ Configuración modificada (no guardada)", 'text-amber-300');
+      terminalWrite(" Configuración modificada (no guardada)", 'text-amber-300');
     });
   });
 
@@ -159,9 +159,9 @@ function generarJSON() {
 saveBtn.onclick = () => {
   const cfg = generarJSON();
   actualizarEstado(true);
-  terminalWrite("💾 Configuración guardada localmente:", 'text-emerald-300');
+  terminalWrite(" Configuración guardada localmente:", 'text-emerald-300');
   terminalWrite(JSON.stringify(cfg, null, 2), 'text-slate-300');
-  showToast('✅ Configuración guardada localmente.');
+  showToast(' Configuración guardada localmente.');
 };
 
 /* ======================
@@ -191,14 +191,14 @@ function desbloquearBotones() {
 
 document.getElementById("apply-config").onclick = () => {
   if (!configGuardada) {
-    showToast("⚠️ Primero guarda la configuración.");
-    terminalWrite("⚠️ Intento de ejecución sin guardar configuración.", 'text-amber-400');
+    showToast(" Primero guarda la configuración.");
+    terminalWrite(" Intento de ejecución sin guardar configuración.", 'text-amber-400');
     return;
   }
 
   const cfg = generarJSON();
 
-  terminalWrite("📡 Enviando configuración al backend (nuevo generador)...", 'text-sky-300');
+  terminalWrite(" Enviando configuración al backend (nuevo generador)...", 'text-sky-300');
   setStatus("Ejecutando generador", "Contactando con el backend…", "warn");
   setProgress(60);
 
@@ -212,13 +212,13 @@ document.getElementById("apply-config").onclick = () => {
   })
   .then(async r => {
     const resp = await r.json();
-    terminalWrite("⬇️ Respuesta backend:", 'text-sky-200');
+    terminalWrite(" Respuesta backend:", 'text-sky-200');
     terminalWrite(JSON.stringify(resp, null, 2), 'text-slate-200');
 
  
 if ((r.status !== 200 && r.status !== 202) || (resp.status !== "success" && resp.status !== "running")) {
-    terminalWrite("❌ Error al iniciar el generador inicial", 'text-red-400');
-    showToast('❌ Error al iniciar el generador inicial.');
+    terminalWrite(" Error al iniciar el generador inicial", 'text-red-400');
+    showToast(' Error al iniciar el generador inicial.');
     setStatus("Error al ejecutar el generador", "Revisa los logs en la terminal.", "error");
     setProgress(30);
     desbloquearBotones();
@@ -228,8 +228,8 @@ if ((r.status !== 200 && r.status !== 202) || (resp.status !== "success" && resp
 
 
     // Éxito inmediato – el script sigue en background
-    terminalWrite("🚀 Generador iniciado en background.", 'text-emerald-300');
-    showToast('🚀 Generador inicial lanzado en segundo plano.');
+    terminalWrite(" Generador iniciado en background.", 'text-emerald-300');
+    showToast(' Generador inicial lanzado en segundo plano.');
     setStatus("Generador iniciado", "Backend ejecutando scripts…", "warn");
     setProgress(80);
 
@@ -241,8 +241,8 @@ if ((r.status !== 200 && r.status !== 202) || (resp.status !== "success" && resp
   })
   .catch(err => {
     console.error(err);
-    terminalWrite(`❌ Error de conexión: ${err}`, 'text-red-400');
-    showToast('❌ Error de conexión con el backend.');
+    terminalWrite(` Error de conexión: ${err}`, 'text-red-400');
+    showToast(' Error de conexión con el backend.');
     setStatus("Error de conexión", "No se pudo contactar con el backend.", "error");
     setProgress(20);
     desbloquearBotones();
@@ -262,7 +262,7 @@ function iniciarStream() {
 
   s.onmessage = e => {
     terminalWrite(e.data, 'text-slate-100');
-    if (e.data.includes("✅") || e.data.toLowerCase().includes("complete")) {
+    if (e.data.includes("") || e.data.toLowerCase().includes("complete")) {
       setStatus("Generador finalizado", "Escenario inicial desplegado (si no hubo errores).", "ok");
       setProgress(100);
       desbloquearBotones();
@@ -271,7 +271,7 @@ function iniciarStream() {
   };
 
   s.onerror = () => {
-    terminalWrite("❌ Stream cerrado", 'text-red-400');
+    terminalWrite(" Stream cerrado", 'text-red-400');
     s.close();
     desbloquearBotones();
     showOverlay(false);
@@ -284,8 +284,8 @@ function iniciarStream() {
 async function destruirConfig() {
   bloquearBotones();
   showOverlay(true);
-  terminalWrite('$ ⏳ Iniciando destrucción del escenario...', 'text-yellow-300');
-  showToast('⏳ Destruyendo escenario... Esto puede tardar unos segundos.');
+  terminalWrite('$  Iniciando destrucción del escenario...', 'text-yellow-300');
+  showToast(' Destruyendo escenario... Esto puede tardar unos segundos.');
   setStatus("Destruyendo escenario", "Ejecutando scripts de limpieza en OpenStack…", "warn");
   setProgress(50);
 
@@ -300,22 +300,22 @@ async function destruirConfig() {
 
     if (response.ok && data.status === "success") {
       if (data.stdout) terminalWrite(data.stdout, 'text-gray-300');
-      terminalWrite('✅ Escenario destruido correctamente.', 'text-emerald-400');
-      showToast('✅ Escenario destruido correctamente.');
+      terminalWrite(' Escenario destruido correctamente.', 'text-emerald-400');
+      showToast(' Escenario destruido correctamente.');
       setStatus("Escenario destruido", "La infraestructura inicial ha sido limpiada.", "ok");
       setProgress(20);
     } else {
-      terminalWrite('$ ⚠️ Error al destruir el escenario.', 'text-orange-400');
+      terminalWrite('$  Error al destruir el escenario.', 'text-orange-400');
       if (data.stderr) terminalWrite(data.stderr, 'text-red-300');
-      showToast('⚠️ No se pudo destruir completamente el escenario.');
+      showToast(' No se pudo destruir completamente el escenario.');
       setStatus("Error al destruir", "Revisa los logs para más detalles.", "error");
       setProgress(30);
     }
 
   } catch (err) {
     console.error("Error al destruir el escenario:", err);
-    terminalWrite(`$ ❌ Error al conectar con el backend: ${err}`, 'text-red-400');
-    showToast('❌ Error de conexión con el backend.');
+    terminalWrite(`$  Error al conectar con el backend: ${err}`, 'text-red-400');
+    showToast(' Error de conexión con el backend.');
     setStatus("Error de conexión", "No se pudo contactar con el backend.", "error");
     setProgress(30);
   } finally {
@@ -327,7 +327,7 @@ async function destruirConfig() {
 document.getElementById("destroy-config").onclick = () => {
   showConfirm(
     '¿Destruir la configuración inicial?',
-    '⚠️ Esta acción intentará eliminar los recursos desplegados en el escenario inicial. ¿Deseas continuar?',
+    ' Esta acción intentará eliminar los recursos desplegados en el escenario inicial. ¿Deseas continuar?',
     destruirConfig
   );
 };

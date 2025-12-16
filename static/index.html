@@ -3,55 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplicación con Menú Lateral y Contenido Incrustado</title>
+    <title>NICS CyberLab – Security Experimentation Platform</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style-index.css"> 
 </head>
+
 <body>
+
+    <!-- ===== HEADER ===== -->
     <header class="header-bg fixed top-0 left-0 w-full h-16 shadow-2xl z-30 flex items-center justify-between px-4 lg:px-8 backdrop-blur-sm">
-        <div class="text-2xl font-mono text-cyan-400 font-semibold tracking-wider">NICS|CyberLab</div>
+        <div class="text-2xl font-mono text-cyan-400 font-semibold tracking-wider">
+            NICS | CyberLab
+        </div>
+
         <nav class="space-x-4">
-            <a href="#" class="text-gray-300 hover:text-indigo-400 transition duration-150">Inicio</a>
-            <a href="#" class="text-gray-300 hover:text-indigo-400 transition duration-150">Perfil</a>
-            <a href="#" class="text-gray-300 hover:text-indigo-400 transition duration-150">Cerrar sesión</a>
+            <a href="#" class="text-gray-300 hover:text-indigo-400 transition duration-150">
+                Home
+            </a>
+            <a href="#" class="text-gray-300 hover:text-indigo-400 transition duration-150">
+                Profile
+            </a>
+            <a href="#" class="text-gray-300 hover:text-indigo-400 transition duration-150">
+                Sign Out
+            </a>
         </nav>
     </header>
-    
+
+    <!-- ===== SIDEBAR ===== -->
     <aside class="sidebar fixed top-16 left-0 w-64 h-[calc(100vh-64px)] bg-gray-800 text-white p-4 space-y-2 z-20 lg:block hidden">
-        <h2 class="text-lg font-mono text-cyan-400 font-semibold">Navegación</h2>
+
+        <h2 class="text-lg font-mono text-cyan-400 font-semibold">
+            Control Panel
+        </h2>
         
-         <a href="#" class="sidebar-link block p-2 rounded-lg hover:bg-indigo-700 transition duration-150" 
-            data-url="/initial.html">⚙️ Entorno Inicial – Configuración</a>
+        <a href="#"
+           class="sidebar-link block p-2 rounded-lg hover:bg-indigo-700 transition duration-150"
+           data-url="/initial.html">
+            Environment Initialization
+        </a>
             
-        <a href="#" class="sidebar-link block p-2 rounded-lg bg-indigo-600" 
-            data-url="/index-scenario.html">⚙️ Escenarios – Configuración</a>
-            
-       
-            
-        <a href="#" class="sidebar-link block p-2 rounded-lg hover:bg-indigo-700 transition duration-150" 
-            data-url="/index-tools.html">🛠️ Herramientas - Configuración</a>
-        <a href="#" class="sidebar-link block p-2 rounded-lg hover:bg-indigo-700 transition duration-150" 
-            data-url="/dashboard.html">🛠️ Dashboard</a>
+        <a href="#"
+           class="sidebar-link block p-2 rounded-lg bg-indigo-600"
+           data-url="/index-scenario.html">
+            Scenario Configuration
+        </a>
+
+        <a href="#"
+           class="sidebar-link block p-2 rounded-lg hover:bg-indigo-700 transition duration-150"
+           data-url="/index-tools.html">
+            Security Tools Management
+        </a>
+
+        <a href="#"
+           class="sidebar-link block p-2 rounded-lg hover:bg-indigo-700 transition duration-150"
+           data-url="/dashboard.html">
+            Monitoring Dashboard
+        </a>
+
+        <a href="#"
+           class="sidebar-link block p-2 rounded-lg hover:bg-indigo-700 transition duration-150"
+           data-url="/industrial.html">
+            Industrial / OT Scenarios
+        </a>
+
     </aside>
 
+    <!-- ===== MAIN CONTENT ===== -->
     <main class="min-h-screen">
         <div class="iframe-container">
             <iframe 
                 id="mainIframe"
-                src="/index-scenario.html" 
+                src="/index-scenario.html"
                 class="centered-iframe"
                 frameborder="0"
                 allowfullscreen
-                title="Contenido Externo Incrustado">
+                title="Embedded Content">
             </iframe>
         </div>
     </main>
-<!-- 🔹 FOOTER -->
+
+    <!-- ===== FOOTER ===== -->
     <footer class="text-center text-gray-400 text-sm border-t border-gray-700 py-3 bg-gray-800">
-        © 2025 NICS Lab | Universidad de Málaga
+        2025 NICS Lab | University of Málaga
     </footer>
 
-  
+    <!-- ===== JS ===== -->
     <script src="script-index.js"></script> 
+
 </body>
 </html>

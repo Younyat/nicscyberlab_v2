@@ -228,7 +228,7 @@ body {
 }
 
 .security-options-group input[type="checkbox"]:checked::before {
-    content: '✔';
+    content: '';
     display: block;
     color: var(--bg-dark);
     font-size: 12px;

@@ -67,7 +67,7 @@ ss -tunlp | grep -q ":1515" && HAS_WAZUH=true
 echo " Validando eliminación de Wazuh..."
 
 if [[ "$HAS_WAZUH" == false ]]; then
-    echo "✔ LIMPIEZA CORRECTA: No quedan rastros de Wazuh."
+    echo " LIMPIEZA CORRECTA: No quedan rastros de Wazuh."
     exit 0
 else
     echo " VALIDACIÓN FALLIDA: Aún quedan restos."

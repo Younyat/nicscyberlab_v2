@@ -74,14 +74,14 @@ SCRIPTS_DIR = os.path.join(BASE_DIR, "tools_uninstall_manager", "uninstall_scrip
 
 
 # ============================================================
-# 🗑 Desinstalar herramienta
+#  Desinstalar herramienta
 # ============================================================
 def uninstall_tool(instance: str, tool: str, ip_private: str, ip_floating: str):
-    logger.info(f"🗑 Solicitada eliminación '{tool}' en instancia '{instance}'")
+    logger.info(f" Solicitada eliminación '{tool}' en instancia '{instance}'")
 
     script = os.path.join(SCRIPTS_DIR, f"uninstall_{tool}.sh")
     if not os.path.exists(script):
-        logger.warning(f"⚠ No existe script uninstall: {script}")
+        logger.warning(f" No existe script uninstall: {script}")
         return {
             "status": "error",
             "msg": f"No existe script de uninstall para {tool}",
@@ -91,7 +91,7 @@ def uninstall_tool(instance: str, tool: str, ip_private: str, ip_floating: str):
 
     os.chmod(script, 0o755)
 
-    # 🔍 Detectar usuario SSH correcto
+    #  Detectar usuario SSH correcto
     ssh_user = detect_instance_os_and_user(
         instance,
         ip_floating or ip_private
@@ -119,7 +119,7 @@ def uninstall_tool(instance: str, tool: str, ip_private: str, ip_floating: str):
         removed, updated_tools = remove_tool_from_json(instance, tool)
         return {
             "status": "success",
-            "msg": f"✔ '{tool}' desinstalada COMPLETAMENTE de '{instance}'",
+            "msg": f" '{tool}' desinstalada COMPLETAMENTE de '{instance}'",
             "exit_code": exit_code,
             "script_executed": True,
             "stdout": proc.stdout,
@@ -131,7 +131,7 @@ def uninstall_tool(instance: str, tool: str, ip_private: str, ip_floating: str):
         current_tools, _ = load_tools(instance)
         return {
             "status": "warning",
-            "msg": f"⚠ '{tool}' sigue instalada en '{instance}'. Validación falló.",
+            "msg": f" '{tool}' sigue instalada en '{instance}'. Validación falló.",
             "exit_code": exit_code,
             "script_executed": True,
             "stdout": proc.stdout,

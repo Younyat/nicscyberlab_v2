@@ -1,17 +1,17 @@
 #!/bin/bash
-#bash openstack-installer.sh 2>&1 | tee nombre_del_log.log
-
 # ============================================================
-#  Script completo: Instalación OpenStack + Kolla-Ansible
+# Script completo: Instalación OpenStack + Kolla-Ansible
 # ============================================================
 
 set -euo pipefail
-set -x  # Debug mode
+trap 'echo "⚠️  Error en la línea $LINENO. Abortando."; exit 1;' ERR
 
-echo "🚀 Iniciando automatización de instalación de OpenStack..."
+echo "🔹 Iniciando despliegue automatizado de OpenStack..."
+
+START_TIME=$(date +%s)
 
 # ============================================================
-# 1️⃣ CREAR ENTORNO VIRTUAL LOCAL (en el directorio del instalador)
+# 1️⃣ CREAR ENTORNO VIRTUAL
 # ============================================================
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 VENV_PATH="$SCRIPT_DIR/openstack_venv"
@@ -26,59 +26,65 @@ python3.12 -m venv "$VENV_PATH"
 source "$VENV_PATH/bin/activate"
 export PATH="$VENV_PATH/bin:$PATH"
 
-echo "✅ Entorno virtual activado: $(which python)"
-echo "📦 Entorno creado en: $VENV_PATH"
-
+echo "[✔] Entorno virtual activado: $(which python)"
+echo "Entorno creado en: $VENV_PATH"
 
 python -m ensurepip --upgrade
 python -m pip install --upgrade pip setuptools wheel
-#which pip
-#pip --version
+
 # ============================================================
-# 2️⃣ INSTALAR DEPENDENCIAS DEL SISTEMA
+# 2️⃣ DEPENDENCIAS DEL SISTEMA
 # ============================================================
 echo "🔹 Instalando dependencias del sistema..."
 sudo apt install -y git iptables bridge-utils wget curl dbus pkg-config \
 cmake build-essential libdbus-1-dev libglib2.0-dev sudo gnupg \
 apt-transport-https ca-certificates software-properties-common
 
-# ✅ Ahora ya se puede instalar dbus-python
 python -m pip install dbus-python docker
 
 # ============================================================
-# 2️⃣ INSTALAR DEPENDENCIAS DEL SISTEMA
+# 3️⃣ CONFIGURACIÓN DOCKER
 # ============================================================
-echo "🔹 Instalando dependencias del sistema..."
-sudo apt install -y git iptables bridge-utils wget curl dbus pkg-config \
-libdbus-1-dev libglib2.0-dev sudo gnupg apt-transport-https \
-ca-certificates software-properties-common
+echo "🔹 Configurando Docker..."
 
-# ============================================================
-# 3️⃣ CONFIGURAR DOCKER Y TERRAFORM
-# ============================================================
-echo "🔹 Configurando Docker y Terraform..."
-sudo rm -f /etc/apt/sources.list.d/docker.list
-sudo rm -rf /etc/apt/keyrings/docker.asc
-sudo mkdir -p /usr/share/keyrings
+# Crear carpeta para keyrings si no existe
+sudo mkdir -p /etc/apt/keyrings
 
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
-  sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+DOCKER_KEYRING="/etc/apt/keyrings/docker.gpg"
 
+# Descargar la clave GPG
+if [ ! -f "$DOCKER_KEYRING" ]; then
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o "$DOCKER_KEYRING"
+    echo "[✔] Clave GPG de Docker descargada."
+else
+    echo "[✔] Clave GPG de Docker ya existe, se omite descarga."
+fi
+
+# Configurar el repositorio con clave correcta
 ARCH=$(dpkg --print-architecture)
 DISTRO=$(lsb_release -cs)
-echo "deb [arch=$ARCH signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] \
-https://download.docker.com/linux/ubuntu $DISTRO stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list
+REPO_FILE="/etc/apt/sources.list.d/docker.list"
 
+if [ ! -f "$REPO_FILE" ]; then
+    echo "deb [arch=$ARCH signed-by=$DOCKER_KEYRING] https://download.docker.com/linux/ubuntu $DISTRO stable" | \
+    sudo tee "$REPO_FILE"
+    echo "[✔] Repositorio Docker añadido."
+else
+    echo "[✔] Repositorio Docker ya existe, se omite."
+fi
+
+# Actualizar apt y instalar Docker
 sudo apt update -y
 sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
-sudo snap install terraform --classic || sudo apt install -y terraform
 
+# Activar Docker y añadir usuario al grupo
 sudo systemctl enable docker --now
 sudo usermod -aG docker "$USER"
 
+echo "[✔] Docker configurado correctamente."
+
 # ============================================================
-# 4️⃣ INSTALAR DEPENDENCIAS PYTHON Y KOLLA-ANSIBLE
+# 4️⃣ KOLLA-ANSIBLE Y DEPENDENCIAS PYTHON
 # ============================================================
 echo "🔹 Instalando dependencias Python y Kolla-Ansible..."
 REQ_FILE="requirements.txt"
@@ -162,114 +168,53 @@ wrapt==1.17.2
 wsproto==1.2.0
 EOF
 
-pip install -r "$REQ_FILE" --no-cache-dir
+pip install -r "$REQ_FILE" --no-cache-dir || { echo "❌ Fallo en instalación Python packages"; exit 1; }
 
-echo "✅ Dependencias Python instaladas correctamente."
-
-
+echo "[✔] Dependencias Python instaladas correctamente."
 
 # ============================================================
-# 7️⃣.1 HABILITAR REENVÍO DE PAQUETES IPv4 (REQUISITO DE RED)
-# ============================================================
-echo "🔹 Verificando el reenvío de paquetes IPv4..."
-
-# Habilitar temporalmente el reenvío de paquetes
-sudo sysctl -w net.ipv4.conf.all.forwarding=1
-
-# Comprobar si ya está en /etc/sysctl.conf; si no, añadirlo
-if ! grep -q "^net.ipv4.conf.all.forwarding=1" /etc/sysctl.conf; then
-  echo "net.ipv4.conf.all.forwarding=1" | sudo tee -a /etc/sysctl.conf > /dev/null
-  echo "✅ Configuración añadida a /etc/sysctl.conf"
-else
-  echo "ℹ️  La configuración de reenvío ya estaba habilitada en /etc/sysctl.conf"
-fi
-
-# Aplicar los cambios del archivo sysctl.conf
-sudo sysctl -p
-
-echo "✅ Reenvío de paquetes IPv4 habilitado correctamente."
-
-
-
-# ============================================================
-# 🔧 CONFIGURAR TOPOLOGÍA DE RED (DESPUÉS DEL DEPLOY)
-# ============================================================
-if [ -f "./setup-veth.sh" ]; then
-  echo "🔹 Configurando red virtual post-deploy..."
-  chmod +x ./setup-veth.sh
-  sudo bash ./setup-veth.sh
-  echo "✅ Red virtual configurada correctamente."
-else
-  echo "⚠️  No se encontró setup-veth.sh, continuando..."
-fi
-
-
-
-# ============================================================
-# 5️⃣ CONFIGURAR ARCHIVOS DE KOLLA
+# 5️⃣ ARCHIVOS KOLLA
 # ============================================================
 KOLLA_EXAMPLES="$VENV_PATH/share/kolla-ansible/etc_examples/kolla"
 KOLLA_INVENTORY="$VENV_PATH/share/kolla-ansible/ansible/inventory"
 
 sudo mkdir -p /etc/kolla/ansible/inventory
-
-# Copiar TODO el contenido del directorio de ejemplos
 sudo cp -r "$KOLLA_EXAMPLES"/* /etc/kolla/
-
-# Copiar inventario de ejemplo (all-in-one)
 sudo cp "$KOLLA_INVENTORY/all-in-one" /etc/kolla/ansible/inventory/
-
-# Cambiar propietario
 sudo chown -R "$USER:$USER" /etc/kolla
 
-echo "✅ Archivos de configuración de Kolla copiados completamente."
-# ============================================================
-# 6️⃣ GENERAR PASSWORDS Y CONFIGURAR GLOBALS
-# ============================================================
+echo "[✔] Archivos de configuración de Kolla copiados completamente."
 
+# ============================================================
+# 6️⃣ PASSWORDS Y GLOBALS
+# ============================================================
 sudo chown "$USER:$USER" /etc/kolla/passwords.yml
 kolla-genpwd || true
 
-
-# === Detectar SUBNET automáticamente ================================
-MAIN_IFACE=$(ip route | awk '/default/ {print $5; exit}')
-MAIN_IP=$(ip -4 addr show "$MAIN_IFACE" | awk '/inet / {print $2}' | cut -d/ -f1)
-SUBNET=$(echo "$MAIN_IP" | cut -d. -f1-3)
-
-echo "📌 Interfaz detectada: $MAIN_IFACE"
-echo "📌 IP principal:       $MAIN_IP"
-echo "📌 SUBNET detectada:   $SUBNET"
-# ====================================================================
-
-
-# === Buscar IP libre para VIP =======================================
+LOCAL_IP=$(hostname -I | awk '{print $1}')
+SUBNET=$(echo "$LOCAL_IP" | awk -F. '{print $1"."$2"."$3}')
 START=10
-END=50
+END=200
 VIP=""
 
-echo "🔎 Buscando IP libre en rango $SUBNET.$START → $SUBNET.$END..."
-
+echo "🔹 Subred detectada automáticamente: $SUBNET.0/24"
 for i in $(seq $START $END); do
-  IP="$SUBNET.$i"
-  if ! ping -c 1 -W 1 "$IP" &>/dev/null; then
-    VIP="$IP"
-    echo "✅ IP libre encontrada: $VIP"
-    break
-  fi
+    IP="$SUBNET.$i"
+    if ! ping -c 1 -W 1 "$IP" &>/dev/null; then
+        VIP="$IP"
+        echo "[✔] IP libre encontrada: $VIP"
+        break
+    fi
 done
 
-[ -z "$VIP" ] && { echo "❌ No se encontró IP libre en el rango."; exit 1; }
+[ -z "$VIP" ] && { echo "❌ No se encontró IP libre"; exit 1; }
 
+DEFAULT_IFACE=$(ip route get 8.8.8.8 2>/dev/null | awk '/dev/ {for(i=1;i<=NF;i++){ if($i=="dev") print $(i+1)}}' | head -n1)
+[ -z "$DEFAULT_IFACE" ] && DEFAULT_IFACE=$(ip route | awk '/default/ {print $5; exit}')
 
-# === Detectar interfaz de red principal para Kolla ===================
-DEFAULT_IFACE=$(ip route | awk '/default/ {print $5; exit}')
+echo "[+] Interfaz predeterminada detectada: $DEFAULT_IFACE"
 
-echo "🔧 network_interface detectado para Kolla: $DEFAULT_IFACE"
-
-
-# === Generar archivo globals.yml =====================================
-echo "📝 Generando /etc/kolla/globals.yml..."
-
+[ -f /etc/kolla/globals.yml ] && sudo cp /etc/kolla/globals.yml /etc/kolla/globals.yml.bak
 sudo tee /etc/kolla/globals.yml > /dev/null <<EOF
 kolla_base_distro: "ubuntu"
 network_interface: "$DEFAULT_IFACE"
@@ -278,17 +223,12 @@ kolla_internal_vip_address: "$VIP"
 EOF
 
 sudo chown "$USER:$USER" /etc/kolla/globals.yml
+echo "[✔] globals.yml generado automáticamente con éxito."
 
-echo "✔ Archivo globals.yml configurado correctamente"
-echo "📍 VIP final:     $VIP"
-echo "📍 Interfaz:      $DEFAULT_IFACE"
-
-
-# === Export PATH ======================================================
 export PATH="$VENV_PATH/bin:$PATH"
 
 # ============================================================
-# 7️⃣ INSTALAR COLECCIONES DE ANSIBLE GALAXY Y FIX MODPROBE
+# 7️⃣ COLECCIONES ANSIBLE
 # ============================================================
 echo "🔹 Instalando colecciones de Ansible Galaxy..."
 kolla-ansible install-deps
@@ -299,9 +239,10 @@ ansible-galaxy collection install \
   community.docker \
   openstack.cloud --collections-path ~/.ansible/collections
 
-# Crear módulo modprobe (faltante en posix>=2.x)
-mkdir -p ~/.ansible/collections/ansible_collections/ansible/posix/plugins/modules/
-cat << 'EOF' > ~/.ansible/collections/ansible_collections/ansible/posix/plugins/modules/modprobe.py
+MODPROBE_FILE=~/.ansible/collections/ansible_collections/ansible/posix/plugins/modules/modprobe.py
+if [ ! -f "$MODPROBE_FILE" ]; then
+mkdir -p "$(dirname "$MODPROBE_FILE")"
+cat << 'EOF' > "$MODPROBE_FILE"
 #!/usr/bin/python
 from ansible.module_utils.basic import AnsibleModule
 import subprocess
@@ -321,36 +262,35 @@ def main():
 if __name__ == '__main__':
     main()
 EOF
+chmod +x "$MODPROBE_FILE"
+fi
 
-chmod +x ~/.ansible/collections/ansible_collections/ansible/posix/plugins/modules/modprobe.py
-echo "✅ Colecciones Ansible y fix de modprobe configurados."
+echo "[✔] Colecciones Ansible y fix de modprobe configurados."
 
 # ============================================================
-# 8️⃣ DESPLIEGUE DE OPENSTACK
+# 8️⃣ DESPLIEGUE OPENSTACK
 # ============================================================
-
-
-echo "🚀 Iniciando despliegue de OpenStack..."
+echo "🔹 Desplegando OpenStack..."
 kolla-ansible bootstrap-servers -i /etc/kolla/ansible/inventory/all-in-one
 kolla-ansible prechecks -i /etc/kolla/ansible/inventory/all-in-one
 kolla-ansible deploy -i /etc/kolla/ansible/inventory/all-in-one
 kolla-ansible post-deploy
 
-
-# CAMBIAR DE PERMISOS EL ENTORNO AL USUARIO LOCAL
-sudo chown -R nics:nics "$VENV_PATH"
+sudo chown -R "$USER:$USER" "$VENV_PATH"
 
 # ============================================================
-# 9️⃣ CLIENTE OPENSTACK Y PERMISOS
+# 9️⃣ PERMISOS Y FINALIZACIÓN
 # ============================================================
 echo "🔹 Instalando cliente OpenStack..."
 pip install python-openstackclient -c https://releases.openstack.org/constraints/upper/master
 
-# Permisos de seguridad
 sudo chown -R root:root /etc/kolla
 sudo chmod -R 640 /etc/kolla/*.yml
 
-echo "✅ Instalación completada. Ejecuta:"
-echo "   source /etc/kolla/admin-openrc.sh"
-echo "   openstack project list"
-echo "🎉 OpenStack desplegado correctamente con Kolla-Ansible."
+END_TIME=$(date +%s)
+TOTAL=$((END_TIME - START_TIME))
+MIN=$((TOTAL / 60))
+SEC=$((TOTAL % 60))
+
+echo "[✔] Despliegue completado correctamente."
+echo "[⏱] Tiempo total: ${MIN} min ${SEC} s"
