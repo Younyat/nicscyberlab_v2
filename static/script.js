@@ -183,14 +183,14 @@ function addNode(x, y) {
     id: nodeId,
     name: `${nodeType} ${nodeCounter}`,
     type: nodeType,
-    os: 'Debian-12',
+    os: "linux",
     ip: `192.168.1.${100 + nodeCounter}`,
-    network: 'private-net',
-    subnetwork: 'private-subnet',
-    flavor: 'medium',
+     network: "net_private_01",
+            subnet: "subnet_net_private_01",
+    flavor: "S_2CPU_4GB",
     image: 'ubuntu-22.04',
-    securityGroup: 'allow-ssh-icmp',
-    sshKey: 'cyberlab-key'
+    security_group: "sg_basic",
+    keypair: "my_key",
   };
   cy.add({ group: 'nodes', data: nodeData, position: { x, y } });
   currentMode = 'select';
@@ -251,21 +251,21 @@ function clearAll() {
 // PROPIEDADES DE NODOS
 // =======================
 function loadNodeProperties(node) {
-  document.getElementById('nodeNetwork').value = node.data('network') || 'private-net';
-  document.getElementById('nodeSubNetwork').value = node.data('subnetwork') || 'private-subnet';
-  document.getElementById('nodeFlavor').value = node.data('flavor') || 'medium';
+  document.getElementById('nodeNetwork').value = node.data('network') || 'net_private_01';
+  document.getElementById('nodeSubNetwork').value = node.data('subnet') || 'subnet_net_private_01';
+  document.getElementById('nodeFlavor').value = node.data('flavor') || 'S_2CPU_4GB';
   document.getElementById('nodeImage').value = node.data('image') || 'ubuntu-22.04';
-  document.getElementById('nodeSecurityGroup').value = node.data('securityGroup') || 'allow-ssh-icmp';
-  document.getElementById('nodeSSHKey').value = node.data('sshKey') || 'cyberlab-key';
+  document.getElementById('nodeSecurityGroup').value = node.data('security_group') || 'sg_basic';
+  document.getElementById('nodeSSHKey').value = node.data('keypair') || 'my_key';
 }
 
 function clearNodeProperties() {
-  document.getElementById('nodeNetwork').value = 'private-net';
-  document.getElementById('nodeSubNetwork').value = 'private-subnet';
-  document.getElementById('nodeFlavor').value = 'medium';
+  document.getElementById('nodeNetwork').value = 'net_private_01';
+  document.getElementById('nodeSubNetwork').value = 'subnet_net_private_01';
+  document.getElementById('nodeFlavor').value = 'S_2CPU_4GB';
   document.getElementById('nodeImage').value = 'ubuntu-22.04';
-  document.getElementById('nodeSecurityGroup').value = 'allow-ssh-icmp';
-  document.getElementById('nodeSSHKey').value = 'cyberlab-key';
+  document.getElementById('nodeSecurityGroup').value = 'sg_basic';
+  document.getElementById('nodeSSHKey').value = 'my_key';
 }
 
 function updateNodeProperties(showToastMsg = true) {
@@ -276,11 +276,11 @@ function updateNodeProperties(showToastMsg = true) {
   }
   const node = selected[0];
   node.data('network', document.getElementById('nodeNetwork').value);
-  node.data('subnetwork', document.getElementById('nodeSubNetwork').value);
+  node.data('subnet', document.getElementById('nodeSubNetwork').value);
   node.data('flavor', document.getElementById('nodeFlavor').value);
   node.data('image', document.getElementById('nodeImage').value);
-  node.data('securityGroup', document.getElementById('nodeSecurityGroup').value);
-  node.data('sshKey', document.getElementById('nodeSSHKey').value);
+  node.data('security_group', document.getElementById('nodeSecurityGroup').value);
+  node.data('keypair', document.getElementById('nodeSSHKey').value);
   if (showToastMsg) showToast('Nodo actualizado');
 }
 
@@ -348,11 +348,11 @@ function getScenarioData() {
       os: node.data('image'),
       ip: node.data('ip'),
       network: node.data('network'),
-      subnetwork: node.data('subnetwork'),
+      subnet: node.data('subnet'),
       flavor: node.data('flavor'),
       image: node.data('image'),
-      securityGroup: node.data('securityGroup'),
-      sshKey: node.data('sshKey')
+      security_group: node.data('security_group'),
+      keypair: node.data('keypair')
     }
   }));
   const edges = cy.edges().map(edge => ({
@@ -620,11 +620,11 @@ async function loadScenario() {
           os: node.properties?.image,
           ip: node.properties?.ip,
           network: node.properties?.network,
-          subnetwork: node.properties?.subnetwork,
+          subnet: node.properties?.subnet,
           flavor: node.properties?.flavor,
           image: node.properties?.image,
-          securityGroup: node.properties?.securityGroup,
-          sshKey: node.properties?.sshKey
+          security_group: node.properties?.security_group,
+          keypair: node.properties?.keypair
         },
         position: node.position
       });

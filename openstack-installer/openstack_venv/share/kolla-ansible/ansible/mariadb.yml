@@ -4,7 +4,7 @@
   gather_facts: false
   hosts:
     - mariadb
-    - '&enable_mariadb_True'
+    - "&enable_mariadb_True"
   max_fail_percentage: >-
     {{ mariadb_max_fail_percentage |
        default(kolla_max_fail_percentage) |
@@ -12,14 +12,15 @@
   tags:
     - mariadb
   tasks:
-    - import_role:
+    - name: Apply mariadb role
+      import_role:
         name: mariadb
 
 - name: Restart mariadb services
   gather_facts: false
   hosts:
     - mariadb_restart
-    - '&enable_mariadb_True'
+    - "&enable_mariadb_True"
   # Restart in batches
   serial: "33%"
   max_fail_percentage: >-
@@ -29,7 +30,8 @@
   tags:
     - mariadb
   tasks:
-    - import_role:
+    - name: Restart mariadb services
+      import_role:
         name: mariadb
         tasks_from: restart_services.yml
 
@@ -37,7 +39,7 @@
   gather_facts: false
   hosts:
     - mariadb_start
-    - '&enable_mariadb_True'
+    - "&enable_mariadb_True"
   # Start in batches
   serial: "33%"
   max_fail_percentage: >-
@@ -47,7 +49,8 @@
   tags:
     - mariadb
   tasks:
-    - import_role:
+    - name: Start mariadb services
+      import_role:
         name: mariadb
         tasks_from: restart_services.yml
 
@@ -55,7 +58,7 @@
   gather_facts: false
   hosts:
     - mariadb_bootstrap_restart
-    - '&enable_mariadb_True'
+    - "&enable_mariadb_True"
   max_fail_percentage: >-
     {{ mariadb_max_fail_percentage |
        default(kolla_max_fail_percentage) |
@@ -63,7 +66,8 @@
   tags:
     - mariadb
   tasks:
-    - import_role:
+    - name: Restart bootstrap mariadb service
+      import_role:
         name: mariadb
         tasks_from: restart_services.yml
 
@@ -71,7 +75,7 @@
   gather_facts: false
   hosts:
     - mariadb
-    - '&enable_mariadb_True'
+    - "&enable_mariadb_True"
   max_fail_percentage: >-
     {{ mariadb_max_fail_percentage |
        default(kolla_max_fail_percentage) |

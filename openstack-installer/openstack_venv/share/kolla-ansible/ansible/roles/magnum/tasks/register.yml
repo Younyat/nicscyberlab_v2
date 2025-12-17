@@ -1,5 +1,6 @@
 ---
-- import_role:
+- name: Register magnum service, endpoints, and users in Keystone
+  import_role:
     name: service-ks-register
   vars:
     service_ks_register_auth: "{{ openstack_magnum_auth }}"
@@ -19,7 +20,7 @@
       cacert: "{{ openstack_cacert }}"
       region_name: "{{ openstack_region_name }}"
   register: trustee_domain
-  run_once: True
+  run_once: true
 
 - name: Creating Magnum trustee user
   become: true
@@ -35,7 +36,7 @@
       endpoint_type: "{{ openstack_interface }}"
       cacert: "{{ openstack_cacert }}"
       region_name: "{{ openstack_region_name }}"
-  run_once: True
+  run_once: true
 
 - name: Creating Magnum trustee user role
   become: true
@@ -50,5 +51,5 @@
       endpoint_type: "{{ openstack_interface }}"
       cacert: "{{ openstack_cacert }}"
       region_name: "{{ openstack_region_name }}"
-  run_once: True
+  run_once: true
   when: not ansible_check_mode

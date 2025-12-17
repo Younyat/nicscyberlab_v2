@@ -1,5 +1,6 @@
 ---
-- import_role:
+- name: Precheck masakari configuration
+  import_role:
     name: service-precheck
   vars:
     service_precheck_services: "{{ masakari_services }}"
@@ -27,7 +28,7 @@
     - inventory_hostname in groups['masakari-api']
 
 - name: Checking for coordination backend if running in multinode setup
-  run_once: True
+  run_once: true
   fail:
     msg: "Please enable Valkey or etcd when running in multinode scenario."
   when:

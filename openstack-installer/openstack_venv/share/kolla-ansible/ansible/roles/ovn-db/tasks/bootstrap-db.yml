@@ -15,13 +15,14 @@
     {{ kolla_container_engine }} exec ovn_nb_db
     ovs-appctl -t /var/run/ovn/ovnnb_db.ctl
     cluster/status OVN_Northbound
-  changed_when: False
+  changed_when: false
   register: ovn_nb_cluster_status
 
 - name: Configure OVN NB connection settings
   vars:
     search_string: "Role: leader"
   become: true
+  changed_when: true
   command: >-
     {{ kolla_container_engine }} exec ovn_nb_db
     ovn-nbctl
@@ -40,13 +41,14 @@
     {{ kolla_container_engine }} exec ovn_sb_db
     ovs-appctl -t /var/run/ovn/ovnsb_db.ctl
     cluster/status OVN_Southbound
-  changed_when: False
+  changed_when: false
   register: ovn_sb_cluster_status
 
 - name: Configure OVN SB connection settings
   vars:
     search_string: "Role: leader"
   become: true
+  changed_when: true
   command: >-
     {{ kolla_container_engine }} exec ovn_sb_db
     ovn-sbctl

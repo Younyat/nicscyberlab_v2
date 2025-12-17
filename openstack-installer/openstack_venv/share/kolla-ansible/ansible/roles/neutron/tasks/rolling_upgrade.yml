@@ -1,11 +1,15 @@
 ---
-- import_tasks: config-host.yml
+- name: Import tasks from config-host.yml
+  import_tasks: config-host.yml
 
-- import_tasks: config.yml
+- name: Import tasks from config.yml
+  import_tasks: config.yml
 
-- import_tasks: check-containers.yml
+- name: Import tasks from check-containers.yml
+  import_tasks: check-containers.yml
 
-- include_tasks: config-neutron-fake.yml
+- name: Include tasks from config-neutron-fake.yml
+  include_tasks: config-neutron-fake.yml
   when:
     - inventory_hostname in groups['compute']
     - enable_nova_fake | bool
@@ -17,7 +21,7 @@
   kolla_container:
     action: "start_container"
     common_options: "{{ docker_common_options }}"
-    detach: False
+    detach: false
     environment:
       KOLLA_UPGRADE:
       NEUTRON_DB_EXPAND:
@@ -29,7 +33,7 @@
     name: "bootstrap_neutron"
     restart_policy: oneshot
     volumes: "{{ neutron_server.volumes }}"
-  run_once: True
+  run_once: true
   delegate_to: "{{ groups['neutron-server'][0] }}"
 
 - name: Flush Handlers
@@ -37,9 +41,10 @@
 
 - name: Checking neutron pending contract scripts
   become: true
+  changed_when: false
   command: "{{ kolla_container_engine }} exec -t neutron_server neutron-db-manage --subproject {{ item }} has_offline_migrations"
   register: neutron_check_contract_db_stdout
-  ignore_errors: yes
+  ignore_errors: true
   with_items: "{{ neutron_rolling_upgrade_services }}"
   when: inventory_hostname == groups['neutron-server'][0]
 
@@ -69,7 +74,7 @@
   kolla_container:
     action: "start_container"
     common_options: "{{ docker_common_options }}"
-    detach: False
+    detach: false
     environment:
       KOLLA_UPGRADE:
       NEUTRON_DB_CONTRACT:
@@ -81,7 +86,7 @@
     name: "bootstrap_neutron"
     restart_policy: oneshot
     volumes: "{{ neutron_server.volumes }}"
-  run_once: True
+  run_once: true
   delegate_to: "{{ groups['neutron-server'][0] }}"
 
 # Flush handlers here to ensure neutron-server containers are started

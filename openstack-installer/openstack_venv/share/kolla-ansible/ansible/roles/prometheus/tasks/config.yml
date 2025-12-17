@@ -9,7 +9,8 @@
     mode: "0770"
   with_dict: "{{ prometheus_services | select_services_enabled_and_mapped_to_host }}"
 
-- include_tasks: copy-certs.yml
+- name: Copying over TLS certificates
+  include_tasks: copy-certs.yml
   when:
     - prometheus_copy_certs | bool
 
@@ -25,7 +26,7 @@
   find:
     path: "{{ node_custom_config }}/prometheus/"
     pattern: "*.rules"
-  run_once: True
+  run_once: true
   delegate_to: localhost
   register: prometheus_alert_rules
   when:
@@ -115,7 +116,7 @@
   find:
     path: "{{ node_custom_config }}/prometheus/"
     pattern: "*.tmpl"
-  run_once: True
+  run_once: true
   delegate_to: localhost
   register: alertmanager_notification_templates
   when:
@@ -175,7 +176,8 @@
     - "{{ node_custom_config }}/prometheus/prometheus-blackbox-exporter.yml"
     - "{{ role_path }}/templates/prometheus-blackbox-exporter.yml.j2"
 
-- vars:
+- name: Copy extra prometheus server config files
+  vars:
     base: "{{ node_custom_config }}/prometheus/"
     service: "{{ prometheus_services['prometheus-server'] }}"
   when: service | service_enabled_and_mapped_to_host

@@ -12,9 +12,9 @@
       --os-region-name={{ openstack_region_name }}
       {% if openstack_cacert != '' %}--os-cacert={{ openstack_cacert }} {% endif %}
     mapping list -c ID --format value
-  run_once: True
-  changed_when: False
-  become: True
+  run_once: true
+  changed_when: false
+  become: true
   register: existing_mappings_register
 
 - name: Register existing mappings
@@ -22,6 +22,7 @@
     existing_mappings: "{{ existing_mappings_register.stdout_lines | map('trim') | list }}"
 
 - name: Remove unmanaged attribute mappings
+  changed_when: true
   command: >
     {{ kolla_container_engine }} exec -t keystone openstack
     --os-auth-url={{ openstack_auth.auth_url }}
@@ -34,7 +35,7 @@
     --os-region-name={{ openstack_region_name }}
     {% if openstack_cacert != '' %}--os-cacert={{ openstack_cacert }} {% endif %}
     mapping delete {{ item }}
-  run_once: True
+  run_once: true
   become: true
   with_items: "{{ existing_mappings }}"
   when:
@@ -43,6 +44,7 @@
 
 - name: Create unexisting domains
   become: true
+  changed_when: true
   kolla_toolbox:
     container_engine: "{{ kolla_container_engine }}"
     module_name: "os_keystone_domain"
@@ -52,11 +54,12 @@
       endpoint_type: "{{ openstack_interface }}"
       cacert: "{{ openstack_cacert }}"
       region_name: "{{ openstack_region_name }}"
-  run_once: True
+  run_once: true
   with_items: "{{ keystone_identity_providers }}"
 
 - name: Register attribute mappings in OpenStack
   become: true
+  changed_when: true
   command: >
     {{ kolla_container_engine }} exec -t keystone openstack
     --os-auth-url={{ openstack_auth.auth_url }}
@@ -71,13 +74,14 @@
     mapping create
     --rules "{{ keystone_container_federation_oidc_attribute_mappings_folder }}/{{ item.file | basename }}"
     {{ item.name }}
-  run_once: True
+  run_once: true
   when:
     - item.name not in existing_mappings
   with_items: "{{ keystone_identity_mappings }}"
 
 - name: Update existing attribute mappings in OpenStack
   become: true
+  changed_when: true
   command: >
     {{ kolla_container_engine }} exec -t keystone openstack
     --os-auth-url={{ openstack_auth.auth_url }}
@@ -92,7 +96,7 @@
     mapping set
     --rules="{{ keystone_container_federation_oidc_attribute_mappings_folder }}/{{ item.file | basename }}"
     {{ item.name }}
-  run_once: True
+  run_once: true
   when:
     - item.name in existing_mappings
   with_items: "{{ keystone_identity_mappings }}"
@@ -111,8 +115,8 @@
     --os-region-name={{ openstack_region_name }}
     {% if openstack_cacert != '' %}--os-cacert={{ openstack_cacert }} {% endif %}
     identity provider list -c ID --format value
-  run_once: True
-  changed_when: False
+  run_once: true
+  changed_when: false
   register: existing_idps_register
 
 - name: Register existing idps
@@ -121,6 +125,7 @@
 
 - name: Remove unmanaged identity providers
   become: true
+  changed_when: true
   command: >
     {{ kolla_container_engine }} exec -t keystone openstack
     --os-auth-url={{ openstack_auth.auth_url }}
@@ -133,7 +138,7 @@
     --os-region-name={ openstack_region_name }}
     {% if openstack_cacert != '' %}--os-cacert={{ openstack_cacert }}{% endif %}
     identity provider delete {{ item }}
-  run_once: True
+  run_once: true
   with_items: "{{ existing_idps }}"
   when:
     - item not in (keystone_identity_providers | map(attribute='name') | list)
@@ -141,6 +146,7 @@
 
 - name: Register Identity Providers in OpenStack
   become: true
+  changed_when: true
   command: >
     {{ kolla_container_engine }} exec -t keystone openstack
     --os-auth-url={{ openstack_auth.auth_url }}
@@ -157,13 +163,14 @@
     --remote-id "{{ item.identifier }}"
     --domain "{{ item.openstack_domain }}"
     {{ item.name }}
-  run_once: True
+  run_once: true
   when:
     - item.name not in existing_idps
   with_items: "{{ keystone_identity_providers }}"
 
 - name: Update Identity Providers in OpenStack according to Kolla-Ansible configurations
   become: true
+  changed_when: true
   command: >
     {{ kolla_container_engine }} exec -t keystone openstack
     --os-auth-url={{ openstack_auth.auth_url }}
@@ -179,13 +186,14 @@
     --description "{{ item.public_name }}"
     --remote-id "{{ item.identifier }}"
     "{{ item.name }}"
-  run_once: True
+  run_once: true
   when:
     - item.name in existing_idps
   with_items: "{{ keystone_identity_providers }}"
 
 - name: Configure attribute mappings for each Identity Provider. (We expect the mappings to be configured by the operator)
   become: true
+  changed_when: true
   command: >
     {{ kolla_container_engine }} exec -t keystone openstack
     --os-auth-url={{ openstack_auth.auth_url }}
@@ -201,13 +209,14 @@
     --mapping {{ item.attribute_mapping }}
     --identity-provider {{ item.name }}
     {{ item.protocol }}
-  run_once: True
+  run_once: true
   when:
     - item.name not in existing_idps
   with_items: "{{ keystone_identity_providers }}"
 
 - name: Update attribute mappings for each Identity Provider. (We expect the mappings to be configured by the operator).
   become: true
+  changed_when: true
   command: >
     {{ kolla_container_engine }} exec -t keystone openstack
     --os-auth-url={{ openstack_auth.auth_url }}
@@ -223,9 +232,9 @@
     --identity-provider {{ item.name }}
     --mapping {{ item.attribute_mapping }}
     {{ item.protocol }}
-  run_once: True
+  run_once: true
   register: result
-  failed_when: result.rc not in [0, 1]  # This command returns RC 1 on success, so we need to add this to avoid fails.
+  failed_when: result.rc not in [0, 1] # This command returns RC 1 on success, so we need to add this to avoid fails.
   when:
     - item.name in existing_idps
   with_items: "{{ keystone_identity_providers }}"

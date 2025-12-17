@@ -6,18 +6,37 @@
             "name": "monitor 1",
             "type": "monitor",
             "position": {
-                "x": 810.0832983359662,
-                "y": 204.02097884016928
+                "x": 719,
+                "y": 124
             },
             "properties": {
                 "os": "ubuntu-22.04",
                 "ip": "192.168.1.101",
-                "network": "private-net",
-                "subnetwork": "private-subnet",
-                "flavor": "large",
+                "network": "net_private_01",
+                "subnet": "subnet_net_private_01",
+                "flavor": "S_2CPU_4GB",
                 "image": "ubuntu-22.04",
-                "securityGroup": "allow-ssh-icmp",
-                "sshKey": "cyberlab-key"
+                "security_group": "sg_basic",
+                "keypair": "my_key"
+            }
+        },
+        {
+            "id": "node2",
+            "name": "attack 2",
+            "type": "attack",
+            "position": {
+                "x": 1025,
+                "y": 306
+            },
+            "properties": {
+                "os": "debian-12",
+                "ip": "192.168.1.102",
+                "network": "net_private_01",
+                "subnet": "subnet_net_private_01",
+                "flavor": "T_1CPU_2GB",
+                "image": "debian-12",
+                "security_group": "sg_basic",
+                "keypair": "my_key"
             }
         },
         {
@@ -25,54 +44,35 @@
             "name": "victim 3",
             "type": "victim",
             "position": {
-                "x": 1051.1080821618525,
-                "y": 181.01861357877763
+                "x": 960,
+                "y": 146
             },
             "properties": {
                 "os": "debian-12",
                 "ip": "192.168.1.103",
-                "network": "private-net",
-                "subnetwork": "private-subnet",
-                "flavor": "medium",
+                "network": "net_private_01",
+                "subnet": "subnet_net_private_01",
+                "flavor": "T_1CPU_2GB",
                 "image": "debian-12",
-                "securityGroup": "allow-ssh-icmp",
-                "sshKey": "cyberlab-key"
-            }
-        },
-        {
-            "id": "node4",
-            "name": "attack 4",
-            "type": "attack",
-            "position": {
-                "x": 1004.1032488016174,
-                "y": 382.0392839065915
-            },
-            "properties": {
-                "os": "debian-12",
-                "ip": "192.168.1.104",
-                "network": "private-net",
-                "subnetwork": "private-subnet",
-                "flavor": "medium",
-                "image": "debian-12",
-                "securityGroup": "allow-ssh-icmp",
-                "sshKey": "cyberlab-key"
+                "security_group": "sg_basic",
+                "keypair": "my_key"
             }
         }
     ],
     "edges": [
-        {
-            "id": "edge_node3_node1",
-            "source": "node3",
-            "target": "node1"
-        },
         {
             "id": "edge_node1_node3",
             "source": "node1",
             "target": "node3"
         },
         {
-            "id": "edge_node4_node3",
-            "source": "node4",
+            "id": "edge_node3_node1",
+            "source": "node3",
+            "target": "node1"
+        },
+        {
+            "id": "edge_node2_node3",
+            "source": "node2",
             "target": "node3"
         }
     ]

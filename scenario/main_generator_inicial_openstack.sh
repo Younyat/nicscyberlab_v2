@@ -12,9 +12,9 @@ REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 # Archivo admin-openrc.sh generado por app.py
 ADMIN_OPENRC="$REPO_ROOT/admin-openrc.sh"
 
-DEFAULT_KEYPAIR="cyberlab-key"
-LOCAL_KEYFILE="$HOME/.ssh/cyberlab-key"
-DEFAULT_EXTERNAL_NET="external-net"
+DEFAULT_KEYPAIR="my_key"
+LOCAL_KEYFILE="$HOME/.ssh/my_key"
+DEFAULT_EXTERNAL_NET="net_external_01"
 
 echo " SCRIPT_DIR: $SCRIPT_DIR"
 echo " REPO_ROOT : $REPO_ROOT"
@@ -81,8 +81,8 @@ while read -r node; do
   image=$(echo "$node" | jq -r '.properties.image')
   flavor=$(echo "$node" | jq -r '.properties.flavor')
   network=$(echo "$node" | jq -r '.properties.network')
-  subnet=$(echo "$node" | jq -r '.properties.subnetwork')
-  secgroup=$(echo "$node" | jq -r '.properties.securityGroup')
+  subnet=$(echo "$node" | jq -r '.properties.subnet')
+  secgroup=$(echo "$node" | jq -r '.properties.security_group')
 
   echo "   → Nodo: $name"
 
@@ -144,8 +144,8 @@ while read -r node; do
   image=$(echo "$node" | jq -r '.properties.image')
   flavor=$(echo "$node" | jq -r '.properties.flavor')
   network=$(echo "$node" | jq -r '.properties.network')
-  subnet=$(echo "$node" | jq -r '.properties.subnetwork')
-  secgroup=$(echo "$node" | jq -r '.properties.securityGroup')
+  subnet=$(echo "$node" | jq -r '.properties.subnet')
+  secgroup=$(echo "$node" | jq -r '.properties.security_group')
 
   safe=$(echo "$id" | tr -c '[:alnum:]' '_')
 

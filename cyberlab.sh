@@ -97,7 +97,7 @@ echo "------------------------------------------------------------"
 log_block "PASO 5 | Configuración inicial OpenStack"
 step_start=$(date +%s)
 
-bash openstack-recursos.sh
+bash openstack-resources.sh
 echo "[✔] Configuración completada en: $(timer $step_start)"
 echo "------------------------------------------------------------"
 

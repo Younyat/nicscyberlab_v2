@@ -1,4 +1,4 @@
-#!/home/nics/Escritorio/cyber-range-v1/openstack-installer/openstack_venv/bin/python
+#!/home/nics/Desktop/nics-cyberlab-A/openstack-installer/openstack_venv/bin/python
 import sys
 from kolla_ansible.cmd.mergepwd import main
 if __name__ == '__main__':

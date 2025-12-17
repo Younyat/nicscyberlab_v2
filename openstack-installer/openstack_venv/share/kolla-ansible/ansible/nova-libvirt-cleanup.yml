@@ -1,5 +1,6 @@
 ---
-- import_playbook: gather-facts.yml
+- name: Gather facts
+  import_playbook: gather-facts.yml
 
 - name: Remove nova_libvirt container
   gather_facts: false
@@ -13,6 +14,7 @@
   tags:
     - nova-libvirt-cleanup
   tasks:
-    - import_role:
+    - name: Clean up nova libvirt container and configuration
+      import_role:
         name: nova-cell
         tasks_from: libvirt-cleanup.yml

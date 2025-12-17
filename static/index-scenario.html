@@ -87,31 +87,33 @@
                 <div>
                     <label for="nodeNetwork" class="block text-sm font-medium text-gray-400 mb-1">Red Principal</label>
                     <select id="nodeNetwork" onchange="updateNodeProperties(false)" class="w-full p-2 rounded-lg bg-gray-900 border border-gray-700 text-white focus:ring-primary-color focus:border-primary-color">
-                        <option value="private-net">private-net</option>
-                        <option value="red_externa">external-net</option>
+                          <option value="net_private_01">net_private_01</option>
+                <option value="net_external_01">net_external_01</option>
                     </select>
                 </div>
                 <div>
                     <label for="nodeSubNetwork" class="block text-sm font-medium text-gray-400 mb-1">Sub Red Principal</label>
                     <select id="nodeSubNetwork" onchange="updateNodeProperties(false)" class="w-full p-2 rounded-lg bg-gray-900 border border-gray-700 text-white focus:ring-primary-color focus:border-primary-color">
-                        <option value="private-subnet">private-subnet</option>
-                        <option value="red_externa_subnet">external-subnet </option>
+                         <option value="subnet_net_private_01">subnet_net_private_01</option>
+                <option value="subnet_net_external_01">subnet_net_external_01</option>
+       
                     </select>
                 </div>
                    <div>
                     <label for="nodeImage" class="block text-sm font-medium text-gray-400 mb-1">Image</label>
                     <select id="nodeImage" onchange="updateNodeProperties(false)" class="w-full p-2 rounded-lg bg-gray-900 border border-gray-700 text-white focus:ring-primary-color focus:border-primary-color">
-                        <option value="ubuntu-22.04">ubuntu-22.04</option>
-                        <option value="debian-12">debian-12</option>
+                         <option value="ubuntu-22.04">ubuntu-22.04</option>
+                <option value="debian-12">debian-12</option>
+                <option value="kali-linux">kali-linux</option>
                     </select>
                 </div>
                 <div>
                     <label for="nodeFlavor" class="block text-sm font-medium text-gray-400 mb-1">Sabor (Flavor)</label>
                     <select id="nodeFlavor" onchange="updateNodeProperties(false)" class="w-full p-2 rounded-lg bg-gray-900 border border-gray-700 text-white focus:ring-primary-color focus:border-primary-color">
-                        <option value="large">large (4 VCPUs, 4GB RAM)</option>
-                        <option value="medium">medium (2 VCPUs, 2GB RAM)</option>
-                        <option value="small">small (1 VCPU, 1GB RAM)</option>
-                        <option value="tiny">tiny (1 VCPU, 512MB RAM)</option>
+                          <option value="T_1CPU_2GB">T_1CPU_2GB</option>
+                <option value="S_2CPU_4GB">S_2CPU_4GB</option>
+                <option value="M_4CPU_8GB">M_4CPU_8GB</option>
+                <option value="L_6CPU_12GB">L_6CPU_12GB</option>
                     </select>
                 </div>
             </div>
@@ -120,13 +122,13 @@
                 <div>
                     <label for="nodeSecurityGroup" class="block text-sm font-medium text-gray-400 mb-1">Grupo de Seguridad</label>
                     <select id="nodeSecurityGroup" onchange="updateNodeProperties(false)" class="w-full p-2 rounded-lg bg-gray-900 border border-gray-700 text-white focus:ring-primary-color focus:border-primary-color">
-                        <option value="allow-ssh-icmp">allow-ssh-icmp(SSH + ICMP)</option>
+                                       <option value="sg_basic">sg_basic</option>
                     </select>
                 </div>
                 <div>
                     <label for="nodeSSHKey" class="block text-sm font-medium text-gray-400 mb-1">Clave SSH</label>
                     <select id="nodeSSHKey" onchange="updateNodeProperties(false)" class="w-full p-2 rounded-lg bg-gray-900 border border-gray-700 text-white focus:ring-primary-color focus:border-primary-color">
-                        <option value="cyberlab-key">cyberlab-key(ssh)</option>
+                        <option value="my_key">my_key</option>
                     </select>
                 </div>
             </div>

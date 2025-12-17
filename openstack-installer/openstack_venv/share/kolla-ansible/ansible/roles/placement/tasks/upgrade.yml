@@ -1,14 +1,19 @@
 ---
-- import_tasks: register.yml
+- name: Import tasks from register.yml
+  import_tasks: register.yml
 
-- include_tasks: clone.yml
+- name: Include tasks from clone.yml
+  include_tasks: clone.yml
   when: placement_dev_mode | bool
 
-- import_tasks: config.yml
+- name: Configure placement
+  import_tasks: config.yml
 
-- import_tasks: check-containers.yml
+- name: Check placement containers
+  import_tasks: check-containers.yml
 
-- import_tasks: bootstrap.yml
+- name: Import tasks from bootstrap.yml
+  import_tasks: bootstrap.yml
 
 - name: Flush handlers
   meta: flush_handlers
@@ -20,7 +25,7 @@
   kolla_container:
     action: "start_container"
     common_options: "{{ docker_common_options }}"
-    detach: False
+    detach: false
     environment:
       KOLLA_OSM:
       KOLLA_CONFIG_STRATEGY: "{{ config_strategy }}"
@@ -30,5 +35,5 @@
     name: "bootstrap_placement"
     restart_policy: oneshot
     volumes: "{{ placement_api.volumes }}"
-  run_once: True
+  run_once: true
   delegate_to: "{{ groups[placement_api.group][0] }}"

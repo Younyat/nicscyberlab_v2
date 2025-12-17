@@ -11,11 +11,12 @@
   delegate_to: localhost
   connection: local
   changed_when: false
-  check_mode: no
+  check_mode: false
   run_once: true
   with_fileglob: "/tmp/kolla_mariadb_recover_inventory_name_*"
 
-- when:
+- name: Perform MariaDB wsrep recovery operations
+  when:
     - mariadb_recover_inventory_name is not defined
   block:
     - name: Stop MariaDB containers
@@ -46,12 +47,14 @@
 
     - name: Copying MariaDB log file to /tmp
       become: true
+      changed_when: true
       command: "cp {{ container_engine_volumes_path }}/kolla_logs/_data/mariadb/mariadb.log /tmp/mariadb_tmp.log"
 
     # Look for sequence number in logs. Format is:
     # WSREP: Recovered position: <UUID>:<seqno>.
     - name: Get MariaDB wsrep recovery seqno
       become: true
+      changed_when: false
       shell: awk -F" " '/Recovered position/{seqno=$NF} END{split(seqno, a, ":"); print a[2]}' /tmp/mariadb_tmp.log
       register: wsrep_recovery_seqno
 
@@ -61,7 +64,7 @@
         path: /tmp/mariadb_tmp.log
         state: absent
       changed_when: false
-      check_mode: no
+      check_mode: false
 
     - name: Registering MariaDB seqno variable
       set_fact:
@@ -102,10 +105,11 @@
 - name: Set grastate.dat file from MariaDB container in bootstrap host
   become: true
   lineinfile:
-    create: yes
+    create: true
     dest: "{{ container_engine_volumes_path }}/mariadb/_data/grastate.dat"
-    regexp: 'safe_to_bootstrap:(.*)$'
-    line: 'safe_to_bootstrap: 1'
+    mode: "0660"
+    regexp: "safe_to_bootstrap:(.*)$"
+    line: "safe_to_bootstrap: 1"
     state: present
   when:
     - bootstrap_host is defined
@@ -256,4 +260,5 @@
   retries: 10
   delay: 6
 
-- import_tasks: check.yml
+- name: Import tasks from check.yml
+  import_tasks: check.yml

@@ -17,7 +17,6 @@
 - name: Perform Redis to Valkey migration steps
   when: redis_container_facts.containers['redis'] is defined
   block:
-
     - name: Set temporary Valkey migration vars
       set_fact:
         valkey_server_port: "6380"
@@ -35,9 +34,10 @@
 
     - name: Wait for Valkey replication sync
       become: true
+      changed_when: false
       delegate_to: "{{ valkey_master_host }}"
       run_once: true
-      shell: >-
+      command: >-
         {{ kolla_container_engine }} exec valkey_server
         valkey-cli -h {{ api_interface_address }} -p {{ valkey_server_port }} info replication
       register: valkey_replication
@@ -47,6 +47,7 @@
 
     - name: Set replica-priority=10 on valkey[0] to ensure it becomes master
       become: true
+      changed_when: true
       delegate_to: "{{ valkey_master_host }}"
       run_once: true
       command: >-
@@ -56,6 +57,7 @@
 
     - name: Set replica-priority=0 on other valkey nodes to prevent promotion
       become: true
+      changed_when: true
       command: >-
         {{ kolla_container_engine }} exec valkey_server valkey-cli
         -h {{ api_interface_address }} -p {{ valkey_server_port }} CONFIG SET replica-priority 0
@@ -70,6 +72,7 @@
 
     - name: Trigger Sentinel failover (using one of redis-sentinels)
       become: true
+      changed_when: true
       delegate_to: "{{ valkey_master_host }}"
       run_once: true
       command: >-
@@ -80,9 +83,10 @@
 
     - name: Wait until Valkey becomes master
       become: true
+      changed_when: false
       delegate_to: "{{ valkey_master_host }}"
       run_once: true
-      shell: >-
+      command: >-
         {{ kolla_container_engine }} exec valkey_server
         valkey-cli -h {{ api_interface_address }} -p {{ valkey_server_port }} info replication
       register: valkey_role
@@ -120,14 +124,14 @@
     valkey_sentinel_monitor_name: "kolla"
     _valkey_migration: false
 
-
 - name: Reconfigure/Redeploy Valkey on default ports
   import_tasks: reconfigure.yml
 
 - name: Verify Valkey responds on port 6379
   import_tasks: check.yml
 
-- import_tasks: check-containers.yml
+- name: Check valkey containers
+  import_tasks: check-containers.yml
 
 - name: Flush handlers
   meta: flush_handlers

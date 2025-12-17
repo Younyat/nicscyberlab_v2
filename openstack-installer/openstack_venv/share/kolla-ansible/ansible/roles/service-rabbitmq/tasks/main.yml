@@ -1,12 +1,13 @@
 ---
-- become: true
+- name: Create RabbitMQ vhosts and users
+  become: true
   delegate_to: "{{ service_rabbitmq_delegate_host }}"
   run_once: "{{ service_rabbitmq_run_once }}"
   when: service_rabbitmq_when | bool
   tags:
     - service-rabbitmq
   block:
-    - name: "{{ project_name }} | Ensure RabbitMQ vhosts exist"
+    - name: "Ensure RabbitMQ vhosts exist for {{ project_name }}"
       kolla_toolbox:
         container_engine: "{{ kolla_container_engine }}"
         module_name: rabbitmq_vhost
@@ -19,7 +20,7 @@
       retries: "{{ service_rabbitmq_retries }}"
       delay: "{{ service_rabbitmq_delay }}"
 
-    - name: "{{ project_name }} | Ensure RabbitMQ users exist"
+    - name: "Ensure RabbitMQ users exist for {{ project_name }}"
       kolla_toolbox:
         container_engine: "{{ kolla_container_engine }}"
         module_name: rabbitmq_user
@@ -41,4 +42,4 @@
       until: service_rabbitmq_result is success
       retries: "{{ service_rabbitmq_retries }}"
       delay: "{{ service_rabbitmq_delay }}"
-      no_log: True
+      no_log: true
