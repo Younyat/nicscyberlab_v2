@@ -69,3 +69,28 @@ Thumbs.db
 tools-installer-tmp/*
 # excepto el marcador para mantener el directorio en el repo
 !tools-installer-tmp/.gitkeep
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# Virtualenvs
+openstack_venv/
+venv/
+.env/
+
+# Logs
+log/
+app.log
+
+# OpenStack / Secrets
+admin-openrc.sh
+set-password.yml
+*.pem
+*.key
+*.pub
+
+# OS
+.DS_Store
