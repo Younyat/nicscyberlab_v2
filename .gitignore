@@ -6,6 +6,9 @@ last_deployment.pid
 # Entornos virtuales
 # ========================
 venv/
+*openstack_venv/
+*.venv/
+
 .venv/
 env/
 ENV/
@@ -62,6 +65,7 @@ build/
 Thumbs.db
 
 
-
 # Todo lo que haya dentro de tools-installer-tmp se ignora
 tools-installer-tmp/*
+# excepto el marcador para mantener el directorio en el repo
+!tools-installer-tmp/.gitkeep
